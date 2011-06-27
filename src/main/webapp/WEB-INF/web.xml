@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="BCDEMO" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<!-- 文档按如下顺序布局可以保证在weblogic8下启动时不会报web.xml不规范的错误： display-name>description>context-param>filter>filter-mapping>listener>servlet 
+		>servlet-mapping>session-config>welcome-file-list>error-page>taglib -->
+
+	<display-name>bcdemo</display-name>
+
+	<welcome-file-list>
+		<welcome-file>/login.action</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<!-- session超时设置，设为不大于0的数将永远不过时，单位为分钟 -->
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<!-- Log4j -->
+	<servlet>
+		<servlet-name>log4jConfig</servlet-name>
+		<servlet-class>cn.bc.web.servlet.Log4jConfigServlet</servlet-class>
+		<init-param>
+			<param-name>log4jConfigLocation</param-name>
+			<param-value>/WEB-INF/classes/log4j.xml</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<!-- 上传文件 -->
+	<servlet>
+		<servlet-name>uploadFileServlet</servlet-name>
+		<servlet-class>cn.bc.docs.web.UploadFileServlet</servlet-class>
+		<!-- 上传文件存储的相对路径，相对于应用部署目录下的相对路径，开头及末尾不要带"/"
+			* 务必与global.properties中app.data.subPath的值配置相同
+		-->
+		<init-param>
+			<param-name>appSubDir</param-name>
+			<param-value>uploads</param-value>
+		</init-param>
+		<!-- 上传文件存储的绝对路径，开头带"/"，末尾不要带"/"，通过请求参数a=1启用
+			* 务必与global.properties中app.data.realPath的值配置相同
+		-->
+		<init-param>
+			<param-name>appRealDir</param-name>
+			<param-value>/bcdata</param-value>
+		</init-param>
+		<init-param>
+			<!-- 上传类型限制，如 "jpg,jpeg,bmp,gif,png"，为空代表无限制 -->
+			<param-name>extensions</param-name>
+			<param-value></param-value>
+		</init-param>
+		<init-param>
+			<!-- 上传文件大小限制，单位为字节，默认1G(1M=1048576) -->
+			<param-name>maxSize</param-name>
+			<param-value>104857600</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadFileServlet</servlet-name>
+		<url-pattern>/upload/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- xhEditor上传文件 -->
+	<servlet>
+		<servlet-name>xhEditorUploadFileServlet</servlet-name>
+		<servlet-class>cn.bc.docs.web.XhEditorUploadFileServlet</servlet-class>
+		<init-param>
+			<!-- 上传文件存储的目录，相对于应用部署目录下的相对路径 -->
+			<param-name>baseDir</param-name>
+			<param-value>uploads</param-value>
+		</init-param>
+		<init-param>
+			<!-- 上传类型限制，如 "jpg,jpeg,bmp,gif,png"，为空代表无限制 -->
+			<param-name>fileExt</param-name>
+			<param-value></param-value>
+		</init-param>
+		<init-param>
+			<!-- 上传文件大小限制，单位为字节，默认1M=1048576 -->
+			<param-name>maxSize</param-name>
+			<param-value>104857600</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>xhEditorUploadFileServlet</servlet-name>
+		<url-pattern>/upload4xhEditor/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置Spring加载哪些配置文件，多个文件用逗号连接，可使用通配符， 如/WEB-INF/applicationContext-*.xml,classpath*:applicationContext-*.xml -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring.xml</param-value>
+	</context-param>
+
+	<!-- 配置Spring的监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 配置记录超时日志的监听器 -->
+	<listener>
+		<listener-class>cn.bc.log.web.SyslogSessionListener</listener-class>
+	</listener>
+
+	<!-- Spring Open Session or EntityManager In View filter:这个必须放在其他filter前，否则无效 -->
+	<filter>
+		<filter-name>springOpenInViewFilter</filter-name>
+		<!--<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class> -->
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springOpenInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 配置Struts2过滤器 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- utf-8编码过虑器 -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 缓存过滤器:js、css、图片等文件添加永久缓存(设为30天) -->
+	<filter>
+		<filter-name>foreverCacheFilter</filter-name>
+		<filter-class>cn.bc.web.filter.CacheFilter</filter-class>
+		<init-param>
+			<param-name>expires</param-name>
+			<!--缓存时间配置 ,单位为分钟,配为-1代表永久的缓存 -->
+			<param-value>43200</param-value>
+		</init-param>
+		<init-param>
+			<param-name>excludePaths</param-name>
+			<param-value>/bc/attach/*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.cssgz</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.jsgz</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.gif</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.jpg</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.png</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>foreverCacheFilter</filter-name>
+		<url-pattern>*.tif</url-pattern>
+	</filter-mapping>
+
+	<!-- 对响应进行gzip压缩的过虑器 -->
+	<filter>
+		<filter-name>gzipFilter</filter-name>
+		<filter-class>cn.bc.web.filter.gzip.GzipFilter</filter-class>
+		<!-- 排除某些目录或文件不处理(多个配置间用逗号分隔): 如对于下载文件的url则需要在这里配置排除 -->
+		<init-param>
+			<param-name>excludePaths</param-name>
+			<param-value>/attachmentAction*</param-value>
+		</init-param>
+		<!-- 是否启用js、css文件的静态gzip支持 -->
+		<init-param>
+			<param-name>enableStaticGzip</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>gzipFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>gzipFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>gzipFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>gzipFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	<!-- <filter-mapping> <filter-name>gzipFilter</filter-name> <url-pattern>*.jsp</url-pattern> 
+		</filter-mapping> <filter-mapping> <filter-name>gzipFilter</filter-name> 
+		<servlet-name>OzActionServlet</servlet-name> </filter-mapping> -->
+</web-app>
