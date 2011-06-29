@@ -373,6 +373,9 @@ create table BC_DOCS_ATTACH_HISTORY (
     DEPART_NAME varchar(255) COMMENT '处理人所在部门名称，如果用户直接隶属于单位，则为null',
     UNIT_ID int NOT NULL COMMENT '处理人所在单位ID',
     UNIT_NAME varchar(255) NOT NULL COMMENT '处理人所在单位名称',
+
+    C_IP varchar(100) COMMENT '客户端IP',
+    C_INFO varchar(1000) COMMENT '浏览器信息：User-Agent',
     
     MEMO varchar(2000) COMMENT '备注',
     primary key (ID)
@@ -413,15 +416,15 @@ ALTER TABLE BC_FEEDBACK ADD INDEX IDX_FEEDBACK_SEARCH (UNIT_ID,STATUS_);
 ALTER TABLE BC_FEEDBACK ADD INDEX IDX_FEEDBACK_ARCHIVE (UNIT_ID,STATUS_,FILE_YEAR,FILE_MONTH,FILE_DAY);
 
 
--- bc营运管理子系统的建表脚本,所有表名须附带前缀"BS_"
--- 运行此脚本之前需先运行平台的建表脚本framework.db.mysql.create.sql
+-- bcӪ�˹�����ϵͳ�Ľ���ű�,���б����븽��ǰ׺"BS_"
+-- ���д˽ű�֮ǰ��������ƽ̨�Ľ���ű�framework.db.mysql.create.sql
 
--- 车辆
+-- ��~
 create table BS_CAR (
     ID int NOT NULL auto_increment,
-    UNIT_ID int COMMENT '所属单位ID',
-    NAME varchar(500) NOT NULL COMMENT '名称',
-    DESC_ text COMMENT '备注',
+    UNIT_ID int COMMENT '����λID',
+    NAME varchar(500) NOT NULL COMMENT '���',
+    DESC_ text COMMENT '��ע',
     primary key (ID)
-) COMMENT='车辆';
+) COMMENT='��~';
 

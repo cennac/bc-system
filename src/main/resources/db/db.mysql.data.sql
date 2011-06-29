@@ -455,6 +455,48 @@ insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID)
 -- insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
 -- 	select 1, 0, '14', 'flick', id from BC_IDENTITY_ACTOR where code='admin';
 
+-- 插入浏览器附件下载信息
+insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
+	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
+	select now(), 1, 'browser', 'chrome12.0.742.112', 23152640,'exe',0
+	,'谷歌浏览器Chrome12.0.exe','browser/chrome/chrome12.0.742.112.exe',
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='D00'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
+insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
+	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
+	select now(), 1, 'browser', 'firefox5.0', 13531136,'exe',0
+	,'火狐浏览器Firefox5.0.exe','browser/firefox/firefox5.0.exe',
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='D00'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
+insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
+	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
+	select now(), 1, 'browser', 'safari5.0.5', 35624960,'exe',0
+	,'苹果浏览器Safari5.0.5.exe','browser/safari/safari5.0.5.exe',
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='D00'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
+insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
+	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
+	select now(), 1, 'browser', 'opera11.50', 10310656,'exe',0
+	,'挪威浏览器Opera11.50.exe','browser/opera/opera11.50.exe',
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='D00'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
+
 -- 插入测试消息
 insert into BC_MESSAGE (SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
 	select now(), '测试标题1', '测试内容1', 
