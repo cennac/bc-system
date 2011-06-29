@@ -428,6 +428,8 @@ insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONC
 	values(1, 0, '8005', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0505');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
 	values(1, 0, '8006', 1, '百度搜索', 'http://www.baidu.com/', 'i0506');
+insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
+	values(1, 0, '8007', 0, '下载浏览器', '/bc/attach/browser', 'i0505');
 	
 -- 设计用的快捷方式
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
@@ -458,7 +460,7 @@ insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID)
 -- 插入浏览器附件下载信息
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
 	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
-	select now(), 1, 'browser', 'chrome12.0.742.112', 23152640,'exe',0
+	select now(), 1, 'browser', 'chrome12.0.742.112', 23152416,'exe',0
 	,'谷歌浏览器Chrome12.0.exe','browser/chrome/chrome12.0.742.112.exe',
 	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
@@ -468,7 +470,7 @@ insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJEC
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
 	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
-	select now(), 1, 'browser', 'firefox5.0', 13531136,'exe',0
+	select now(), 1, 'browser', 'firefox5.0', 13530208,'exe',0
 	,'火狐浏览器Firefox5.0.exe','browser/firefox/firefox5.0.exe',
 	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
@@ -478,7 +480,7 @@ insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJEC
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
 	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
-	select now(), 1, 'browser', 'safari5.0.5', 35624960,'exe',0
+	select now(), 1, 'browser', 'safari5.0.5', 35624744,'exe',0
 	,'苹果浏览器Safari5.0.5.exe','browser/safari/safari5.0.5.exe',
 	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
@@ -488,8 +490,28 @@ insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJEC
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
 	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
-	select now(), 1, 'browser', 'opera11.50', 10310656,'exe',0
+	select now(), 1, 'browser', 'opera11.50', 10309696,'exe',0
 	,'挪威浏览器Opera11.50.exe','browser/opera/opera11.50.exe',
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='D00'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
+insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
+	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
+	select now(), 1, 'browser', 'ie9.0', 18658608,'exe',0
+	,'微软浏览器IE9.0.exe','browser/ie/IE9.0-Windows7-x86-chs.exe',
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='B02'),
+	(select a.id from BC_IDENTITY_ACTOR a where a.code='D00'),
+	(select a.name from BC_IDENTITY_ACTOR a where a.code='D00');
+insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE,EXT,APPPATH,SUBJECT,PATH
+	,AUTHOR_ID,AUTHOR_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME) 
+	select now(), 1, 'browser', 'ie8.0', 16901472,'exe',0
+	,'微软浏览器IE8.0.exe','browser/ie/IE8.0-WindowsXP-x86-chs.exe',
 	(select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),
 	(select a.name from BC_IDENTITY_ACTOR a where a.code='admin'),
 	(select a.id from BC_IDENTITY_ACTOR a where a.code='B02'),
