@@ -4,67 +4,67 @@
 
 -- 插入分类资源数据
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(1, 0, 1, null, '010000','工作事务', null, 'ixxxx');
+	values(1, 0, 1, null, '010000','工作事务', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(1, 0, 1, null, '020000','系统公告', null, 'ixxxx');
+	values(1, 0, 1, null, '020000','系统公告', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(1, 0, 1, null, '030000','营运管理', null, 'ixxxx');
+	values(1, 0, 1, null, '030000','营运管理', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(1, 0, 1, null, '700000','我的配置', null, 'ixxxx');
+	values(1, 0, 1, null, '700000','我的配置', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(1, 0, 1, null, '800000','系统配置', null, 'ixxxx');
+	values(1, 0, 1, null, '800000','系统配置', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 1, m.id, '800100','组织架构', null, 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select 1, 0, 1, m.id, '800100','组织架构', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 1, m.id, '800200','权限管理', null, 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select 1, 0, 1, m.id, '800200','权限管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
 -- 插入链接资源数据
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '010100','待办事务', '/bc/todoWork/list', 'i0605' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select 1, 0, 2, m.id, '010100','待办事务', '/bc/todoWork/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '010200','已办事务', '/bc/doneWork/paging', 'i0606' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select 1, 0, 2, m.id, '010200','已办事务', '/bc/doneWork/paging', 'i0002' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '020100','电子公告', '/bc/bulletin/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='020000';
+	select 1, 0, 2, m.id, '020100','电子公告', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='020000';
 
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '030100','车辆信息', '/bc-business/car/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select 1, 0, 2, m.id, '030100','车辆信息', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '030200','司机信息', '/bc-business/driver/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select 1, 0, 2, m.id, '030200','司机信息', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '700100','个性化设置', '/bc/personal/edit', 'i0504' from BC_IDENTITY_RESOURCE m where m.order_='700000';
+	select 1, 0, 2, m.id, '700100','个性化设置', '/bc/personal/edit', 'i0302' from BC_IDENTITY_RESOURCE m where m.order_='700000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '700200','我的桌面', '/bc/shortcut/list', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='700000';
+	select 1, 0, 2, m.id, '700200','我的桌面', '/bc/shortcut/list', 'i0407' from BC_IDENTITY_RESOURCE m where m.order_='700000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select 1, 0, 2, m.id, '700300','我的日志', '/bc/mysyslog/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='700000';
+	select 1, 0, 2, m.id, '700300','我的日志', '/bc/mysyslog/paging', 'i0208' from BC_IDENTITY_RESOURCE m where m.order_='700000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select 1, 0, 2, m.id, '700400','我的反馈', '/bc/feedback/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='700000';
+	select 1, 0, 2, m.id, '700400','我的反馈', '/bc/feedback/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='700000';
 	
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800101','职务配置', '/bc/duty/paging', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select 1, 0, 2, m.id, '800101','职务配置', '/bc/duty/paging', 'i0009' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800102','单位配置', '/bc/unit/paging', 'i0601' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select 1, 0, 2, m.id, '800102','单位配置', '/bc/unit/paging', 'i0007' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800103','部门配置', '/bc/department/paging', 'i0602' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select 1, 0, 2, m.id, '800103','部门配置', '/bc/department/paging', 'i0008' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800104','岗位配置', '/bc/group/paging', 'i0508' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select 1, 0, 2, m.id, '800104','岗位配置', '/bc/group/paging', 'i0003' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800105','用户配置', '/bc/user/paging', 'i0507' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select 1, 0, 2, m.id, '800105','用户配置', '/bc/user/paging', 'i0003' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select 1, 0, 2, m.id, '800106','资源配置', '/bc/resource/paging', 'i0600' from BC_IDENTITY_RESOURCE m where m.order_='800200';
+	select 1, 0, 2, m.id, '800106','资源配置', '/bc/resource/paging', 'i0005' from BC_IDENTITY_RESOURCE m where m.order_='800200';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800107','角色配置', '/bc/role/paging', 'i0509' from BC_IDENTITY_RESOURCE m where m.order_='800200';
+	select 1, 0, 2, m.id, '800107','角色配置', '/bc/role/paging', 'i0006' from BC_IDENTITY_RESOURCE m where m.order_='800200';
 
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select 1, 0, 2, m.id, '800300','反馈管理', '/bc/feedback/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select 1, 0, 2, m.id, '800300','反馈管理', '/bc/feedback/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select 1, 0, 2, m.id, '800400','附件管理', '/bc/attach/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select 1, 0, 2, m.id, '800400','附件管理', '/bc/attach/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800500','系统日志', '/bc/syslog/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select 1, 0, 2, m.id, '800500','系统日志', '/bc/syslog/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '800600','消息记录', '/bc/message/paging', 'ixxxx' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select 1, 0, 2, m.id, '800600','消息记录', '/bc/message/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
     
 
 -- 插入超级管理员角色数据（可访问所有资源）
@@ -416,40 +416,40 @@ insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,A
 
 -- 报表
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8001', 0, '饼图', '/bc/chart/pie', 'i0501');
+	values(1, 0, '8001', 0, '饼图', '/bc/chart/pie', 'i0201');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8002', 0, '柱图', '/bc/chart/bar', 'i0500');
+	values(1, 0, '8002', 0, '柱图', '/bc/chart/bar', 'i0200');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8003', 0, '动态曲线图', '/bc/chart/spline', 'i0502');
+	values(1, 0, '8003', 0, '动态曲线图', '/bc/chart/spline', 'i0202');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8004', 0, '综合图表', '/bc/chart/mix', 'i0503');
+	values(1, 0, '8004', 0, '综合图表', '/bc/chart/mix', 'i0203');
     
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8005', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0505');
+	values(1, 0, '8005', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0204');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8006', 1, '百度搜索', 'http://www.baidu.com/', 'i0506');
+	values(1, 0, '8006', 1, '百度搜索', 'http://www.baidu.com/', 'i0203');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8007', 0, '下载浏览器', '/bc/attach/browser', 'i0505');
+	values(1, 0, '8007', 0, '下载浏览器', '/bc/attach/browser', 'i0404');
 	
 -- 设计用的快捷方式
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9001', 0, '分页设计', '/bc/duty/paging', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9001', 0, '分页设计', '/bc/duty/paging', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9002', 0, '无分页设计', '/bc/duty/list', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9002', 0, '无分页设计', '/bc/duty/list', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9003', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9003', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9004', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.13/index.html', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9004', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.13/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9005', 1, 'jqGrid', '/ui-libs-demo/jqGrid/3.8.2/jqgrid.html', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9005', 1, 'jqGrid', '/ui-libs-demo/jqGrid/3.8.2/jqgrid.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9006', 1, 'jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9006', 1, 'jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9007', 1, 'xheditor', '/ui-libs-demo/xheditor/1.1.7/index.html', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9007', 1, 'xheditor', '/ui-libs-demo/xheditor/1.1.7/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9008', 1, 'zTree', '/ui-libs-demo/zTree/2.6/index.html', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9008', 1, 'zTree', '/ui-libs-demo/zTree/2.6/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9009', 0, '附件设计', '/bc/attach/design', 'i0604', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '9009', 0, '附件设计', '/bc/attach/design', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 
 -- 插入全局配置信息
 insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
