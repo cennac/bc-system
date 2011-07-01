@@ -416,15 +416,15 @@ ALTER TABLE BC_FEEDBACK ADD INDEX IDX_FEEDBACK_SEARCH (UNIT_ID,STATUS_);
 ALTER TABLE BC_FEEDBACK ADD INDEX IDX_FEEDBACK_ARCHIVE (UNIT_ID,STATUS_,FILE_YEAR,FILE_MONTH,FILE_DAY);
 
 
--- bcӪ�˹�����ϵͳ�Ľ���ű�,���б����븽��ǰ׺"BS_"
--- ���д˽ű�֮ǰ��������ƽ̨�Ľ���ű�framework.db.mysql.create.sql
+-- bc营运管理子系统的建表脚本,所有表名须附带前缀"BS_"
+-- 运行此脚本之前需先运行平台的建表脚本framework.db.mysql.create.sql
 
--- ����
+-- 车辆 
 create table BS_CAR (
     ID int NOT NULL auto_increment,
-    UNIT_ID int COMMENT '������λID',
-    NAME varchar(500) NOT NULL COMMENT '���',
-    DESC_ text COMMENT '��ע',
+    UNIT_ID int COMMENT '所属单位ID',
+    NAME varchar(500) NOT NULL COMMENT '名称',
+    DESC_ text COMMENT '备注',
     primary key (ID)
-) COMMENT='����';
+) COMMENT='车辆';
 
