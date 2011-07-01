@@ -547,7 +547,7 @@ DELIMITER $$
         WHILE i <  loop_time DO 
         insert into BC_LOG_SYSTEM (TYPE_,CREATE_DATE,SUBJECT,CREATER_ID,CREATER_NAME,DEPART_ID,DEPART_NAME,UNIT_ID,UNIT_NAME,C_IP,S_IP,C_INFO) 
         	select 0,now(),concat(u.name,'登录系统'),u.id,u.name,1,'D',1,'U','127.0.0.1','localhost','Chrome12'
-        	from bc_identity_actor u where u.code=userCode;
+        	from BC_IDENTITY_ACTOR u where u.CODE=userCode;
         SET i = i + 1; 
         END WHILE; 
     END $$ 
