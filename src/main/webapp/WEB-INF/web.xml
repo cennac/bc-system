@@ -35,14 +35,14 @@
 		-->
 		<init-param>
 			<param-name>appSubDir</param-name>
-			<param-value>uploads</param-value>
+			<param-value>${app.data.subPath}</param-value>
 		</init-param>
 		<!-- 上传文件存储的绝对路径，开头带"/"，末尾不要带"/"，通过请求参数a=1启用
 			* 务必与global.properties中app.data.realPath的值配置相同
 		-->
 		<init-param>
 			<param-name>appRealDir</param-name>
-			<param-value>/bcdata</param-value>
+			<param-value>${app.data.realPath}</param-value>
 		</init-param>
 		<init-param>
 			<!-- 上传类型限制，如 "jpg,jpeg,bmp,gif,png"，为空代表无限制 -->

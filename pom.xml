@@ -13,6 +13,8 @@
 	<properties>
 		<app.ts>20110627</app.ts>
 		<app.debug>true</app.debug>
+		<app.data.realPath>/bcdata</app.data.realPath>
+		<app.data.subPath>uploads</app.data.subPath>
 		
 		<!-- 数据库连接配置 -->
 		<db>mysql</db>
@@ -29,6 +31,27 @@
 
 	<build>
 		<finalName>bc-system</finalName>
+		<!-- 替换文件中的${...}标记的值 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
+				<includes>
+					<include>**/web.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

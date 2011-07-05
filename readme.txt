@@ -1,6 +1,6 @@
 ﻿BC综合系统：bc开发平台+bc营运管理子系统
 
-源码： git@[serverIp]:bc-system.git
+源码： [内网]git@[serverIp]:bc-system.git 或 [外网]git@github.com:rongjihuang/bc-system.git
 
 一) 浏览器兼容性：
 Chrome11、Firefox4、Safari5、Opera11、IE9、IE8
