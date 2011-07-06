@@ -387,69 +387,72 @@ insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,A
 	select 1, 0, '0202', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='司机信息';
 	
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '5001', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='个性化设置';
+	select 1, 0, '1001', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='个性化设置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '5002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的桌面';
+	select 1, 0, '1002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的桌面';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '5003', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的反馈';
+	select 1, 0, '1003', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的反馈';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '5004', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的日志';
+	select 1, 0, '1004', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的日志';
 	
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7001', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='单位配置';
+	select 1, 0, '1101', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='单位配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='部门配置';
+	select 1, 0, '1102', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='部门配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7003', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='岗位配置';
+	select 1, 0, '1103', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='岗位配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7004', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='用户配置';
+	select 1, 0, '1104', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='用户配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7005', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='资源配置';
+	select 1, 0, '1105', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='资源配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7006', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='角色配置';
+	select 1, 0, '1106', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='角色配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7007', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='职务配置';
+	select 1, 0, '1107', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='职务配置';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7008', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='反馈管理';
+	select 1, 0, '1108', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='反馈管理';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select 1, 0, '7009', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='系统日志';
+	select 1, 0, '1109', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='系统日志';
+    
+insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
+	values(1, 0, '8001', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0204');
+insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
+	values(1, 0, '8002', 1, '百度搜索', 'http://www.baidu.com/', 'i0203');
+insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
+	values(1, 0, '8003', 0, '下载浏览器', '/bc/attach/browser', 'i0404');
 
 -- 报表
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8001', 0, '饼图', '/bc/chart/pie', 'i0201');
+	values(1, 0, '8101', 0, '饼图', '/bc/chart/pie', 'i0201');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8002', 0, '柱图', '/bc/chart/bar', 'i0200');
+	values(1, 0, '8102', 0, '柱图', '/bc/chart/bar', 'i0200');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8003', 0, '动态曲线图', '/bc/chart/spline', 'i0202');
+	values(1, 0, '8103', 0, '动态曲线图', '/bc/chart/spline', 'i0202');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8004', 0, '综合图表', '/bc/chart/mix', 'i0203');
-    
-insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8005', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0204');
-insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8006', 1, '百度搜索', 'http://www.baidu.com/', 'i0203');
-insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8007', 0, '下载浏览器', '/bc/attach/browser', 'i0404');
+	values(1, 0, '8104', 0, '综合图表', '/bc/chart/mix', 'i0203');
 	
 -- 设计用的快捷方式
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9001', 0, '分页设计', '/bc/duty/paging', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8201', 0, '分页设计', '/bc/duty/paging', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9002', 0, '无分页设计', '/bc/duty/list', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8202', 0, '无分页设计', '/bc/duty/list', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9003', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8203', 0, '附件设计', '/bc/attach/design', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9004', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.13/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8301', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.13/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9005', 1, 'jqGrid', '/ui-libs-demo/jqGrid/3.8.2/jqgrid.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8302', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9006', 1, 'jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8303', 1, 'xheditor', '/ui-libs-demo/xheditor/1.1.7/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9007', 1, 'xheditor', '/ui-libs-demo/xheditor/1.1.7/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8304', 1, 'zTree', '/ui-libs-demo/zTree/2.6/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9008', 1, 'zTree', '/ui-libs-demo/zTree/2.6/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8305', 1, 'jcrop', '/ui-libs-demo/jcrop/0.9.9/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select 1, 0, '9009', 0, '附件设计', '/bc/attach/design', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select 1, 0, '8306', 1, 'jqGrid', '/ui-libs-demo/jqGrid/3.8.2/jqgrid.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
+    select 1, 0, '8307', 1, 'jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 
 -- 插入全局配置信息
 insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
