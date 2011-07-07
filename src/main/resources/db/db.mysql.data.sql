@@ -7,16 +7,23 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 	values(1, 0, 1, null, '010000','工作事务', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(1, 0, 1, null, '020000','系统公告', null, 'i0403');
+	
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(1, 0, 1, null, '030000','营运管理', null, 'i0403');
+	insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+		select 1, 0, 1, m.id, '030100','车辆管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+		select 1, 0, 1, m.id, '030200','司机管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+		
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(1, 0, 1, null, '700000','我的配置', null, 'i0403');
+	
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(1, 0, 1, null, '800000','系统配置', null, 'i0403');
-insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 1, m.id, '800100','组织架构', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
-insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 1, m.id, '800200','权限管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+		select 1, 0, 1, m.id, '800100','组织架构', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+		select 1, 0, 1, m.id, '800200','权限管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
 -- 插入链接资源数据
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -27,10 +34,41 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 1, 0, 2, m.id, '020100','电子公告', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='020000';
 
+-- 车辆管理的相关链接
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '030100','车辆信息', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select 1, 0, 2, m.id, '030101','车辆信息', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 1, 0, 2, m.id, '030200','司机信息', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select 1, 0, 2, m.id, '030102','车队信息', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030103','车辆证件', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030104','车辆费用', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '0301051','车辆保单', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030106','车辆事故', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030107','车辆报表', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
+
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030201','司机信息', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030202','资格证', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030203','驾驶证', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030204','考试成绩', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030205','迁入迁出记录', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030206','司机报表', '/bc-business/driver/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030301','黑名单', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030302','合同管理', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 1, 0, 2, m.id, '030303','责任人管理', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -456,7 +494,7 @@ insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONC
 
 -- 插入全局配置信息
 insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
-	values(1, 0, '12', 'humanity', null);
+	values(1, 0, '12', 'redmond', null);
 -- insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
 -- 	select 1, 0, '14', 'flick', id from BC_IDENTITY_ACTOR where code='admin';
 
