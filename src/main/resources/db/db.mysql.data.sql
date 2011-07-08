@@ -455,7 +455,7 @@ insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,A
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
 	values(1, 0, '8001', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0204');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(1, 0, '8002', 1, '百度搜索', 'http://www.baidu.com/', 'i0203');
+	values(1, 0, '8002', 1, '百度搜索', 'http://www.baidu.com/', 'i0205');
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
 	values(1, 0, '8003', 0, '下载浏览器', '/bc/attach/browser', 'i0404');
 
