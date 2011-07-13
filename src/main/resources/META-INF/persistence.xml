@@ -44,6 +44,10 @@
 		<!-- feedback -->
 		<class>cn.bc.feedback.domain.Feedback</class>
 
+		<!-- option -->
+		<class>cn.bc.option.domain.OptionGroup</class>
+		<class>cn.bc.option.domain.OptionItem</class>
+
 		<!-- 营运管理子系统 -->
 		<class>cn.bc.business.car.domain.Car</class>
 
