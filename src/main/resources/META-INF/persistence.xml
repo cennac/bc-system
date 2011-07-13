@@ -46,6 +46,8 @@
 
 		<!-- 营运管理子系统 -->
 		<class>cn.bc.business.car.domain.Car</class>
+		<class>cn.bc.business.motorcade.domain.Motorcade</class>
+		<class>cn.bc.business.motorcade.domain.HistoryCarQuantity</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

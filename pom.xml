@@ -77,6 +77,11 @@
 			<artifactId>bc-business-car</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-motorcade</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		
 		<!-- 平台模块 -->
 		<dependency>
