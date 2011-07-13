@@ -319,10 +319,11 @@ create table BC_BULLETIN (
     DEPART_NAME varchar(255) COMMENT '创建人所在部门名称，如果用户直接隶属于单位，则为null',
     UNIT_ID int NOT NULL COMMENT '创建人所在单位ID',
     UNIT_NAME varchar(255) NOT NULL COMMENT '创建人所在单位名称',
+    MODIFIER_ID int COMMENT '最后修改人ID',
+    MODIFIER_NAME varchar(255) COMMENT '最后修改人名称',
+    MODIFIED_DATE datetime COMMENT '最后修改时间',
 
     CONTENT text NOT NULL COMMENT '详细内容',
-    
-    INNER_ int(1) default 0 COMMENT '未用',
     primary key (ID)
 ) COMMENT='公告模块';
 ALTER TABLE BC_BULLETIN ADD CONSTRAINT FK_BULLETIN_ISSUER FOREIGN KEY (ISSUER_ID) 
@@ -351,6 +352,9 @@ create table BC_DOCS_ATTACH (
     DEPART_NAME varchar(255) COMMENT '创建人所在部门名称，如果用户直接隶属于单位，则为null',
     UNIT_ID int NOT NULL COMMENT '创建人所在单位ID',
     UNIT_NAME varchar(255) NOT NULL COMMENT '创建人所在单位名称',
+    MODIFIER_ID int COMMENT '最后修改人ID',
+    MODIFIER_NAME varchar(255) COMMENT '最后修改人名称',
+    MODIFIED_DATE datetime COMMENT '最后修改时间',
     primary key (ID)
 ) COMMENT='文档附件,记录文档与其相关附件之间的关系';
 ALTER TABLE BC_DOCS_ATTACH ADD CONSTRAINT FK_ATTACH_AUTHOR FOREIGN KEY (AUTHOR_ID) 
@@ -373,6 +377,9 @@ create table BC_DOCS_ATTACH_HISTORY (
     DEPART_NAME varchar(255) COMMENT '处理人所在部门名称，如果用户直接隶属于单位，则为null',
     UNIT_ID int NOT NULL COMMENT '处理人所在单位ID',
     UNIT_NAME varchar(255) NOT NULL COMMENT '处理人所在单位名称',
+    MODIFIER_ID int COMMENT '最后修改人ID',
+    MODIFIER_NAME varchar(255) COMMENT '最后修改人名称',
+    MODIFIED_DATE datetime COMMENT '最后修改时间',
 
     C_IP varchar(100) COMMENT '客户端IP',
     C_INFO varchar(1000) COMMENT '浏览器信息：User-Agent',
@@ -404,10 +411,11 @@ create table BC_FEEDBACK (
     DEPART_NAME varchar(255) COMMENT '创建人所在部门名称，如果用户直接隶属于单位，则为null',
     UNIT_ID int NOT NULL COMMENT '创建人所在单位ID',
     UNIT_NAME varchar(255) NOT NULL COMMENT '创建人所在单位名称',
+    MODIFIER_ID int COMMENT '最后修改人ID',
+    MODIFIER_NAME varchar(255) COMMENT '最后修改人名称',
+    MODIFIED_DATE datetime COMMENT '最后修改时间',
 
     CONTENT text NOT NULL COMMENT '详细内容',
-    
-    INNER_ int(1) default 0 COMMENT '未用',
     primary key (ID)
 ) COMMENT='用户反馈';
 ALTER TABLE BC_FEEDBACK ADD CONSTRAINT FK_FEEDBACK_AUTHOR FOREIGN KEY (AUTHOR_ID) 
@@ -415,6 +423,33 @@ ALTER TABLE BC_FEEDBACK ADD CONSTRAINT FK_FEEDBACK_AUTHOR FOREIGN KEY (AUTHOR_ID
 ALTER TABLE BC_FEEDBACK ADD INDEX IDX_FEEDBACK_SEARCH (UNIT_ID,STATUS_);
 ALTER TABLE BC_FEEDBACK ADD INDEX IDX_FEEDBACK_ARCHIVE (UNIT_ID,STATUS_,FILE_YEAR,FILE_MONTH,FILE_DAY);
 
+
+-- 选项模块
+-- 选项分组
+create table BC_OPTION_GROUP (
+    ID int NOT NULL auto_increment,
+    KEY_ varchar(255) NOT NULL COMMENT '键',
+    VALUE_ varchar(255) NOT NULL COMMENT '值',
+    ORDER_ varchar(100) COMMENT '排序号',
+    ICON varchar(100) COMMENT '图标样式',
+    primary key (ID)
+) COMMENT='选项分组';
+ALTER TABLE BC_OPTION_GROUP ADD INDEX IDX_OPTIONGROUP_KEYVALUE (KEY_,VALUE_);
+
+-- 选项条目
+create table BC_OPTION_ITEM (
+    ID int NOT NULL auto_increment,
+    PID int NOT NULL COMMENT '所属分组的ID',
+    KEY_ varchar(255) NOT NULL COMMENT '键',
+    VALUE_ varchar(255) NOT NULL COMMENT '值',
+    ORDER_ varchar(100) COMMENT '排序号',
+    ICON varchar(100) COMMENT '图标样式',
+    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    primary key (ID)
+) COMMENT='选项条目';
+ALTER TABLE BC_OPTION_ITEM ADD CONSTRAINT FK_OPTIONITEM_OPTIONGROUP FOREIGN KEY (PID) 
+	REFERENCES BC_OPTION_GROUP (ID);
+ALTER TABLE BC_OPTION_ITEM ADD INDEX IDX_OPTIONITEM_KEYVALUE (KEY_,VALUE_);
 
 -- bc营运管理子系统的建表脚本,所有表名须附带前缀"BS_"
 -- 运行此脚本之前需先运行平台的建表脚本framework.db.mysql.create.sql
