@@ -462,19 +462,16 @@ create table BS_CAR (
     DESC_ text COMMENT '备注',
     primary key (ID)
 ) COMMENT='车辆';
-
-
 -- 车队信息
-create table BS_MOTORCADE (
+create table bs_motorcade (
     ID int NOT NULL auto_increment,
-    UID_ varchar(36) NOT NULL COMMENT '关联附件的标识号',
+    UID_ varchar(36)  COMMENT '关联附件的标识号',
    
     FILE_DATE datetime NOT NULL COMMENT '创建时间',
     FILE_YEAR int(4) COMMENT '发布时间的年度yyyy',
     FILE_MONTH int(2) COMMENT '发布时间的月份(1-12)',
     FILE_DAY int(2) COMMENT '发布时间的日(1-31)',
     
-    SUBJECT varchar(500) NOT NULL COMMENT '标题',
     
     AUTHOR_ID int NOT NULL COMMENT '创建人ID',
     AUTHOR_NAME varchar(100) NOT NULL COMMENT '创建人姓名',
@@ -496,23 +493,24 @@ create table BS_MOTORCADE (
    PHONE varchar(255) NOT NULL COMMENT '电话',
    FAX varchar(255) NOT NULL COMMENT '传真',
    DESC_ text COMMENT '备注',
-   LASTUPDATED_DATE datetime COMMENT '最近更新'
-
+   LASTUPDATED_DATE datetime COMMENT '最近更新',
+   
+    MODIFIER_ID int COMMENT '最后修改人ID',
+    MODIFIER_NAME varchar(255) COMMENT '最后修改人名称',
+    MODIFIED_DATE datetime COMMENT '最后修改时间',
     
-    INNER_ int(1) default 0 COMMENT '未用',
     primary key (ID)
 ) COMMENT='车队信息';
-ALTER TABLE BS_MOTORCADE ADD CONSTRAINT FK_FEEDBACK_AUTHOR FOREIGN KEY (AUTHOR_ID) 
+ALTER TABLE bs_motorcade ADD CONSTRAINT fk_feedback_author FOREIGN KEY (AUTHOR_ID) 
 	REFERENCES BC_IDENTITY_ACTOR (ID);
-ALTER TABLE BS_MOTORCADE ADD INDEX IDX_FEEDBACK_SEARCH (UNIT_ID,STATUS_);
-ALTER TABLE BS_MOTORCADE ADD INDEX IDX_FEEDBACK_ARCHIVE (UNIT_ID,STATUS_,FILE_YEAR,FILE_MONTH,FILE_DAY);
-
-
---查看历史车辆数
-create table BS_HISTORY_CAR_QUANTITY(
-ID int NOT NULL auto_increment,
+	
+	
+	--查看历史车辆数
+create table bs_history_car_quantity(
+ID int NOT UNLL auto_increment,
 YEAR varchar(100) NOT NULL COMMENT '年份',
 MONTH varchar(255) NOT NULL COMMENT '月份',
-CARQUANTITY varchar(255) NOT NULL COMMENT '车辆数',
+CARQUANTITY varchar(255) NOT NULL COMMENT '车辆数'
 primary key (ID)
 )COMMENT='查看历史车辆数';
+
