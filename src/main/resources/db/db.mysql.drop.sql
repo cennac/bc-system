@@ -4,11 +4,13 @@
 -- 车辆
 drop table if exists BS_CAR;
 
+-- 查看历史车辆数
+drop table if exists BS_HISTORY_CAR_QUANTITY;
+
 -- 车队信息
 drop table if exists BS_MOTORCADE;
 
--- 查看历史车辆数
-drop table if exists BS_HISTORY_CAR_QUANTITY;
+
 
 -- ##bc平台的mysql删表脚本##
 
