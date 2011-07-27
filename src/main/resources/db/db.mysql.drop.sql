@@ -15,7 +15,7 @@ drop table if exists BS_MOTORCADE;
 -- ##bc平台的mysql删表脚本##
 
 -- 测试用的表
-drop table if exists ZTEST_EXAMPLE;
+drop table if exists BC_EXAMPLE;
 
 -- 用户反馈
 drop table if exists BC_FEEDBACK;
