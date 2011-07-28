@@ -158,29 +158,29 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 
 -- 插入职务数据
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0000','职员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0100','董事长');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0200','顾问');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0301','总经理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0302','副总经理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0303','常务副总经理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0401','经理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0402','副经理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0501','主任');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0502','副主任');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0601','主管');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0701','文秘');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0801','助理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0802','行政助理');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0803','会计');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0804','组长');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0805','人事专员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0806','服务监督员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0807','业务员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0808','车管员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0809','安全员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0810','收款员');
-insert into BC_IDENTITY_DUTY (STATUS_,INNER_,CODE, NAME) values(1, 0, '0811','法务专员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0000','职员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0100','董事长');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0200','顾问');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0301','总经理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0302','副总经理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0303','常务副总经理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0401','经理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0402','副经理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0501','主任');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0502','副主任');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0601','主管');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0701','文秘');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0801','助理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0802','行政助理');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0803','会计');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0804','组长');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0805','人事专员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0806','服务监督员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0807','业务员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0808','车管员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0809','安全员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0810','收款员');
+insert into BC_IDENTITY_DUTY (CODE, NAME) values('0811','法务专员');
 
 -- 插入职务编码自动增长数据
 -- insert into BC_IDENTITY_IDGENERATOR (TYPE_,VALUE, FORMAT) values('duty.code', 0, '${T}.${V}');

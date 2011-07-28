@@ -10,6 +10,17 @@ CALL DROP_USER_TABLE('BS_HISTORY_CAR_QUANTITY');
 -- 车队信息
 CALL DROP_USER_TABLE('BS_MOTORCADE');
 
+-- 司机责任人与证件的关联
+CALL DROP_USER_TABLE('BS_CARMAN_CERT');
+
+-- 证件
+CALL DROP_USER_TABLE('BS_CERT_IDENTITY');
+CALL DROP_USER_TABLE('BS_CERT_DRIVING');
+CALL DROP_USER_TABLE('BS_CERT');
+
+-- 司机责任人
+CALL DROP_USER_TABLE('BS_CARMAN');
+
 -- ##bc平台的 oracle 删表脚本##
 
 -- 设置将信息输出到控制台（如果是在SQL Plus命令行运行这个sql文件，须先行执行这个命令才能看到输出信息）

@@ -10,7 +10,16 @@ drop table if exists BS_HISTORY_CAR_QUANTITY;
 -- 车队信息
 drop table if exists BS_MOTORCADE;
 
+-- 司机责任人与证件的关联
+drop table if exists BS_CARMAN_CERT;
 
+-- 证件
+drop table if exists BS_CERT_IDENTITY;
+drop table if exists BS_CERT_DRIVING;
+drop table if exists BS_CERT;
+
+-- 司机责任人
+drop table if exists BS_CARMAN;
 
 -- ##bc平台的mysql删表脚本##
 
