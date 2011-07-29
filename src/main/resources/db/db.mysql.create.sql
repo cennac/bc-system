@@ -522,30 +522,51 @@ ALTER TABLE BS_HISTORY_CAR_QUANTITY ADD CONSTRAINT BS_HISTORY_CAR_QUANTITY_AUTHO
 -- 证件
 create table BS_CERT (
     ID int NOT NULL auto_increment,
-    CODE varchar(255) NOT NULL COMMENT '证件号',
-    NAME varchar(255) NOT NULL COMMENT '证件简称',
-    FULL_NAME varchar(255) COMMENT '证件全称',
+    STATUS_ int(1) NOT NULL,
+    UID_ varchar(36) NOT NULL,
+    CERT_CODE varchar(255) NOT NULL COMMENT '证件号',
+    CERT_NAME varchar(255) NOT NULL COMMENT '证件简称',
+    CERT_FULL_NAME varchar(255) COMMENT '证件全称',
     LICENCER varchar(255) COMMENT '发证机关',
     START_DATE datetime COMMENT '生效日期',
     END_DATE datetime COMMENT '到期日期',
+    EXT_STR1 varchar(255),
+    EXT_STR2 varchar(255),
+    EXT_STR3 varchar(255),
+    EXT_NUM1 int(19),
+    EXT_NUM2 int(19),
+    EXT_NUM3 int(19),
     primary key (ID)
 ) COMMENT='证件';
-ALTER TABLE BS_CERT ADD INDEX BS_CERT_CODE (CODE);
-ALTER TABLE BS_CERT ADD INDEX BS_CERT_NAME (NAME);
+ALTER TABLE BS_CERT ADD INDEX BS_CERT_CODE (CERT_CODE);
+ALTER TABLE BS_CERT ADD INDEX BS_CERT_NAME (CERT_NAME);
 
--- 证件:身份证
+-- 证件:居民身份证
 create table BS_CERT_IDENTITY (
     ID int NOT NULL,
-    ADDRESS varchar(500) NOT NULL COMMENT '地址',
+    NAME varchar(255),
+    SEX int(1),
+    BIRTHDATE datetime,
+    NATION varchar(255),
+    ADDRESS varchar(500) COMMENT '住址',
     primary key (ID)
-) COMMENT='证件:身份证';
+) COMMENT='证件:居民身份证';
 ALTER TABLE BS_CERT_IDENTITY ADD CONSTRAINT BS_CERT4IDENTITY_CERT FOREIGN KEY (ID) 
 	REFERENCES BS_CERT (ID);
 
 -- 证件:驾驶证
 create table BS_CERT_DRIVING (
     ID int NOT NULL,
-    MODEL varchar(255) NOT NULL COMMENT '准驾车型',
+    NAME varchar(255),
+    SEX int(1),
+    BIRTHDATE datetime,
+    NATIONALITY varchar(255),
+    ADDRESS varchar(500),
+    MODEL varchar(255) COMMENT '准驾车型',
+    RECEIVEDATE datetime,
+    VALIDFOR varchar(255),
+    ARCHIVENO varchar(255),
+    RECORD varchar(255),
     primary key (ID)
 ) COMMENT='证件:驾驶证';
 ALTER TABLE BS_CERT_DRIVING ADD CONSTRAINT BS_CERT4DRIVING_CERT FOREIGN KEY (ID) 
