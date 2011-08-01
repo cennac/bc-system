@@ -60,20 +60,43 @@ bc-system
 7) 检出bc-business-webapp工程到本工程的src/main/webapp目录下
    地址： [内网]git@[serverIp]:bc-business-webapp.git 或 [外网]git@github.com:rongjihuang/bc-business-webapp.git
    注：检出的目录名必须为bc-business
-8) 部署数据库(mysql): 
-       >cd bc-system
-       >ant build
-       >cd src/main/resources/db
-       * 使用mysql命令行创建名为bcsystem的数据库，分配用户bcsystem，密码也设置为bcsystem
-	   * (如有异，可修改src/main/resource/db.properties文件)
-	   * 按顺序运行如下脚本
-       >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.drop.sql -- 删表(首次不需运行)
-       >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.create.sql -- 建表
-       >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.data.sql -- 必须的初始化数据
+8) 部署数据库
+8-1)使用mysql (5.5.9 MySQL Community Server)
+    >cd bc-system
+    >ant build
+    >cd src/main/resources/db
+    * 使用mysql命令行创建名为bcsystem的数据库(数据库编码须使用UTF-8)，分配用户bcsystem，密码也设置为bcsystem
+	* (如有异，可修改src/main/resource/db.properties文件)
+	* 按顺序运行如下脚本
+    >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.drop.sql --> 删表(首次不需运行)
+    >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.create.sql --> 建表
+    >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.data.sql --> 导入初始化数据
+8-2)使用oracle (11.2.0.1)
+    >cd bc-demo
+    >ant build
+    >cd src/main/resources/db
+    * 给数据库(数据库编码须使用ZHS16GBK)创建用户bcsystem，密码也设置为bcsystem，并假设数据库的本地连接服务名为orcl，如下登录sqlplus
+	* (如有异，可修改src/main/resource/db.properties文件)
+    >sqlplus bcsystem/bcsystem@orcl
+	* 按顺序运行如下脚本
+    SQL>set serveroutput on --> 设置控制台输出更多信息
+    SQL>start db.oracle.drop.sql --> 删表(首次不需运行)
+    SQL>start db.oracle.create.sql --> 建表
+    SQL>start db.oracle.data.sql --> 导入初始化数据
+    SQL>commit; --> 提交事务
 9) 编译运行
-   >mvn jetty:run 或 >mvn jetty:run -Djetty.path=/bcsystem
+9-1)使用mysql(默认)
+   >mvn jetty:run
+   或
+   >mvn jetty:run -Djetty.path=/bcsystem
+9-2)使用oracle 
+   >mvn jetty:run -Poracle -Ddb.name=[数据库的SID] -Ddb.ip=[数据库服务器的IP]
+   或
+   >mvn jetty:run -Djetty.path=/bcsystem -Poracle -Ddb.name=[数据库的SID] -Ddb.ip=[数据库服务器的IP]
 10) 浏览器访问
-   http://localhost:8082 或 http://localhost:8082/bcsystem
+   http://localhost:8082
+   或
+   http://localhost:8082/bcsystem
 
    
 四) 部署文档转换服务
