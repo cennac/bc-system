@@ -6,7 +6,8 @@ drop table if exists BS_CAR;
 
 -- 查看历史车辆数
 drop table if exists BS_HISTORY_CAR_QUANTITY;
-
+-- 车队负责人
+drop table if exists BS_CHARGER;
 -- 车队信息
 drop table if exists BS_MOTORCADE;
 
@@ -15,7 +16,7 @@ drop table if exists BS_MOTORCADE;
 -- ##bc平台的mysql删表脚本##
 
 -- 测试用的表
-drop table if exists ZTEST_EXAMPLE;
+drop table if exists BC_EXAMPLE;
 
 -- 用户反馈
 drop table if exists BC_FEEDBACK;
