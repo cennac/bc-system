@@ -48,11 +48,26 @@
 		<class>cn.bc.option.domain.OptionGroup</class>
 		<class>cn.bc.option.domain.OptionItem</class>
 
-		<!-- 营运管理子系统 -->
+
+		<!-- ##营运管理子系统## -->
+		<!-- 车辆、车队 -->
 		<class>cn.bc.business.car.domain.Car</class>
 		<class>cn.bc.business.motorcade.domain.Motorcade</class>
 		<class>cn.bc.business.motorcade.domain.HistoryCarQuantity</class>
 		<class>cn.bc.business.charger.domain.Charger</class>
+
+		<!-- 证件 -->
+		<class>cn.bc.business.cert.domain.Cert</class>
+		<class>cn.bc.business.cert.domain.Cert4Identity</class>
+		<class>cn.bc.business.cert.domain.Cert4Driving</class>
+		<class>cn.bc.business.cert.domain.Cert4CongYeZiGe</class>
+		<class>cn.bc.business.cert.domain.Cert4FuWuZiGe</class>
+		<class>cn.bc.business.cert.domain.Cert4DriverEducation</class>
+		<class>cn.bc.business.cert.domain.Cert4VehiceLicense</class>
+		<class>cn.bc.business.cert.domain.Cert4RoadTransport</class>
+
+		<!-- 司机负责人 -->
+		<class>cn.bc.business.carman.domain.CarMan</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
