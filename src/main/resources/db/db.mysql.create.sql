@@ -560,6 +560,7 @@ ALTER TABLE BS_CHARGER ADD CONSTRAINT BS_CHARGER_AUTHOR FOREIGN KEY (AUTHOR_ID)
 	
 	
 	
+
 -- 证件
 create table BS_CERT (
     ID int NOT NULL auto_increment,

@@ -87,6 +87,17 @@
 			<artifactId>bc-business-charger</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-cert</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-carman</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 		<!-- 平台模块 -->
 		<dependency>
 			<groupId>cn.bc</groupId>
