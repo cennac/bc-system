@@ -125,11 +125,11 @@ public class JcropAction extends ActionSupport implements SessionAware {
 		attach.setPtype(srcAttach.getPtype() + ".crop");
 		attach.setPuid(srcAttach.getPuid());
 		if (context.getBelong() != null) {
-			attach.setDepartId(context.getBelong().getId());
-			attach.setDepartName(context.getBelong().getName());
+			attach.setAuthorDepartId(context.getBelong().getId());
+			attach.setAuthorDepartName(context.getBelong().getName());
 		}
-		attach.setUnitId(context.getUnit().getId());
-		attach.setUnitName(context.getUnit().getName());
+		attach.setAuthorUnitId(context.getUnit().getId());
+		attach.setAuthorUnitName(context.getUnit().getName());
 		attach.setExtension(srcAttach.getExtension());
 		attach.setFileDate(now);
 		attach.setPath(relativeFilePath);
