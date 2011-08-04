@@ -14,6 +14,7 @@
 		
 		<!-- actor -->
 		<class>cn.bc.identity.domain.Actor</class>
+		<class>cn.bc.identity.domain.ActorHistory</class>
 		<class>cn.bc.identity.domain.ActorDetail</class>
 		<class>cn.bc.identity.domain.ActorRelation</class>
 		<class>cn.bc.identity.domain.Duty</class>
@@ -68,6 +69,8 @@
 
 		<!-- 司机负责人 -->
 		<class>cn.bc.business.carman.domain.CarMan</class>
+		<!-- 司机营运车辆 -->
+		<class>cn.bc.business.carman.domain.CarByDriver</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
