@@ -71,6 +71,8 @@
 		<class>cn.bc.business.carman.domain.CarMan</class>
 		<!-- 司机营运车辆 -->
 		<class>cn.bc.business.carman.domain.CarByDriver</class>
+		<!-- 司机迁移历史 -->
+		<class>cn.bc.business.carman.domain.CarManHistory</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
