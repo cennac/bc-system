@@ -71,12 +71,32 @@
 	</scm>
 	
 	<dependencies>
-		<!-- 营运子系统模块-->
+		<!-- ##营运子系统模块##-->
+		<!-- 证件 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-cert</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- 合同 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-contract</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- 司机责任人 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-carman</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- 车辆 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-car</artifactId>
-			<version>${business.version}</version>
+			<version>${project.version}</version>
 		</dependency>
+		<!-- 车队 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-motorcade</artifactId>
@@ -85,16 +105,6 @@
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-charger</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.bc.business</groupId>
-			<artifactId>bc-business-cert</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.bc.business</groupId>
-			<artifactId>bc-business-carman</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		

@@ -25,9 +25,11 @@ import org.springframework.util.StringUtils;
 
 import cn.bc.Context;
 import cn.bc.identity.domain.Actor;
+import cn.bc.identity.domain.ActorHistory;
 import cn.bc.identity.domain.ActorRelation;
 import cn.bc.identity.domain.AuthData;
 import cn.bc.identity.domain.Role;
+import cn.bc.identity.service.ActorHistoryService;
 import cn.bc.identity.service.UserService;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextImpl;
@@ -56,10 +58,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private UserService userService;
 	private SyslogService syslogService;
 	private Map<String, Object> session;
+	private ActorHistoryService actorHistoryService;
 
 	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	@Autowired
+	public void setActorHistoryService(ActorHistoryService actorHistoryService) {
+		this.actorHistoryService = actorHistoryService;
 	}
 
 	@Autowired
@@ -117,6 +125,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					// 将登录信息记录到session中
 					context.setAttr(SystemContext.KEY_USER, user);
 
+					// 用户隶属历史的当前信息
+					ActorHistory userHistory = this.actorHistoryService
+							.loadCurrent(user.getId());
+					context.setAttr(SystemContext.KEY_USER_HISTORY, userHistory);
+
 					// 用户所隶属的单位或部门
 					Actor belong = this.userService.loadBelong(user.getId(),
 							new Integer[] { Actor.TYPE_UNIT,
@@ -148,11 +161,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
 						rcs.add(role.getCode());
 					}
 					context.setAttr(SystemContext.KEY_ROLES, rcs);
-					
-					//debug
-					if(logger.isDebugEnabled()){
-						logger.debug("groups=" + StringUtils.collectionToCommaDelimitedString(gcs));
-						logger.debug("roles=" + StringUtils.collectionToCommaDelimitedString(rcs));
+
+					// debug
+					if (logger.isDebugEnabled()) {
+						logger.debug("groups="
+								+ StringUtils
+										.collectionToCommaDelimitedString(gcs));
+						logger.debug("roles="
+								+ StringUtils
+										.collectionToCommaDelimitedString(rcs));
 					}
 
 					// 用户的权限
@@ -166,10 +183,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 							.buildSyslog(
 									now,
 									Syslog.TYPE_LOGIN,
-									user,
-									belong,
-									unit,
-									user.getName()
+									userHistory,
+									userHistory.getName()
 											+ LocalizedTextUtil.findText(
 													SyslogAction.class,
 													"syslog.login",
@@ -186,8 +201,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	// 递归向上查找部门所属的单位
 	private Actor loadUnit(Actor belong) {
-		belong = this.userService.loadBelong(belong.getId(),
-				new Integer[] { Actor.TYPE_UNIT });
+		if (belong.getType() == Actor.TYPE_UNIT)
+			return belong;
+
+		belong = this.userService.loadBelong(belong.getId(), new Integer[] {
+				Actor.TYPE_DEPARTMENT, Actor.TYPE_UNIT });
 		if (belong.getType() != Actor.TYPE_UNIT) {
 			return loadUnit(belong);
 		} else {
@@ -198,19 +216,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	// 注销
 	public String doLogout() throws Exception {
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
-		Actor user = null;
+		ActorHistory user = null;
 		if (context != null)
-			user = context.getUser();
+			user = context.getUserHistory();
 		if (user != null) {// 表明之前session还没过期
-			Actor belong = context.getBelong();
-			Actor unit = context.getUnit();
 			Calendar now = Calendar.getInstance();
 			Syslog log = SyslogAction.buildSyslog(
 					now,
 					Syslog.TYPE_LOGOUT,
 					user,
-					belong,
-					unit,
 					user.getName()
 							+ LocalizedTextUtil.findText(SyslogAction.class,
 									"syslog.logout", this.getLocale()),
