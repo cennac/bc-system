@@ -51,17 +51,17 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030107','车辆报表', '/bc-business/car/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030100';
 
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030201','司机信息', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030201','司机信息', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030202','资格证', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030202','资格证', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030203','驾驶证', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030203','驾驶证', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030204','考试成绩', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030204','考试成绩', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030205','迁入迁出记录', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030205','迁入迁出记录', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030206','司机报表', '/bc-business/driver/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030206','司机报表', '/bc-business/carMan/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 	
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, 2, m.id, '030301','黑名单', '/bc-business/driver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
