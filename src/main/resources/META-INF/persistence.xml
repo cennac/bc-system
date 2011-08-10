@@ -73,6 +73,9 @@
 		<class>cn.bc.business.carman.domain.CarByDriver</class>
 		<!-- 司机迁移历史 -->
 		<class>cn.bc.business.carman.domain.CarManHistory</class>
+		
+		<!-- 黑名单 -->
+		<class>cn.bc.business.blacklist.domain.Blacklist</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

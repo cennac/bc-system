@@ -1,48 +1,48 @@
--- ##bc平台的mysql建表脚本##
+-- ##BC平台的MYSQL建表脚本##
 
 -- 测试用的表
 CREATE TABLE BC_EXAMPLE (
-    ID int NOT NULL auto_increment,
-    NAME varchar(255) NOT NULL COMMENT '名称',
-    CODE varchar(255),
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    NAME VARCHAR(255) NOT NULL COMMENT '名称',
+    CODE VARCHAR(255),
     PRIMARY KEY (ID)
 ) COMMENT='测试用的表';
 
 -- 系统标识相关模块
 -- 系统资源
 CREATE TABLE BC_IDENTITY_RESOURCE (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) COMMENT '全局标识',
-    TYPE_ int(1) NOT NULL COMMENT '类型：1-文件夹,2-内部链接,3-外部链接,4-html',
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-    INNER_ int(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
-    BELONG int COMMENT '所隶属的资源',
-    ORDER_ varchar(100) COMMENT '排序号',
-    NAME varchar(255) NOT NULL COMMENT '名称',
-    URL varchar(255) COMMENT '地址',
-    ICONCLASS varchar(255) COMMENT '图标样式',
-    OPTION_ text COMMENT '扩展参数',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) COMMENT '全局标识',
+    TYPE_ INT(1) NOT NULL COMMENT '类型：1-文件夹,2-内部链接,3-外部链接,4-HTML',
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    INNER_ INT(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
+    BELONG BIGINT COMMENT '所隶属的资源',
+    ORDER_ VARCHAR(100) COMMENT '排序号',
+    NAME VARCHAR(255) NOT NULL COMMENT '名称',
+    URL VARCHAR(255) COMMENT '地址',
+    ICONCLASS VARCHAR(255) COMMENT '图标样式',
+    OPTION_ TEXT COMMENT '扩展参数',
     PRIMARY KEY (ID)
 ) COMMENT='系统资源';
 
 -- 角色
 CREATE TABLE BC_IDENTITY_ROLE (
-    ID int NOT NULL auto_increment,
-    CODE varchar(100) NOT NULL COMMENT '编码',
-    ORDER_ varchar(100) COMMENT '排序号',
-    NAME varchar(255) NOT NULL COMMENT '名称',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    CODE VARCHAR(100) NOT NULL COMMENT '编码',
+    ORDER_ VARCHAR(100) COMMENT '排序号',
+    NAME VARCHAR(255) NOT NULL COMMENT '名称',
     
-    UID_ varchar(36) COMMENT '全局标识',
-   	TYPE_ int(1) NOT NULL COMMENT '类型',
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-    INNER_ int(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
+    UID_ VARCHAR(36) COMMENT '全局标识',
+   	TYPE_ INT(1) NOT NULL COMMENT '类型',
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    INNER_ INT(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
     PRIMARY KEY (ID)
 ) COMMENT='角色';
 
 -- 角色与资源的关联
 CREATE TABLE BC_IDENTITY_ROLE_RESOURCE (
-    RID int NOT NULL COMMENT '角色ID',
-    SID int NOT NULL COMMENT '资源ID',
+    RID BIGINT NOT NULL COMMENT '角色ID',
+    SID BIGINT NOT NULL COMMENT '资源ID',
     PRIMARY KEY (RID,SID)
 ) COMMENT='角色与资源的关联：角色可以访问哪些资源';
 ALTER TABLE BC_IDENTITY_ROLE_RESOURCE ADD CONSTRAINT BCFK_RS_ROLE FOREIGN KEY (RID) 
@@ -52,21 +52,21 @@ ALTER TABLE BC_IDENTITY_ROLE_RESOURCE ADD CONSTRAINT BCFK_RS_RESOURCE FOREIGN KE
 
 -- 职务
 CREATE TABLE BC_IDENTITY_DUTY (
-    ID int NOT NULL auto_increment,
-    CODE varchar(100) NOT NULL COMMENT '编码',
-    NAME varchar(255) NOT NULL COMMENT '名称',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    CODE VARCHAR(100) NOT NULL COMMENT '编码',
+    NAME VARCHAR(255) NOT NULL COMMENT '名称',
     PRIMARY KEY (ID)
 ) COMMENT='职务';
 
 -- 参与者的扩展属性
 CREATE TABLE BC_IDENTITY_ACTOR_DETAIL (
-    ID int NOT NULL auto_increment,
-    CREATE_DATE datetime COMMENT '创建时间',
-    WORK_DATE date COMMENT 'user-入职时间',
-    SEX int(1) default 0 COMMENT 'user-性别：0-未设置,1-男,2-女',
-   	CARD varchar(20) COMMENT 'user-身份证',
-    DUTY_ID int COMMENT 'user-职务ID',
-   	COMMENT_ varchar(1000) COMMENT '备注',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    CREATE_DATE DATETIME COMMENT '创建时间',
+    WORK_DATE DATE COMMENT 'USER-入职时间',
+    SEX INT(1) DEFAULT 0 COMMENT 'USER-性别：0-未设置,1-男,2-女',
+   	CARD VARCHAR(20) COMMENT 'USER-身份证',
+    DUTY_ID BIGINT COMMENT 'USER-职务ID',
+   	COMMENT_ VARCHAR(1000) COMMENT '备注',
     PRIMARY KEY (ID)
 ) COMMENT='参与者的扩展属性';
 ALTER TABLE BC_IDENTITY_ACTOR_DETAIL ADD CONSTRAINT BCFK_ACTORDETAIL_DUTY FOREIGN KEY (DUTY_ID) 
@@ -74,18 +74,18 @@ ALTER TABLE BC_IDENTITY_ACTOR_DETAIL ADD CONSTRAINT BCFK_ACTORDETAIL_DUTY FOREIG
 
 -- 参与者
 CREATE TABLE BC_IDENTITY_ACTOR (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) NOT NULL COMMENT '全局标识',
-    TYPE_ int(1) NOT NULL COMMENT '类型：1-用户,2-单位,3-部门,4-岗位',
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-    CODE varchar(100) NOT NULL COMMENT '编码',
-    NAME varchar(255) NOT NULL COMMENT '名称',
-    PY varchar(255) COMMENT '名称的拼音',
-    ORDER_ varchar(100) COMMENT '同类参与者之间的排序号',
-    EMAIL varchar(255) COMMENT '邮箱',
-    PHONE varchar(255) COMMENT '联系电话',
-    DETAIL_ID int COMMENT '扩展表的ID',
-    INNER_ int(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) NOT NULL COMMENT '全局标识',
+    TYPE_ INT(1) NOT NULL COMMENT '类型：1-用户,2-单位,3-部门,4-岗位',
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    CODE VARCHAR(100) NOT NULL COMMENT '编码',
+    NAME VARCHAR(255) NOT NULL COMMENT '名称',
+    PY VARCHAR(255) COMMENT '名称的拼音',
+    ORDER_ VARCHAR(100) COMMENT '同类参与者之间的排序号',
+    EMAIL VARCHAR(255) COMMENT '邮箱',
+    PHONE VARCHAR(255) COMMENT '联系电话',
+    DETAIL_ID BIGINT COMMENT '扩展表的ID',
+    INNER_ INT(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
     PRIMARY KEY (ID)
 ) COMMENT='参与者(代表一个人或组织，组织也可以是单位、部门、岗位、团队等)';
 ALTER TABLE BC_IDENTITY_ACTOR ADD CONSTRAINT BCFK_ACTOR_ACTORDETAIL FOREIGN KEY (DETAIL_ID) 
@@ -94,10 +94,10 @@ ALTER TABLE BC_IDENTITY_ACTOR ADD INDEX BCIDX_ACTOR_TYPE (TYPE_);
 
 -- 参与者之间的关联关系
 CREATE TABLE BC_IDENTITY_ACTOR_RELATION (
-    TYPE_ int(2) NOT NULL COMMENT '关联类型',
-    MASTER_ID int NOT NULL COMMENT '主控方ID',
-   	FOLLOWER_ID int NOT NULL COMMENT '从属方ID',
-    ORDER_ varchar(100) COMMENT '从属方之间的排序号',
+    TYPE_ INT(2) NOT NULL COMMENT '关联类型',
+    MASTER_ID BIGINT NOT NULL COMMENT '主控方ID',
+   	FOLLOWER_ID BIGINT NOT NULL COMMENT '从属方ID',
+    ORDER_ VARCHAR(100) COMMENT '从属方之间的排序号',
     PRIMARY KEY (MASTER_ID,FOLLOWER_ID,TYPE_)
 ) COMMENT='参与者之间的关联关系';
 ALTER TABLE BC_IDENTITY_ACTOR_RELATION ADD CONSTRAINT BCFK_AR_MASTER FOREIGN KEY (MASTER_ID) 
@@ -108,16 +108,16 @@ ALTER TABLE BC_IDENTITY_ACTOR_RELATION ADD INDEX BCIDX_AR_TM (TYPE_, MASTER_ID),
 
 -- ACTOR隶属信息的变动历史
 CREATE TABLE BC_IDENTITY_ACTOR_HISTORY(
-   ID                   int NOT NULL auto_increment,
+   ID                   BIGINT NOT NULL AUTO_INCREMENT,
    CREATE_DATE          DATETIME NOT NULL COMMENT '创建时间',
    START_DATE           DATETIME COMMENT '起始时段',
    END_DATE             DATETIME COMMENT '结束时段',
-   ACTOR_TYPE           int(1) NOT NULL COMMENT 'ACTOR类型',
-   ACTOR_ID             int NOT NULL COMMENT 'ACTORID',
+   ACTOR_TYPE           INT(1) NOT NULL COMMENT 'ACTOR类型',
+   ACTOR_ID             BIGINT NOT NULL COMMENT 'ACTORID',
    ACTOR_NAME           VARCHAR(100) NOT NULL COMMENT 'ACTOR名称',
-   UPPER_ID             int COMMENT '所属上级ID',
+   UPPER_ID             BIGINT COMMENT '所属上级ID',
    UPPER_NAME           VARCHAR(255) COMMENT '所属上级名称',
-   UNIT_ID              int COMMENT '所在单位ID',
+   UNIT_ID              BIGINT COMMENT '所在单位ID',
    UNIT_NAME            VARCHAR(255) COMMENT '所在单位名称',
    PRIMARY KEY (ID)
 ) COMMENT 'ACTOR隶属信息的变动历史';
@@ -128,8 +128,8 @@ ALTER TABLE BC_IDENTITY_ACTOR_HISTORY ADD INDEX BCIDX_ACTORHISTORY_UPPERID (UPPE
 
 -- 认证信息
 CREATE TABLE BC_IDENTITY_AUTH (
-    ID int NOT NULL auto_increment COMMENT '与Actor表的id对应',
-    PASSWORD varchar(32) NOT NULL COMMENT '密码',
+    ID BIGINT NOT NULL AUTO_INCREMENT COMMENT '与ACTOR表的ID对应',
+    PASSWORD VARCHAR(32) NOT NULL COMMENT '密码',
     PRIMARY KEY (ID)
 ) COMMENT='认证信息';
 ALTER TABLE BC_IDENTITY_AUTH ADD CONSTRAINT BCFK_AUTH_ACTOR FOREIGN KEY (ID) 
@@ -138,15 +138,15 @@ ALTER TABLE BC_IDENTITY_AUTH ADD CONSTRAINT BCFK_AUTH_ACTOR FOREIGN KEY (ID)
 -- 标识生成器
 CREATE TABLE BC_IDENTITY_IDGENERATOR (
   TYPE_ VARCHAR(45) NOT NULL COMMENT '分类',
-  VALUE_ INT NOT NULL COMMENT '当前值',
-  FORMAT VARCHAR(45) COMMENT '格式模板,如“case-${V}”、“${T}-${V}”,V代表value的值，T代表type_的值' ,
+  VALUE_ BIGINT NOT NULL COMMENT '当前值',
+  FORMAT VARCHAR(45) COMMENT '格式模板,如“CASE-${V}”、“${T}-${V}”,V代表VALUE的值，T代表TYPE_的值' ,
   PRIMARY KEY (TYPE_)
 ) COMMENT = '标识生成器,用于生成主键或唯一编码用';
 
 -- 参与者与角色的关联
 CREATE TABLE BC_IDENTITY_ROLE_ACTOR (
-    AID int NOT NULL COMMENT '参与者ID',
-    RID int NOT NULL COMMENT '角色ID',
+    AID BIGINT NOT NULL COMMENT '参与者ID',
+    RID BIGINT NOT NULL COMMENT '角色ID',
     PRIMARY KEY (AID,RID)
 ) COMMENT='参与者与角色的关联：参与者拥有哪些角色';
 ALTER TABLE BC_IDENTITY_ROLE_ACTOR ADD CONSTRAINT BCFK_RA_ACTOR FOREIGN KEY (AID) 
@@ -157,17 +157,17 @@ ALTER TABLE BC_IDENTITY_ROLE_ACTOR ADD CONSTRAINT BCFK_RA_ROLE FOREIGN KEY (RID)
 -- ##系统桌面相关模块##
 -- 桌面快捷方式
 CREATE TABLE BC_DESKTOP_SHORTCUT (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) COMMENT '全局标识',
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-    ORDER_ varchar(100) NOT NULL COMMENT '排序号',
-    STANDALONE int(1) NOT NULL COMMENT '是否在独立的浏览器窗口中打开',
-    NAME varchar(255) COMMENT '名称,为空则使用资源的名称',
-    URL varchar(255) COMMENT '地址,为空则使用资源的地址',
-    ICONCLASS varchar(255) COMMENT '图标样式',
-    SID int COMMENT '对应的资源ID',
-    AID int COMMENT '所属的参与者(如果为上级参与者,如单位部门,则其下的所有参与者都拥有该快捷方式)',
-    INNER_ int(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) COMMENT '全局标识',
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    ORDER_ VARCHAR(100) NOT NULL COMMENT '排序号',
+    STANDALONE INT(1) NOT NULL COMMENT '是否在独立的浏览器窗口中打开',
+    NAME VARCHAR(255) COMMENT '名称,为空则使用资源的名称',
+    URL VARCHAR(255) COMMENT '地址,为空则使用资源的地址',
+    ICONCLASS VARCHAR(255) COMMENT '图标样式',
+    SID BIGINT COMMENT '对应的资源ID',
+    AID BIGINT COMMENT '所属的参与者(如果为上级参与者,如单位部门,则其下的所有参与者都拥有该快捷方式)',
+    INNER_ INT(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
     PRIMARY KEY (ID)
 ) COMMENT='桌面快捷方式';
 ALTER TABLE BC_DESKTOP_SHORTCUT ADD CONSTRAINT BCFK_SHORTCUT_RESOURCE FOREIGN KEY (SID) 
@@ -177,13 +177,13 @@ ALTER TABLE BC_DESKTOP_SHORTCUT ADD CONSTRAINT BCFK_SHORTCUT_ACTOR FOREIGN KEY (
 
 -- 个人设置
 CREATE TABLE BC_DESKTOP_PERSONAL (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) COMMENT '全局标识',
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-    FONT varchar(2) NOT NULL COMMENT '字体大小，如12、14、16',
-    THEME varchar(255) NOT NULL COMMENT '主题名称,如base',
-    AID int COMMENT '所属的参与者',
-    INNER_ int(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) COMMENT '全局标识',
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    FONT VARCHAR(2) NOT NULL COMMENT '字体大小，如12、14、16',
+    THEME VARCHAR(255) NOT NULL COMMENT '主题名称,如BASE',
+    AID BIGINT COMMENT '所属的参与者',
+    INNER_ INT(1) NOT NULL COMMENT '是否为内置对象:0-否,1-是',
     PRIMARY KEY (ID)
 ) COMMENT='个人设置';
 ALTER TABLE BC_DESKTOP_PERSONAL ADD CONSTRAINT BCFK_PERSONAL_ACTOR FOREIGN KEY (AID) 
@@ -192,18 +192,18 @@ ALTER TABLE BC_DESKTOP_PERSONAL ADD UNIQUE INDEX PERSONAL_AID_UNIQUE (AID) ;
 
 -- 消息模块
 CREATE TABLE BC_MESSAGE (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) COMMENT '全局标识',
-    STATUS_ int(1) NOT NULL default 0 COMMENT '状态：0-发送中,1-已发送,2-已删除,3-发送失败',
-    TYPE_ int(1) NOT NULL default 0 COMMENT '消息类型',
-    SENDER_ID int NOT NULL COMMENT '发送者',
-    SEND_DATE datetime NOT NULL COMMENT '发送时间',
-    RECEIVER_ID int NOT NULL COMMENT '接收者',
-    READ_ int(1) NOT NULL default 0 COMMENT '已阅标记',
-    FROM_ID int COMMENT '来源标识',
-    FROM_TYPE int COMMENT '来源类型',
-    SUBJECT varchar(255) NOT NULL COMMENT '标题',
-    CONTENT text COMMENT '内容',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) COMMENT '全局标识',
+    STATUS_ INT(1) NOT NULL DEFAULT 0 COMMENT '状态：0-发送中,1-已发送,2-已删除,3-发送失败',
+    TYPE_ INT(1) NOT NULL DEFAULT 0 COMMENT '消息类型',
+    SENDER_ID BIGINT NOT NULL COMMENT '发送者',
+    SEND_DATE DATETIME NOT NULL COMMENT '发送时间',
+    RECEIVER_ID BIGINT NOT NULL COMMENT '接收者',
+    READ_ INT(1) NOT NULL DEFAULT 0 COMMENT '已阅标记',
+    FROM_ID BIGINT COMMENT '来源标识',
+    FROM_TYPE BIGINT COMMENT '来源类型',
+    SUBJECT VARCHAR(255) NOT NULL COMMENT '标题',
+    CONTENT TEXT COMMENT '内容',
     PRIMARY KEY (ID)
 ) COMMENT='消息';
 ALTER TABLE BC_MESSAGE ADD CONSTRAINT BCFK_MESSAGE_SENDER FOREIGN KEY (SENDER_ID) 
@@ -215,26 +215,26 @@ ALTER TABLE BC_MESSAGE ADD INDEX BCIDX_MESSAGE_TYPE (TYPE_);
 
 -- 工作事项
 CREATE TABLE BC_WORK (
-    ID int NOT NULL auto_increment,
-    CLASSIFIER varchar(500) NOT NULL COMMENT '分类词,可多级分类,级间使用/连接,如“发文类/正式发文”',
-    SUBJECT varchar(255) NOT NULL COMMENT '标题',
-    FROM_ID int COMMENT '来源标识',
-    FROM_TYPE int COMMENT '来源类型',
-    FROM_INFO varchar(255) COMMENT '来源描述',
-    OPEN_URL varchar(255) COMMENT '打开的Url模板',
-    CONTENT text COMMENT '内容',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    CLASSIFIER VARCHAR(500) NOT NULL COMMENT '分类词,可多级分类,级间使用/连接,如“发文类/正式发文”',
+    SUBJECT VARCHAR(255) NOT NULL COMMENT '标题',
+    FROM_ID BIGINT COMMENT '来源标识',
+    FROM_TYPE BIGINT COMMENT '来源类型',
+    FROM_INFO VARCHAR(255) COMMENT '来源描述',
+    OPEN_URL VARCHAR(255) COMMENT '打开的URL模板',
+    CONTENT TEXT COMMENT '内容',
     PRIMARY KEY (ID)
 ) COMMENT='工作事项';
 ALTER TABLE BC_WORK ADD INDEX BCIDX_WORK_FROMID (FROM_TYPE,FROM_ID);
 
 -- 待办事项
 CREATE TABLE BC_WORK_TODO (
-    ID int NOT NULL auto_increment,
-    WORK_ID int NOT NULL COMMENT '工作事项ID',
-    SENDER_ID int NOT NULL COMMENT '发送者',
-    SEND_DATE datetime NOT NULL COMMENT '发送时间',
-    WORKER_ID int NOT NULL COMMENT '发送者',
-    INFO varchar(255) COMMENT '附加说明',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    WORK_ID BIGINT NOT NULL COMMENT '工作事项ID',
+    SENDER_ID BIGINT NOT NULL COMMENT '发送者',
+    SEND_DATE DATETIME NOT NULL COMMENT '发送时间',
+    WORKER_ID BIGINT NOT NULL COMMENT '发送者',
+    INFO VARCHAR(255) COMMENT '附加说明',
     PRIMARY KEY (ID)
 ) COMMENT='待办事项';
 ALTER TABLE BC_WORK_TODO ADD CONSTRAINT BCFK_TODOWORK_WORK FOREIGN KEY (WORK_ID) 
@@ -246,17 +246,17 @@ ALTER TABLE BC_WORK_TODO ADD CONSTRAINT BCFK_TODOWORK_WORKER FOREIGN KEY (WORKER
 
 -- 已办事项
 CREATE TABLE BC_WORK_DONE (
-    ID int NOT NULL auto_increment,
-    FINISH_DATE datetime NOT NULL COMMENT '完成时间',
-    FINISH_YEAR int(4) NOT NULL COMMENT '完成时间的年度',
-    FINISH_MONTH int(2) NOT NULL COMMENT '完成时间的月份(1-12)',
-    FINISH_DAY int(2) NOT NULL COMMENT '完成时间的日(1-31)',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    FINISH_DATE DATETIME NOT NULL COMMENT '完成时间',
+    FINISH_YEAR INT(4) NOT NULL COMMENT '完成时间的年度',
+    FINISH_MONTH INT(2) NOT NULL COMMENT '完成时间的月份(1-12)',
+    FINISH_DAY INT(2) NOT NULL COMMENT '完成时间的日(1-31)',
 
-    WORK_ID int NOT NULL COMMENT '工作事项ID',
-    SENDER_ID int NOT NULL COMMENT '发送者',
-    SEND_DATE datetime NOT NULL COMMENT '发送时间',
-    WORKER_ID int NOT NULL COMMENT '发送者',
-    INFO varchar(255) COMMENT '附加说明',
+    WORK_ID BIGINT NOT NULL COMMENT '工作事项ID',
+    SENDER_ID BIGINT NOT NULL COMMENT '发送者',
+    SEND_DATE DATETIME NOT NULL COMMENT '发送时间',
+    WORKER_ID BIGINT NOT NULL COMMENT '发送者',
+    INFO VARCHAR(255) COMMENT '附加说明',
     PRIMARY KEY (ID)
 ) COMMENT='已办事项';
 ALTER TABLE BC_WORK_DONE ADD CONSTRAINT BCFK_DONEWORK_WORK FOREIGN KEY (WORK_ID) 
@@ -269,20 +269,20 @@ ALTER TABLE BC_WORK_DONE ADD INDEX BCIDX_DONEWORK_FINISHDATE (FINISH_YEAR,FINISH
 
 -- 系统日志
 CREATE TABLE BC_LOG_SYSTEM (
-    ID int NOT NULL auto_increment,
-    TYPE_ int(1) NOT NULL COMMENT '类别：0-登录,1-主动注销,2-超时注销',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    TYPE_ INT(1) NOT NULL COMMENT '类别：0-登录,1-主动注销,2-超时注销',
     
-    FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    SUBJECT varchar(500) NOT NULL COMMENT '标题',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    C_IP varchar(100) COMMENT '用户机器IP',
-    C_NAME varchar(100) COMMENT '用户机器名称',
-    C_INFO varchar(1000) COMMENT '用户浏览器信息：User-Agent',
-    S_IP varchar(100) COMMENT '服务器IP',
-    S_NAME varchar(100) COMMENT '服务器名称',
-    S_INFO varchar(1000) COMMENT '服务器信息',
+    FILE_DATE DATETIME NOT NULL COMMENT '创建时间',
+    SUBJECT VARCHAR(500) NOT NULL COMMENT '标题',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    C_IP VARCHAR(100) COMMENT '用户机器IP',
+    C_NAME VARCHAR(100) COMMENT '用户机器名称',
+    C_INFO VARCHAR(1000) COMMENT '用户浏览器信息：USER-AGENT',
+    S_IP VARCHAR(100) COMMENT '服务器IP',
+    S_NAME VARCHAR(100) COMMENT '服务器名称',
+    S_INFO VARCHAR(1000) COMMENT '服务器信息',
 
-    CONTENT text COMMENT '详细内容',
+    CONTENT TEXT COMMENT '详细内容',
     PRIMARY KEY (ID)
 ) COMMENT='系统日志';
 ALTER TABLE BC_LOG_SYSTEM ADD CONSTRAINT BCFK_SYSLOG_USER FOREIGN KEY (AUTHOR_ID) 
@@ -292,25 +292,25 @@ ALTER TABLE BC_LOG_SYSTEM ADD INDEX BCIDX_SYSLOG_SERVER (S_IP);
 
 -- 公告模块
 CREATE TABLE BC_BULLETIN (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) NOT NULL COMMENT '关联附件的标识号',
-    UNIT_ID int COMMENT '公告所属单位ID',
-    SCOPE int(1) NOT NULL COMMENT '公告发布范围：0-本单位,1-全系统',
-    STATUS_ int(1) NOT NULL COMMENT '状态:0-草稿,1-已发布,2-已过期',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) NOT NULL COMMENT '关联附件的标识号',
+    UNIT_ID BIGINT COMMENT '公告所属单位ID',
+    SCOPE INT(1) NOT NULL COMMENT '公告发布范围：0-本单位,1-全系统',
+    STATUS_ INT(1) NOT NULL COMMENT '状态:0-草稿,1-已发布,2-已过期',
    
-    OVERDUE_DATE datetime COMMENT '过期日期：为空代表永不过期',
-   	ISSUE_DATE datetime COMMENT '发布时间',
-    ISSUER_ID int COMMENT '发布人ID',
-    ISSUER_NAME varchar(100) COMMENT '发布人姓名',
+    OVERDUE_DATE DATETIME COMMENT '过期日期：为空代表永不过期',
+   	ISSUE_DATE DATETIME COMMENT '发布时间',
+    ISSUER_ID BIGINT COMMENT '发布人ID',
+    ISSUER_NAME VARCHAR(100) COMMENT '发布人姓名',
     
-    SUBJECT varchar(500) NOT NULL COMMENT '标题',
+    SUBJECT VARCHAR(500) NOT NULL COMMENT '标题',
     
-    FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
-    MODIFIED_DATE datetime COMMENT '最后修改时间',
+    FILE_DATE DATETIME NOT NULL COMMENT '创建时间',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
+    MODIFIED_DATE DATETIME COMMENT '最后修改时间',
 
-    CONTENT text NOT NULL COMMENT '详细内容',
+    CONTENT TEXT NOT NULL COMMENT '详细内容',
     PRIMARY KEY (ID)
 ) COMMENT='公告模块';
 ALTER TABLE BC_BULLETIN ADD CONSTRAINT BCFK_BULLETIN_AUTHOR FOREIGN KEY (AUTHOR_ID)
@@ -325,22 +325,22 @@ ALTER TABLE BC_BULLETIN ADD INDEX BCIDX_BULLETIN_SEARCH (SCOPE,UNIT_ID,STATUS_);
 
 -- 文档附件
 CREATE TABLE BC_DOCS_ATTACH (
-    ID int NOT NULL auto_increment,
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-    PTYPE varchar(36) NOT NULL COMMENT '所关联文档的类型',
-    PUID varchar(36) NOT NULL COMMENT '所关联文档的UID',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    PTYPE VARCHAR(36) NOT NULL COMMENT '所关联文档的类型',
+    PUID VARCHAR(36) NOT NULL COMMENT '所关联文档的UID',
    
-    SIZE_ int NOT NULL COMMENT '文件的大小(单位为字节)',
-    COUNT_ int NOT NULL default 0 COMMENT '文件的下载次数',
-    EXT varchar(10) COMMENT '文件扩展名：如png、doc、mp3等',
-    APPPATH int(1) NOT NULL COMMENT '指定path的值是相对于应用部署目录下路径还是相对于全局配置的app.data目录下的路径',
-    SUBJECT varchar(500) NOT NULL COMMENT '文件名称(不带路径的部分)',
-    PATH varchar(500) NOT NULL COMMENT '物理文件保存的相对路径(相对于全局配置的附件根目录下的子路径，如"2011/bulletin/xxxx.doc")',
+    SIZE_ BIGINT NOT NULL COMMENT '文件的大小(单位为字节)',
+    COUNT_ BIGINT NOT NULL DEFAULT 0 COMMENT '文件的下载次数',
+    EXT VARCHAR(10) COMMENT '文件扩展名：如PNG、DOC、MP3等',
+    APPPATH INT(1) NOT NULL COMMENT '指定PATH的值是相对于应用部署目录下路径还是相对于全局配置的APP.DATA目录下的路径',
+    SUBJECT VARCHAR(500) NOT NULL COMMENT '文件名称(不带路径的部分)',
+    PATH VARCHAR(500) NOT NULL COMMENT '物理文件保存的相对路径(相对于全局配置的附件根目录下的子路径，如"2011/BULLETIN/XXXX.DOC")',
     
-    FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
-    MODIFIED_DATE datetime COMMENT '最后修改时间',
+    FILE_DATE DATETIME NOT NULL COMMENT '创建时间',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
+    MODIFIED_DATE DATETIME COMMENT '最后修改时间',
     PRIMARY KEY (ID)
 ) COMMENT='文档附件,记录文档与其相关附件之间的关系';
 ALTER TABLE BC_DOCS_ATTACH ADD CONSTRAINT BCFK_ATTACH_AUTHOR FOREIGN KEY (AUTHOR_ID) 
@@ -350,21 +350,21 @@ ALTER TABLE BC_DOCS_ATTACH ADD INDEX BCIDX_ATTACH_PTYPE (PTYPE);
 
 -- 附件处理痕迹
 CREATE TABLE BC_DOCS_ATTACH_HISTORY (
-    ID int NOT NULL auto_increment,
-    AID int NOT NULL COMMENT '附件ID',
-    TYPE_ int NOT NULL COMMENT '处理类型：0-下载,1-在线查看,2-格式转换',
-    SUBJECT varchar(500) NOT NULL COMMENT '简单说明',
-    FORMAT varchar(10) COMMENT '下载的文件格式或转换后的文件格式：如pdf、doc、mp3等',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    AID BIGINT NOT NULL COMMENT '附件ID',
+    TYPE_ BIGINT NOT NULL COMMENT '处理类型：0-下载,1-在线查看,2-格式转换',
+    SUBJECT VARCHAR(500) NOT NULL COMMENT '简单说明',
+    FORMAT VARCHAR(10) COMMENT '下载的文件格式或转换后的文件格式：如PDF、DOC、MP3等',
     
-    FILE_DATE datetime NOT NULL COMMENT '处理时间',
-    AUTHOR_ID int NOT NULL COMMENT '处理人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
-    MODIFIED_DATE datetime COMMENT '最后修改时间',
+    FILE_DATE DATETIME NOT NULL COMMENT '处理时间',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '处理人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
+    MODIFIED_DATE DATETIME COMMENT '最后修改时间',
 
-    C_IP varchar(100) COMMENT '客户端IP',
-    C_INFO varchar(1000) COMMENT '浏览器信息：User-Agent',
+    C_IP VARCHAR(100) COMMENT '客户端IP',
+    C_INFO VARCHAR(1000) COMMENT '浏览器信息：USER-AGENT',
     
-    MEMO varchar(2000) COMMENT '备注',
+    MEMO VARCHAR(2000) COMMENT '备注',
     PRIMARY KEY (ID)
 ) COMMENT='附件处理痕迹';
 ALTER TABLE BC_DOCS_ATTACH_HISTORY ADD CONSTRAINT BCFK_ATTACHHISTORY_AUTHOR FOREIGN KEY (AUTHOR_ID) 
@@ -376,16 +376,16 @@ ALTER TABLE BC_DOCS_ATTACH_HISTORY ADD CONSTRAINT BCFK_ATTACHHISTORY_ATTACH FORE
 
 -- 用户反馈
 CREATE TABLE BC_FEEDBACK (
-    ID int NOT NULL auto_increment,
-    UID_ varchar(36) NOT NULL COMMENT '关联附件的标识号',
-    STATUS_ int(1) NOT NULL COMMENT '状态:0-草稿,1-已提交,2-已受理',
-    SUBJECT varchar(500) NOT NULL COMMENT '标题',
-    FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
-    MODIFIED_DATE datetime COMMENT '最后修改时间',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    UID_ VARCHAR(36) NOT NULL COMMENT '关联附件的标识号',
+    STATUS_ INT(1) NOT NULL COMMENT '状态:0-草稿,1-已提交,2-已受理',
+    SUBJECT VARCHAR(500) NOT NULL COMMENT '标题',
+    FILE_DATE DATETIME NOT NULL COMMENT '创建时间',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
+    MODIFIED_DATE DATETIME COMMENT '最后修改时间',
 
-    CONTENT text NOT NULL COMMENT '详细内容',
+    CONTENT TEXT NOT NULL COMMENT '详细内容',
     PRIMARY KEY (ID)
 ) COMMENT='用户反馈';
 ALTER TABLE BC_FEEDBACK ADD CONSTRAINT BCFK_FEEDBACK_AUTHOR FOREIGN KEY (AUTHOR_ID) 
@@ -397,24 +397,24 @@ ALTER TABLE BC_FEEDBACK ADD CONSTRAINT BCFK_FEEDBACK_MODIFIER FOREIGN KEY (MODIF
 -- 选项模块
 -- 选项分组
 CREATE TABLE BC_OPTION_GROUP (
-    ID int NOT NULL auto_increment,
-    KEY_ varchar(255) NOT NULL COMMENT '键',
-    VALUE_ varchar(255) NOT NULL COMMENT '值',
-    ORDER_ varchar(100) COMMENT '排序号',
-    ICON varchar(100) COMMENT '图标样式',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    KEY_ VARCHAR(255) NOT NULL COMMENT '键',
+    VALUE_ VARCHAR(255) NOT NULL COMMENT '值',
+    ORDER_ VARCHAR(100) COMMENT '排序号',
+    ICON VARCHAR(100) COMMENT '图标样式',
     PRIMARY KEY (ID)
 ) COMMENT='选项分组';
 ALTER TABLE BC_OPTION_GROUP ADD INDEX BCIDX_OPTIONGROUP_KEYVALUE (KEY_,VALUE_);
 
 -- 选项条目
 CREATE TABLE BC_OPTION_ITEM (
-    ID int NOT NULL auto_increment,
-    PID int NOT NULL COMMENT '所属分组的ID',
-    KEY_ varchar(255) NOT NULL COMMENT '键',
-    VALUE_ varchar(255) NOT NULL COMMENT '值',
-    ORDER_ varchar(100) COMMENT '排序号',
-    ICON varchar(100) COMMENT '图标样式',
-    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    PID BIGINT NOT NULL COMMENT '所属分组的ID',
+    KEY_ VARCHAR(255) NOT NULL COMMENT '键',
+    VALUE_ VARCHAR(255) NOT NULL COMMENT '值',
+    ORDER_ VARCHAR(100) COMMENT '排序号',
+    ICON VARCHAR(100) COMMENT '图标样式',
+    STATUS_ INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
     PRIMARY KEY (ID)
 ) COMMENT='选项条目';
 ALTER TABLE BC_OPTION_ITEM ADD CONSTRAINT BCFK_OPTIONITEM_OPTIONGROUP FOREIGN KEY (PID) 
@@ -426,7 +426,7 @@ ALTER TABLE BC_OPTION_ITEM ADD INDEX BCIDX_OPTIONITEM_KEYVALUE (KEY_,VALUE_);
 
 -- 车队信息
 CREATE TABLE BS_MOTORCADE(
-   ID                   INT NOT NULL auto_increment,
+   ID                   BIGINT NOT NULL auto_increment,
    UID_                 VARCHAR(36),
    CODE                 VARCHAR(255) COMMENT '编码',
    NAME                 VARCHAR(255) NOT NULL COMMENT '简称',
@@ -441,8 +441,8 @@ CREATE TABLE BS_MOTORCADE(
    DESC_                VARCHAR(4000) COMMENT '备注',
    STATUS_              INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
-   AUTHOR_ID            INT NOT NULL COMMENT '创建人ID',
-   MODIFIER_ID          INT COMMENT '最后修改人ID',
+   AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
    PRIMARY KEY (ID)
 ) COMMENT '车队';
@@ -453,14 +453,14 @@ ALTER TABLE BS_MOTORCADE ADD CONSTRAINT BSFK_MOTORCADE_MODIFIER FOREIGN KEY (MOD
 
 -- 车队历史车辆数
 CREATE TABLE BS_MOTORCADE_CARQUANTITY(
-   ID                   INT NOT NULL auto_increment,
-   MOTORCADE_ID         INT NOT NULL COMMENT '所属车队ID',
+   ID                   BIGINT NOT NULL auto_increment,
+   MOTORCADE_ID         BIGINT NOT NULL COMMENT '所属车队ID',
    YEAR_                NUMERIC(4,0) NOT NULL COMMENT '年份',
    MONTH_               NUMERIC(2,0) NOT NULL COMMENT '月份',
-   QUANTITY             INT NOT NULL COMMENT '车辆数',
+   QUANTITY             BIGINT NOT NULL COMMENT '车辆数',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
-   AUTHOR_ID            INT NOT NULL COMMENT '创建人ID',
-   MODIFIER_ID          INT COMMENT '最后修改人ID',
+   AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
    PRIMARY KEY (ID)
 ) COMMENT '车队历史车辆数';
@@ -474,7 +474,7 @@ ALTER TABLE BS_MOTORCADE_CARQUANTITY ADD CONSTRAINT BSFK_CARQUANTITY_MOTORCADE F
 
 -- 车队负责人信息
 create table BS_CHARGER (
-    ID int NOT NULL auto_increment,
+    ID BIGINT NOT NULL auto_increment,
     UID_ varchar(36) NOT NULL  COMMENT '关联附件的标识号',
     CARD varchar(255)  COMMENT '身份证',
     NAME varchar(255) NOT NULL COMMENT '姓名',
@@ -491,8 +491,8 @@ create table BS_CHARGER (
     DESC_ text COMMENT '备注',
    
     FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
     MODIFIED_DATE datetime COMMENT '最后修改时间',
     STATUS_ int(1)  COMMENT '状态：0-已禁用,1-启用中,2-已删除',
     
@@ -504,7 +504,7 @@ ALTER TABLE BS_CHARGER ADD CONSTRAINT BS_CHARGER_AUTHOR FOREIGN KEY (AUTHOR_ID)
 
 -- 证件
 create table BS_CERT (
-    ID int NOT NULL auto_increment,
+    ID BIGINT NOT NULL auto_increment,
     STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
     UID_ varchar(36) NOT NULL,
     CERT_CODE varchar(255) NOT NULL COMMENT '证件号',
@@ -522,8 +522,8 @@ create table BS_CERT (
     EXT_NUM3 int(19),
     
     FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
     MODIFIED_DATE datetime COMMENT '最后修改时间',
     primary key (ID)
 ) COMMENT='证件';
@@ -536,7 +536,7 @@ ALTER TABLE BS_CERT ADD INDEX BSIDX_CERT_NAME (CERT_NAME);
 
 -- 证件:居民身份证
 create table BS_CERT_IDENTITY (
-    ID int NOT NULL,
+    ID BIGINT NOT NULL,
     NAME varchar(255) COMMENT '姓名',
     SEX int(1) COMMENT '性别(0-未设置,1-男,2-女)',
     BIRTHDATE datetime COMMENT '出生日期',
@@ -549,7 +549,7 @@ ALTER TABLE BS_CERT_IDENTITY ADD CONSTRAINT BSFK_CERT4IDENTITY_CERT FOREIGN KEY 
 
 -- 证件:机动车驾驶证
 create table BS_CERT_DRIVING (
-    ID int NOT NULL,
+    ID BIGINT NOT NULL,
     NAME varchar(255) COMMENT '姓名',
     SEX int(1) COMMENT '性别(0-未设置,1-男,2-女)',
     BIRTHDATE datetime COMMENT '出生日期',
@@ -567,7 +567,7 @@ ALTER TABLE BS_CERT_DRIVING ADD CONSTRAINT BSFK_CERT4DRIVING_CERT FOREIGN KEY (I
 
 -- 证件:从业资格证
 create table BS_CERT_CYZG (
-    ID int NOT NULL,
+    ID BIGINT NOT NULL,
    NAME                 varchar(255) comment '姓名',
    SEX                  int(1) comment '性别(0-未设置,1-男,2-女)',
    BIRTHDATE            datetime comment '出生日期',
@@ -583,7 +583,7 @@ ALTER TABLE BS_CERT_CYZG ADD CONSTRAINT BSFK_CERT4CYZG_CERT FOREIGN KEY (ID)
 
 -- 证件:服务资格证
 create table BS_CERT_FWZG (
-    ID int NOT NULL,
+    ID BIGINT NOT NULL,
    NAME                 varchar(255) comment '姓名',
    SEX                  int(1) comment '性别(0-未设置,1-男,2-女)',
    BIRTHDATE            datetime comment '出生日期',
@@ -598,7 +598,7 @@ ALTER TABLE BS_CERT_FWZG ADD CONSTRAINT BSFK_CERT4FWZG_CERT FOREIGN KEY (ID)
 
 -- 证件:驾驶培训证
 create table BS_CERT_JSPX (
-    ID int NOT NULL,
+    ID BIGINT NOT NULL,
    NAME                 varchar(255) comment '姓名',
    SEX                  int(1) comment '性别(0-未设置,1-男,2-女)',
    BIRTHDATE            datetime comment '出生日期',
@@ -618,7 +618,7 @@ ALTER TABLE BS_CERT_JSPX ADD CONSTRAINT BSFK_CERT4JSPX_CERT FOREIGN KEY (ID)
     
 -- 证件：机动车行驶证
 CREATE TABLE BS_CERT_VEHICELICENSE(
-   ID                   int NOT NULL,
+   ID                   BIGINT NOT NULL,
    FACTORY              VARCHAR(255) COMMENT '品牌型号，如“桑塔纳SVW7182QQD”',
    PLATE                VARCHAR(255) COMMENT '车牌及号码，如“粤AC4X74”',
    OWNER                VARCHAR(255) COMMENT '业户名称',
@@ -629,13 +629,13 @@ CREATE TABLE BS_CERT_VEHICELICENSE(
    ENGINE_NO            VARCHAR(255) COMMENT '发动机号码',
    REGISTER_DATE        DATETIME COMMENT '注册日期',
    ARCHIVE_NO           VARCHAR(255) COMMENT '档案编号',
-   DIM_LEN              int COMMENT '外廓尺寸：长，单位MM',
-   DIM_WIDTH            int COMMENT '外廓尺寸：宽，单位MM',
-   DIM_HEIGHT           int COMMENT '外廓尺寸：高，单位MM',
-   TOTAL_WEIGHT         int COMMENT '总质量，单位KG',
-   CURB_WEIGHT          int COMMENT '整备质量，单位KG',
-   ACCESS_WEIGHT        int COMMENT '核定载质量，单位KG',
-   ACCESS_COUNT         int COMMENT '核定载人数',
+   DIM_LEN              BIGINT COMMENT '外廓尺寸：长，单位MM',
+   DIM_WIDTH            BIGINT COMMENT '外廓尺寸：宽，单位MM',
+   DIM_HEIGHT           BIGINT COMMENT '外廓尺寸：高，单位MM',
+   TOTAL_WEIGHT         BIGINT COMMENT '总质量，单位KG',
+   CURB_WEIGHT          BIGINT COMMENT '整备质量，单位KG',
+   ACCESS_WEIGHT        BIGINT COMMENT '核定载质量，单位KG',
+   ACCESS_COUNT         BIGINT COMMENT '核定载人数',
    SCRAP_DATE           DATETIME COMMENT '强制报废日期',
    DESC_                VARCHAR(500) COMMENT '备注',
    RECORD_              VARCHAR(500) COMMENT '检验记录',
@@ -646,16 +646,16 @@ ALTER TABLE BS_CERT_VEHICELICENSE ADD CONSTRAINT BSFK_CERT4VEHICELICENSE_CERT FO
 	  
 -- 证件：道路运输证
 CREATE TABLE BS_CERT_ROADTRANSPORT(
-   ID                   int NOT NULL,
+   ID                   BIGINT NOT NULL,
    FACTORY              VARCHAR(255) COMMENT '品牌型号，如“桑塔纳SVW7182QQD”',
    PLATE                VARCHAR(255) COMMENT '车牌及号码，如“粤AC4X74”',
    OWNER                VARCHAR(255) COMMENT '业户名称',
    ADDRESS              VARCHAR(255) COMMENT '地址',
    BS_CERT_NO           VARCHAR(255) COMMENT '经营许可证号',
    SEAT                 VARCHAR(255) COMMENT '吨（座）位',
-   DIM_LEN              int COMMENT '外廓尺寸：长，单位MM',
-   DIM_WIDTH            int COMMENT '外廓尺寸：宽，单位MM',
-   DIM_HEIGHT           int COMMENT '外廓尺寸：高，单位MM',
+   DIM_LEN              BIGINT COMMENT '外廓尺寸：长，单位MM',
+   DIM_WIDTH            BIGINT COMMENT '外廓尺寸：宽，单位MM',
+   DIM_HEIGHT           BIGINT COMMENT '外廓尺寸：高，单位MM',
    SCOPE_               VARCHAR(255) COMMENT '经营范围',
    LEVEL_               VARCHAR(255) COMMENT '技术等级',
    PRIMARY KEY (ID)
@@ -666,7 +666,7 @@ ALTER TABLE BS_CERT_ROADTRANSPORT ADD CONSTRAINT BSFK_CERT4ROADTRANSPORT_CERT FO
 
 -- 司机责任人
 create table BS_CARMAN (
-    ID int NOT NULL auto_increment,
+    ID BIGINT NOT NULL auto_increment,
     UID_ varchar(36) NOT NULL COMMENT 'UID',
     STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
     TYPE_ int(1) default 0 NOT NULL COMMENT '类别:0-司机,1-责任人,2-司机和责任人',
@@ -684,6 +684,7 @@ create table BS_CARMAN (
     PHONE                varchar(500) comment '电话',
     PHONE1               varchar(500) comment '电话1',
     MODEL_               varchar(255) comment '准驾车型',
+	LEVEL_               VARCHAR(255) COMMENT '司机等级',
     CERT_IDENTITY        varchar(255) comment '身份证号',
     CERT_DRIVING         varchar(255) comment '驾驶证号',
     CERT_DRIVING_ARCHIVE varchar(255) comment '驾驶证档案号',
@@ -699,8 +700,8 @@ create table BS_CARMAN (
     ACCESS_CERTS         varchar(255) comment '已考取证件：历史数据保存',
     DESC_                varchar(4000) comment '备注',
     FILE_DATE datetime NOT NULL COMMENT '创建时间',
-    AUTHOR_ID int NOT NULL COMMENT '创建人ID',
-    MODIFIER_ID int COMMENT '最后修改人ID',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
     MODIFIED_DATE datetime COMMENT '最后修改时间',
     primary key (ID)
 ) COMMENT='司机责任人';
@@ -711,8 +712,8 @@ ALTER TABLE BS_CARMAN ADD CONSTRAINT BSFK_CARMAN_MODIFIER FOREIGN KEY (MODIFIER_
 
 -- 司机责任人与证件的关联
 CREATE TABLE BS_CARMAN_CERT (
-    MAN_ID int NOT NULL COMMENT '司机责任人ID',
-    CERT_ID int NOT NULL COMMENT '证件ID',
+    MAN_ID BIGINT NOT NULL COMMENT '司机责任人ID',
+    CERT_ID BIGINT NOT NULL COMMENT '证件ID',
     PRIMARY KEY (MAN_ID,CERT_ID)
 ) COMMENT='司机责任人与证件的关联';
 ALTER TABLE BS_CARMAN_CERT ADD CONSTRAINT BSFK_CARMANCERT_MAN FOREIGN KEY (MAN_ID) 
@@ -722,11 +723,11 @@ ALTER TABLE BS_CARMAN_CERT ADD CONSTRAINT BSFK_CARMANCERT_CERT FOREIGN KEY (CERT
     
 -- 车辆
 CREATE TABLE BS_CAR(
-   ID                   INT NOT NULL auto_increment,
+   ID                   BIGINT NOT NULL auto_increment,
    UID_                 VARCHAR(36) NOT NULL,
    STATUS_              INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
-   UNIT_ID        		INT NOT NULL COMMENT '所属单位ID',
-   MOTORCADE_ID         INT NOT NULL COMMENT '所属车队ID',
+   UNIT_ID        		BIGINT NOT NULL COMMENT '所属单位ID',
+   MOTORCADE_ID         BIGINT NOT NULL COMMENT '所属车队ID',
    BS_TYPE              VARCHAR(255) COMMENT '营运性质',
    CODE                 VARCHAR(255) COMMENT '自编号',
    ORIGIN_NO            VARCHAR(255) COMMENT '原车号',
@@ -745,20 +746,20 @@ CREATE TABLE BS_CAR(
    RNGINE_NO            VARCHAR(255) COMMENT '发动机号码',
    RNGINE_TYPE          VARCHAR(255) COMMENT '发动机类型',
    FUEL_TYPE            VARCHAR(255) COMMENT '燃料类型，如“汽油”',
-   DISPLACEMENT         INT COMMENT '排量，单位ML',
+   DISPLACEMENT         BIGINT COMMENT '排量，单位ML',
    POWER                NUMERIC(19,2) COMMENT '功率，单位KW',
    TURN_TYPE            VARCHAR(255) COMMENT '转向方式，如“方向盘”',
-   TIRE_COUNT           INT COMMENT '轮胎数',
+   TIRE_COUNT           BIGINT COMMENT '轮胎数',
    TIRE_STANDARD        VARCHAR(255) COMMENT '轮胎规格',
-   AXIS_DISTANCE        INT COMMENT '轴距',
-   AXIS_COUNT           INT COMMENT '轴数',
-   PIECE_COUNT          INT COMMENT '后轴钢板弹簧片数',
-   DIM_LEN              INT COMMENT '外廓尺寸：长，单位MM',
-   DIM_WIDTH            INT COMMENT '外廓尺寸：宽，单位MM',
-   DIM_HEIGHT           INT COMMENT '外廓尺寸：高，单位MM',
-   TOTAL_WEIGHT         INT COMMENT '总质量，单位KG',
-   ACCESS_WEIGHT        INT COMMENT '核定载质量，单位KG',
-   ACCESS_COUNT         INT COMMENT '核定载人数',
+   AXIS_DISTANCE        BIGINT COMMENT '轴距',
+   AXIS_COUNT           BIGINT COMMENT '轴数',
+   PIECE_COUNT          BIGINT COMMENT '后轴钢板弹簧片数',
+   DIM_LEN              BIGINT COMMENT '外廓尺寸：长，单位MM',
+   DIM_WIDTH            BIGINT COMMENT '外廓尺寸：宽，单位MM',
+   DIM_HEIGHT           BIGINT COMMENT '外廓尺寸：高，单位MM',
+   TOTAL_WEIGHT         BIGINT COMMENT '总质量，单位KG',
+   ACCESS_WEIGHT        BIGINT COMMENT '核定载质量，单位KG',
+   ACCESS_COUNT         BIGINT COMMENT '核定载人数',
    ORIGINAL_VALUE       NUMERIC(19,2) COMMENT '固定资产原值，单位元',
    INVOICE_NO1          VARCHAR(255) COMMENT '购车发票号',
    INVOICE_NO2          VARCHAR(255) COMMENT '购置税发票号',
@@ -773,8 +774,8 @@ CREATE TABLE BS_CAR(
    DESC2                VARCHAR(4000) COMMENT '备注2',
    DESC3                VARCHAR(4000) COMMENT '备注3',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
-   AUTHOR_ID            INT COMMENT '创建人ID',
-   MODIFIER_ID          INT COMMENT '最后修改人ID',
+   AUTHOR_ID            BIGINT COMMENT '创建人ID',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
    PRIMARY KEY (ID)
 ) COMMENT '车辆';
@@ -789,8 +790,8 @@ ALTER TABLE BS_CAR ADD CONSTRAINT BSFK_CAR_UNITID FOREIGN KEY (UNIT_ID)
 
 -- 车辆与证件的关联
 CREATE TABLE BS_CAR_CERT(
-   CAR_ID               INT NOT NULL COMMENT '车辆ID',
-   CERT_ID              INT NOT NULL COMMENT '证件ID',
+   CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
+   CERT_ID              BIGINT NOT NULL COMMENT '证件ID',
    PRIMARY KEY (CAR_ID, CERT_ID)
 ) COMMENT '车辆与证件的关联';
 ALTER TABLE BS_CAR_CERT ADD CONSTRAINT BSFK_CAR_CERT_CARID FOREIGN KEY (CAR_ID)
@@ -800,13 +801,13 @@ ALTER TABLE BS_CAR_CERT ADD CONSTRAINT BSFK_CAR_CERT_CERTID FOREIGN KEY (CERT_ID
 
 -- 合同
 CREATE TABLE BS_CONTRACT(
-   ID                   INT NOT NULL auto_increment,
+   ID                   BIGINT NOT NULL auto_increment,
    UID_                 VARCHAR(36) NOT NULL,
    STATUS_              INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
    WORD_NO              VARCHAR(255) COMMENT '文书号',
    CODE                 VARCHAR(255) NOT NULL COMMENT '合同号',
    TYPE_                VARCHAR(255) NOT NULL COMMENT '合同类型：如劳动合同、承包合同等',
-   TRANSACTOR_ID        INT NOT NULL COMMENT '经办人ID',
+   TRANSACTOR_ID        BIGINT NOT NULL COMMENT '经办人ID',
    SIGN_DATE            DATETIME NOT NULL COMMENT '签订日期',
    START_DATE           DATETIME NOT NULL COMMENT '生效日期',
    END_DATE             DATETIME NOT NULL COMMENT '到期日期',
@@ -814,12 +815,12 @@ CREATE TABLE BS_CONTRACT(
    EXT_STR1             VARCHAR(255) COMMENT '字符扩展域1',
    EXT_STR2             VARCHAR(255) COMMENT '字符扩展域2',
    EXT_STR3             VARCHAR(255) COMMENT '字符扩展域3',
-   EXT_NUM1             INT COMMENT '数字扩展域1',
-   EXT_NUM2             INT COMMENT '数字扩展域2',
-   EXT_NUM3             INT COMMENT '数字扩展域3',
+   EXT_NUM1             BIGINT COMMENT '数字扩展域1',
+   EXT_NUM2             BIGINT COMMENT '数字扩展域2',
+   EXT_NUM3             BIGINT COMMENT '数字扩展域3',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
-   AUTHOR_ID            INT NOT NULL COMMENT '创建人ID',
-   MODIFIER_ID          INT COMMENT '最后修改人ID',
+   AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
    PRIMARY KEY (ID)
 ) COMMENT '合同';
@@ -830,15 +831,16 @@ ALTER TABLE BS_CONTRACT ADD CONSTRAINT BSFK_CONTRACT_MODIFIER FOREIGN KEY (MODIF
 
 -- 司机劳动合同
 CREATE TABLE BS_CONTRACT_LABOUR(
-   ID                   INT NOT NULL,
-   DRIVER_ID            INT NOT NULL COMMENT '司机ID',
-   CAR_ID               INT NOT NULL COMMENT '车辆ID',
+   ID                   BIGINT NOT NULL,
+   DRIVER_ID            BIGINT NOT NULL COMMENT '司机ID',
+   CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
    ADDITION_PROTOCOL    INT(1) NOT NULL COMMENT '补充协议:0-无,1-有',
    PRE_INDUSTRY_NAME    VARCHAR(255) COMMENT '前身行业名称',
    PRE_INDUSTRY_TYPE    INT(1) NOT NULL COMMENT '前身工种行业:0-非特殊,1-特殊',
    HIRING_PROCEDURE     INT(1) NOT NULL COMMENT '招用工手续:0-未办,1-已办',
    DOLE                 INT(1) NOT NULL COMMENT '下岗失业补贴:0-已发,1-未发',
    CERT_NO              VARCHAR(255) NOT NULL COMMENT '资格证号',
+   FILING               INT(1) NOT NULL COMMENT '是否已备案',
    PRIMARY KEY (ID)
 ) COMMENT '司机劳动合同';
 ALTER TABLE BS_CONTRACT_LABOUR ADD CONSTRAINT BSFK_CONTRACT4LABOUR_CAR FOREIGN KEY (CAR_ID)
@@ -850,8 +852,8 @@ ALTER TABLE BS_CONTRACT_LABOUR ADD CONSTRAINT BSFK_CONTRACT4LABOUR_CONTRACT FORE
 
 -- 责任人合同
 CREATE TABLE BS_CONTRACT_CHARGER(
-   ID                   INT NOT NULL,
-   CAR_ID               INT NOT NULL COMMENT '车辆ID',
+   ID                   BIGINT NOT NULL,
+   CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
    SIGN_TYPE            VARCHAR(255) NOT NULL COMMENT '签约类型:如新户',
    LOGOUT               INT(1) NOT NULL COMMENT '注销:0-未,1-已',
    TAKEBACK_ORIGIN      INT(1) NOT NULL COMMENT '已经收回原件:0-未1-已',
@@ -866,8 +868,8 @@ ALTER TABLE BS_CONTRACT_CHARGER ADD CONSTRAINT BSFK_CONTRACT4CHARGER_CONTRACT FO
 
 -- 责任人与合同的关联
 CREATE TABLE BS_CARMAN_CONTRACT(
-   CONTRACT_ID          INT NOT NULL COMMENT '合同ID',
-   CARMAN_ID            INT NOT NULL COMMENT '责任人ID',
+   CONTRACT_ID          BIGINT NOT NULL COMMENT '合同ID',
+   CARMAN_ID            BIGINT NOT NULL COMMENT '责任人ID',
    PRIMARY KEY (CARMAN_ID, CONTRACT_ID)
 ) COMMENT '责任人与合同的关联';
 ALTER TABLE BS_CARMAN_CONTRACT ADD CONSTRAINT BSFK_CARMANCONTRACT_CARMAN FOREIGN KEY (CARMAN_ID)
@@ -877,16 +879,16 @@ ALTER TABLE BS_CARMAN_CONTRACT ADD CONSTRAINT BSFK_CARMANCONTRACT_CONTRACT FOREI
 
 -- 司机营运车辆
 CREATE TABLE BS_CAR_DRIVER(
-   ID                   INT NOT NULL auto_increment,
-   DRIVER_ID            INT NOT NULL COMMENT '司机ID',
-   CAR_ID               INT NOT NULL COMMENT '车辆ID',
+   ID                   BIGINT NOT NULL auto_increment,
+   DRIVER_ID            BIGINT NOT NULL COMMENT '司机ID',
+   CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
    CLASSES                VARCHAR(255) NOT NULL COMMENT '营运班次:如正班、副班、顶班',
    START_DATE           DATETIME COMMENT '起始时段',
    END_DATE             DATETIME COMMENT '结束时段',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
-   AUTHOR_ID            INT NOT NULL COMMENT '创建人ID',
+   AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
-   MODIFIER_ID          INT COMMENT '最后修改人ID',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    PRIMARY KEY (ID)
 ) COMMENT '司机营运车辆';
 ALTER TABLE BS_CAR_DRIVER ADD CONSTRAINT BSFK_CARDRIVER_AUTHOR FOREIGN KEY (AUTHOR_ID)
@@ -900,20 +902,21 @@ ALTER TABLE BS_CAR_DRIVER ADD CONSTRAINT BSFK_CARDRIVER_CARMAN FOREIGN KEY (DRIV
       
 -- 司机迁移历史
 CREATE TABLE BS_CARMAN_HISTORY (
-   ID                   INT NOT NULL auto_increment,
+   ID                   BIGINT NOT NULL auto_increment,
    TYPE_                VARCHAR(255) NOT NULL COMMENT '迁移属性，如新入职',
-   DRIVER_ID            INT NOT NULL COMMENT '司机ID',
-   FROM_CARID           INT COMMENT '迁自车辆ID',
-   TO_CARID             INT NOT NULL COMMENT '迁往车辆ID',
+   DRIVER_ID            BIGINT NOT NULL COMMENT '司机ID',
+   SUBJECT              VARCHAR(1000) COMMENT '其他',
+   FROM_CARID           BIGINT COMMENT '迁自车辆ID',
+   TO_CARID             BIGINT NOT NULL COMMENT '迁往车辆ID',
    FROM_CLASSES         VARCHAR(255) COMMENT '原营运班次:如正班、副班、顶班',
    TO_CLASSES           VARCHAR(255) NOT NULL COMMENT '新营运班次:如正班、副班、顶班',
    SHIFT_DATE           DATETIME NOT NULL COMMENT '迁移日期',
-   FROM_MOTORCADEID     INT COMMENT '原车队ID',
-   TO_MOTORCADEID       INT NOT NULL COMMENT '迁往车队ID',
+   FROM_MOTORCADEID     BIGINT COMMENT '原车队ID',
+   TO_MOTORCADEID       BIGINT NOT NULL COMMENT '迁往车队ID',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
-   AUTHOR_ID            INT NOT NULL COMMENT '创建人ID',
+   AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
-   MODIFIER_ID          INT COMMENT '最后修改人ID',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    PRIMARY KEY (ID)
 ) COMMENT '司机迁移历史';
 ALTER TABLE BS_CARMAN_HISTORY ADD CONSTRAINT BS_CARMANHISTORY_DRIVER FOREIGN KEY (DRIVER_ID)
@@ -929,5 +932,45 @@ ALTER TABLE BS_CARMAN_HISTORY ADD CONSTRAINT BS_CARMANHISTORY_TOMOTORCADE FOREIG
 ALTER TABLE BS_CARMAN_HISTORY ADD CONSTRAINT BSFK_CARMANHISTORY_AUTHOR FOREIGN KEY (AUTHOR_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 ALTER TABLE BS_CARMAN_HISTORY ADD CONSTRAINT BSFK_CARMANHISTORY_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+
+-- 黑名单
+CREATE TABLE BS_BLACKLIST(
+   ID                   BIGINT NOT NULL AUTO_INCREMENT,
+   TYPE_                VARCHAR(255) NOT NULL COMMENT '限制项目',
+   UNIT_ID              BIGINT COMMENT '车属单位ID',
+   DRIVER_ID            BIGINT NOT NULL COMMENT '司机ID',
+   CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
+   MOTORCADE_ID         BIGINT COMMENT '车队ID',
+   SUBJECT              VARCHAR(1000) NOT NULL COMMENT '主题',
+   LOCK_DATE            DATETIME NOT NULL COMMENT '锁定时间',
+   UNLOCK_DATE          DATETIME COMMENT '解锁时间',
+   LOCKER_ID            BIGINT NOT NULL COMMENT '锁定人ID',
+   UNLOCKER_ID          BIGINT COMMENT '解锁人ID',
+   LOCK_REASON          VARCHAR(4000) COMMENT '锁定原因',
+   UNLOCK_REASON        VARCHAR(4000) COMMENT '解锁原因',
+   LEVEL_               VARCHAR(255) COMMENT '等级',
+   CODE                 VARCHAR(255) COMMENT '编号',
+   FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
+   AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
+   MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
+   MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
+   PRIMARY KEY (ID)
+) COMMENT '黑名单';
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_AUTHOR FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_UNIT FOREIGN KEY (UNIT_ID)
+      REFERENCES BC_IDENTITY_ACTOR (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_CAR FOREIGN KEY (CAR_ID)
+      REFERENCES BS_CAR (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_DIRVER FOREIGN KEY (DRIVER_ID)
+      REFERENCES BS_CARMAN (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_LOCKER FOREIGN KEY (LOCKER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_MOTORCADE FOREIGN KEY (MOTORCADE_ID)
+      REFERENCES BS_MOTORCADE (ID);
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BS_BLACKLIST_UNLOCKER FOREIGN KEY (UNLOCKER_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 
