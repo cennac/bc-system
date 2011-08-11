@@ -505,6 +505,8 @@ insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONC
     select 1, 0, '8308', 0, '车队信息', '/bc-business/motorcade/list', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
     select 1, 0, '8309', 0, '车队负责人', '/bc-business/charger/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+insert into BC_DESKTOP_SHORTCUT (STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
+    select 1, 0, '8310', 0, '司机负责人', '/bc-business/carMan/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 
 -- 插入全局配置信息
 insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
