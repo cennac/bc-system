@@ -547,6 +547,8 @@ insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5003', 'car.co
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5004', 'car.rank', '车辆定级', null); 
 -- insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5005', 'car.type', '车辆类型', null); 
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5006', 'car.brand', '车辆厂牌', null); 
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5007', 'driver.classes', '司机营运班次', null); 
+
 
 -- 插入选项条目信息
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
@@ -623,6 +625,13 @@ insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select 1, g.id, '11', 'xiali', '夏利', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select 1, g.id, '12', 'xiandai', '现代', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '01', 'zhengban', '正班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '02', 'fuban', '副班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '03', 'dingban', '顶班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
 
 
 -- 插入测试消息
