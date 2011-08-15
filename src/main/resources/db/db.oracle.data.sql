@@ -541,6 +541,7 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SE
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5004', 'car.rank', '车辆定级', null); 
 -- insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5005', 'car.type', '车辆类型', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5006', 'car.brand', '车辆厂牌', null); 
+
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5007', 'driver.classes', '司机营运班次', null); 
 
 -- 插入选项条目信息
@@ -628,6 +629,11 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
  
 
 
+
+
+
+
+
 -- 插入测试消息
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
 	select HIBERNATE_SEQUENCE.NEXTVAL,sysdate , '测试标题1', '测试内容1', 
@@ -645,6 +651,17 @@ insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID)
 	select HIBERNATE_SEQUENCE.NEXTVAL,sysdate , '测试标题4', null, 
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin'),
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin') from dual;
+
+
+
+-- 车队测试数据
+insert into BS_MOTORCADE (ID, UID_, CODE, NAME, FULLNAME, PAYMENT_DATE, COMPANY, COLOR, ADDRESS, PRINCIPAL, PHONE, FAX, DESC_, STATUS_, FILE_DATE, AUTHOR_ID, MODIFIER_ID, MODIFIED_DATE)
+values (1, 'aaa', 'cccc', '宝城', '宝城', to_date('11-08-2011', 'dd-mm-yyyy'), '超级有限公司', '红', '芳村地区', '111', '999', null, null, 1, to_date('11-08-2011', 'dd-mm-yyyy'), 10000111, 10000111, to_date('11-08-2011', 'dd-mm-yyyy'));
+
+insert into BS_MOTORCADE (ID, UID_, CODE, NAME, FULLNAME, PAYMENT_DATE, COMPANY, COLOR, ADDRESS, PRINCIPAL, PHONE, FAX, DESC_, STATUS_, FILE_DATE, AUTHOR_ID, MODIFIER_ID, MODIFIED_DATE)
+values (2, 'bbb', 'dddd', '广发', '广发', to_date('11-08-2011', 'dd-mm-yyyy'), '无敌有限', '蓝', '佛山地区', '222', '888', null, null, 1, to_date('11-08-2011', 'dd-mm-yyyy'), 10000111, 10000111, to_date('11-08-2011', 'dd-mm-yyyy'));
+
+
 
 
 -- 插入1000条登录数据
