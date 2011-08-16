@@ -547,7 +547,13 @@ insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5003', 'car.co
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5004', 'car.rank', '车辆定级', null); 
 -- insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5005', 'car.type', '车辆类型', null); 
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5006', 'car.brand', '车辆厂牌', null); 
-insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5007', 'driver.classes', '司机营运班次', null); 
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5007', 'driver.classes', '司机营运班次', null);
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5008', 'carMan.region', '司机责任人区域', null); 
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5009', 'carMan.houseType', '司机责任人户口性质', null); 
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('50010', 'carMan.level', '司机责任人等级', null); 
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('50011', 'carMan.model', '司机责任人准驾车型', null); 
+
+
 
 
 -- 插入选项条目信息
@@ -632,6 +638,42 @@ insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select 1, g.id, '02', 'fuban', '副班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select 1, g.id, '03', 'dingban', '顶班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
+
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '01', 'bensheng', '本省', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '02', 'waisheng', '外省', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '03', 'benshi', '本市', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+	
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '01', 'bendichengzhen', '本地城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '02', 'bendinongcun', '本地农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '03', 'waidichengzhen', '外地城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '04', 'waidinongcun', '外地农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '05', 'huadu', '花都', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '06', 'panyu', '番禺', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+	
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '01', 'weiyoudengji', '未有等级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '02', 'yiji', '一级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '03', 'erji', '二级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '04', 'sanji', '三级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+	
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '01', 'Apai', 'A牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '02', 'Bpai', 'B牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '03', 'Cpai', 'C牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
 
 
 -- 插入测试消息

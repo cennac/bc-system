@@ -499,6 +499,8 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,I
     select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, '8309', 0, '车队负责人', '/bc-business/charger/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
     select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, '8310', 0, '司机责任人', '/bc-business/carMan/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
+    select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, '8311', 0, '司机营运车辆', '/bc-business/carByDriver/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 
 
 -- 插入全局配置信息
@@ -543,6 +545,10 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SE
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5006', 'car.brand', '车辆厂牌', null); 
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5007', 'driver.classes', '司机营运班次', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5008', 'carMan.region', '司机责任人区域', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5009', 'carMan.houseType', '司机责任人户口性质', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5010', 'carMan.level', '司机责任人等级', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5011', 'carMan.model', '司机责任人准驾车型', null);   
 
 -- 插入选项条目信息
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
@@ -626,7 +632,42 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'fuban', '副班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'dingban', '顶班', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
- 
+  
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'bensheng', '本省', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'waisheng', '外省', null from BC_OPTION_GROUP g where g.KEY_='carMan.region';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'benshi', '本市', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+  
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'bendichengzhen', '本地城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'bendinongcun', '本地农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'waidichengzhen', '外地城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '04', 'waidinongcun', '外地农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '05', 'huadu', '花都', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '06', 'panyu', '番禺', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';  
+  
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'weiyoudengji', '未有等级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'yiji', '一级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'erji', '二级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+ 	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '04', 'sanji', '三级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+  
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'Apai', 'A牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'Bpai', 'B牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'Cpai', 'C牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
 
 
 
