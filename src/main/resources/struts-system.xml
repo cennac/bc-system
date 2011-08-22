@@ -31,7 +31,7 @@
 		</action> -->
 	</package>
 	
-	<!-- 图表 -->
+	<!-- for test: 图表 -->
 	<package name="chart" extends="bc-default" namespace="/bc/chart">
 		<action name="pie" class="chartDemoAction" method="pie">
 			<result name="pie">/bc-test/chart/pie.jsp</result>
@@ -44,6 +44,13 @@
 		</action>
 		<action name="mix" class="chartDemoAction" method="mix">
 			<result name="mix">/bc-test/chart/mix.jsp</result>
+		</action>
+	</package>
+	
+	<!-- for test-->
+	<package name="test" extends="bc-default" namespace="/bc-test">
+		<action name="selectIdentity" class="selectIdentityAction" method="selectIdentity">
+			<result>/bc-test/identity/select.jsp</result>
 		</action>
 	</package>
 </struts>
