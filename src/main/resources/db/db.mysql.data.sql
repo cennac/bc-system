@@ -552,6 +552,7 @@ insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5008', 'carMan
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('5009', 'carMan.houseType', '司机责任人户口性质', null); 
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('50010', 'carMan.level', '司机责任人等级', null); 
 insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('50011', 'carMan.model', '司机责任人准驾车型', null); 
+insert into BC_OPTION_GROUP (ORDER_, KEY_, VALUE_, ICON) values ('50012', 'blacklist.type', '黑名单限制项目', null); 
 
 
 
@@ -674,6 +675,27 @@ insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select 1, g.id, '02', 'Bpai', 'B牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select 1, g.id, '03', 'Cpai', 'C牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
+	
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '01', 'weidingyi', '未定义', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '02', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '03', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '04', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '05', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '06', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '07', 'tingbanyiqieyewutingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '08', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '09', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select 1, g.id, '10', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.brand'; 
 
 
 -- 插入测试消息
