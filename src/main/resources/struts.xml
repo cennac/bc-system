@@ -45,6 +45,7 @@
 	<include file="cn/bc/business/car/web/struts2/struts.xml" />
 	<include file="cn/bc/business/charger/web/struts2/struts.xml" />
 	<include file="cn/bc/business/blacklist/web/struts2/struts.xml" />
+	<include file="cn/bc/business/contract/web/struts2/struts.xml" />
 
 	<!-- 项目自定义的配置文件 -->
 	<include file="struts-system.xml" />

@@ -76,6 +76,15 @@
 		
 		<!-- 黑名单 -->
 		<class>cn.bc.business.blacklist.domain.Blacklist</class>
+		
+		<!-- 合同  -->
+		<class>cn.bc.business.contract.domain.Contract</class>
+		<class>cn.bc.business.contract.domain.Contract4Car</class>
+		<class>cn.bc.business.contract.domain.Contract4Charger</class>
+		<class>cn.bc.business.contract.domain.Contract4Labour</class>
+		
+		
+		
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
