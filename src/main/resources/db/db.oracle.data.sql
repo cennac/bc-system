@@ -378,15 +378,15 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,I
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
     select CORE_SEQUENCE.NEXTVAL, 0, 0, '8307', 1, 'jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8308', 0, '车队信息', '/bc-business/motorcade/list', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8308', 0, '车队信息', '/bc-business/motorcade/list', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8309', 0, '车队负责人', '/bc-business/charger/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8309', 0, '车队负责人', '/bc-business/charger/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8310', 0, '司机责任人', '/bc-business/carMan/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8310', 0, '司机责任人', '/bc-business/carMan/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8311', 0, '司机营运车辆', '/bc-business/carByDriver/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8311', 0, '司机营运车辆', '/bc-business/carByDriver/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, '8312', 0, '黑名单', '/bc-business/blacklist/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, '8312', 0, '黑名单', '/bc-business/blacklist/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 
 
 -- 插入全局配置信息
@@ -555,26 +555,25 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'Cpai', 'C牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
   
+
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'weidingyi', '未定义', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '04', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '04', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '05', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '05', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '06', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '06', 'tingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '07', 'tingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '07', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '08', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '08', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '09', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '10', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '09', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 
 
 -- 插入测试消息
