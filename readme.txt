@@ -42,26 +42,43 @@ bc-system
   |--readme.txt                       ->项目说明文件
 
 三) 从源码开始部署系统的步骤：
-1) 检出本工程
-   地址： [内网]git@[serverIp]:bc-system.git 或 [外网]git@github.com:rongjihuang/bc-system.git
-2) 检出ui-libs工程到本工程的src/main/webapp目录下
-   地址： [内网]git@[serverIp]:ui-libs.git 或 [外网]git@github.com:rongjihuang/ui-libs.git
-3) 检出ui-libs-demo工程到本工程的src/main/webapp目录下
-   地址： [内网]git@[serverIp]:ui-libs-demo.git 或 [外网]git@github.com:rongjihuang/ui-libs-demo.git
-4) 检出bc-framework工程到与本工程同级的目录
-   地址： [内网]git@[serverIp]:bc-framework.git 或 [外网]git@github.com:rongjihuang/bc-framework.git
+1) 源代码检出及编译
+1-1) 检出本工程
+   [内网]$ git clone git@[serverIp]:bc-system.git
+   [外网]$ git git@github.com:rongjihuang/bc-system.git
+1-2) 检出bc-framework工程到与本工程同级的目录
+   [内网]$ git clone git@[serverIp]:bc-framework.git
+   [外网]$ git clone git@github.com:rongjihuang/bc-framework.git
    执行编译发布:  >mvn clean install -Dmaven.test.skip=true
-5) 检出bc-framework-webapp工程到本工程的src/main/webapp目录下
-   地址： [内网]git@[serverIp]:bc-framework-webapp.git 或 [外网]git@github.com:rongjihuang/bc-framework-webapp.git
-   注：检出的目录名必须为bc
-6) 检出bc-business工程到与本工程同级的目录
-   地址： [内网]git@[serverIp]:bc-business.git 或 [外网]git@github.com:rongjihuang/bc-business.git
+1-3) 检出bc-business工程到与本工程同级的目录
+   [内网]$ git clone git@[serverIp]:bc-business.git
+   [外网]$ git clone git@github.com:rongjihuang/bc-business.git
    编译发布:  >mvn clean install -Dmaven.test.skip=true
-7) 检出bc-business-webapp工程到本工程的src/main/webapp目录下
-   地址： [内网]git@[serverIp]:bc-business-webapp.git 或 [外网]git@github.com:rongjihuang/bc-business-webapp.git
-   注：检出的目录名必须为bc-business
-8) 部署数据库
-8-1)使用mysql (5.5.9 MySQL Community Server)
+1-4) 检出ui-libs工程到本工程的src/main/webapp目录下
+   $ cd bc-system/src/main/webapp
+   [内网]$ git clone git@[serverIp]:ui-libs.git
+   [外网]$ git clone git@github.com:rongjihuang/ui-libs.git
+1-5) 检出ui-libs-demo工程到本工程的src/main/webapp目录下
+   $ cd bc-system/src/main/webapp
+   [内网]$ git clone git@[serverIp]:ui-libs-demo.git
+   [外网]$ git clone git@github.com:rongjihuang/ui-libs-demo.git
+1-6) 检出bc-framework-webapp工程到本工程的src/main/webapp目录下
+   $ cd bc-system/src/main/webapp
+   [内网]$ git clone git@[serverIp]:bc-framework-webapp.git bc
+   [外网]$ git clone git@github.com:rongjihuang/bc-framework-webapp.git bc
+   注：检出的目录名为bc
+1-7) 检出bc-test-webapp工程到本工程的src/main/webapp目录下
+   $ cd bc-system/src/main/webapp
+   [内网]$ git clone git@[serverIp]:bc-test-webapp.git bc-test
+   [外网]$ git clone git@github.com:rongjihuang/bc-test-webapp.git bc-test
+   注：检出的目录名为bc
+1-8) 检出bc-business-webapp工程到本工程的src/main/webapp目录下
+   $ cd bc-system/src/main/webapp
+   [内网]$ git clone git@[serverIp]:bc-business-webapp.git bc-business
+   [外网]$ git clone git@github.com:rongjihuang/bc-business-webapp.git bc-business
+   注：检出的目录名为bc-business
+2) 部署数据库
+2-1)使用mysql (5.5.9 MySQL Community Server)
     >cd bc-system
     >ant build
     >cd src/main/resources/db
@@ -71,7 +88,7 @@ bc-system
     >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.drop.sql --> 删表(首次不需运行)
     >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.create.sql --> 建表
     >mysql -ubcsystem -pbcsystem bcsystem < db.mysql.data.sql --> 导入初始化数据
-8-2)使用oracle (11.2.0.1)
+2-2)使用oracle (11.2.0.1)
     >cd bc-demo
     >ant build
     >cd src/main/resources/db
@@ -84,20 +101,19 @@ bc-system
     SQL>start db.oracle.create.sql --> 建表
     SQL>start db.oracle.data.sql --> 导入初始化数据
     SQL>commit; --> 提交事务
-9) 编译运行
-9-1)使用mysql(默认)
+3) 编译运行
+3-1)使用mysql(默认)
    >mvn jetty:run
    或
    >mvn jetty:run -Djetty.path=/bcsystem
-9-2)使用oracle 
+3-2)使用oracle 
    >mvn jetty:run -Poracle -Ddb.name=[数据库的SID] -Ddb.ip=[数据库服务器的IP]
    或
    >mvn jetty:run -Djetty.path=/bcsystem -Poracle -Ddb.name=[数据库的SID] -Ddb.ip=[数据库服务器的IP]
-10) 浏览器访问
+4) 浏览器访问
    http://localhost:8082
    或
    http://localhost:8082/bcsystem
-
    
 四) 部署文档转换服务
 如果要使用系统在线查看Office文档的功能，需要在服务器部署OpenOffice的文档转换服务：
