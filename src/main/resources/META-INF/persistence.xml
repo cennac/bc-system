@@ -49,6 +49,10 @@
 		<class>cn.bc.option.domain.OptionGroup</class>
 		<class>cn.bc.option.domain.OptionItem</class>
 
+		<!-- scheduler -->
+		<class>cn.bc.scheduler.domain.ScheduleJob</class>
+		<class>cn.bc.scheduler.domain.ScheduleLog</class>
+
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->

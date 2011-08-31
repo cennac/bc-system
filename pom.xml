@@ -181,6 +181,11 @@
 			<artifactId>bc-option</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-scheduler</artifactId>
+			<version>${framework.version}</version>
+		</dependency>
 
 		<!-- 第三方依赖包 -->
 		<dependency>
