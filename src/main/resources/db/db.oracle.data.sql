@@ -388,7 +388,7 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,I
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
     select CORE_SEQUENCE.NEXTVAL, 0, 0, '8311', 0, '司机营运车辆', '/bc-business/carByDriver/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select HIBERNATE_SEQUENCE.NEXTVAL, 1, 0, '8312', 0, '黑名单', '/bc-business/blacklist/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
+    select CORE_SEQUENCE.NEXTVAL, 1, 0, '8312', 0, '黑名单', '/bc-business/blacklist/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
 
 
 -- 插入全局配置信息
@@ -430,13 +430,18 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5004', 'car.rank', '车辆定级', null); 
 -- insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5005', 'car.type', '车辆类型', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5006', 'car.brand', '车辆厂牌', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5013', 'car.taximeterFactory', '车辆计价器制造厂', null); 
 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5007', 'driver.classes', '司机营运班次', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5008', 'carMan.region', '司机责任人区域', null);
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5009', 'carMan.houseType', '司机责任人户口性质', null);
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5010', 'carMan.level', '司机责任人等级', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5011', 'carMan.model', '司机责任人准驾车型', null);  
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (HIBERNATE_SEQUENCE.NEXTVAL, '5012', 'blacklist.type', '黑名单限制项目', null); 
+
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5007', 'driver.classes', '司机营运班次', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5008', 'carMan.region', '司机责任人区域', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5009', 'carMan.houseType', '司机责任人户口性质', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5010', 'carMan.level', '司机责任人等级', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5011', 'carMan.model', '司机责任人准驾车型', null);  
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5012', 'blacklist.type', '黑名单限制项目', null); 
+
+
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'contract.signType', '签约类型', null); 
 
 -- 插入选项条目信息
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
@@ -559,29 +564,43 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
   
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '01', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '02', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '03', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '04', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '04', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '05', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '05', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '06', 'tingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '06', 'tingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '07', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '07', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '08', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '08', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select HIBERNATE_SEQUENCE.NEXTVAL, 1, g.id, '09', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '09', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
   
 -- 插入任务调度测试信息
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
 	values(1,1,'无异常任务测试','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, '测试信息');
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
 	values(2,1,'有异常任务测试','bc', 'schedulerTestMock', 'error','5/10 * * * * ? *','9902', 0, '测试信息');
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'batong', '八通', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'shanghaixingda', '上海兴达', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'xinhu', '新户', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'xuyue', '续约', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+
+	
 
 -- 插入测试消息
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
