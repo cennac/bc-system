@@ -859,7 +859,11 @@ CREATE TABLE BS_CONTRACT_CHARGER(
    LOGOUT               INT(1) NOT NULL COMMENT '注销:0-未,1-已',
    TAKEBACK_ORIGIN      INT(1) NOT NULL COMMENT '已经收回原件:0-未1-已',
    INCLUDE_COST         INT(1) NOT NULL COMMENT '包含检审费用:0-不包含,1-包含',
+<<<<<<< HEAD
    BS_TYPE		VARCHAR(255) NOT NULL COMMENT '合同性质:',
+=======
+   BS_TYPE            VARCHAR(255) NOT NULL COMMENT '合同性质:',
+>>>>>>> fbaf5645b0fadd737c0c591a5d8a2f7c9da4cf27
    OLD_CONTENT          VARCHAR(4000) COMMENT '旧合同内容',
    PRIMARY KEY (ID)
 ) COMMENT '责任人合同:如承包合同';
