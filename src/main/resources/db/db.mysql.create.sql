@@ -807,7 +807,7 @@ CREATE TABLE BS_CONTRACT(
    STATUS_              INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
    WORD_NO              VARCHAR(255) COMMENT '文书号',
    CODE                 VARCHAR(255) NOT NULL COMMENT '合同号',
-   TYPE_                VARCHAR(255) NOT NULL COMMENT '合同类型：如劳动合同、承包合同等',
+   TYPE_                INT(1) NOT NULL COMMENT '合同类型：如劳动合同、承包合同等',
    TRANSACTOR_ID        BIGINT NOT NULL COMMENT '经办人ID',
    SIGN_DATE            DATETIME NOT NULL COMMENT '签订日期',
    START_DATE           DATETIME NOT NULL COMMENT '生效日期',
@@ -859,7 +859,11 @@ CREATE TABLE BS_CONTRACT_CHARGER(
    LOGOUT               INT(1) NOT NULL COMMENT '注销:0-未,1-已',
    TAKEBACK_ORIGIN      INT(1) NOT NULL COMMENT '已经收回原件:0-未1-已',
    INCLUDE_COST         INT(1) NOT NULL COMMENT '包含检审费用:0-不包含,1-包含',
+<<<<<<< HEAD
+   BS_TYPE		VARCHAR(255) NOT NULL COMMENT '合同性质:',
+=======
    BS_TYPE            VARCHAR(255) NOT NULL COMMENT '合同性质:',
+>>>>>>> fbaf5645b0fadd737c0c591a5d8a2f7c9da4cf27
    OLD_CONTENT          VARCHAR(4000) COMMENT '旧合同内容',
    PRIMARY KEY (ID)
 ) COMMENT '责任人合同:如承包合同';
@@ -885,7 +889,7 @@ CREATE TABLE BS_CAR_DRIVER(
    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
    DRIVER_ID            BIGINT NOT NULL COMMENT '司机ID',
    CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
-   CLASSES                VARCHAR(255) NOT NULL COMMENT '营运班次:如正班、副班、顶班',
+   CLASSES              int(1) NOT NULL COMMENT '营运班次:如0-未定义，1-正班、2-副班、3-顶班',
    START_DATE           DATETIME COMMENT '起始时段',
    END_DATE             DATETIME COMMENT '结束时段',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
