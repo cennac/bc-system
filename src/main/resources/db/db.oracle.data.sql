@@ -368,7 +368,7 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,I
     select CORE_SEQUENCE.NEXTVAL, 0, 0, '8203', 0, '¸½¼þÉè¼Æ', '/bc/attach/design', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8301', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.13/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8301', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.16/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
     select CORE_SEQUENCE.NEXTVAL, 0, 0, '8302', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
