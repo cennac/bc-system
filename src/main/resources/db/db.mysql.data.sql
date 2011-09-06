@@ -615,5 +615,5 @@ DELIMITER $$
     END $$ 
 DELIMITER ; 
 -- 调用存储过程
-CALL test_create_syslog(500,'admin'); 
-CALL test_create_syslog(500,'dragon'); 
+-- CALL test_create_syslog(500,'admin'); 
+-- CALL test_create_syslog(500,'dragon'); 
