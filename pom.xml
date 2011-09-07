@@ -113,6 +113,11 @@
 			<artifactId>bc-business-charger</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-ws</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		
 		<!-- 平台模块 -->
 		<dependency>

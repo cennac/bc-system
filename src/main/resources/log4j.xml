@@ -76,7 +76,7 @@
 	<category name="cn.bc.web.struts2.interceptor.CacheInterceptor">
 	  <priority value="DEBUG" />
 	</category>
-	<category name="cn.bc.docs.web.struts2.ImageAction">
+	<category name="cn.bc.business.ws">
 	  <priority value="DEBUG" />
 	</category>
 	
