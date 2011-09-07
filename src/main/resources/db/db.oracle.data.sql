@@ -546,14 +546,13 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'panyu', '番禺', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';  
   
+
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'weiyoudengji', '未有等级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'yiji', '一级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'yiji', '一级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'erji', '二级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'erji', '二级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
- 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'sanji', '三级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+ 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'sanji', '三级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'Apai', 'A牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
