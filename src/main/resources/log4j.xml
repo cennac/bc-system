@@ -74,7 +74,7 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.web.struts2.interceptor.CacheInterceptor">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.ws">
 	  <priority value="DEBUG" />
