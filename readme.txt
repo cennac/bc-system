@@ -139,3 +139,15 @@ bc-system
 下载：http://nchc.dl.sourceforge.net/project/jodconverter/JODConverter/2.2.2/jodconverter-2.2.2.zip
 3)对于不支持html5上传文件的浏览器，如IE等，附件上传使用了SWFUpload组件实现多文件选择上传功能，
 这个组件需要flash插件的支持，因此这些浏览器需要安装flash才能正常使用。当前测试通过的flash版本为13.0。
+
+
+五）测试发布注意事项：
+>mvn clean package -Poracle -Ddb.name=orcl -Ddb.ip=192.168.0.222 -Dapp.debug=false -Ddb.username=bctest -Ddb.password=bctest -Dapp.data.realPath=/file/bcdata4test -Dapp.ts=20110905
+修改WEB-INF/web.xml文件，将appRealDir参数的值修改为/file/bcdata4test。
+修改classess/log4j.xml，将日志级别统一设为ERROR。
+修改classess/db.properties，确认数据库连接参数正确：测试系统使用帐号bctest/bctest。
+修改classess/global.properties，确认如下参数正确：
+    app.debug=false
+    app.ts=20110901
+    app.data.realPath=/file/bcdata4test
+

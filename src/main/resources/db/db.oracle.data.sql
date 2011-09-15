@@ -368,7 +368,7 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,I
     select CORE_SEQUENCE.NEXTVAL, 0, 0, '8203', 0, '附件设计', '/bc/attach/design', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8301', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.13/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8301', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.16/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
     select CORE_SEQUENCE.NEXTVAL, 0, 0, '8302', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
@@ -548,14 +548,13 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'panyu', '番禺', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';  
   
+
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'weiyoudengji', '未有等级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'yiji', '一级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'yiji', '一级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'erji', '二级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'erji', '二级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
- 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'sanji', '三级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
+ 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'sanji', '三级', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'Apai', 'A牌', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
@@ -647,5 +646,5 @@ END;
 /
 
 -- 调用存储过程
-CALL test_create_syslog(500,'admin'); 
-CALL test_create_syslog(500,'dragon'); 
+-- CALL test_create_syslog(500,'admin'); 
+-- CALL test_create_syslog(500,'dragon'); 
