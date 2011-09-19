@@ -86,9 +86,12 @@
 		<class>cn.bc.business.contract.domain.Contract4Car</class>
 		<class>cn.bc.business.contract.domain.Contract4Charger</class>
 		<class>cn.bc.business.contract.domain.Contract4Labour</class>
-		
-		
-		
+
+		<!-- 营运事件 -->
+		<class>cn.bc.business.runcase.domain.CaseBase</class>
+		<class>cn.bc.business.runcase.domain.Case4InfractBusiness</class>
+		<class>cn.bc.business.runcase.domain.Case4InfractTraffic</class>
+		<class>cn.bc.business.runcase.domain.Case4Accident</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

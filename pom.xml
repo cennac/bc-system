@@ -108,14 +108,22 @@
 			<artifactId>bc-business-blacklist</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- 营运事件 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
-			<artifactId>bc-business-charger</artifactId>
+			<artifactId>bc-business-runcase</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- WebService接口实现 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-ws</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-charger</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
