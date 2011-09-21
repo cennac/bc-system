@@ -441,6 +441,14 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5010', 'carMan.level', '司机责任人等级', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5011', 'carMan.model', '司机责任人准驾车型', null);  
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5012', 'blacklist.type', '黑名单限制项目', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5013', 'it.duty', '营运事件交通违章责任', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'it.degree', '营运事件交通违章程度', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5015', 'it.properties', '营运事件交通违章性质', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5016', 'bs.cert', '营运事件营运没收证件', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5017', 'bs.properties', '营运事件营运违章性质', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5018', 'ca.carmantype', '营运事件事故理赔司机类型', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5019', 'ca.department', '营运事件事故理赔处理部门', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5020', 'ca.company', '营运事件事故理赔保险公司', null); 
 
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'contract.signType', '签约类型', null); 
@@ -583,12 +591,6 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 1, g.id, '09', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
   
--- 插入任务调度测试信息
-insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
-	values(1,1,'无异常任务测试','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, '测试信息');
-insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
-	values(2,1,'有异常任务测试','bc', 'schedulerTestMock', 'error','5/10 * * * * ? *','9902', 0, '测试信息');
-
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'batong', '八通', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
@@ -600,6 +602,159 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'xuyue', '续约', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'daicha', '待查', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'youze', '有责', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'wuze', '无责', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'yibanweizhang', '一般违章', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'jichangweizhang', '机场违章', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'yanzhongweizhang', '严重违章', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'exingweizhang', '恶性违章', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '05', 'feibian', '非编', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'zhanchangweizhang', '站场违章', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'wuzigezhengyingyun', '无资格证营运', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'nuoyongtarenzigezhengyingyun', '挪用他人资格证营运', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'weizaozigezheng', '伪造资格证', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '05', 'yirongyibiao', '仪容仪表', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'cherongchemao', '车容车貌', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '07', 'shexianweizhangyunying', '涉嫌违章营运', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '08', 'yunyingweizhang', '运营违章', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '09', 'weifancuofeng', '违反错峰交接班规定', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '10', 'cunzaibuwenmingxingwei', '存在不文明行为', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '11', 'fuwuweizhang', '服务违章', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '12', 'wuzhudongchujufapiao', '无主动出具发票', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '13', 'jujuezhifarenyuanjiancha', '拒绝执法人员检查', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '14', 'buanzhaoheliluxian', '不按照合理路线或者乘客要求的路线行驶', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '15', 'weiqudejiashiyuankeyunzigezheng', '未取得驾驶员客运资格证驾驶出租车提供客户服务', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '16', 'weifanchuangwenxiangmu', '违反创文项目', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'xingshizheng', '行驶证', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'daoluyunshuzheng', '道路运输证', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'keyunchuzuqichejingying', '客运出租汽车经营权使用证', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'lianyinghetong', '联营合同', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '05', 'fuwuzigezheng', '服务资格证', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'yuanjulifangweimibiao', '远距离防伪密标', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '07', 'cheliangtiepai', '车辆铁牌', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'shangren', '伤人', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'liangchexiangpeng', '两车相碰', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'qingwen', '轻微', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'yiban', '一般', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '05', 'zhongda', '重大', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'teda', '特大', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '07', 'cheliangbeidao', '车辆被盗', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'zerenren', '责任人', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'siji', '司机', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'feibian', '非编', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'tianhedadui', '天河大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'yuexiudadui', '越秀大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'haizhudadui', '海珠大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'liwandadui', '荔湾大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '05', 'baiyunyidadui', '白云一大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'baiyunerdadui', '白云二大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '07', 'neihuandadui', '内环大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '08', 'gaosudadui', '高速大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '09', 'huangpudadui', '黄埔大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '10', 'dongshandadui', '东山大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '11', 'fangcundadui', '芳村大队', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'baiyun', '白云', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'dongshan', '东山', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'fangcun', '芳村', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'haizhu', '海珠', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '05', 'shengzhishuzhigongsi', '省直属支公司', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '06', 'yangguang', '阳光', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '07', 'yongan', '永安', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '08', 'yuexiu', '越秀', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '09', 'renshoubaoxian', '中国太平洋人寿保险股份有限公司', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '10', 'zhonghua', '中华', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '11', 'zhonghualianhe', '中华联合', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+
+
+
+
+
+
+
+-- 插入任务调度测试信息
+insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
+	values(1,1,'无异常任务测试','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, '测试信息');
+insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
+	values(2,1,'有异常任务测试','bc', 'schedulerTestMock', 'error','5/10 * * * * ? *','9902', 0, '测试信息');
+
+
 
 	
 
