@@ -49,6 +49,7 @@
 	<include file="cn/bc/business/contract/web/struts2/struts.xml" />
 	<include file="cn/bc/business/cert/web/struts2/struts.xml" />
 	<include file="cn/bc/business/carman/web/struts2/struts.xml" />
+	<include file="cn/bc/business/runcase/web/struts2/struts.xml" />
 	
 
 	<!-- 项目自定义的配置文件 -->
