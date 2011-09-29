@@ -107,6 +107,10 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		this.shortcuts = shortcuts;
 	}
 
+	public String index1() throws Exception {
+		return this.execute();
+	}
+	
 	public String execute() throws Exception {
 		// 检测用户是否登录,未登录则跳转到登录页面
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
