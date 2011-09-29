@@ -162,7 +162,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 
 		// 循环顶层模块生成菜单
 		Menu menu = this.buildMenu4Resources(topResources, parentChildren);
-		menu.addClazz("startMenu");
+		menu.addClazz("startMenu").addClazz("bc-menubar").setId("sysmenu");
 
 		this.startMenu = menu.toString();
 		if (logger.isDebugEnabled())
