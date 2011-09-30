@@ -16,7 +16,7 @@
 		<!-- 营运子系统的版本号 -->
 		<business.version>0.1-SNAPSHOT</business.version>
 		
-		<app.ts>20110826</app.ts>
+		<app.ts>20110930</app.ts>
 		<app.debug>true</app.debug>
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
