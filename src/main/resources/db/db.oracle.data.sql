@@ -34,6 +34,8 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070500','谷歌搜索', 'http://www.google.com.hk', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070600','百度搜索', 'http://www.baidu.com', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070700','必应搜索', 'http://cn.bing.com', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 
 	
 -- 系统维护
