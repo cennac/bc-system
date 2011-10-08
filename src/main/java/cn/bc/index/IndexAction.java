@@ -202,8 +202,19 @@ public class IndexAction extends ActionSupport implements SessionAware {
 				.setType(String.valueOf(m.getType()))
 				.setAction("menuItem")
 				.setAttr("data-mid", m.getId().toString())
+				.setAttr("data-type", String.valueOf(m.getType()))
 				.setAttr("data-standalone",
-						String.valueOf(m.getType() == Resource.TYPE_OUTER_LINK));// 外部链接
+						String.valueOf(m.getType() == Resource.TYPE_OUTER_LINK))
+				.setAttr("data-order", m.getOrderNo())
+				.setAttr("data-iconClass", m.getIconClass())
+				.setAttr("data-name", m.getName());
+		if (m.getOption() != null)
+			menuItem.setAttr("data-option",
+					m.getOption() == null ? "" : m.getOption());
+		if (m.getUrl() != null)
+			menuItem.setAttr("data-url",
+					m.getUrl().startsWith("/") ? getContextPath() + m.getUrl()
+							: m.getUrl());
 		if (m.getType() == Resource.TYPE_FOLDER) {// 文件夹
 			Set<Resource> childResources = parentChildren.get(m);// 模块下的子模块
 			if (childResources != null && !childResources.isEmpty()) {
@@ -225,5 +236,10 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		} else {
 			return null;
 		}
+	}
+
+	/** 获取访问该ation的上下文路径 */
+	protected String getContextPath() {
+		return ServletActionContext.getRequest().getContextPath();
 	}
 }
