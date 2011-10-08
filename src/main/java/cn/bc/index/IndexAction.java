@@ -43,13 +43,13 @@ import com.opensymphony.xwork2.ActionSupport;
 public class IndexAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private static Log logger = LogFactory.getLog(IndexAction.class);
-	private String msg;
 	private ShortcutService shortcutService;
 	private PersonalService personalConfigService;
 	private List<Shortcut> shortcuts;
-	private String startMenu;// 开始菜单
 	private Personal personalConfig;// 个人配置
 	private Map<String, Object> session;
+	public String msg;
+	public String startMenu;// 开始菜单
 
 	public String contextPath;
 
@@ -83,22 +83,6 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		this.personalConfig = personalConfig;
 	}
 
-	public String getStartMenu() {
-		return startMenu;
-	}
-
-	public void setStartMenu(String startMenu) {
-		this.startMenu = startMenu;
-	}
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-
 	public List<Shortcut> getShortcuts() {
 		return shortcuts;
 	}
@@ -110,7 +94,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	public String index1() throws Exception {
 		return this.execute();
 	}
-	
+
 	public String execute() throws Exception {
 		// 检测用户是否登录,未登录则跳转到登录页面
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
@@ -139,15 +123,16 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		}
 
 		// 将可用的角色记录到上下文
-//		List<String> roleCodes = new ArrayList<String>();
-//		for (Role role : roles) {
-//			roleCodes.add(role.getCode());
-//		}
-//		context.setAttr(SystemContext.KEY_ROLES, roleCodes);
+		// List<String> roleCodes = new ArrayList<String>();
+		// for (Role role : roles) {
+		// roleCodes.add(role.getCode());
+		// }
+		// context.setAttr(SystemContext.KEY_ROLES, roleCodes);
 
 		// 找到顶层模块
 		Map<Resource, Set<Resource>> parentChildren = new LinkedHashMap<Resource, Set<Resource>>();
-		Set<Resource> topResources = this.findTopResources(resources, parentChildren);
+		Set<Resource> topResources = this.findTopResources(resources,
+				parentChildren);
 		if (logger.isDebugEnabled()) {
 			int i = 0;
 			for (Resource m : topResources) {
@@ -180,7 +165,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	}
 
 	private void dealParentChildren(Resource m,
-			Map<Resource, Set<Resource>> parentChildren, Set<Resource> topResources) {
+			Map<Resource, Set<Resource>> parentChildren,
+			Set<Resource> topResources) {
 		Resource parent = m.getBelong();
 		if (parent != null) {// 有隶属的父模块
 			Set<Resource> childResources = parentChildren.get(parent);
@@ -211,10 +197,13 @@ public class IndexAction extends ActionSupport implements SessionAware {
 			Map<Resource, Set<Resource>> parentChildren) {
 		MenuItem menuItem;
 		menuItem = new MenuItem();
-		menuItem.setUrl(buildMenuItemUrl(m)).setLabel(m.getName())
-				.setType(String.valueOf(m.getType())).setAction("menuItem")
-				.setAttr("data-mid", m.getId().toString());// .addStyle("z-index",
-															// "10000");
+		menuItem.setUrl(buildMenuItemUrl(m))
+				.setLabel(m.getName())
+				.setType(String.valueOf(m.getType()))
+				.setAction("menuItem")
+				.setAttr("data-mid", m.getId().toString())
+				.setAttr("data-standalone",
+						String.valueOf(m.getType() == Resource.TYPE_OUTER_LINK));// 外部链接
 		if (m.getType() == Resource.TYPE_FOLDER) {// 文件夹
 			Set<Resource> childResources = parentChildren.get(m);// 模块下的子模块
 			if (childResources != null && !childResources.isEmpty()) {
