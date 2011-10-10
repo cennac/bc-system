@@ -21,21 +21,61 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	
 -- 常用链接
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '070000','常用链接', null, 'i0100');
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '070000','友情链接', null, 'i0100');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070100','公司网站', 'http://www.bctaxi.com.cn', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070100','宝城网站', 'http://www.bctaxi.com.cn', 'i0600' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070200','广州交通信息网', 'http://www.gzjt.gov.cn', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070200','交通信息网', 'http://www.gzjt.gov.cn', 'i0601' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070300','广州金盾网', 'http://www.gzjd.gov.cn/', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070300','金盾网', 'http://www.gzjd.gov.cn/', 'i0602' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070400','广州出租车调度系统', 'http://gis.gci-china.com:5000', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070400','出租车调度系统', 'http://gis.gci-china.com:5000', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+-- 常用链接/搜索引擎
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070500','谷歌搜索', 'http://www.google.com.hk', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '074000','搜索引擎', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070600','百度搜索', 'http://www.baidu.com', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074001','谷歌搜索', 'http://www.google.com.hk', 'i0204' from BC_IDENTITY_RESOURCE m where m.order_='074000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '070700','必应搜索', 'http://cn.bing.com', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074002','百度搜索', 'http://www.baidu.com', 'i0205' from BC_IDENTITY_RESOURCE m where m.order_='074000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074003','必应搜索', 'http://cn.bing.com', 'i0204' from BC_IDENTITY_RESOURCE m where m.order_='074000';
+-- 常用链接/功能演示
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '074100','功能演示', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074101','选择Actor', '/bc-test/selectIdentity', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074102','选择日期', '/bc-test/datepicker', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074103','附件设计', '/bc/attach/design', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+-- 常用链接/功能演示/报表演示
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '074200','报表演示', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074201','饼图', '/bc/chart/pie', 'i0201' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074202','柱图', '/bc/chart/bar', 'i0200' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074203','动态曲线图', '/bc/chart/spline', 'i0202' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '074204','综合图表', '/bc/chart/mix', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+-- 常用链接/功能演示/UI组件
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '074300','UI组件', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074301','jqueryUI', '/ui-libs-demo/jquery-ui/1.8.16/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074302','jqGrid', '/ui-libs-demo/jqGrid/3.8.2/jqgrid.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074303','jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074304','highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074305','xheditor', '/ui-libs-demo/xheditor/1.1.7/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074306','zTree', '/ui-libs-demo/zTree/2.6/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 3, m.id, '074307','jcrop', '/ui-libs-demo/jcrop/0.9.9/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
 
 	
 -- 系统维护
@@ -78,14 +118,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '800305','定时任务', '/bc/schedule/job/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '800306','系统日志', '/bc/syslog/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
-
-
--- 办公系统
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '040000','办公系统', null, 'i0403');
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040100','电子公告', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '800306','日志管理', '/bc/syslog/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
 
 -- 营运系统	
@@ -104,13 +137,13 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 
 -- 营运系统/司机管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '030300','司机和责任人管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '030300','司机管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030301','司机和责任人信息', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030301','司机信息', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030302','司机证件', '/bc-business/driver4cert/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030303','司机迁移记录', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030303','司机迁移记录', '/bc/error/todo', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 
 -- 营运系统/合同管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -143,36 +176,43 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 -- 营运系统/其他-报表
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035000','营运报表', '/bc/error/todo', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
-	
 
--- 插入超级管理员角色数据（可访问所有资源）
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0001', 'R_ADMIN','超级管理员');
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_ADMIN' order by r.ORDER_,m.ORDER_;
+
+-- 办公系统
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '040000','办公系统', null, 'i0403');
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040100','电子公告', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	
 
 -- 插入通用角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0000', 'R_COMMON','通用角色');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_COMMON' 
-	and m.order_ in ('010100','010200','020100','700100','700200','700300','700400','030100','030200')
+	and m.type_ > 1 and (m.order_ like '01%' or m.order_ like '03%' or m.order_ like '04%' or m.order_ like '07%')
 	order by m.order_;
+
+-- 插入超级管理员角色数据（可访问所有资源）
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0001', 'R_ADMIN','超级管理员');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where m.type_ > 1 and r.code='R_ADMIN' order by r.ORDER_,m.ORDER_;
 
 -- 插入公告管理员角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0002', 'R_MANAGER_BULLETIN','电子公告管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_MANAGER_BULLETIN' 
-	and m.order_ in ('020000','020100')
+	and m.type_ > 1 and (m.order_ like '04%')
 	order by m.order_;
 
 -- 插入用户反馈管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0003', 'R_MANAGER_FEEDBACK','用户反馈管理');
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0003', 'R_MANAGER_FEEDBACK','系统反馈管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_MANAGER_FEEDBACK' 
-	and m.order_ in ('700400','800300')
+	and m.type_ > 1 and m.order_ in ('011000','800303')
 	order by m.order_;
 
 -- 插入附件管理角色数据
@@ -180,7 +220,7 @@ insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME)
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0004', 'R_MANAGER_ATTACH','附件管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_MANAGER_ATTACH' 
-	and m.order_ in ('800400')
+	and m.type_ > 1 and m.order_ in ('800304')
 	order by m.order_;
 
 -- 插入营运管理角色数据
@@ -188,7 +228,7 @@ insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME)
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0005', 'R_MANAGER_BUSINESS','营运管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_MANAGER_BUSINESS' 
-	and m.order_ in ('030100','030200')
+	and m.type_ > 1 and m.order_ like '03%'
 	order by m.order_;
 
 
@@ -261,8 +301,8 @@ insert into BC_IDENTITY_ACTOR_DETAIL (ID,CREATE_DATE,SEX,DUTY_ID)
 insert into BC_IDENTITY_ACTOR_HISTORY (ID,CREATE_DATE,ACTOR_TYPE,ACTOR_ID,ACTOR_NAME,UPPER_ID,UPPER_NAME,UNIT_ID,UNIT_NAME) 
     select CORE_SEQUENCE.NEXTVAL,sysdate,a.type_,a.id,a.name,b.id,b.name,c.id,c.name 
     from BC_IDENTITY_ACTOR a, BC_IDENTITY_ACTOR b, BC_IDENTITY_ACTOR c where a.code='admin' and b.code='xinxijishubu' and c.code='baochengzongbu'; 
--- 插入人员:dragon
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(10,'user.10', 0, 0, 4, 'dragon','开发人员', 'a1.b9999.d9999.1', 'kaifarenyuan');
+-- 插入人员:测试员
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(10,'user.10', 0, 0, 4, 'dragon','测试员', 'a1.b9999.d9999.1', 'ceshiyuan');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='dragon'; 
 insert into BC_IDENTITY_ACTOR_DETAIL (ID,CREATE_DATE,SEX,DUTY_ID) 
@@ -309,9 +349,6 @@ insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID)
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'admin' 
     and am.code = 'chaojiguanligang'; 
-insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
-    select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'dragon' 
-    and am.code in ('chaojiguanligang','ceshigang1','ceshigang2','ceshigang3','ceshigang4','ceshigang5','ceshigang6','ceshigang7'); 
 
 -- 让顶层单位拥有通用角色
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
@@ -324,6 +361,15 @@ insert into BC_IDENTITY_ROLE_ACTOR (AID,RID)
 -- 让超级管理岗拥有所有角色
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='chaojiguanligang';
+
+
+-- 让测试员拥有所有测试岗
+insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
+    select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'dragon' 
+    and am.code like 'ceshigang%';
+-- 让测试员拥有通用角色
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='dragon' and r.code='R_COMMON';
 
 	
 -- ##系统桌面相关模块的初始化数据##
@@ -345,86 +391,7 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,S
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1001', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='个性化设置';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的桌面';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1003', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的反馈';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1004', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='我的日志';
-	
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1101', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='单位配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1102', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='部门配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1103', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='岗位配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1104', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='用户配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1105', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='资源配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1106', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='角色配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1107', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='职务配置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1108', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='反馈管理';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1109', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='系统日志';
-    
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8001', 1, '谷歌搜索', 'http://www.google.com.hk/', 'i0204');
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8002', 1, '百度搜索', 'http://www.baidu.com/', 'i0205');
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8003', 0, '下载浏览器', '/bc/attach/browser', 'i0404');
-
--- 报表
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8101', 0, '饼图', '/bc/chart/pie', 'i0201');
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8102', 0, '柱图', '/bc/chart/bar', 'i0200');
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8103', 0, '动态曲线图', '/bc/chart/spline', 'i0202');
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '8104', 0, '综合图表', '/bc/chart/mix', 'i0203');
-	
--- 设计用的快捷方式
---     选择单位、部门、岗位、用户
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '8111', 0, '选择Actor', '/bc-test/selectIdentity', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '8112', 0, '选择日期', '/bc-test/datepicker', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8201', 0, '分页设计', '/bc/duty/paging', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8202', 0, '无分页设计', '/bc/duty/list', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8203', 0, '附件设计', '/bc/attach/design', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8301', 1, 'jqueryUI', '/ui-libs-demo/jquery-ui/1.8.16/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8302', 1, 'highcharts', '/ui-libs-demo/highcharts/2.1.4/index.htm', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8303', 1, 'xheditor', '/ui-libs-demo/xheditor/1.1.7/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8304', 1, 'zTree', '/ui-libs-demo/zTree/2.6/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8305', 1, 'jcrop', '/ui-libs-demo/jcrop/0.9.9/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8306', 1, 'jqGrid', '/ui-libs-demo/jqGrid/3.8.2/jqgrid.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8307', 1, 'jqLayout', '/ui-libs-demo/jquery-layout/1.2.0/index.html', 'i0300', a.id from BC_IDENTITY_ACTOR a where a.code = 'dragon';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8308', 0, '车队信息', '/bc-business/motorcade/list', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8309', 0, '车队负责人', '/bc-business/charger/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8310', 0, '司机责任人', '/bc-business/carMan/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, '8311', 0, '司机营运车辆', '/bc-business/carByDriver/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,AID) 
-    select CORE_SEQUENCE.NEXTVAL, 1, 0, '8312', 0, '黑名单', '/bc-business/blacklist/paging', 'i0000', a.id from BC_IDENTITY_ACTOR a where a.code = 'admin';
-
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='系统反馈';
 
 -- 插入全局配置信息
 insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME,AID) 
