@@ -142,6 +142,8 @@ bc-system
 
 
 五）测试发布注意事项：
+1)备份原有数据库
+2)发布测试系统
 >mvn clean package -Poracle -Ddb.name=orcl -Ddb.ip=192.168.0.222 -Dapp.debug=false -Ddb.username=bctest -Ddb.password=bctest -Dapp.data.realPath=/file/bcdata4test -Dapp.ts=20110905
 修改WEB-INF/web.xml文件，将appRealDir参数的值修改为/file/bcdata4test。
 修改classess/log4j.xml，将日志级别统一设为ERROR。
