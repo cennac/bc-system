@@ -239,6 +239,14 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.order_ like '03%'
 	order by m.order_;
 
+-- 插入车队管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0006', 'R_MANAGER_MOTORCADE','车队管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='R_MANAGER_MOTORCADE' 
+	and m.type_ > 1 and m.order_ = '030100'
+	order by m.order_;
+
 
 -- 插入职务数据
 insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(CORE_SEQUENCE.NEXTVAL, '0000','职员');
@@ -434,6 +442,7 @@ insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SU
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin') from dual;
 
 -- 插入选项分组信息
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5000', 'motorcade.paymentDate', '车队缴费日', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5001', 'car.fuel.type', '车辆燃料类型', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5002', 'car.business.nature', '车辆营运性质', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5003', 'car.color', '车辆颜色', null); 
@@ -461,6 +470,21 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'contract.signType', '签约类型', null); 
 
+-- 插入车队缴费日选项条目信息
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '00', '0', '月末', null from BC_OPTION_GROUP g where g.KEY_='motorcade.paymentDate'; 
+declare
+  maxrecords constant int:=31;
+  i int :=1;
+begin
+  for i in 1..maxrecords loop
+	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+		select CORE_SEQUENCE.NEXTVAL, 0, g.id, TO_CHAR(i,'FM00'), TO_CHAR(i), TO_CHAR(i), null from BC_OPTION_GROUP g where g.KEY_='motorcade.paymentDate'; 
+  end loop;
+  -- commit;
+end;
+/
+    
 -- 插入选项条目信息
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'honghui', '红灰', null from BC_OPTION_GROUP g where g.KEY_='car.color'; 
@@ -751,20 +775,11 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '11', 'zhonghualianhe', '中华联合', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
 
 
-
-
-
-
-
 -- 插入任务调度测试信息
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
 	values(1,1,'无异常任务测试','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, '测试信息');
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
 	values(2,1,'有异常任务测试','bc', 'schedulerTestMock', 'error','5/10 * * * * ? *','9902', 0, '测试信息');
-
-
-
-	
 
 -- 插入测试消息
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
@@ -811,3 +826,58 @@ END;
 -- 调用存储过程
 -- CALL test_create_syslog(500,'admin'); 
 -- CALL test_create_syslog(500,'dragon'); 
+
+
+-- 插入车队
+-- 一分车队
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 1, 'MC-1', 0, 0, '000101', '一分一队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='一分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 2,'MC-2', 0, 0, '000102', '一分二队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='一分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 3,'MC-3', 0, 0, '000103', '一分三队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='一分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 4,'MC-4', 0, 0, '000104', '一分四队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='一分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+-- 二分车队
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 5,'MC-5', 0, 0, '000201', '二分一队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='二分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 6,'MC-6', 0, 0, '000202', '二分二队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='二分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 7,'MC-7', 0, 0, '000203', '二分三队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='二分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 8,'MC-8', 0, 0, '000204', '二分四队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='二分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+-- 三分车队
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 9,'MC-9', 0, 0, '000301', '三分一队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='三分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 10,'MC-10', 0, 0, '000302', '三分二队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='三分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 11,'MC-11', 0, 0, '000303', '三分三队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='三分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 12,'MC-12', 0, 0, '000304', '三分四队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='三分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+-- 四分车队
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 13,'MC-13', 0, 0, '000401', '四分一队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='四分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 14,'MC-14', 0, 0, '000402', '四分二队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='四分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 15,'MC-15', 0, 0, '000403', '四分三队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='四分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
+insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,UNIT_ID,AUTHOR_ID) 
+	select 16,'MC-16', 0, 0, '000404', '四分四队', sysdate,
+    (select id from BC_IDENTITY_ACTOR where name='四分公司'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员') from dual; 
