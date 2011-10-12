@@ -182,8 +182,16 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '040000','办公系统', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040100','电子公告', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
-	
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040100','公告信息', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040200','通讯录', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040300','会议信息', '/bc/error/todo', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040400','工作计划', '/bc/error/todo', 'i0208' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040500','考勤信息', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+
 
 -- 插入通用角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
