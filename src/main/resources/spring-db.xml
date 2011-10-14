@@ -14,6 +14,7 @@
 
 	<!-- 配置数据库连接 -->
 	<context:property-placeholder location="classpath:db.properties" />
+	<bean id="JdbcUtils" class="cn.bc.db.JdbcUtils" p:dbtype="${db_type}" />
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="persistenceUnit" />
