@@ -79,8 +79,8 @@
 	<category name="cn.bc.web.struts2.interceptor.AuthIterceptor">
 	  <priority value="WARN" />
 	</category>
-	<category name="cn.bc.business.ws">
-	  <priority value="WARN" />
+	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
+	  <priority value="DEBUG" />
 	</category>
 	
     	
