@@ -131,11 +131,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					context.setAttr(SystemContext.KEY_USER_HISTORY, userHistory);
 
 					// 用户所隶属的单位或部门
-					Actor belong = this.userService.loadBelong(user.getId(),
+					List<Actor> belongs = this.userService.findBelong(user.getId(),
 							new Integer[] { Actor.TYPE_UNIT,
 									Actor.TYPE_DEPARTMENT });
-					context.setAttr(SystemContext.KEY_BELONG, belong);
-					Actor unit = this.loadUnit(belong);
+					//TODO：多个隶属关系的处理
+					context.setAttr(SystemContext.KEY_BELONG, belongs.get(0));
+					Actor unit = this.loadUnit(belongs.get(0));
 					context.setAttr(SystemContext.KEY_UNIT, unit);
 
 					// 用户所在的岗位

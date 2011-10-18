@@ -185,8 +185,8 @@ insert into BC_IDENTITY_DUTY (CODE, NAME) values('0810','收款员');
 insert into BC_IDENTITY_DUTY (CODE, NAME) values('0811','法务专员');
 
 -- 插入顶层单位数据:排序号的格式：a单位、b部门、c岗位、d人员
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(1,'unit.dc.2', 0, 0, 1, 'baochengzongbu','宝城总部', 'a1', 'baochengzongbu');
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(2,'unit.dc.3', 0, 0, 1, 'baochengdaxin','宝城大新', 'a2', 'baochengdaxin');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(1,'unit.dc.2', 0, 0, 1, 'baochengzongbu','宝城总部', 'a1', 'baochengzongbu',NULL,NULL);
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(2,'unit.dc.3', 0, 0, 1, 'baochengdaxin','宝城大新', 'a2', 'baochengdaxin',NULL,NULL);
 -- 插入数据转换记录避免重复转换
 insert into DC_RECORD (TYPE_, FROM_ID, TO_ID, FROM_TABLE, TO_TABLE, CREATE_DATE)
     values ('unit', 2, 1, 'within_config_file_third_kind', 'BC_IDENTITY_ACTOR', '2011-01-01 12:00:00');
@@ -194,33 +194,33 @@ insert into DC_RECORD (TYPE_, FROM_ID, TO_ID, FROM_TABLE, TO_TABLE, CREATE_DATE)
     values ('unit', 3, 2, 'within_config_file_third_kind', 'BC_IDENTITY_ACTOR', '2011-01-01 12:00:00');
 	
 -- 插入分公司数据
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(3,'unit.3', 0, 0, 1, 'yifengongsi','一分公司', 'a1.a1', 'yifengongsi');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(3,'unit.3', 0, 0, 1, 'yifengongsi','一分公司', 'a1.a1', 'yifengongsi','[1]baochengzongbu','宝城总部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='yifengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(4,'unit.4', 0, 0, 1, 'erfengongsi','二分公司', 'a1.a2', 'erfengongsi');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(4,'unit.4', 0, 0, 1, 'erfengongsi','二分公司', 'a1.a2', 'erfengongsi','[1]baochengzongbu','宝城总部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='erfengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(5,'unit.5', 0, 0, 1, 'sanfengongsi','三分公司', 'a1.a3', 'sanfengongsi');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(5,'unit.5', 0, 0, 1, 'sanfengongsi','三分公司', 'a1.a3', 'sanfengongsi','[1]baochengzongbu','宝城总部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='sanfengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(6,'unit.6', 0, 0, 1, 'sifengongsi','四分公司', 'a1.a4', 'sifengongsi');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(6,'unit.6', 0, 0, 1, 'sifengongsi','四分公司', 'a1.a4', 'sifengongsi','[1]baochengzongbu','宝城总部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='sifengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(7,'unit.7', 0, 0, 1, 'xiulichang','修理厂', 'a1.a5', 'xiulichang');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(7,'unit.7', 0, 0, 1, 'xiulichang','修理厂', 'a1.a5', 'xiulichang','[1]baochengzongbu','宝城总部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='xiulichang';
 
 -- 插入部门数据
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(8,'department.8', 0, 0, 2, 'xinxijishubu','信息技术部', 'a1.b9999', 'xinxijishubu');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(8,'department.8', 0, 0, 2, 'xinxijishubu','信息技术部', 'a1.b9999', 'xinxijishubu','[1]baochengzongbu','宝城总部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='xinxijishubu';
     
 -- 插入人员:admin
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(9,'user.9', 0, 0, 4, 'admin','系统管理员', 'a1.b9999.d9999', 'chaojiguanliyuan');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(9,'user.9', 0, 0, 4, 'admin','系统管理员', 'a1.b9999.d9999', 'chaojiguanliyuan','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='admin'; 
 insert into BC_IDENTITY_ACTOR_DETAIL (ID,CREATE_DATE,SEX,DUTY_ID) 
@@ -229,7 +229,7 @@ insert into BC_IDENTITY_ACTOR_HISTORY (CREATE_DATE,ACTOR_TYPE,ACTOR_ID,ACTOR_NAM
     select now(),a.type_,a.id,a.name,b.id,b.name,c.id,c.name 
     from BC_IDENTITY_ACTOR a, BC_IDENTITY_ACTOR b, BC_IDENTITY_ACTOR c where a.code='admin' and b.code='xinxijishubu' and c.code='baochengzongbu'; 
 -- 插入人员:dragon
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY) values(10,'user.10', 0, 0, 4, 'dragon','开发人员', 'a1.b9999.d9999.1', 'kaifarenyuan');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(10,'user.10', 0, 0, 4, 'dragon','开发人员', 'a1.b9999.d9999.1', 'kaifarenyuan','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='dragon'; 
 insert into BC_IDENTITY_ACTOR_DETAIL (ID,CREATE_DATE,SEX,DUTY_ID) 
@@ -247,28 +247,28 @@ insert into BC_IDENTITY_AUTH (ID,PASSWORD)
     select a.id,md5('888888') from BC_IDENTITY_ACTOR a where a.type_=4; 
 
 -- 插入岗位数据
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values(11,'group.11', 0, 0, 3, 'chaojiguanligang','超级管理岗', 'a1.b9999.c9999');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(11,'group.11', 0, 0, 3, 'chaojiguanligang','超级管理岗', 'a1.b9999.c9999','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='chaojiguanligang'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.1', 0, 0, 3, 'ceshigang1','测试岗1', 'a1.b9999.c9999.1');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.1', 0, 0, 3, 'ceshigang1','测试岗1', 'a1.b9999.c9999.1','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang1'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.2', 0, 0, 3, 'ceshigang2','测试岗2', 'a1.b9999.c9999.2');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.2', 0, 0, 3, 'ceshigang2','测试岗2', 'a1.b9999.c9999.2','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang2'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.3', 0, 0, 3, 'ceshigang3','测试岗3', 'a1.b9999.c9999.3');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.3', 0, 0, 3, 'ceshigang3','测试岗3', 'a1.b9999.c9999.3','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang3'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.4', 0, 0, 3, 'ceshigang4','测试岗4', 'a1.b9999.c9999.4');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.4', 0, 0, 3, 'ceshigang4','测试岗4', 'a1.b9999.c9999.4','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang4'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.5', 0, 0, 3, 'ceshigang5','测试岗5', 'a1.b9999.c9999.5');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.5', 0, 0, 3, 'ceshigang5','测试岗5', 'a1.b9999.c9999.5','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang5'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.6', 0, 0, 3, 'ceshigang6','测试岗6', 'a1.b9999.c9999.6');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.6', 0, 0, 3, 'ceshigang6','测试岗6', 'a1.b9999.c9999.6','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang6'; 
-insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_) values('group.10.7', 0, 0, 3, 'ceshigang7','测试岗7', 'a1.b9999.c9999.7');
+insert into BC_IDENTITY_ACTOR (UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values('group.10.7', 0, 0, 3, 'ceshigang7','测试岗7', 'a1.b9999.c9999.7','[1]baochengzongbu/[2]xinxijishubu','宝城总部/信息技术部');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang7'; 
     
