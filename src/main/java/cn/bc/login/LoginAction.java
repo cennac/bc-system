@@ -202,8 +202,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		}
 
 		if (logger.isInfoEnabled())
-			logger.info("doLogin耗时："
-					+ DateUtils.getWasteTime(startTime, new Date()));
+			logger.info("doLogin耗时：" + DateUtils.getWasteTime(startTime));
 		return SUCCESS;
 	}
 
