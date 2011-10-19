@@ -3,6 +3,7 @@
  */
 package cn.bc.index;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.bc.Context;
 import cn.bc.core.exception.CoreException;
+import cn.bc.core.util.DateUtils;
 import cn.bc.desktop.domain.Personal;
 import cn.bc.desktop.domain.Shortcut;
 import cn.bc.desktop.service.PersonalService;
@@ -96,6 +98,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	}
 
 	public String execute() throws Exception {
+		Date startTime = new Date();
 		// 检测用户是否登录,未登录则跳转到登录页面
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
 		if (context == null || context.getUser() == null) {
@@ -152,6 +155,9 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		this.startMenu = menu.toString();
 		if (logger.isDebugEnabled())
 			logger.debug("startMenu=" + startMenu);
+		if (logger.isInfoEnabled())
+			logger.info("index耗时："
+					+ DateUtils.getWasteTime(startTime, new Date()));
 		return SUCCESS;
 	}
 
