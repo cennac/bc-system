@@ -1,3 +1,99 @@
+-- ##bc平台的 oracle 删表脚本##
+
+-- 设置将信息输出到控制台（如果是在SQL Plus命令行运行这个sql文件，须先行执行这个命令才能看到输出信息）
+-- set serveroutput on;
+
+-- 创建删除指定用户表的存储过程
+CREATE OR REPLACE PROCEDURE DROP_USER_TABLE
+(
+   --参数IN表示输入参数，
+   --OUT表示输入参数，类型可以使用任意Oracle中的合法类型。
+   i_table_name IN varchar2
+)
+AS
+--定义变量
+num_ number;
+str1 varchar2(1000);
+BEGIN
+  select count(1) into num_ from user_tables where table_name = upper(i_table_name) or table_name = lower(i_table_name); 
+  if num_ > 0 then 
+    str1 := 'DROP TABLE ' || i_table_name;
+    execute immediate str1;
+    dbms_output.put_line('表 ' || i_table_name || ' 已删除');
+  end if; 
+  if num_ <= 0 then 
+    dbms_output.put_line('表 ' || i_table_name || ' 不存在，忽略');
+  end if; 
+END;
+/
+
+-- 创建删除指定序列的存储过程
+CREATE OR REPLACE PROCEDURE DROP_USER_SEQUENCE
+(
+   i_sequence_name IN varchar2
+)
+AS
+--定义变量
+num_ number;
+str1 varchar2(1000);
+BEGIN
+  select count(1) into num_ from user_sequences where sequence_name = upper(i_sequence_name) or sequence_name = lower(i_sequence_name); 
+  if num_ > 0 then 
+    str1 := 'DROP SEQUENCE ' || i_sequence_name;
+    execute immediate str1;
+    dbms_output.put_line('序列 ' || i_sequence_name || ' 已删除');
+  end if; 
+  if num_ <= 0 then 
+    dbms_output.put_line('序列 ' || i_sequence_name || ' 不存在，忽略');
+  end if; 
+END;
+/
+
+-- 创建删除指定存储过程的存储过程
+CREATE OR REPLACE PROCEDURE DROP_USER_PROCEDURE
+(
+   i_proedure_name IN varchar2
+)
+AS
+--定义变量
+num_ number;
+str1 varchar2(1000);
+BEGIN
+  select count(1) into num_ from user_procedures where object_name = upper(i_proedure_name) or object_name = lower(i_proedure_name); 
+  if num_ > 0 then 
+    str1 := 'DROP PROCEDURE ' || i_proedure_name;
+    execute immediate str1;
+    dbms_output.put_line('存储过程 ' || i_proedure_name || ' 已删除');
+  end if; 
+  if num_ <= 0 then 
+    dbms_output.put_line('存储过程 ' || i_proedure_name || ' 不存在，忽略');
+  end if; 
+END;
+/
+
+-- 创建删除指定函数的存储过程
+CREATE OR REPLACE PROCEDURE DROP_USER_FUNCTION
+(
+   i_function_name IN varchar2
+)
+AS
+--定义变量
+num_ number;
+str1 varchar2(1000);
+BEGIN
+  select count(1) into num_ from user_procedures where object_name = upper(i_function_name) or object_name = lower(i_function_name); 
+  if num_ > 0 then 
+    str1 := 'DROP FUNCTION ' || i_function_name;
+    execute immediate str1;
+    dbms_output.put_line('函数 ' || i_function_name || ' 已删除');
+  end if; 
+  if num_ <= 0 then 
+    dbms_output.put_line('函数 ' || i_function_name || ' 不存在，忽略');
+  end if; 
+END;
+/
+
+
 -- ##bc营运管理子系统的 oracle 删表脚本##
 -- ##运行此脚本之后再运行平台的删表脚本framework.db.oracle.drop.sql##
 
@@ -65,52 +161,6 @@ CALL DROP_USER_TABLE('BS_CARMAN');
 -- 设置将信息输出到控制台（如果是在SQL Plus命令行运行这个sql文件，须先行执行这个命令才能看到输出信息）
 -- set serveroutput on;
 
--- 创建删除指定用户表的存储过程
-CREATE OR REPLACE PROCEDURE DROP_USER_TABLE
-(
-   --参数IN表示输入参数，
-   --OUT表示输入参数，类型可以使用任意Oracle中的合法类型。
-   i_table_name IN varchar2
-)
-AS
---定义变量
-num_ number;
-str1 varchar2(1000);
-BEGIN
-  select count(1) into num_ from user_tables where table_name = upper(i_table_name) or table_name = lower(i_table_name); 
-  if num_ > 0 then 
-    str1 := 'DROP TABLE ' || i_table_name;
-    execute immediate str1;
-    dbms_output.put_line('表 ' || i_table_name || ' 已删除');
-  end if; 
-  if num_ <= 0 then 
-    dbms_output.put_line('表 ' || i_table_name || ' 不存在，忽略');
-  end if; 
-END;
-/
-
--- 创建删除指定序列的存储过程
-CREATE OR REPLACE PROCEDURE DROP_USER_SEQUENCE
-(
-   i_sequence_name IN varchar2
-)
-AS
---定义变量
-num_ number;
-str1 varchar2(1000);
-BEGIN
-  select count(1) into num_ from user_sequences where sequence_name = upper(i_sequence_name) or sequence_name = lower(i_sequence_name); 
-  if num_ > 0 then 
-    str1 := 'DROP SEQUENCE ' || i_sequence_name;
-    execute immediate str1;
-    dbms_output.put_line('序列 ' || i_sequence_name || ' 已删除');
-  end if; 
-  if num_ <= 0 then 
-    dbms_output.put_line('序列 ' || i_sequence_name || ' 不存在，忽略');
-  end if; 
-END;
-/
-
 -- 用于生成hibernate id的序列
 CALL DROP_USER_SEQUENCE('CORE_SEQUENCE');
 CALL DROP_USER_SEQUENCE('hibernate_sequence');
@@ -164,7 +214,17 @@ CALL DROP_USER_TABLE('BC_OPTION_GROUP');
 CALL DROP_USER_TABLE('BC_SD_LOG');
 CALL DROP_USER_TABLE('BC_SD_JOB');
 
+-- 函数
+CALL DROP_USER_FUNCTION('MD5');
+
+-- 存储过程
+CALL DROP_USER_PROCEDURE('update_actor_pcodepname');
+CALL DROP_USER_PROCEDURE('update_resource_pname');
+CALL DROP_USER_PROCEDURE('test_create_syslog');
+
 -- 删除自建的存储过程
 -- drop procedure DROP_USER_TABLE;
 -- drop procedure DROP_USER_SEQUENCE;
+-- drop procedure DROP_USER_PROCEDURE;
+-- drop procedure DROP_USER_FUNCTION;
 
