@@ -96,6 +96,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		} else {
 			// 检测用户的密码是否正确
 			AuthData authData = this.userService.loadAuthData(user.getId());
+			logger.info("doLoginAuthData：" + DateUtils.getWasteTime(startTime));
 			if (authData == null) {
 				msg = "系统错误！没有为用户(" + user.getCode() + ")配置认证信息。";
 				success = false;
@@ -113,6 +114,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					msg = "密码错误！";
 					success = false;
 				} else {
+					logger.info("doLoginMD5：" + DateUtils.getWasteTime(startTime));
 					String info = user.getName() + "登录系统,ip=";
 					HttpServletRequest request = ServletActionContext
 							.getRequest();
@@ -120,6 +122,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					info += ",host=" + request.getRemoteHost();
 					logger.info(info);
 					msg = "登录成功，跳转到系统主页！";
+					logger.info("doLoginOk：" + DateUtils.getWasteTime(startTime));
 
 					// 创建默认的上下文实现并保存到session中
 					Context context = new SystemContextImpl();
@@ -141,6 +144,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					context.setAttr(SystemContext.KEY_BELONG, belongs.get(0));
 					Actor unit = this.loadUnit(belongs.get(0));
 					context.setAttr(SystemContext.KEY_UNIT, unit);
+					logger.info("doLogin单位部门：" + DateUtils.getWasteTime(startTime));
 
 					// 用户所在的岗位
 					List<Actor> groups = this.userService.findMaster(
@@ -152,6 +156,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 						gcs.add(group.getCode());
 					}
 					context.setAttr(SystemContext.KEY_GROUPS, gcs);
+					logger.info("doLogin岗位：" + DateUtils.getWasteTime(startTime));
 
 					// 用户的角色（包含继承自上级组织和隶属岗位的角色）
 					Set<Role> roles = new LinkedHashSet<Role>();// 可用的角色
@@ -176,8 +181,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 								+ StringUtils
 										.collectionToCommaDelimitedString(rcs));
 					}
-
-					// 用户的权限
+					logger.info("doLogin角色：" + DateUtils.getWasteTime(startTime));
 
 					// 登录时间
 					Calendar now = Calendar.getInstance();
