@@ -25,6 +25,7 @@ import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
 import cn.bc.desktop.domain.Personal;
 import cn.bc.desktop.domain.Shortcut;
+import cn.bc.desktop.service.LoginService;
 import cn.bc.desktop.service.PersonalService;
 import cn.bc.desktop.service.ShortcutService;
 import cn.bc.identity.domain.Actor;
@@ -46,14 +47,19 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private static Log logger = LogFactory.getLog(IndexAction.class);
 	private ShortcutService shortcutService;
-	private PersonalService personalConfigService;
 	private List<Shortcut> shortcuts;
 	private Personal personalConfig;// 个人配置
 	private Map<String, Object> session;
 	public String msg;
 	public String startMenu;// 开始菜单
+	private LoginService loginService;
 
 	public String contextPath;
+
+	@Autowired
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
 
 	public IndexAction() {
 		contextPath = ServletActionContext.getRequest().getContextPath();
@@ -70,11 +76,6 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	@Autowired
 	public void setShortcutService(ShortcutService shortcutService) {
 		this.shortcutService = shortcutService;
-	}
-
-	@Autowired
-	public void setPersonalConfigService(PersonalService personalConfigService) {
-		this.personalConfigService = personalConfigService;
 	}
 
 	public Personal getPersonalConfig() {
@@ -107,16 +108,17 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		Actor user = context.getUser();
 
 		// 个人配置
-		this.personalConfig = this.personalConfigService.loadByActor(
-				user.getId(), true);
+		this.personalConfig = this.loginService.loadPersonal(user.getId());
 		if (this.personalConfig == null)
 			throw new CoreException("缺少配置信息！");
+		logger.info("index.personal:" + DateUtils.getWasteTime(startTime));
 
 		// 快捷方式
 		Set<Resource> resources = new LinkedHashSet<Resource>();// 有权限使用的资源
 		Set<Role> roles = new LinkedHashSet<Role>();// 可用的角色
 		this.shortcuts = this.shortcutService.findByActor(user.getId(), null,
 				roles, resources);
+		logger.info("index.shortcuts:" + DateUtils.getWasteTime(startTime));
 		if (logger.isDebugEnabled()) {
 			logger.debug("shortcuts=" + shortcuts.size());
 			int i = 0;
@@ -156,8 +158,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		if (logger.isDebugEnabled())
 			logger.debug("startMenu=" + startMenu);
 		if (logger.isInfoEnabled())
-			logger.info("index耗时："
-					+ DateUtils.getWasteTime(startTime, new Date()));
+			logger.info("index耗时：" + DateUtils.getWasteTime(startTime));
 		return SUCCESS;
 	}
 

@@ -418,8 +418,8 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,S
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='系统反馈';
 
 -- 插入全局配置信息
-insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME,AID) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  '12', 'smoothness', null);
+insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME) 
+	values(1, 0, 0,  '12', 'smoothness');
 -- insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
 -- 	select CORE_SEQUENCE.NEXTVAL, 0, 0, '14', 'flick', id from BC_IDENTITY_ACTOR where code='admin';
 

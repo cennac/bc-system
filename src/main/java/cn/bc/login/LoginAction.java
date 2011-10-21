@@ -27,10 +27,10 @@ import org.springframework.util.StringUtils;
 import cn.bc.Context;
 import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
+import cn.bc.desktop.service.LoginService;
 import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.ActorHistory;
 import cn.bc.identity.domain.AuthData;
-import cn.bc.identity.service.LoginService;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextImpl;
 import cn.bc.log.domain.Syslog;
@@ -83,14 +83,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		Map<String, Object> map = this.loginService.loadActorByCode(name);
 		Actor user = (Actor) map.get("actor");
-		logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
+		//logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
 		if (user == null) {
 			msg = "该用户未注册，如有问题请联系系统管理员！";
 			success = false;
 		} else {
 			// 检测用户的密码是否正确
 			AuthData authData = (AuthData) map.get("auth");
-			logger.info("doLoginAuthData：" + DateUtils.getWasteTime(startTime));
 			if (authData == null) {
 				msg = "系统错误！没有为用户(" + user.getCode() + ")配置认证信息。";
 				success = false;
@@ -108,8 +107,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					msg = "密码错误！";
 					success = false;
 				} else {
-					logger.info("doLoginMD5："
-							+ DateUtils.getWasteTime(startTime));
 					String info = user.getName() + "登录系统,ip=";
 					HttpServletRequest request = ServletActionContext
 							.getRequest();
@@ -117,7 +114,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					info += ",host=" + request.getRemoteHost();
 					logger.info(info);
 					msg = "登录成功，跳转到系统主页！";
-					logger.info("doLoginOk："
+					logger.info("doLogin.authOk："
 							+ DateUtils.getWasteTime(startTime));
 
 					// 创建默认的上下文实现并保存到session中
@@ -135,15 +132,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					// 获取用户的祖先组织信息（单位、部门、岗位及上级的上级）
 					List<Map<String, String>> uppers = this.loginService
 							.findActorAncestors(user.getId());
-					logger.info("doLoginUpper："
-							+ DateUtils.getWasteTime(startTime));
 					List<Actor> belongs = new ArrayList<Actor>();// 直属上级（单位或部门）
 					List<Actor> groups = new ArrayList<Actor>();// 直接拥有的岗位
 					String userId = user.getId().toString();
 					String tu = String.valueOf(Actor.TYPE_UNIT);
 					String td = String.valueOf(Actor.TYPE_DEPARTMENT);
 					String tg = String.valueOf(Actor.TYPE_GROUP);
-					List<Long> actorIds = new ArrayList<Long>();
+					Set<Long> actorIds = new HashSet<Long>();
 					actorIds.add(user.getId());
 					for (Map<String, String> upper : uppers) {
 						actorIds.add(new Long(upper.get("id")));
@@ -172,7 +167,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 						gcs.add(group.getCode());
 					}
 					context.setAttr(SystemContext.KEY_GROUPS, gcs);
-					logger.info("doLogin单位部门岗位："
+					logger.info("doLogin.findUppers："
 							+ DateUtils.getWasteTime(startTime));
 
 					// 用户的角色（包含继承自上级组织和隶属岗位的角色）
@@ -181,8 +176,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 								+ StringUtils
 										.collectionToCommaDelimitedString(actorIds));
 					}
+					Long[] aids = actorIds.toArray(new Long[0]);
 					List<String> roleCodes = this.loginService
-							.findActorRoles(actorIds);
+							.findActorRoles(aids);
+					context.setAttr(SystemContext.KEY_ANCESTORS, aids);
 					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
 
 					// debug
@@ -191,7 +188,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 								+ StringUtils
 										.collectionToCommaDelimitedString(roleCodes));
 					}
-					logger.info("doLogin角色："
+					logger.info("doLogin.roles："
 							+ DateUtils.getWasteTime(startTime));
 
 					// 登录时间
