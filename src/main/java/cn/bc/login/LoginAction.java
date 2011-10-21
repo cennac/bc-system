@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,9 +30,7 @@ import cn.bc.core.util.DateUtils;
 import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.ActorHistory;
 import cn.bc.identity.domain.AuthData;
-import cn.bc.identity.domain.Role;
 import cn.bc.identity.service.LoginService;
-import cn.bc.identity.service.UserService;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextImpl;
 import cn.bc.log.domain.Syslog;
@@ -59,27 +56,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String msg;// 登录信息
 	public boolean success;// 登录是否成功
 	private LoginService loginService;
-	private UserService userService;
 	private SyslogService syslogService;
 	private Map<String, Object> session;
-
-	// private ActorHistoryService actorHistoryService;
 
 	@Autowired
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
 	}
-
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	// @Autowired
-	// public void setActorHistoryService(ActorHistoryService
-	// actorHistoryService) {
-	// this.actorHistoryService = actorHistoryService;
-	// }
 
 	@Autowired
 	public void setSyslogService(SyslogService syslogService) {
@@ -202,19 +185,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 							.findActorRoles(actorIds);
 					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
 
-					// Set<Role> roles = new LinkedHashSet<Role>();// 可用的角色
-					// roles.addAll(user.getRoles());// 加入自己的角色
-					// List<Actor> ancestors = this.userService
-					// .findAncestorOrganization(user.getId());
-					// for (Actor ancestor : ancestors) {// 加入继承的角色
-					// roles.addAll(ancestor.getRoles());
-					// }
-					// List<String> rcs = new ArrayList<String>();
-					// for (Role role : roles) {
-					// rcs.add(role.getCode());
-					// }
-					// context.setAttr(SystemContext.KEY_ROLES, rcs);
-
 					// debug
 					if (logger.isDebugEnabled()) {
 						logger.debug("roles="
@@ -303,20 +273,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		} else {
 			throw new CoreException("department must belong unit:departmentId="
 					+ belongId);
-		}
-	}
-
-	// 递归向上查找部门所属的单位
-	private Actor loadUnit(Actor belong) {
-		if (belong.getType() == Actor.TYPE_UNIT)
-			return belong;
-
-		belong = this.userService.loadBelong(belong.getId(), new Integer[] {
-				Actor.TYPE_DEPARTMENT, Actor.TYPE_UNIT });
-		if (belong.getType() != Actor.TYPE_UNIT) {
-			return loadUnit(belong);
-		} else {
-			return belong;
 		}
 	}
 
