@@ -6,6 +6,7 @@ package cn.bc.login;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -25,13 +26,13 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import cn.bc.Context;
+import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
 import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.ActorHistory;
-import cn.bc.identity.domain.ActorRelation;
 import cn.bc.identity.domain.AuthData;
 import cn.bc.identity.domain.Role;
-import cn.bc.identity.service.ActorHistoryService;
+import cn.bc.identity.service.LoginService;
 import cn.bc.identity.service.UserService;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextImpl;
@@ -57,20 +58,28 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String password;// 密码
 	public String msg;// 登录信息
 	public boolean success;// 登录是否成功
+	private LoginService loginService;
 	private UserService userService;
 	private SyslogService syslogService;
 	private Map<String, Object> session;
-	private ActorHistoryService actorHistoryService;
+
+	// private ActorHistoryService actorHistoryService;
+
+	@Autowired
+	public void setLoginService(LoginService loginService) {
+		this.loginService = loginService;
+	}
 
 	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 
-	@Autowired
-	public void setActorHistoryService(ActorHistoryService actorHistoryService) {
-		this.actorHistoryService = actorHistoryService;
-	}
+	// @Autowired
+	// public void setActorHistoryService(ActorHistoryService
+	// actorHistoryService) {
+	// this.actorHistoryService = actorHistoryService;
+	// }
 
 	@Autowired
 	public void setSyslogService(SyslogService syslogService) {
@@ -89,13 +98,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		Date startTime = new Date();
 		success = true;
 
-		Actor user = this.userService.loadByCode(name);
+		Map<String, Object> map = this.loginService.loadActorByCode(name);
+		Actor user = (Actor) map.get("actor");
+		logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
 		if (user == null) {
 			msg = "该用户未注册，如有问题请联系系统管理员！";
 			success = false;
 		} else {
 			// 检测用户的密码是否正确
-			AuthData authData = this.userService.loadAuthData(user.getId());
+			AuthData authData = (AuthData) map.get("auth");
 			logger.info("doLoginAuthData：" + DateUtils.getWasteTime(startTime));
 			if (authData == null) {
 				msg = "系统错误！没有为用户(" + user.getCode() + ")配置认证信息。";
@@ -114,7 +125,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					msg = "密码错误！";
 					success = false;
 				} else {
-					logger.info("doLoginMD5：" + DateUtils.getWasteTime(startTime));
+					logger.info("doLoginMD5："
+							+ DateUtils.getWasteTime(startTime));
 					String info = user.getName() + "登录系统,ip=";
 					HttpServletRequest request = ServletActionContext
 							.getRequest();
@@ -122,7 +134,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					info += ",host=" + request.getRemoteHost();
 					logger.info(info);
 					msg = "登录成功，跳转到系统主页！";
-					logger.info("doLoginOk：" + DateUtils.getWasteTime(startTime));
+					logger.info("doLoginOk："
+							+ DateUtils.getWasteTime(startTime));
 
 					// 创建默认的上下文实现并保存到session中
 					Context context = new SystemContextImpl();
@@ -132,56 +145,84 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					context.setAttr(SystemContext.KEY_USER, user);
 
 					// 用户隶属历史的当前信息
-					ActorHistory userHistory = this.actorHistoryService
-							.loadCurrent(user.getId());
+					ActorHistory userHistory = (ActorHistory) map
+							.get("history");
 					context.setAttr(SystemContext.KEY_USER_HISTORY, userHistory);
 
-					// 用户所隶属的单位或部门
-					List<Actor> belongs = this.userService.findBelong(
-							user.getId(), new Integer[] { Actor.TYPE_UNIT,
-									Actor.TYPE_DEPARTMENT });
-					// TODO：多个隶属关系的处理
-					context.setAttr(SystemContext.KEY_BELONG, belongs.get(0));
-					Actor unit = this.loadUnit(belongs.get(0));
-					context.setAttr(SystemContext.KEY_UNIT, unit);
-					logger.info("doLogin单位部门：" + DateUtils.getWasteTime(startTime));
+					// 获取用户的祖先组织信息（单位、部门、岗位及上级的上级）
+					List<Map<String, String>> uppers = this.loginService
+							.findActorAncestors(user.getId());
+					logger.info("doLoginUpper："
+							+ DateUtils.getWasteTime(startTime));
+					List<Actor> belongs = new ArrayList<Actor>();// 直属上级（单位或部门）
+					List<Actor> groups = new ArrayList<Actor>();// 直接拥有的岗位
+					String userId = user.getId().toString();
+					String tu = String.valueOf(Actor.TYPE_UNIT);
+					String td = String.valueOf(Actor.TYPE_DEPARTMENT);
+					String tg = String.valueOf(Actor.TYPE_GROUP);
+					List<Long> actorIds = new ArrayList<Long>();
+					actorIds.add(user.getId());
+					for (Map<String, String> upper : uppers) {
+						actorIds.add(new Long(upper.get("id")));
+						if (userId.equals(upper.get("fid"))) {
+							if (tu.equals(upper.get("type"))
+									|| td.equals(upper.get("type"))) {
+								belongs.add(mapActor(upper));
+							} else if (tg.equals(upper.get("type"))) {
+								groups.add(mapActor(upper));
+							}
+						}
+					}
+					if (belongs.isEmpty())
+						throw new CoreException("belongs can not be empty.");
+					context.setAttr(SystemContext.KEY_BELONG, belongs.get(0));// 单个隶属关系的处理
+					context.setAttr(SystemContext.KEY_BELONGS, belongs);// 多个隶属关系的处理
 
-					// 用户所在的岗位
-					List<Actor> groups = this.userService.findMaster(
-							user.getId(),
-							new Integer[] { ActorRelation.TYPE_BELONG },
-							new Integer[] { new Integer(Actor.TYPE_GROUP) });
+					// 直属单位
+					List<Actor> units = this.loadUnits(belongs, uppers);
+					context.setAttr(SystemContext.KEY_UNIT, units.get(0));
+					context.setAttr(SystemContext.KEY_UNITS, units);
+
+					// 用户所在的岗位的code
 					List<String> gcs = new ArrayList<String>();
 					for (Actor group : groups) {
 						gcs.add(group.getCode());
 					}
 					context.setAttr(SystemContext.KEY_GROUPS, gcs);
-					logger.info("doLogin岗位：" + DateUtils.getWasteTime(startTime));
+					logger.info("doLogin单位部门岗位："
+							+ DateUtils.getWasteTime(startTime));
 
 					// 用户的角色（包含继承自上级组织和隶属岗位的角色）
-					Set<Role> roles = new LinkedHashSet<Role>();// 可用的角色
-					roles.addAll(user.getRoles());// 加入自己的角色
-					List<Actor> ancestors = this.userService
-							.findAncestorOrganization(user.getId());
-					for (Actor ancestor : ancestors) {// 加入继承的角色
-						roles.addAll(ancestor.getRoles());
+					if (logger.isDebugEnabled()) {
+						logger.debug("actorIds="
+								+ StringUtils
+										.collectionToCommaDelimitedString(actorIds));
 					}
-					List<String> rcs = new ArrayList<String>();
-					for (Role role : roles) {
-						rcs.add(role.getCode());
-					}
-					context.setAttr(SystemContext.KEY_ROLES, rcs);
+					List<String> roleCodes = this.loginService
+							.findActorRoles(actorIds);
+					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
+
+					// Set<Role> roles = new LinkedHashSet<Role>();// 可用的角色
+					// roles.addAll(user.getRoles());// 加入自己的角色
+					// List<Actor> ancestors = this.userService
+					// .findAncestorOrganization(user.getId());
+					// for (Actor ancestor : ancestors) {// 加入继承的角色
+					// roles.addAll(ancestor.getRoles());
+					// }
+					// List<String> rcs = new ArrayList<String>();
+					// for (Role role : roles) {
+					// rcs.add(role.getCode());
+					// }
+					// context.setAttr(SystemContext.KEY_ROLES, rcs);
 
 					// debug
 					if (logger.isDebugEnabled()) {
-						logger.debug("groups="
-								+ StringUtils
-										.collectionToCommaDelimitedString(gcs));
 						logger.debug("roles="
 								+ StringUtils
-										.collectionToCommaDelimitedString(rcs));
+										.collectionToCommaDelimitedString(roleCodes));
 					}
-					logger.info("doLogin角色：" + DateUtils.getWasteTime(startTime));
+					logger.info("doLogin角色："
+							+ DateUtils.getWasteTime(startTime));
 
 					// 登录时间
 					Calendar now = Calendar.getInstance();
@@ -208,6 +249,61 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		if (logger.isInfoEnabled())
 			logger.info("doLogin耗时：" + DateUtils.getWasteTime(startTime));
 		return SUCCESS;
+	}
+
+	private Actor mapActor(Map<String, String> upper) {
+		Actor actor = new Actor();
+		actor.setId(new Long(upper.get("id")));
+		actor.setType(Integer.parseInt(upper.get("type")));
+		actor.setCode(upper.get("code"));
+		actor.setName(upper.get("name"));
+		actor.setPcode(upper.get("pcode"));
+		actor.setPname(upper.get("pname"));
+		return actor;
+	}
+
+	private List<Actor> loadUnits(List<Actor> belongs,
+			List<Map<String, String>> uppers) {
+		Set<Actor> units = new HashSet<Actor>();
+		Actor unit;
+		boolean exists;
+		for (Actor belong : belongs) {
+			unit = this.loadUnit(belong, uppers);
+			exists = false;
+			for (Actor _unit : units) {
+				if (_unit.getId().equals(unit.getId())) {
+					exists = true;
+					break;
+				}
+			}
+			if (!exists) {
+				units.add(unit);
+			}
+		}
+		List<Actor> _units = new ArrayList<Actor>();
+		_units.addAll(units);
+		return _units;
+	}
+
+	private Actor loadUnit(Actor belong, List<Map<String, String>> uppers) {
+		if (belong.getType() == Actor.TYPE_UNIT) {
+			return belong;
+		}
+
+		String belongId = belong.getId().toString();
+		Map<String, String> _upper = null;
+		for (Map<String, String> upper : uppers) {
+			if (belongId.equals(upper.get("fid"))) {
+				_upper = upper;
+				break;
+			}
+		}
+		if (_upper != null) {
+			return loadUnit(mapActor(_upper), uppers);
+		} else {
+			throw new CoreException("department must belong unit:departmentId="
+					+ belongId);
+		}
 	}
 
 	// 递归向上查找部门所属的单位
