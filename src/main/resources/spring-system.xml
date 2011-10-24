@@ -21,4 +21,22 @@
 	<bean id="IndexAction" class="cn.bc.index.IndexAction" scope="prototype" />
 	<bean id="ExampleListAction" class="cn.bc.example.ExampleListAction"
 		scope="prototype" />
+
+	<!-- hcache的配置 -->
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+		<property name="cacheManagerName">
+			<value>cn.bc.cache.framework</value>
+		</property>
+	</bean>
+	<bean id="bcCache" class="cn.bc.core.cache.EhcacheImpl">
+		<constructor-arg ref="cacheManager" />
+	</bean>
+	<!-- <bean id="methodCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean"> 
+		<property name="cacheManager"> <ref local="cacheManager" /> </property> <property 
+		name="cacheName"> <value>org.taha.cache.METHOD_CACHE</value> </property> 
+		</bean> -->
 </beans>

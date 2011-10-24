@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import cn.bc.Context;
+import cn.bc.core.cache.Cache;
 import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
 import cn.bc.desktop.service.LoginService;
@@ -58,6 +60,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private LoginService loginService;
 	private SyslogService syslogService;
 	private Map<String, Object> session;
+	private Cache cache;
+
+	@Autowired
+	public void setCache(Cache cache) {
+		this.cache = cache;
+	}
 
 	@Autowired
 	public void setLoginService(LoginService loginService) {
@@ -78,12 +86,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	public String doLogin() throws Exception {
+		System.out.println("cache1:" + cache.get("dragon"));
+		cache.put("dragon","dragon");
+		System.out.println("cache2:" + cache.get("dragon"));
 		Date startTime = new Date();
 		success = true;
 
 		Map<String, Object> map = this.loginService.loadActorByCode(name);
 		Actor user = (Actor) map.get("actor");
-		//logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
+		// logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
 		if (user == null) {
 			msg = "该用户未注册，如有问题请联系系统管理员！";
 			success = false;
