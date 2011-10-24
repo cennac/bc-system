@@ -127,15 +127,15 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '030000','营运系统', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030100','车队信息', '/bc-business/motorcade/list', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030100','车队信息', '/bc-business/motorcade/list', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 -- 营运系统/车辆管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '030200','车辆管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '030200','车辆管理', null, 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030201','车辆信息', '/bc-business/carView/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030201','车辆信息', '/bc-business/carView/paging', 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030202','车辆证件', '/bc-business/car4cert/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030202','车辆证件', '/bc-business/car4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 
 -- 营运系统/司机管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -143,41 +143,41 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030301','司机信息', '/bc-business/carMan/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030302','司机证件', '/bc-business/driver4cert/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030302','司机证件', '/bc-business/driver4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030303','司机迁移记录', '/bc/error/todo', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 
 -- 营运系统/合同管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '030400','合同管理', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '030400','合同管理', null, 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030401','司机劳动合同', '/bc-business/contractLabour/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030400';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030401','司机劳动合同', '/bc-business/contractLabour/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030402','车辆经济合同', '/bc-business/contractCharger/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030400';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030402','车辆经济合同', '/bc-business/contractCharger/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 
 -- 营运系统/其他
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031000','司机车辆营运关系', '/bc-business/carByDriver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031100','黑名单', '/bc-business/blacklist/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031100','黑名单', '/bc-business/blacklist/paging', 'i0703' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031200','事故理赔', '/bc-business/caseAccident/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031200','事故理赔', '/bc-business/caseAccident/paging', 'i0707' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031300','交通违章', '/bc-business/caseTraffic/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031300','交通违章', '/bc-business/caseTraffic/paging', 'i0706' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031400','营运违章', '/bc-business/caseBusiness/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031400','营运违章', '/bc-business/caseBusiness/paging', 'i0705' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031500','投诉与建议', '/bc-business/caseAdvice/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031500','投诉与建议', '/bc-business/caseAdvice/paging', 'i0708' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031600','表扬', '/bc-business/casePraise/paging', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031600','表扬', '/bc-business/casePraise/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031700','保险保单', '/bc/error/todo', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031700','保险保单', '/bc/error/todo', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031800','费用', '/bc/error/todo', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031800','费用', '/bc/error/todo', 'i0800' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 -- 营运系统/其他-报表
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035000','营运报表', '/bc/error/todo', 'i0400' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035000','营运报表', '/bc/error/todo', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 
 -- 办公系统
@@ -399,29 +399,27 @@ insert into BC_IDENTITY_ROLE_ACTOR (AID,RID)
 -- ##系统桌面相关模块的初始化数据##
 
 -- 插入桌面快捷方式数据
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0001', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='待办事务';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='已办事务';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0001', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='待办事务';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0002', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='已办事务';
 	
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0101', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='电子公告';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0101', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='电子公告';
 	
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0201', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='车辆信息';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0202', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='司机信息';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0201', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='车辆信息';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '0202', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='司机信息';
 	
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1001', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='个性化设置';
-insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,SID,AID) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1002', 0, null, null, id, null from BC_IDENTITY_RESOURCE where name='系统反馈';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1001', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='个性化设置';
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, '1002', 0, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='系统反馈';
 
 -- 插入全局配置信息
 insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME) 
 	values(1, 0, 0,  '12', 'smoothness');
--- insert into BC_DESKTOP_PERSONAL (STATUS_,INNER_,FONT,THEME,AID) 
--- 	select CORE_SEQUENCE.NEXTVAL, 0, 0, '14', 'flick', id from BC_IDENTITY_ACTOR where code='admin';
 
 -- 插入浏览器附件下载信息
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
