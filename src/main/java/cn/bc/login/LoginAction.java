@@ -60,12 +60,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private LoginService loginService;
 	private SyslogService syslogService;
 	private Map<String, Object> session;
-	private Cache cache;
-
-	@Autowired
-	public void setCache(Cache cache) {
-		this.cache = cache;
-	}
 
 	@Autowired
 	public void setLoginService(LoginService loginService) {
@@ -86,9 +80,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	public String doLogin() throws Exception {
-		System.out.println("cache1:" + cache.get("dragon"));
-		cache.put("dragon","dragon");
-		System.out.println("cache2:" + cache.get("dragon"));
 		Date startTime = new Date();
 		success = true;
 

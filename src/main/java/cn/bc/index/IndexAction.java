@@ -4,6 +4,7 @@
 package cn.bc.index;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -25,13 +26,11 @@ import cn.bc.Context;
 import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
 import cn.bc.desktop.domain.Personal;
-import cn.bc.desktop.domain.Shortcut;
 import cn.bc.desktop.service.LoginService;
-import cn.bc.desktop.service.PersonalService;
 import cn.bc.desktop.service.ShortcutService;
 import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.Resource;
-import cn.bc.identity.domain.Role;
+import cn.bc.identity.domain.ResourceComparator;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.web.ui.html.menu.Menu;
 import cn.bc.web.ui.html.menu.MenuItem;
@@ -48,7 +47,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private static Log logger = LogFactory.getLog(IndexAction.class);
 	private ShortcutService shortcutService;
-	private List<Shortcut> shortcuts;
+	private List<Map<String, String>> shortcuts;
 	private Personal personalConfig;// 个人配置
 	private Map<String, Object> session;
 	public String msg;
@@ -87,11 +86,11 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		this.personalConfig = personalConfig;
 	}
 
-	public List<Shortcut> getShortcuts() {
+	public List<Map<String, String>> getShortcuts() {
 		return shortcuts;
 	}
 
-	public void setShortcuts(List<Shortcut> shortcuts) {
+	public void setShortcuts(List<Map<String, String>> shortcuts) {
 		this.shortcuts = shortcuts;
 	}
 
@@ -114,53 +113,60 @@ public class IndexAction extends ActionSupport implements SessionAware {
 			throw new CoreException("缺少配置信息！");
 		logger.info("index.personal:" + DateUtils.getWasteTime(startTime));
 
-		//当前用户拥有的角色id
+		// 当前用户拥有的角色id
 		Long[] roleIds = context.getAttr(SystemContext.KEY_ROLEIDS);
-		//当前用户及其祖先的id
+		// 当前用户及其祖先的id
 		Long[] actorIds = context.getAttr(SystemContext.KEY_ANCESTORS);
-		
-		//查询可访问的资源
-		List<Map<String, String>> resources = this.loginService
-				.findResources(roleIds);
+
+		// 查询可访问的资源
+		Set<Resource> resources = this.loginService.findResources(roleIds);
+		logger.info("index.resources:" + DateUtils.getWasteTime(startTime));
 		List<Long> resourceIds = new ArrayList<Long>();
-		for (Map<String, String> resource : resources) {
-			resourceIds.add(new Long(resource.get("id")));
+		for (Resource resource : resources) {
+			resourceIds.add(new Long(resource.getId()));
 		}
-		
-		//查询可访问的快捷方式
-		List<Map<String, String>> shortcuts = this.loginService.findShortcuts(
-				actorIds, resourceIds.toArray(new Long[0]));
+
+		// 查询可访问的快捷方式
+		shortcuts = this.loginService.findShortcuts(actorIds,
+				resourceIds.toArray(new Long[0]));
 
 		logger.info("index.shortcuts:" + DateUtils.getWasteTime(startTime));
 		if (logger.isDebugEnabled()) {
 			logger.debug("shortcuts=" + shortcuts.size());
 			int i = 0;
-			for (Map<String, String> resource : resources) {
-				logger.debug(++i + ") " + resource.get("pname") + "/" + resource.get("name"));
+			for (Map<String, String> shortcut : shortcuts) {
+				logger.debug(++i + ") " + shortcut.toString());
+			}
+			i = 0;
+			logger.debug("resources=" + resources.size());
+			for (Resource resource : resources) {
+				logger.debug(++i + ") " + resource.getFullName());
 			}
 		}
 
 		// 找到顶层模块
-//		Map<Resource, Set<Resource>> parentChildren = new LinkedHashMap<Resource, Set<Resource>>();
-//		Set<Resource> topResources = this.findTopResources(resources,
-//				parentChildren);
-//		if (logger.isDebugEnabled()) {
-//			int i = 0;
-//			for (Resource m : topResources) {
-//				logger.debug(++i + ") " + m);
-//			}
-//			i = 0;
-//			for (Entry<Resource, Set<Resource>> m : parentChildren.entrySet()) {
-//				logger.debug(++i + ") " + m.getKey() + " "
-//						+ m.getValue().size());
-//			}
-//		}
-//
-//		// 循环顶层模块生成菜单
-//		Menu menu = this.buildMenu4Resources(topResources, parentChildren);
-//		menu.addClazz("startMenu").addClazz("bc-menubar").setId("sysmenu");
-//
-//		this.startMenu = menu.toString();
+		Map<Resource, Set<Resource>> parentChildren = new LinkedHashMap<Resource, Set<Resource>>();
+		List<Resource> topResources = this.findTopResources(resources,
+				parentChildren);
+		if (logger.isDebugEnabled()) {
+			logger.debug("topResources=" + topResources.size());
+			int i = 0;
+			for (Resource m : topResources) {
+				logger.debug(++i + ") " + m);
+			}
+			i = 0;
+			logger.debug("childResources=" + parentChildren.size());
+			for (Entry<Resource, Set<Resource>> m : parentChildren.entrySet()) {
+				logger.debug(++i + ") " + m.getKey() + ",children.size="
+						+ m.getValue().size());
+			}
+		}
+
+		// 循环顶层模块生成菜单
+		Menu menu = this.buildMenu4Resources(topResources, parentChildren);
+		menu.addClazz("startMenu").addClazz("bc-menubar").setId("sysmenu");
+
+		this.startMenu = menu.toString();
 		if (logger.isDebugEnabled())
 			logger.debug("startMenu=" + startMenu);
 		if (logger.isInfoEnabled())
@@ -168,13 +174,20 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
-	private Set<Resource> findTopResources(Set<Resource> resources,
+	private List<Resource> toSortList(Set<Resource> set) {
+		List<Resource> list = new ArrayList<Resource>();
+		list.addAll(set);
+		Collections.sort(list, new ResourceComparator());
+		return list;
+	}
+
+	private List<Resource> findTopResources(Set<Resource> resources,
 			Map<Resource, Set<Resource>> parentChildren) {
 		Set<Resource> topResources = new LinkedHashSet<Resource>();
 		for (Resource m : resources) {
 			this.dealParentChildren(m, parentChildren, topResources);
 		}
-		return topResources;
+		return toSortList(topResources);
 	}
 
 	private void dealParentChildren(Resource m,
@@ -195,7 +208,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		}
 	}
 
-	private Menu buildMenu4Resources(Set<Resource> resources,
+	private Menu buildMenu4Resources(List<Resource> resources,
 			Map<Resource, Set<Resource>> parentChildren) {
 		Menu menu = new Menu();
 		MenuItem menuItem;
@@ -231,8 +244,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		if (m.getType() == Resource.TYPE_FOLDER) {// 文件夹
 			Set<Resource> childResources = parentChildren.get(m);// 模块下的子模块
 			if (childResources != null && !childResources.isEmpty()) {
-				menuItem.setChildMenu(buildMenu4Resources(childResources,
-						parentChildren));
+				menuItem.setChildMenu(buildMenu4Resources(
+						toSortList(childResources), parentChildren));
 			}
 		}
 		return menuItem;
