@@ -83,7 +83,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		Map<String, Object> map = this.loginService.loadActorByCode(name);
 		Actor user = (Actor) map.get("actor");
-		//logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
+		// logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
 		if (user == null) {
 			msg = "该用户未注册，如有问题请联系系统管理员！";
 			success = false;
@@ -177,10 +177,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 										.collectionToCommaDelimitedString(actorIds));
 					}
 					Long[] aids = actorIds.toArray(new Long[0]);
-					List<String> roleCodes = this.loginService
+					List<Map<String, String>> roles = this.loginService
 							.findActorRoles(aids);
+					List<String> roleCodes = new ArrayList<String>();
+					List<Long> roleIds = new ArrayList<Long>();
+					for (Map<String, String> role : roles) {
+						roleCodes.add(role.get("code"));
+						roleIds.add(new Long(role.get("id")));
+					}
 					context.setAttr(SystemContext.KEY_ANCESTORS, aids);
 					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
+					context.setAttr(SystemContext.KEY_ROLEIDS,
+							roleIds.toArray(new Long[0]));
 
 					// debug
 					if (logger.isDebugEnabled()) {
