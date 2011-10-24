@@ -78,7 +78,10 @@
 	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.index.IndexAction">
-	  <priority value="INFO" />
+	  <priority value="DEBUG" />
+	</category>
+	<category name="cn.bc.desktop.service.LoginServiceImpl">
+	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.web.struts2.interceptor.CacheInterceptor">
 	  <priority value="WARN" />

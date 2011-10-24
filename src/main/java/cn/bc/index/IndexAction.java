@@ -3,6 +3,7 @@
  */
 package cn.bc.index;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -113,48 +114,53 @@ public class IndexAction extends ActionSupport implements SessionAware {
 			throw new CoreException("缺少配置信息！");
 		logger.info("index.personal:" + DateUtils.getWasteTime(startTime));
 
-		// 快捷方式
-		Set<Resource> resources = new LinkedHashSet<Resource>();// 有权限使用的资源
-		Set<Role> roles = new LinkedHashSet<Role>();// 可用的角色
-		this.shortcuts = this.shortcutService.findByActor(user.getId(), null,
-				roles, resources);
+		//当前用户拥有的角色id
+		Long[] roleIds = context.getAttr(SystemContext.KEY_ROLEIDS);
+		//当前用户及其祖先的id
+		Long[] actorIds = context.getAttr(SystemContext.KEY_ANCESTORS);
+		
+		//查询可访问的资源
+		List<Map<String, String>> resources = this.loginService
+				.findResources(roleIds);
+		List<Long> resourceIds = new ArrayList<Long>();
+		for (Map<String, String> resource : resources) {
+			resourceIds.add(new Long(resource.get("id")));
+		}
+		
+		//查询可访问的快捷方式
+		List<Map<String, String>> shortcuts = this.loginService.findShortcuts(
+				actorIds, resourceIds.toArray(new Long[0]));
+
 		logger.info("index.shortcuts:" + DateUtils.getWasteTime(startTime));
 		if (logger.isDebugEnabled()) {
 			logger.debug("shortcuts=" + shortcuts.size());
 			int i = 0;
-			for (Resource m : resources) {
-				logger.debug(++i + ") " + m);
+			for (Map<String, String> resource : resources) {
+				logger.debug(++i + ") " + resource.get("pname") + "/" + resource.get("name"));
 			}
 		}
-
-		// 将可用的角色记录到上下文
-		// List<String> roleCodes = new ArrayList<String>();
-		// for (Role role : roles) {
-		// roleCodes.add(role.getCode());
-		// }
-		// context.setAttr(SystemContext.KEY_ROLES, roleCodes);
 
 		// 找到顶层模块
-		Map<Resource, Set<Resource>> parentChildren = new LinkedHashMap<Resource, Set<Resource>>();
-		Set<Resource> topResources = this.findTopResources(resources,
-				parentChildren);
-		if (logger.isDebugEnabled()) {
-			int i = 0;
-			for (Resource m : topResources) {
-				logger.debug(++i + ") " + m);
-			}
-			i = 0;
-			for (Entry<Resource, Set<Resource>> m : parentChildren.entrySet()) {
-				logger.debug(++i + ") " + m.getKey() + " "
-						+ m.getValue().size());
-			}
-		}
-
-		// 循环顶层模块生成菜单
-		Menu menu = this.buildMenu4Resources(topResources, parentChildren);
-		menu.addClazz("startMenu").addClazz("bc-menubar").setId("sysmenu");
-
-		this.startMenu = menu.toString();
+//		Map<Resource, Set<Resource>> parentChildren = new LinkedHashMap<Resource, Set<Resource>>();
+//		Set<Resource> topResources = this.findTopResources(resources,
+//				parentChildren);
+//		if (logger.isDebugEnabled()) {
+//			int i = 0;
+//			for (Resource m : topResources) {
+//				logger.debug(++i + ") " + m);
+//			}
+//			i = 0;
+//			for (Entry<Resource, Set<Resource>> m : parentChildren.entrySet()) {
+//				logger.debug(++i + ") " + m.getKey() + " "
+//						+ m.getValue().size());
+//			}
+//		}
+//
+//		// 循环顶层模块生成菜单
+//		Menu menu = this.buildMenu4Resources(topResources, parentChildren);
+//		menu.addClazz("startMenu").addClazz("bc-menubar").setId("sysmenu");
+//
+//		this.startMenu = menu.toString();
 		if (logger.isDebugEnabled())
 			logger.debug("startMenu=" + startMenu);
 		if (logger.isInfoEnabled())

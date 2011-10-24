@@ -188,10 +188,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 										.collectionToCommaDelimitedString(actorIds));
 					}
 					Long[] aids = actorIds.toArray(new Long[0]);
-					List<String> roleCodes = this.loginService
+					List<Map<String, String>> roles = this.loginService
 							.findActorRoles(aids);
+					List<String> roleCodes = new ArrayList<String>();
+					List<Long> roleIds = new ArrayList<Long>();
+					for (Map<String, String> role : roles) {
+						roleCodes.add(role.get("code"));
+						roleIds.add(new Long(role.get("id")));
+					}
 					context.setAttr(SystemContext.KEY_ANCESTORS, aids);
 					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
+					context.setAttr(SystemContext.KEY_ROLEIDS,
+							roleIds.toArray(new Long[0]));
 
 					// debug
 					if (logger.isDebugEnabled()) {
