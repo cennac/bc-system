@@ -157,7 +157,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 
 -- 营运系统/其他
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031000','司机车辆营运关系', '/bc-business/carByDriver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031000','营运班次', '/bc-business/carByDriver/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '031100','黑名单', '/bc-business/blacklist/paging', 'i0703' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -339,9 +339,25 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.order_ in ('031600')
 	order by m.order_;
 
+-- 插入车辆证件管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0112', 'BS_CERT4CAR','车辆证件管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT4CAR' 
+	and m.type_ > 1 and m.order_ in ('030202')
+	order by m.order_;
+
+-- 插入司机证件管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0113', 'BS_CERT4DRIVER','司机证件管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT4DRIVER' 
+	and m.type_ > 1 and m.order_ in ('030302')
+	order by m.order_;
+
 -- 插入费用管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0112', 'BS_COST','费用管理');
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0114', 'BS_COST','费用管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_COST' 
 	and m.type_ > 1 and m.order_ in ('031800')
