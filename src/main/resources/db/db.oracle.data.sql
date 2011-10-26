@@ -127,7 +127,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '030000','营运系统', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030100','车队信息', '/bc-business/motorcade/list', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '030100','车队信息', '/bc-business/motorcades/list', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 -- 营运系统/车辆管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
