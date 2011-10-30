@@ -30,36 +30,36 @@
 	</category>
   	<!-- spring：设为INFO，查看加载了哪些xml配置文件 -->
 	<category name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader">
-	  <priority value="INFO" />
+	  <priority value="ERROR" />
 	</category>
     
   	<!-- hibernate -->
 	<category name="org.hibernate">
-	  <priority value="WARN" />
+	  <priority value="ERROR" />
 	</category>
 	<!-- hibernate：设为DEBUG，查看实际的sql语句，相当于hibernate.show_sql=true (org.hibernate.jdbc.util.SQLStatementLogger) -->
 	<category name="org.hibernate.SQL">
-	  <priority value="DEBUG" />
+	  <priority value="ERROR" />
 	</category>
 	<!-- hibernate：设为INFO，查看实体对象映射到哪张数据表；设为DEBUG则可以查看实体属性与表中列的映射对应关系 -->
 	<category name="org.hibernate.cfg.HbmBinder">
-	  <priority value="WARN" />
+	  <priority value="ERROR" />
 	</category>
 	
 	<!-- struts2 -->
     <category name="org.apache.struts2">
-    	 <priority value="WARN" />
+    	 <priority value="ERROR" />
     </category>
 	<!-- struts2：设为DEBUG，查看转发到那个jsp文件 -->
     <category name="org.apache.struts2.dispatcher.ServletDispatcherResult">
-    	 <priority value="WARN" />
+    	 <priority value="ERROR" />
     </category>
     <category name="com.opensymphony">
-    	<priority value="WARN" />
+    	<priority value="ERROR" />
     </category>
 	<!-- struts2：设为DEBUG，查看加载了哪些xml配置文件 -->
     <category name="com.opensymphony.xwork2.util.FileManager">
-    	<priority value="DEBUG" />
+    	<priority value="ERROR" />
     </category>
 	<category name="freemarker">
 	  <priority value="ERROR" />
@@ -69,19 +69,16 @@
 	<category name="cn.bc">
 	  <priority value="WARN" />
 	</category>
-	<category name="cn.bc.web.ui.AbstractComponent">
-	  <priority value="ERROR" />
-	</category>
  
 	<!-- bc -->
 	<category name="cn.bc.login.LoginAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.index.IndexAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.desktop.service.LoginServiceImpl">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.web.struts2.interceptor.CacheInterceptor">
 	  <priority value="WARN" />
@@ -93,7 +90,7 @@
 	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
-	  <priority value="DEBUG" />
+	  <priority value="INFO" />
 	</category>
 	
     	
