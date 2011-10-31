@@ -27,7 +27,6 @@ import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
 import cn.bc.desktop.domain.Personal;
 import cn.bc.desktop.service.LoginService;
-import cn.bc.desktop.service.ShortcutService;
 import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.Resource;
 import cn.bc.identity.domain.ResourceComparator;
@@ -46,7 +45,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class IndexAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private static Log logger = LogFactory.getLog(IndexAction.class);
-	private ShortcutService shortcutService;
 	private List<Map<String, String>> shortcuts;
 	private Personal personalConfig;// 个人配置
 	private Map<String, Object> session;
@@ -71,11 +69,6 @@ public class IndexAction extends ActionSupport implements SessionAware {
 
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
-	}
-
-	@Autowired
-	public void setShortcutService(ShortcutService shortcutService) {
-		this.shortcutService = shortcutService;
 	}
 
 	public Personal getPersonalConfig() {

@@ -184,7 +184,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  1, null, '040000','办公系统', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040100','公告信息', '/bc/bulletin/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040100','公告信息', '/bc/bulletins/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '040200','通讯录', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -221,7 +221,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 插入公告管理员角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0003', 'BC_BULLETIN','电子公告管理');
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0003', 'BC_BULLETIN','公告管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_BULLETIN' 
 	and m.type_ > 1 and (m.order_ like '04%')
@@ -229,7 +229,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 插入用户反馈管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0004', 'BC_FEEDBACK','系统反馈管理');
+	values(CORE_SEQUENCE.NEXTVAL, 0, 0,  0,'0004', 'BC_FEEDBACK','反馈管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_FEEDBACK' 
 	and m.type_ > 1 and m.order_ in ('011000','800303')

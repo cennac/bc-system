@@ -22,7 +22,7 @@
 	<bean id="ExampleListAction" class="cn.bc.example.ExampleListAction"
 		scope="prototype" />
 
-	<!-- hcache的配置 -->
+	<!-- ehcache的配置 -->
 	<bean id="cacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation">
