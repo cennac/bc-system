@@ -150,6 +150,6 @@ bc-system
 修改classess/db.properties，确认数据库连接参数正确：测试系统使用帐号bctest/bctest。
 修改classess/global.properties，确认如下参数正确：
     app.debug=false
-    app.ts=20110901
+    app.ts=20111102
     app.data.realPath=/file/bcdata4test
 
