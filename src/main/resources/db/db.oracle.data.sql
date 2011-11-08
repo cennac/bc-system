@@ -588,6 +588,7 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5022', 'ca.duty', '营运事件事故理赔责任', null);
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5023', 'ad.source', '投诉建议来源', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5024', 'pr.type', '表扬类型', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5025', 'lb.insuranceType', '社保险种', null); 
 
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'contract.signType', '签约类型', null); 
@@ -955,6 +956,11 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '07', 'shouzhuguanbumenbiaozhang', '受主管部门表彰', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '08', 'haorenhaoshi', '好人好事(未受公开表彰)', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'wujin', '五金', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'gongshang', '工伤', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
 
 	
  
