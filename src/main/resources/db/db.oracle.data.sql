@@ -590,7 +590,8 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5022', 'ca.duty', '营运事件事故理赔责任', null);
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5023', 'ad.source', '投诉建议来源', null); 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5024', 'pr.type', '表扬类型', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5025', 'lb.insuranceType', '社保险种', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5025', 'lb.insuranceType', '社保险种', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5026', 'lb.buyUnit', '购买单位', null);
 
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'contract.signType', '签约类型', null); 
@@ -964,6 +965,10 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'gongshang', '工伤', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'guangzhoubaocheng', '广州宝城', null from BC_OPTION_GROUP g where g.KEY_='lb.buyUnit';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'guangzhouguangfa', '广州广发', null from BC_OPTION_GROUP g where g.KEY_='lb.buyUnit';
 	
  
 
