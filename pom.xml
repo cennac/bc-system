@@ -199,6 +199,18 @@
 			<artifactId>bc-scheduler</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
+		<!-- WebSocket -->
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-websocket</artifactId>
+			<version>${framework.version}</version>
+		</dependency>
+		<!-- 在线聊天工具 -->
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-chat</artifactId>
+			<version>${framework.version}</version>
+		</dependency>
 
 		<!-- 第三方依赖包 -->
 		<dependency>
