@@ -87,22 +87,28 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.websocket.jetty.WebSocketChatServlet">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.websocket.jetty.ChatWebSocket">
 	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.chat.service.OnlineUserServiceImpl">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.log.web.SyslogSessionListener">
 	  <priority value="DEBUG" />
+	</category>
+	<category name="cn.bc.business.spider.service.BsSpiderServiceImpl">
+	  <priority value="INFO" />
+	</category>
+	<category name="cn.bc.business.spider.JinDunSpider4JiaoTongWeiFa">
+	  <priority value="WARN" />
 	</category>
 	
     	
