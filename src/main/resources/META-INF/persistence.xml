@@ -53,6 +53,10 @@
 		<class>cn.bc.scheduler.domain.ScheduleJob</class>
 		<class>cn.bc.scheduler.domain.ScheduleLog</class>
 
+		<!-- Sync -->
+		<class>cn.bc.sync.domain.SyncBase</class>
+		<class>cn.bc.business.sync.domain.Sync4InfractTraffic</class>
+
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->

@@ -122,6 +122,11 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-sync</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-spider</artifactId>
 			<version>${project.version}</version>
 		</dependency>
