@@ -87,24 +87,41 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.websocket.jetty.WebSocketChatServlet">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.websocket.jetty.ChatWebSocket">
 	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.chat.service.OnlineUserServiceImpl">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.log.web.SyslogSessionListener">
 	  <priority value="DEBUG" />
 	</category>
-	
+	<category name="cn.bc.business.spider.service.BsSpiderServiceImpl">
+	  <priority value="INFO" />
+	</category>
+	<category name="cn.bc.business.spider.JinDunSpider4JiaoTongWeiFa">
+	  <priority value="WARN" />
+	</category>
+	<category name="cn.bc.business.sync.web.struts2.Sync4InfractTrafficsAction">
+	  <priority value="INFO" />
+	</category>
+	<category name="cn.bc.business.ws.service.WSMiddleImpl">
+	  <priority value="DEBUG" />
+	</category>
+	<category name="cn.bc.business.spider.Spider4JinDunJTWF">
+	  <priority value="DEBUG" />
+	</category>
+	<category name="cn.bc.business.sync.service.BsSyncServiceImpl">
+	  <priority value="DEBUG" />
+	</category>
     	
   	<!-- 设置默认的日志级别(该设置必须放在最后,否则加载会解析出错) -->
 	<!-- 优先级别:OFF/FATAL/ERROR/WARN /INFO /DEBUG /ALL -->

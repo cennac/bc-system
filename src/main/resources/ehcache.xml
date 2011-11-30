@@ -26,6 +26,12 @@
     <cache name="cn.bc.cache.framework"
             maxElementsInMemory="10000"
             eternal="true"
-            overflowToDisk="true"
-            />
+            overflowToDisk="true"/>
+            
+    <!-- 金盾网未处理交通违法信息的抓取缓存 -->
+    <cache name="JinDunJiaoTongWeiZhang"
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToLiveSeconds="54000"
+            overflowToDisk="true"/>
 </ehcache>

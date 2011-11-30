@@ -33,6 +33,11 @@
 		</property>
 	</bean>
 	<bean id="bcCache" class="cn.bc.core.cache.EhcacheImpl">
+		<constructor-arg value="cn.bc.cache.framework" />
+		<constructor-arg ref="cacheManager" />
+	</bean>
+	<bean id="jinDunCache" class="cn.bc.core.cache.EhcacheImpl">
+		<constructor-arg value="JinDunJiaoTongWeiZhang" />
 		<constructor-arg ref="cacheManager" />
 	</bean>
 	<!-- <bean id="methodCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean"> 

@@ -181,6 +181,20 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035000','营运报表', '/bc/error/todo', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
+-- 营运系统/其他-接口数据
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '035100','接口数据', null, 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035101','交委交通违法', '/bc-business/jiaoWeiJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035102','交委营运违章', '/bc-business/jiaoWeiYYWZs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035103','交委投诉建议', '/bc-business/jiaoWeiTSJYs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035104','交委人车关系', '/bc-business/jiaoWeiRCGXs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035105','金盾交通违法', '/bc-business/jinDunJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+
 
 -- 办公系统
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -595,6 +609,21 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '5014', 'contract.signType', '签约类型', null); 
+
+-- 插入同步的配置参数
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '8000', 'sync', '同步配置', null); 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'jiaowei.ws.soapUrl', 'http://61.144.39.126/middle/WSMiddle.asmx', '交委接口的SoapUrl', null 
+  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'jiaowei.ws.soapNamespace', 'http://61.144.39.126/middle/WSMiddle.asmx', '交委接口的SoapNamespace', null 
+  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'jiaowei.ws.qyid.baocheng', '17E0FFF7-7816-46A5-83A7-23D5C9F762AB', '交委接口的宝成企业ID', null 
+  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'jiaowei.ws.qyid.guangfa', '4CD105EB-9EA3-4660-9E85-4BA39AA7960B', '交委接口的广发企业ID', null 
+  from BC_OPTION_GROUP g where g.KEY_='sync'; 
 
 -- 插入车队缴费日选项条目信息
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
