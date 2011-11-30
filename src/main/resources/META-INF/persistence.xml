@@ -55,7 +55,8 @@
 
 		<!-- Sync -->
 		<class>cn.bc.sync.domain.SyncBase</class>
-		<class>cn.bc.business.sync.domain.Sync4InfractTraffic</class>
+		<class>cn.bc.business.sync.domain.JiaoWeiJTWF</class>
+		<class>cn.bc.business.sync.domain.JinDunJTWF</class>
 
 
 		<!-- ##营运管理子系统## -->

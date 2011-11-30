@@ -185,15 +185,15 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
     select CORE_SEQUENCE.NEXTVAL, 0, 0, 1, m.id, '035100','接口数据', null, 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035101','交委交通违法', '/bc-business/sync4InfractTraffics/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035101','交委交通违法', '/bc-business/jiaoWeiJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035102','交委营运违章', '/bc-business/sync4InfractBusinesss/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035102','交委营运违章', '/bc-business/jiaoWeiYYWZs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035103','交委投诉建议', '/bc-business/sync4Advices/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035103','交委投诉建议', '/bc-business/jiaoWeiTSJYs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035104','交委人车关系', '/bc-business/sync4CarByDrivers/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035104','交委人车关系', '/bc-business/jiaoWeiRCGXs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035105','金盾交通违法', '/bc-business/spider4InfractTraffics/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select CORE_SEQUENCE.NEXTVAL, 0, 0, 2, m.id, '035105','金盾交通违法', '/bc-business/jinDunJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 
 
 -- 办公系统
