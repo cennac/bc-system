@@ -75,6 +75,8 @@
 		<class>cn.bc.business.carman.domain.CarMan</class>
 		<!-- 司机营运车辆 -->
 		<class>cn.bc.business.carman.domain.CarByDriver</class>
+		<!-- 迁移记录 -->
+		<class>cn.bc.business.carman.domain.CarByDriverHistory</class>
 		<!-- 司机迁移历史 -->
 		<class>cn.bc.business.carman.domain.CarManHistory</class>
 		
