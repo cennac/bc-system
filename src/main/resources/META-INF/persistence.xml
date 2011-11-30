@@ -34,6 +34,7 @@
 
 		<!-- syslog -->
 		<class>cn.bc.log.domain.Syslog</class>
+		<class>cn.bc.log.domain.Worklog</class>
 
 		<!-- docs -->
 		<class>cn.bc.docs.domain.Attach</class>
@@ -56,7 +57,7 @@
 		<!-- Sync -->
 		<class>cn.bc.sync.domain.SyncBase</class>
 		<class>cn.bc.business.sync.domain.JiaoWeiJTWF</class>
-		<class>cn.bc.business.sync.domain.JinDunJTWF</class>
+		<class>cn.bc.business.spider.domain.JinDunJTWF</class>
 
 
 		<!-- ##营运管理子系统## -->
