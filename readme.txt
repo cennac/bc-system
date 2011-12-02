@@ -144,7 +144,7 @@ bc-system
 五）测试发布注意事项：
 1)备份原有数据库
 2)发布测试系统
->mvn clean package -Pmysql -Ddb.type=mysql -Ddb.name=bctest -Ddb.ip=192.168.0.222 -Dapp.debug=false -Ddb.username=bctest -Ddb.password=bctest -Dapp.data.realPath=/file/bcdata4test -Dapp.ts=20111201
+>mvn clean package -Pmysql -Ddb.type=mysql -Ddb.name=bctest -Ddb.ip=127.0.0.1 -Dapp.debug=false -Ddb.username=bctest -Ddb.password=bctest -Dapp.data.realPath=/file/bcdata4test -Dapp.ts=20111202
 修改WEB-INF/web.xml文件，将appRealDir参数的值修改为/file/bcdata4test。
 修改classess/log4j.xml，将日志级别统一设为ERROR,修改日志的文件名为bctest_vxx.log。
 修改classess/db.properties，确认数据库连接参数正确：测试系统使用帐号bctest/bctest。
