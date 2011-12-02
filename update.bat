@@ -55,4 +55,4 @@ cd ..
 cd ..
 cd ..
 cd ..
-mvn jetty:run -Djetty.port=8083 -Dapp.debug=true -Poracle -Ddb.name=orcl -Ddb.type=oracle -Ddb.ip=192.168.0.222 -Ddb.username=bcsystem -Ddb.password=bcsystem
+mvn jetty:run -Djetty.port=8083 -Dapp.debug=true -Pmysql -Ddb.name=bcsystem -Ddb.type=mysql -Ddb.ip=192.168.0.222 -Ddb.username=bcsystem -Ddb.password=bcsystem
