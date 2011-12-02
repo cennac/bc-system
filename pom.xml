@@ -114,6 +114,12 @@
 			<artifactId>bc-business-runcase</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- 工伤 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-injury</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- WebService接口实现 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
