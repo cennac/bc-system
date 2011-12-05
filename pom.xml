@@ -3,20 +3,20 @@
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>0.6-SNAPSHOT</version>
+		<version>0.7-SNAPSHOT</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
-  	<version>0.2-SNAPSHOT</version>
+  	<version>0.3-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
 	
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>0.6-SNAPSHOT</framework.version>
+		<framework.version>0.7-SNAPSHOT</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>0.2-SNAPSHOT</business.version>
+		<business.version>0.3-SNAPSHOT</business.version>
 		
-		<app.ts>20111102</app.ts>
+		<app.ts>20111205</app.ts>
 		<app.debug>false</app.debug>
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
@@ -76,71 +76,71 @@
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-cert</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 合同 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-contract</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 司机责任人 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-carman</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 车辆 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-car</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 车队 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-motorcade</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 黑名单 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-blacklist</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 营运事件 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-runcase</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- 工伤 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-injury</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<!-- WebService接口实现 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-ws</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-sync</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-spider</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-charger</artifactId>
-			<version>${project.version}</version>
+			<version>${business.version}</version>
 		</dependency>
 		
 		<!-- 平台模块 -->
@@ -244,6 +244,20 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- 数据库连接池 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jdbc</artifactId>
+		</dependency>
 		
 		<!-- for provided -->
 		<dependency>
@@ -254,6 +268,24 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-plus</artifactId>
+			<version>${jetty.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>${jetty.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
