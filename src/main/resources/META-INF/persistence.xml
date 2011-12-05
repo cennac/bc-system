@@ -102,6 +102,9 @@
 		<class>cn.bc.business.runcase.domain.Case4Advice</class>
 		<class>cn.bc.business.runcase.domain.Case4Praise</class>
 
+		<!-- 工伤 -->
+		<class>cn.bc.business.injury.domain.Injury</class>
+
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	</persistence-unit>
