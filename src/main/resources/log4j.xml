@@ -117,9 +117,12 @@
 	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.business.spider.Spider4JinDunJTWF">
-	  <priority value="DEBUG" />
+	  <priority value="INFO" />
 	</category>
 	<category name="cn.bc.business.sync.service.BsSyncServiceImpl">
+	  <priority value="DEBUG" />
+	</category>
+	<category name="cn.bc.sync.dao.hibernate.jpa.SyncBaseDaoImpl">
 	  <priority value="DEBUG" />
 	</category>
     	
