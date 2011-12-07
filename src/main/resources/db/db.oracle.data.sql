@@ -614,16 +614,16 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENC
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (CORE_SEQUENCE.NEXTVAL, '8000', 'sync', '同步配置', null); 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '01', 'jiaowei.ws.soapUrl', 'http://61.144.39.126/middle/WSMiddle.asmx', '交委接口的SoapUrl', null 
-  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '02', 'jiaowei.ws.soapNamespace', 'http://61.144.39.126/middle/WSMiddle.asmx', '交委接口的SoapNamespace', null 
-  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '03', 'jiaowei.ws.qyid.baocheng', '17E0FFF7-7816-46A5-83A7-23D5C9F762AB', '交委接口的宝成企业ID', null 
-  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
 	select CORE_SEQUENCE.NEXTVAL, 0, g.id, '04', 'jiaowei.ws.qyid.guangfa', '4CD105EB-9EA3-4660-9E85-4BA39AA7960B', '交委接口的广发企业ID', null 
-  from BC_OPTION_GROUP g where g.KEY_='sync'; 
+	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 
 -- 插入车队缴费日选项条目信息
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
