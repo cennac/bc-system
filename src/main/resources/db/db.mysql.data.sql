@@ -547,20 +547,20 @@ insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME)
 
 -- 插入浏览器附件下载信息
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select now() , 0, 'browser', 'chrome14.0.835.186', 24610040,'exe',0
-	,'谷歌浏览器Chrome14.0.exe','browser/chrome/chrome14.0.835.186.exe',
+	select now() , 0, 'browser', 'chrome15.0.874.121', 25068792,'exe',0
+	,'谷歌浏览器Chrome15.0.exe','browser/chrome/chrome15.0.874.121.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin') from dual;
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select now() , 0, 'browser', 'firefox7.0', 13891928,'exe',0
-	,'火狐浏览器Firefox7.0.exe','browser/firefox/firefox7.0.exe',
+	select now() , 0, 'browser', 'firefox8.0.1', 16840048,'exe',0
+	,'火狐浏览器Firefox8.0.exe','browser/firefox/firefox8.0.1.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin') from dual;
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select now() , 0, 'browser', 'safari5.1', 37806960,'exe',0
 	,'苹果浏览器Safari5.1.exe','browser/safari/safari5.1.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin') from dual;
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select now() , 0, 'browser', 'opera11.50', 10309696,'exe',0
-	,'挪威浏览器Opera11.50.exe','browser/opera/opera11.50.exe',
+	select now() , 0, 'browser', 'opera11.60', 8438376,'exe',0
+	,'挪威浏览器Opera11.60.exe','browser/opera/opera11.60.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin') from dual;
 insert into BC_DOCS_ATTACH (FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select now() , 0, 'browser', 'ie9.0', 18658608,'exe',0
