@@ -29,6 +29,10 @@
 	</target>
 
 	<target name="build">
+		<!-- postgresql -->
+		<concatSql4create db="postgresql" />
+		<concatSql4drop db="postgresql" />
+
 		<!-- mysql -->
 		<concatSql4create db="mysql" />
 		<concatSql4drop db="mysql" />
