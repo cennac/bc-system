@@ -154,6 +154,18 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '030402','车辆经济合同', '/bc-business/contractChargers/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 
+-- 营运系统/考勤管理
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select 0, 0, 1, m.id, '030500','考勤管理', null, 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 0, 0, 2, m.id, '030501','司机安全学习', '/bc-business/driverArrange/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 0, 0, 2, m.id, '030502','车辆回场检', '/bc-business/carArrange/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 0, 0, 2, m.id, '030503','考勤帐号管理', '/bc-business/driverMember/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 0, 0, 2, m.id, '030504','考勤机管理', '/bc-business/attendanceMachine/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+
 -- 营运系统/其他
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '031000','营运班次', '/bc-business/carByDrivers/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
@@ -368,9 +380,17 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.order_ in ('030302')
 	order by m.order_;
 
+-- 插入司机考勤(安全学习和回场检)管理角色数据
+insert into  BC_IDENTITY_ROLE (STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(0, 0,  0,'0114', 'BS_ATTENDANCE4DRIVER','司机考勤管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ATTENDANCE4DRIVER' 
+	and m.type_ > 1 and m.order_ in ('030501','030502','030503','030504')
+	order by m.order_;
+
 -- 插入费用管理角色数据
 insert into  BC_IDENTITY_ROLE (STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(0, 0,  0,'0114', 'BS_COST','费用管理');
+	values(0, 0,  0,'0115', 'BS_COST','费用管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_COST' 
 	and m.type_ > 1 and m.order_ in ('031800')
