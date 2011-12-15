@@ -70,7 +70,6 @@
 	<import resource="classpath:cn/bc/business/spider/spring.xml"/>
 	<import resource="classpath:cn/bc/business/sync/spring.xml"/>
 	<import resource="classpath:cn/bc/business/injury/spring.xml"/>
-	<import resource="classpath:cn/bc/business/policy/spring.xml"/>
 	
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-system.xml" />

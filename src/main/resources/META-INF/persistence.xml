@@ -88,8 +88,7 @@
 		
 		<!-- 黑名单 -->
 		<class>cn.bc.business.blacklist.domain.Blacklist</class>
-		<!-- 车辆保单 -->
-		<class>cn.bc.business.policy.domain.Policy</class>
+		
 		<!-- 合同  -->
 		<class>cn.bc.business.contract.domain.Contract</class>
 		<class>cn.bc.business.contract.domain.Contract4Charger</class>
