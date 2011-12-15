@@ -120,6 +120,12 @@
 			<artifactId>bc-business-injury</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 考勤管理 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-arrange</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 		<!-- WebService接口实现 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
