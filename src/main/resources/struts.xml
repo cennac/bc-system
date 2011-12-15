@@ -54,6 +54,7 @@
 	<include file="cn/bc/business/runcase/web/struts2/struts.xml" />
 	<include file="cn/bc/business/sync/web/struts2/struts.xml" />
 	<include file="cn/bc/business/injury/web/struts2/struts.xml" />
+	<include file="cn/bc/business/policy/web/struts2/struts.xml" />
 	<include file="cn/bc/business/arrange/web/struts2/struts.xml" />
 	
 
