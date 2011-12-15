@@ -158,11 +158,11 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
     select 0, 0, 1, m.id, '030500','考勤管理', null, 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 0, 0, 2, m.id, '030501','司机安全学习', '/bc-business/driverArrange/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select 0, 0, 2, m.id, '030501','司机安全学习', '/bc-business/arrangeDriver/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 0, 0, 2, m.id, '030502','车辆回场检', '/bc-business/carArrange/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select 0, 0, 2, m.id, '030502','车辆回场检', '/bc-business/arrangeCar/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 0, 0, 2, m.id, '030503','考勤帐号管理', '/bc-business/driverMember/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select 0, 0, 2, m.id, '030503','考勤帐号管理', '/bc-business/member/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '030504','考勤机管理', '/bc-business/attendanceMachine/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 
