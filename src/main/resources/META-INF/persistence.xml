@@ -57,6 +57,8 @@
 		<!-- Sync -->
 		<class>cn.bc.sync.domain.SyncBase</class>
 		<class>cn.bc.business.sync.domain.JiaoWeiJTWF</class>
+		<class>cn.bc.business.sync.domain.JiaoWeiYYWZ</class>
+		<class>cn.bc.business.sync.domain.JiaoWeiADVICE</class>
 		<class>cn.bc.business.spider.domain.JinDunJTWF</class>
 
 
