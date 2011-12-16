@@ -39,7 +39,7 @@
 	</category>
 	<!-- hibernate：设为DEBUG，查看实际的sql语句，相当于hibernate.show_sql=true (org.hibernate.jdbc.util.SQLStatementLogger) -->
 	<category name="org.hibernate.SQL">
-	  <priority value="DEBUG" />
+	  <priority value="ERROR" />
 	</category>
 	<!-- hibernate：设为INFO，查看实体对象映射到哪张数据表；设为DEBUG则可以查看实体属性与表中列的映射对应关系 -->
 	<category name="org.hibernate.cfg.HbmBinder">
@@ -72,10 +72,10 @@
  
 	<!-- bc -->
 	<category name="cn.bc.login.LoginAction">
-	  <priority value="WARN" />
+	  <priority value="INFO" />
 	</category>
 	<category name="cn.bc.index.IndexAction">
-	  <priority value="WARN" />
+	  <priority value="INFO" />
 	</category>
 	<category name="cn.bc.desktop.service.LoginServiceImpl">
 	  <priority value="WARN" />
@@ -87,7 +87,7 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
-	  <priority value="WARN" />
+	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
 	  <priority value="WARN" />
@@ -96,34 +96,34 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.websocket.jetty.ChatWebSocket">
-	  <priority value="DEBUG" />
+	  <priority value="ERROR" />
 	</category>
 	<category name="cn.bc.chat.service.OnlineUserServiceImpl">
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.log.web.SyslogSessionListener">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.spider.service.BsSpiderServiceImpl">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.spider.JinDunSpider4JiaoTongWeiFa">
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.sync.web.struts2.Sync4InfractTrafficsAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.ws.service.WSMiddleImpl">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.spider.Spider4JinDunJTWF">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.sync.service.BsSyncServiceImpl">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.sync.dao.hibernate.jpa.SyncBaseDaoImpl">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
     	
   	<!-- 设置默认的日志级别(该设置必须放在最后,否则加载会解析出错) -->

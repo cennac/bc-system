@@ -4,9 +4,19 @@
 -- 数据转换记录
 drop table if exists DC_RECORD;
 
+-- 安全学习和回场检
+drop table if exists BS_ARRANGE_DRIVER;
+drop table if exists BS_ARRANGE_CAR;
+drop table if exists BS_SIGN_RECORD;
+drop table if exists BS_ARRANGE_MEMBER;
+drop table if exists BS_ARRANGE;
+drop table if exists BS_MEMBER;
+
 -- 同步记录
 drop table if exists BS_SYNC_JIAOWEI_JTWF;
 drop table if exists BS_SYNC_JINDUN_JTWF;
+drop table if exists BS_SYNC_JIAOWEI_YYWZ; 
+drop table if exists BS_SYNC_JIAOWEI_ADVICE;
 
 -- 黑名单
 drop table if exists BS_BLACKLIST;
@@ -29,6 +39,11 @@ DROP TABLE IF EXISTS BS_CASE_BASE;
 
 -- 司机迁移历史
 drop table if exists BS_CARMAN_HISTORY;
+
+-- 车辆保单险种
+drop table if exists BS_INSURANCE_TYPE;
+-- 车辆保单
+drop table if exists BS_CAR_POLICY;
 
 -- 迁移记录
 drop table if exists BS_CAR_DRIVER_HISTORY;

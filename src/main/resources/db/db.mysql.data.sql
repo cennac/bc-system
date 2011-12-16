@@ -135,6 +135,8 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 	select 0, 0, 2, m.id, '030201','车辆信息', '/bc-business/cars/paging', 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
 	select 0, 0, 2, m.id, '030202','车辆证件', '/bc-business/car4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
+	select 0, 0, 2, m.id, '030203','车辆保单', '/bc-business/policys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 
 -- 营运系统/司机管理
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -143,8 +145,6 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 	select 0, 0, 2, m.id, '030301','司机信息', '/bc-business/carMans/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '030302','司机证件', '/bc-business/driver4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030300';
-insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 0, 0, 2, m.id, '030303','司机迁移记录', '/bc/error/todo', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 
 -- 营运系统/合同管理
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -166,6 +166,10 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '030504','考勤机管理', '/bc-business/attendanceMachine/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 
+-- 营运系统/迁移记录
+insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select 0, 0, 2, m.id, '030600','迁移记录', '/bc-business/carByDriverHistorys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+
 -- 营运系统/其他
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '031000','营运班次', '/bc-business/carByDrivers/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
@@ -181,10 +185,6 @@ insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,IC
 	select 0, 0, 2, m.id, '031500','投诉与建议', '/bc-business/caseAdvices/paging', 'i0708' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select 0, 0, 2, m.id, '031600','表扬', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
-insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 0, 0, 2, m.id, '031700','保险保单', '/bc/error/todo', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='030000';
-insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select 0, 0, 2, m.id, '031800','费用', '/bc/error/todo', 'i0800' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 -- 营运系统/其他-报表
 insert into BC_IDENTITY_RESOURCE (STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -387,13 +387,13 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ATTENDANCE4DRIVER' 
 	and m.type_ > 1 and m.order_ in ('030501','030502','030503','030504')
 	order by m.order_;
-
--- 插入费用管理角色数据
+	
+-- 插入车辆保单管理角色数据
 insert into  BC_IDENTITY_ROLE (STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(0, 0,  0,'0115', 'BS_COST','费用管理');
+	values(0, 0,  0,'0114', 'BS_POLICY','车辆保单管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_COST' 
-	and m.type_ > 1 and m.order_ in ('031800')
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_POLICY' 
+	and m.type_ > 1 and m.order_ in ('030203')
 	order by m.order_;
 
 -- 插入职务数据
@@ -648,7 +648,7 @@ DELIMITER $$
         DECLARE i int default 1; 
         WHILE i <  maxrecords DO 
 					insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-						select 0, g.id, i, i, i, null from BC_OPTION_GROUP g where g.KEY_='motorcade.paymentDate'; 
+						select 0, g.id, lpad(i,2,'0'), i, i, null from BC_OPTION_GROUP g where g.KEY_='motorcade.paymentDate'; 
         SET i = i + 1; 
         END WHILE; 
     END $$
