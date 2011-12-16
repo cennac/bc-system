@@ -36,9 +36,6 @@
 	<profiles>
 		<profile>
 			<id>postgresql</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<db.type>postgresql</db.type>
 				<db.name>bcsystem</db.name>
@@ -57,6 +54,9 @@
 		</profile>
 		<profile>
 			<id>mysql</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<db.type>mysql</db.type>
 				<db.name>bcsystem</db.name>
@@ -70,6 +70,7 @@
 				<dependency>
 					<groupId>mysql</groupId>
 					<artifactId>mysql-connector-java</artifactId>
+					<scope>compile</scope>
 				</dependency>
 			</dependencies>
 		</profile>
