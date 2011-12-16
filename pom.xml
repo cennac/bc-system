@@ -22,18 +22,77 @@
 		<app.data.subPath>uploads</app.data.subPath>
 		
 		<!-- 数据库连接配置 -->
-		<db.type>mysql</db.type>
-		<db.name>bcsystem</db.name>
+		<db.sequence.default>HIBERNATE_SEQUENCE</db.sequence.default>
+		<db.ip>localhost</db.ip>
 		<db.username>bcsystem</db.username>
 		<db.password>bcsystem</db.password>
-		<db.ip>localhost</db.ip>
 		<jndi.name>${db.name}</jndi.name>
-		<hibernate.show_sql>false</hibernate.show_sql>
+		
 		<!-- 警示：update/create-drop/create/validate，如果在classpath中有/import.sql文件， 
 			hibernate3在启动时会执行 -->
 		<hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
+		<hibernate.show_sql>false</hibernate.show_sql>
 	</properties>
-
+	<profiles>
+		<profile>
+			<id>postgresql</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<db.type>postgresql</db.type>
+				<db.name>bcsystem</db.name>
+				<db.port>5432</db.port>
+				<db.sequence>${db.sequence.default}</db.sequence>
+				<db.driverClassName>org.postgresql.Driver</db.driverClassName>
+				<db.url><![CDATA[jdbc:postgresql://${db.ip}:${db.port}/${db.name}]]></db.url>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>mysql</id>
+			<properties>
+				<db.type>mysql</db.type>
+				<db.name>bcsystem</db.name>
+				<db.port>3306</db.port>
+				<db.sequence></db.sequence>
+				<db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+				<db.url><![CDATA[jdbc:mysql://${db.ip}:${db.port}/${db.name}?useUnicode=true&characterEncoding=UTF-8]]></db.url>
+				<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>oracle</id>
+			<properties>
+				<db.type>oracle</db.type>
+				<db.name>orcl</db.name>
+				<db.port>1521</db.port>
+				<db.sequence>${db.sequence.default}</db.sequence>
+				<db.driverClassName>oracle.jdbc.OracleDriver</db.driverClassName>
+				<db.url><![CDATA[jdbc:oracle:thin:@${db.ip}:${db.port}:${db.name}]]></db.url>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc14</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	
 	<build>
 		<finalName>bc-system</finalName>
 		<!-- 替换文件中的${...}标记的值 -->
