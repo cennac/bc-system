@@ -1,14 +1,14 @@
--- bcè¥è¿ç®¡ç†å­ç³»ç»Ÿçš„ postgresql åˆ è¡¨è„šæœ¬
--- è¿è¡Œæ­¤è„šæœ¬ä¹‹åŽå†è¿è¡Œå¹³å°çš„åˆ è¡¨è„šæœ¬framework.db.postgresql.drop.sql
+-- bcÓªÔË¹ÜÀí×ÓÏµÍ³µÄ postgresql É¾±í½Å±¾
+-- ÔËÐÐ´Ë½Å±¾Ö®ºóÔÙÔËÐÐÆ½Ì¨µÄÉ¾±í½Å±¾framework.db.postgresql.drop.sql
 
--- ç”¨äºŽç”Ÿæˆæ•°æ®è½¬æ¢ idçš„åºåˆ—
+-- ÓÃÓÚÉú³ÉÊý¾Ý×ª»» idµÄÐòÁÐ
 drop sequence if exists CORE_SEQUENCE;
 drop sequence if exists DC_SEQUENCE;
 
--- æ•°æ®è½¬æ¢è®°å½•
+-- Êý¾Ý×ª»»¼ÇÂ¼
 drop table if exists DC_RECORD;
 
--- å®‰å…¨å­¦ä¹ å’Œå›žåœºæ£€
+-- °²È«Ñ§Ï°ºÍ»Ø³¡¼ì
 drop table if exists BS_ARRANGE_DRIVER;
 drop table if exists BS_ARRANGE_CAR;
 drop table if exists BS_SIGN_RECORD;
@@ -16,16 +16,16 @@ drop table if exists BS_ARRANGE_MEMBER;
 drop table if exists BS_ARRANGE;
 drop table if exists BS_MEMBER;
 
--- åŒæ­¥è®°å½•
+-- Í¬²½¼ÇÂ¼
 drop table if exists BS_SYNC_JIAOWEI_JTWF;
 drop table if exists BS_SYNC_JINDUN_JTWF;
 drop table if exists BS_SYNC_JIAOWEI_YYWZ; 
 drop table if exists BS_SYNC_JIAOWEI_ADVICE;
 
--- é»‘åå•
+-- ºÚÃûµ¥
 drop table if exists BS_BLACKLIST;
 
--- åˆåŒ
+-- ºÏÍ¬
 drop table if exists BS_INDUSTRIAL_INJURY;
 drop table if exists BS_CARMAN_CONTRACT;
 drop table if exists BS_CAR_CONTRACT;
@@ -33,7 +33,7 @@ drop table if exists BS_CONTRACT_LABOUR;
 drop table if exists BS_CONTRACT_CHARGER;
 drop table if exists BS_CONTRACT;
 
--- è¥è¿äº‹ä»¶
+-- ÓªÔËÊÂ¼þ
 DROP TABLE IF EXISTS BS_CASE_ADVICE;
 DROP TABLE IF EXISTS BS_CASE_PRAISE;
 DROP TABLE IF EXISTS BS_CASE_ACCIDENT;
@@ -41,39 +41,39 @@ DROP TABLE IF EXISTS BS_CASE_INFRACT_TRAFFIC;
 DROP TABLE IF EXISTS BS_CASE_INFRACT_BUSINESS;
 DROP TABLE IF EXISTS BS_CASE_BASE;
 
--- å¸æœºè¿ç§»åŽ†å²
+-- Ë¾»úÇ¨ÒÆÀúÊ·
 drop table if exists BS_CARMAN_HISTORY;
 
--- è½¦è¾†ä¿å•é™©ç§
+-- ³µÁ¾±£µ¥ÏÕÖÖ
 drop table if exists BS_INSURANCE_TYPE;
--- è½¦è¾†ä¿å•
+-- ³µÁ¾±£µ¥
 drop table if exists BS_CAR_POLICY;
 
--- è¿ç§»è®°å½•
+-- Ç¨ÒÆ¼ÇÂ¼
 drop table if exists BS_CAR_DRIVER_HISTORY;
 
--- å¸æœºè¥è¿è½¦è¾†
+-- Ë¾»úÓªÔË³µÁ¾
 drop table if exists BS_CAR_DRIVER;
 
--- è½¦è¾†ä¸Žè¯ä»¶çš„å…³è”
+-- ³µÁ¾ÓëÖ¤¼þµÄ¹ØÁª
 drop table if exists BS_CAR_CERT;
 
--- è½¦è¾†
+-- ³µÁ¾
 drop table if exists BS_CAR;
 
--- è½¦é˜ŸåŽ†å²è½¦è¾†æ•°
+-- ³µ¶ÓÀúÊ·³µÁ¾Êý
 drop table if exists BS_HISTORY_CAR_QUANTITY;
 drop table if exists BS_MOTORCADE_CARQUANTITY;
 
--- è½¦é˜Ÿè´Ÿè´£äºº
+-- ³µ¶Ó¸ºÔðÈË
 drop table if exists BS_CHARGER;
--- è½¦é˜Ÿä¿¡æ¯
+-- ³µ¶ÓÐÅÏ¢
 drop table if exists BS_MOTORCADE;
 
--- å¸æœºè´£ä»»äººä¸Žè¯ä»¶çš„å…³è”
+-- Ë¾»úÔðÈÎÈËÓëÖ¤¼þµÄ¹ØÁª
 drop table if exists BS_CARMAN_CERT;
 
--- è¯ä»¶
+-- Ö¤¼þ
 drop table if exists BS_CERT_IDENTITY;
 drop table if exists BS_CERT_DRIVING;
 drop table if exists BS_CERT_CYZG;
@@ -83,45 +83,45 @@ drop table if exists BS_CERT_ROADTRANSPORT;
 drop table if exists BS_CERT_VEHICELICENSE;
 drop table if exists BS_CERT;
 
--- å¸æœºè´£ä»»äºº
+-- Ë¾»úÔðÈÎÈË
 drop table if exists BS_CARMAN;
 
--- ##BCå¹³å°çš„ postgresql åˆ è¡¨è„šæœ¬##
+-- ##BCÆ½Ì¨µÄ postgresql É¾±í½Å±¾##
 
--- ç”¨äºŽç”Ÿæˆhibernate idçš„åºåˆ—
+-- ÓÃÓÚÉú³Éhibernate idµÄÐòÁÐ
 DROP SEQUENCE IF EXISTS CORE_SEQUENCE;
 DROP SEQUENCE IF EXISTS hibernate_sequence;
 
--- æµ‹è¯•ç”¨çš„è¡¨
+-- ²âÊÔÓÃµÄ±í
 DROP TABLE IF EXISTS BC_EXAMPLE;
 DROP SEQUENCE IF EXISTS BC_EXAMPLE_ID_SEQ;
 
--- åŒæ­¥è®°å½•åŸºè¡¨
+-- Í¬²½¼ÇÂ¼»ù±í
 DROP TABLE IF EXISTS BC_SYNC_BASE;
 DROP SEQUENCE IF EXISTS BC_SYNC_BASE_ID_SEQ;
 
--- ç”¨æˆ·åé¦ˆ
+-- ÓÃ»§·´À¡
 DROP TABLE IF EXISTS BC_FEEDBACK;
 DROP SEQUENCE IF EXISTS BC_FEEDBACK_ID_SEQ;
 
--- ç”µå­å…¬å‘Š
+-- µç×Ó¹«¸æ
 DROP TABLE IF EXISTS BC_BULLETIN;
 DROP SEQUENCE IF EXISTS BC_BULLETIN_ID_SEQ;
 
--- æ–‡æ¡£é™„ä»¶
+-- ÎÄµµ¸½¼þ
 DROP TABLE IF EXISTS BC_DOCS_ATTACH_HISTORY;
 DROP TABLE IF EXISTS BC_DOCS_ATTACH;
 DROP SEQUENCE IF EXISTS BC_DOCS_ATTACH_HISTORY_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_DOCS_ATTACH_ID_SEQ;
 
--- ç³»ç»Ÿæ—¥å¿—
+-- ÏµÍ³ÈÕÖ¾
 DROP TABLE IF EXISTS BC_LOG_SYSTEM;
 DROP SEQUENCE IF EXISTS BC_LOG_SYSTEM_ID_SEQ;
--- å·¥ä½œæ—¥å¿—
+-- ¹¤×÷ÈÕÖ¾
 DROP TABLE IF EXISTS BC_LOG_WORK;
 DROP SEQUENCE IF EXISTS BC_LOG_WORK_ID_SEQ;
 
--- å·¥ä½œäº‹åŠ¡
+-- ¹¤×÷ÊÂÎñ
 DROP TABLE IF EXISTS BC_WORK_TODO;
 DROP TABLE IF EXISTS BC_WORK_DONE;
 DROP TABLE IF EXISTS BC_WORK;
@@ -129,17 +129,17 @@ DROP SEQUENCE IF EXISTS BC_WORK_TODO_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_WORK_DONE_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_WORK_ID_SEQ;
 
--- æ¶ˆæ¯ç®¡ç†
+-- ÏûÏ¢¹ÜÀí
 DROP TABLE IF EXISTS BC_MESSAGE;
 DROP SEQUENCE IF EXISTS BC_MESSAGE_ID_SEQ;
 
--- ä¸ªæ€§åŒ–è®¾ç½®
+-- ¸öÐÔ»¯ÉèÖÃ
 DROP TABLE IF EXISTS BC_DESKTOP_SHORTCUT;
 DROP TABLE IF EXISTS BC_DESKTOP_PERSONAL;
 DROP SEQUENCE IF EXISTS BC_DESKTOP_SHORTCUT_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_DESKTOP_PERSONAL_ID_SEQ;
 
--- ç³»ç»Ÿæ ‡è¯†
+-- ÏµÍ³±êÊ¶
 DROP TABLE IF EXISTS BC_IDENTITY_ROLE_ACTOR;
 DROP TABLE IF EXISTS BC_IDENTITY_AUTH;
 DROP TABLE IF EXISTS BC_IDENTITY_ACTOR_RELATION;
@@ -163,13 +163,13 @@ DROP SEQUENCE IF EXISTS BC_IDENTITY_ROLE_RESOURCE_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_IDENTITY_ROLE_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_IDENTITY_RESOURCE_ID_SEQ;
 
--- é€‰é¡¹æ¨¡å—
+-- Ñ¡ÏîÄ£¿é
 DROP TABLE IF EXISTS BC_OPTION_ITEM;
 DROP TABLE IF EXISTS BC_OPTION_GROUP;
 DROP SEQUENCE IF EXISTS BC_OPTION_ITEM_ID_SEQ;
 DROP SEQUENCE IF EXISTS BC_OPTION_GROUP_ID_SEQ;
 
--- ä»»åŠ¡è°ƒåº¦
+-- ÈÎÎñµ÷¶È
 DROP TABLE IF EXISTS BC_SD_LOG;
 DROP TABLE IF EXISTS BC_SD_JOB;
 DROP SEQUENCE IF EXISTS BC_SD_LOG_ID_SEQ;

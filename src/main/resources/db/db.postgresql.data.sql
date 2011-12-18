@@ -1,71 +1,71 @@
-Ôªø-- ## Á≥ªÁªüÊï∞ÊçÆÂàùÂßãÂåñËÑöÊú¨ - oracle ##
+-- ## œµÕ≥ ˝æ›≥ı ºªØΩ≈±æ - oracle ##
 
--- ÊàëÁöÑ‰∫ãÂä°
+-- Œ“µƒ ¬ŒÒ
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '010000','ÊàëÁöÑ‰∫ãÂä°', null, 'i0403');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '010000','Œ“µƒ ¬ŒÒ', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010100','ÂæÖÂäûÂ∑•‰Ωú', '/bc/todoWork/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010100','¥˝∞Ïπ§◊˜', '/bc/todoWork/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010200','Â∑≤ÂäûÂ∑•‰Ωú', '/bc/doneWork/paging', 'i0002' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010200','“—∞Ïπ§◊˜', '/bc/doneWork/paging', 'i0002' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011000','Á≥ªÁªüÂèçÈ¶à', '/bc/feedback/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011000','œµÕ≥∑¥¿°', '/bc/feedback/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011100','‰∏™ÊÄßÂåñËÆæÁΩÆ', '/bc/personal/edit', 'i0302' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011100','∏ˆ–‘ªØ…Ë÷√', '/bc/personal/edit', 'i0302' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011200','Ê°åÈù¢ËÆæÁΩÆ', '/bc/shortcut/list', 'i0407' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011200','◊¿√Ê…Ë÷√', '/bc/shortcut/list', 'i0407' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011300','ÁôªÂΩïÊó•Âøó', '/bc/mysyslog/paging', 'i0208' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011300','µ«¬º»’÷æ', '/bc/mysyslog/paging', 'i0208' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011400','‰∏ãËΩΩÊµèËßàÂô®', '/bc/attach/browser', 'i0404' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011400','œ¬‘ÿ‰Ø¿¿∆˜', '/bc/attach/browser', 'i0404' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 
 	
--- Â∏∏Áî®ÈìæÊé•
+-- ≥£”√¡¥Ω”
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '070000','ÂèãÊÉÖÈìæÊé•', null, 'i0100');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '070000','”—«È¡¥Ω”', null, 'i0100');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070100','ÂÆùÂüéÁΩëÁ´ô', 'http://www.bctaxi.com.cn', 'i0600' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070100','±¶≥«Õ¯’æ', 'http://www.bctaxi.com.cn', 'i0600' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070200','‰∫§ÈÄö‰ø°ÊÅØÁΩë', 'http://www.gzjt.gov.cn', 'i0601' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070200','ΩªÕ®–≈œ¢Õ¯', 'http://www.gzjt.gov.cn', 'i0601' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070300','ÈáëÁõæÁΩë', 'http://www.gzjd.gov.cn/', 'i0602' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070300','Ω∂‹Õ¯', 'http://www.gzjd.gov.cn/', 'i0602' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070400','Âá∫ÁßüËΩ¶Ë∞ÉÂ∫¶Á≥ªÁªü', 'http://gis.gci-china.com:5000', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
--- Â∏∏Áî®ÈìæÊé•/ÊêúÁ¥¢ÂºïÊìé
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070400','≥ˆ◊‚≥µµ˜∂»œµÕ≥', 'http://gis.gci-china.com:5000', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+-- ≥£”√¡¥Ω”/À—À˜“˝«Ê
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074000','ÊêúÁ¥¢ÂºïÊìé', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074000','À—À˜“˝«Ê', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074001','Ë∞∑Ê≠åÊêúÁ¥¢', 'http://www.google.com.hk', 'i0204' from BC_IDENTITY_RESOURCE m where m.order_='074000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074001','π»∏ËÀ—À˜', 'http://www.google.com.hk', 'i0204' from BC_IDENTITY_RESOURCE m where m.order_='074000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074002','ÁôæÂ∫¶ÊêúÁ¥¢', 'http://www.baidu.com', 'i0205' from BC_IDENTITY_RESOURCE m where m.order_='074000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074002','∞Ÿ∂»À—À˜', 'http://www.baidu.com', 'i0205' from BC_IDENTITY_RESOURCE m where m.order_='074000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074003','ÂøÖÂ∫îÊêúÁ¥¢', 'http://cn.bing.com', 'i0204' from BC_IDENTITY_RESOURCE m where m.order_='074000';
--- Â∏∏Áî®ÈìæÊé•/ÂäüËÉΩÊºîÁ§∫
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074003','±ÿ”¶À—À˜', 'http://cn.bing.com', 'i0204' from BC_IDENTITY_RESOURCE m where m.order_='074000';
+-- ≥£”√¡¥Ω”/π¶ƒ‹—› æ
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074100','ÂäüËÉΩÊºîÁ§∫', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074100','π¶ƒ‹—› æ', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074101','Ëá™Âä®ÈÄâÊã©', '/bc-test/show?tpl=/bc-test/identity/autoSelect.jsp', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074101','◊‘∂Ø—°‘Ò', '/bc-test/show?tpl=/bc-test/identity/autoSelect.jsp', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074102','ÈÄâÊã©4Actor', '/bc-test/selectIdentity', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074102','—°‘Ò4Actor', '/bc-test/selectIdentity', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074103','ÈÄâÊã©Êó•Êúü', '/bc-test/datepicker', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074103','—°‘Ò»’∆⁄', '/bc-test/datepicker', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074104','ÈôÑ‰ª∂ËÆæËÆ°', '/bc/attach/design', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074104','∏Ωº˛…Ëº∆', '/bc/attach/design', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074105','ÈÄâÊã©4BS', '/bc-test/show?tpl=/bc-business/demo/select.jsp', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
--- Â∏∏Áî®ÈìæÊé•/ÂäüËÉΩÊºîÁ§∫/Êä•Ë°®ÊºîÁ§∫
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074105','—°‘Ò4BS', '/bc-test/show?tpl=/bc-business/demo/select.jsp', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+-- ≥£”√¡¥Ω”/π¶ƒ‹—› æ/±®±Ì—› æ
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074200','Êä•Ë°®ÊºîÁ§∫', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074200','±®±Ì—› æ', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='074100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074201','È•ºÂõæ', '/bc/chart/pie', 'i0201' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074201','±˝Õº', '/bc/chart/pie', 'i0201' from BC_IDENTITY_RESOURCE m where m.order_='074200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074202','Êü±Âõæ', '/bc/chart/bar', 'i0200' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074202','÷˘Õº', '/bc/chart/bar', 'i0200' from BC_IDENTITY_RESOURCE m where m.order_='074200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074203','Âä®ÊÄÅÊõ≤Á∫øÂõæ', '/bc/chart/spline', 'i0202' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074203','∂ØÃ¨«˙œﬂÕº', '/bc/chart/spline', 'i0202' from BC_IDENTITY_RESOURCE m where m.order_='074200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074204','ÁªºÂêàÂõæË°®', '/bc/chart/mix', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='074200';
--- Â∏∏Áî®ÈìæÊé•/ÂäüËÉΩÊºîÁ§∫/UIÁªÑ‰ª∂
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '074204','◊€∫œÕº±Ì', '/bc/chart/mix', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='074200';
+-- ≥£”√¡¥Ω”/π¶ƒ‹—› æ/UI◊Èº˛
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074300','UIÁªÑ‰ª∂', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='074100';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074300','UI◊Èº˛', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='074100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074301','jqueryUI', '/ui-libs-demo/jquery-ui/1.8.16/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -82,567 +82,567 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '074307','jcrop', '/ui-libs-demo/jcrop/0.9.9/index.html', 'i0300' from BC_IDENTITY_RESOURCE m where m.order_='074300';
 
 	
--- Á≥ªÁªüÁª¥Êä§
+-- œµÕ≥Œ¨ª§
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '800000','Á≥ªÁªüÁª¥Êä§', null, 'i0403');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '800000','œµÕ≥Œ¨ª§', null, 'i0403');
     
--- Á≥ªÁªüÁª¥Êä§/ÁªÑÁªáÊû∂ÊûÑ
+-- œµÕ≥Œ¨ª§/◊È÷Øº‹ππ
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800100','ÁªÑÁªáÊû∂ÊûÑ', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800100','◊È÷Øº‹ππ', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800101','ËÅåÂä°ÈÖçÁΩÆ', '/bc/duty/paging', 'i0009' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800101','÷∞ŒÒ≈‰÷√', '/bc/duty/paging', 'i0009' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800102','Âçï‰ΩçÈÖçÁΩÆ', '/bc/units/paging', 'i0007' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800102','µ•Œª≈‰÷√', '/bc/units/paging', 'i0007' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800103','ÈÉ®Èó®ÈÖçÁΩÆ', '/bc/departments/paging', 'i0008' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800103','≤ø√≈≈‰÷√', '/bc/departments/paging', 'i0008' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800104','Â≤ó‰ΩçÈÖçÁΩÆ', '/bc/groups/paging', 'i0003' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800104','∏⁄Œª≈‰÷√', '/bc/groups/paging', 'i0003' from BC_IDENTITY_RESOURCE m where m.order_='800100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800105','Áî®Êà∑ÈÖçÁΩÆ', '/bc/users/paging', 'i0003' from BC_IDENTITY_RESOURCE m where m.order_='800100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800105','”√ªß≈‰÷√', '/bc/users/paging', 'i0003' from BC_IDENTITY_RESOURCE m where m.order_='800100';
     
--- Á≥ªÁªüÁª¥Êä§/ÊùÉÈôêÁÆ°ÁêÜ
+-- œµÕ≥Œ¨ª§/»®œﬁπ‹¿Ì
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800200','ÊùÉÈôêÁÆ°ÁêÜ', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800200','»®œﬁπ‹¿Ì', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800201','ËµÑÊ∫êÈÖçÁΩÆ', '/bc/resource/paging', 'i0005' from BC_IDENTITY_RESOURCE m where m.order_='800200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800201','◊ ‘¥≈‰÷√', '/bc/resource/paging', 'i0005' from BC_IDENTITY_RESOURCE m where m.order_='800200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800202','ËßíËâ≤ÈÖçÁΩÆ', '/bc/role/paging', 'i0006' from BC_IDENTITY_RESOURCE m where m.order_='800200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800202','Ω«…´≈‰÷√', '/bc/role/paging', 'i0006' from BC_IDENTITY_RESOURCE m where m.order_='800200';
 
--- Á≥ªÁªüÁª¥Êä§/ÂÖ∂‰ªñ
+-- œµÕ≥Œ¨ª§/∆‰À˚
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800301','ÈÄâÈ°πÂàÜÁªÑ', '/bc/optionGroup/list', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800301','—°œÓ∑÷◊È', '/bc/optionGroup/list', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800302','ÈÄâÈ°πÁÆ°ÁêÜ', '/bc/optionItem/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800302','—°œÓπ‹¿Ì', '/bc/optionItem/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800303','ÂèçÈ¶àÁÆ°ÁêÜ', '/bc/feedback/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800303','∑¥¿°π‹¿Ì', '/bc/feedback/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800304','ÈôÑ‰ª∂ÁÆ°ÁêÜ', '/bc/attach/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800304','∏Ωº˛π‹¿Ì', '/bc/attach/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800307','Ê∂àÊÅØÁÆ°ÁêÜ', '/bc/message/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800307','œ˚œ¢π‹¿Ì', '/bc/message/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800305','ÂÆöÊó∂‰ªªÂä°', '/bc/schedule/job/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800305','∂® ±»ŒŒÒ', '/bc/schedule/job/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800306','Êó•ÂøóÁÆ°ÁêÜ', '/bc/syslog/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800306','»’÷æπ‹¿Ì', '/bc/syslog/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
 
--- Ëê•ËøêÁ≥ªÁªü	
+-- ”™‘ÀœµÕ≥	
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '030000','Ëê•ËøêÁ≥ªÁªü', null, 'i0403');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '030000','”™‘ÀœµÕ≥', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030100','ËΩ¶Èòü‰ø°ÊÅØ', '/bc-business/motorcades/list', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030100','≥µ∂”–≈œ¢', '/bc-business/motorcades/list', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
--- Ëê•ËøêÁ≥ªÁªü/ËΩ¶ËæÜÁÆ°ÁêÜ
+-- ”™‘ÀœµÕ≥/≥µ¡æπ‹¿Ì
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030200','ËΩ¶ËæÜÁÆ°ÁêÜ', null, 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030200','≥µ¡æπ‹¿Ì', null, 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030201','ËΩ¶ËæÜ‰ø°ÊÅØ', '/bc-business/cars/paging', 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030201','≥µ¡æ–≈œ¢', '/bc-business/cars/paging', 'i0402' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030202','ËΩ¶ËæÜËØÅ‰ª∂', '/bc-business/car4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030202','≥µ¡æ÷§º˛', '/bc-business/car4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030203','ËΩ¶ËæÜ‰øùÂçï', '/bc-business/policys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030203','≥µ¡æ±£µ•', '/bc-business/policys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 
--- Ëê•ËøêÁ≥ªÁªü/Âè∏Êú∫ÁÆ°ÁêÜ
+-- ”™‘ÀœµÕ≥/Àæª˙π‹¿Ì
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030300','Âè∏Êú∫ÁÆ°ÁêÜ', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030300','Àæª˙π‹¿Ì', null, 'i0403' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030301','Âè∏Êú∫‰ø°ÊÅØ', '/bc-business/carMans/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030301','Àæª˙–≈œ¢', '/bc-business/carMans/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030302','Âè∏Êú∫ËØÅ‰ª∂', '/bc-business/driver4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030302','Àæª˙÷§º˛', '/bc-business/driver4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 
--- Ëê•ËøêÁ≥ªÁªü/ÂêàÂêåÁÆ°ÁêÜ
+-- ”™‘ÀœµÕ≥/∫œÕ¨π‹¿Ì
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030400','ÂêàÂêåÁÆ°ÁêÜ', null, 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030400','∫œÕ¨π‹¿Ì', null, 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030401','Âè∏Êú∫Âä≥Âä®ÂêàÂêå', '/bc-business/contractLabours/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030401','Àæª˙¿Õ∂Ø∫œÕ¨', '/bc-business/contractLabours/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030402','ËΩ¶ËæÜÁªèÊµéÂêàÂêå', '/bc-business/contractChargers/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030402','≥µ¡ææ≠º√∫œÕ¨', '/bc-business/contractChargers/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 
--- Ëê•ËøêÁ≥ªÁªü/ËÄÉÂã§ÁÆ°ÁêÜ
+-- ”™‘ÀœµÕ≥/øº«⁄π‹¿Ì
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030500','ËÄÉÂã§ÁÆ°ÁêÜ', null, 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '030500','øº«⁄π‹¿Ì', null, 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030501','Âè∏Êú∫ÂÆâÂÖ®Â≠¶‰π†', '/bc-business/arrangeDriver/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030501','Àæª˙∞≤»´—ßœ∞', '/bc-business/arrangeDriver/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030502','ËΩ¶ËæÜÂõûÂú∫Ê£Ä', '/bc-business/arrangeCar/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030502','≥µ¡æªÿ≥°ºÏ', '/bc-business/arrangeCar/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030503','ËÄÉÂã§Â∏êÂè∑ÁÆ°ÁêÜ', '/bc-business/member/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030503','øº«⁄’ ∫≈π‹¿Ì', '/bc-business/member/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030504','ËÄÉÂã§Êú∫ÁÆ°ÁêÜ', '/bc-business/attendanceMachine/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030504','øº«⁄ª˙π‹¿Ì', '/bc-business/attendanceMachine/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030500';
 
--- Ëê•ËøêÁ≥ªÁªü/ËøÅÁßªËÆ∞ÂΩï
+-- ”™‘ÀœµÕ≥/«®“∆º«¬º
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030600','ËøÅÁßªËÆ∞ÂΩï', '/bc-business/carByDriverHistorys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030300';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030600','«®“∆º«¬º', '/bc-business/carByDriverHistorys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030300';
 
--- Ëê•ËøêÁ≥ªÁªü/ÂÖ∂‰ªñ
+-- ”™‘ÀœµÕ≥/∆‰À˚
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031000','Ëê•ËøêÁè≠Ê¨°', '/bc-business/carByDrivers/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031000','”™‘À∞‡¥Œ', '/bc-business/carByDrivers/paging', 'i0401' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031100','ÈªëÂêçÂçï', '/bc-business/blacklists/paging', 'i0703' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031100','∫⁄√˚µ•', '/bc-business/blacklists/paging', 'i0703' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031200','‰∫ãÊïÖÁêÜËµî', '/bc-business/caseAccidents/paging', 'i0707' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031200',' ¬π ¿Ì≈‚', '/bc-business/caseAccidents/paging', 'i0707' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031300','‰∫§ÈÄöËøùÁ´†', '/bc-business/caseTraffics/paging', 'i0706' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031300','ΩªÕ®Œ•’¬', '/bc-business/caseTraffics/paging', 'i0706' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031400','Ëê•ËøêËøùÁ´†', '/bc-business/caseBusinesss/paging', 'i0705' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031400','”™‘ÀŒ•’¬', '/bc-business/caseBusinesss/paging', 'i0705' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031500','ÊäïËØâ‰∏éÂª∫ËÆÆ', '/bc-business/caseAdvices/paging', 'i0708' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031500','Õ∂Àﬂ”ÎΩ®“È', '/bc-business/caseAdvices/paging', 'i0708' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031600','Ë°®Êâ¨', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031600','±Ì—Ô', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
--- Ëê•ËøêÁ≥ªÁªü/ÂÖ∂‰ªñ-Êä•Ë°®
+-- ”™‘ÀœµÕ≥/∆‰À˚-±®±Ì
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035000','Ëê•ËøêÊä•Ë°®', '/bc/error/todo', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035000','”™‘À±®±Ì', '/bc/error/todo', 'i0203' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
--- Ëê•ËøêÁ≥ªÁªü/ÂÖ∂‰ªñ-Êé•Âè£Êï∞ÊçÆ
+-- ”™‘ÀœµÕ≥/∆‰À˚-Ω”ø⁄ ˝æ›
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '035100','Êé•Âè£Êï∞ÊçÆ', null, 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '035100','Ω”ø⁄ ˝æ›', null, 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035101','‰∫§Âßî‰∫§ÈÄöËøùÊ≥ï', '/bc-business/jiaoWeiJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035101','ΩªŒØΩªÕ®Œ•∑®', '/bc-business/jiaoWeiJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035102','‰∫§ÂßîËê•ËøêËøùÁ´†', '/bc-business/jiaoWeiYYWZs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035102','ΩªŒØ”™‘ÀŒ•’¬', '/bc-business/jiaoWeiYYWZs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035103','‰∫§ÂßîÊäïËØâÂª∫ËÆÆ', '/bc-business/jiaoWeiADVICEs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035103','ΩªŒØÕ∂ÀﬂΩ®“È', '/bc-business/jiaoWeiADVICEs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035104','‰∫§Âßî‰∫∫ËΩ¶ÂÖ≥Á≥ª', '/bc-business/jiaoWeiRCGXs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035104','ΩªŒØ»À≥µπÿœµ', '/bc-business/jiaoWeiRCGXs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035105','ÈáëÁõæ‰∫§ÈÄöËøùÊ≥ï', '/bc-business/jinDunJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '035105','Ω∂‹ΩªÕ®Œ•∑®', '/bc-business/jinDunJTWFs/paging', 'i0802' from BC_IDENTITY_RESOURCE m where m.order_='035100';
 
 
--- ÂäûÂÖ¨Á≥ªÁªü
+-- ∞Ïπ´œµÕ≥
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '040000','ÂäûÂÖ¨Á≥ªÁªü', null, 'i0403');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '040000','∞Ïπ´œµÕ≥', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040100','ÂÖ¨Âëä‰ø°ÊÅØ', '/bc/bulletins/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040100','π´∏Ê–≈œ¢', '/bc/bulletins/paging', 'i0406' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040200','ÈÄöËÆØÂΩï', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040200','Õ®—∂¬º', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040300','‰ºöËÆÆ‰ø°ÊÅØ', '/bc/error/todo', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040300','ª·“È–≈œ¢', '/bc/error/todo', 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040400','Â∑•‰ΩúËÆ°Âàí', '/bc/error/todo', 'i0208' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040400','π§◊˜º∆ªÆ', '/bc/error/todo', 'i0208' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040500','ËÄÉÂã§‰ø°ÊÅØ', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040500','øº«⁄–≈œ¢', '/bc/error/todo', 'i0207' from BC_IDENTITY_RESOURCE m where m.order_='040000';
 
--- ÂÖ®Â±ÄÊõ¥Êñ∞ËµÑÊ∫êÁöÑpnameÂÄº
+-- »´æ÷∏¸–¬◊ ‘¥µƒpname÷µ
 select update_resource_pname(0);
 
--- ÊèíÂÖ•ÈÄöÁî®ËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»ÎÕ®”√Ω«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0000', 'BC_COMMON','ÈÄöÁî®ËßíËâ≤');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0000', 'BC_COMMON','Õ®”√Ω«…´');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
 	and m.type_ > 1 and (m.order_ like '01%' or m.order_ like '03%' or m.order_ like '04%' or m.order_ like '07%')
 	order by m.order_;
 
--- ÊèíÂÖ•Ë∂ÖÁ∫ßÁÆ°ÁêÜÂëòËßíËâ≤Êï∞ÊçÆÔºàÂèØËÆøÈóÆÊâÄÊúâËµÑÊ∫êÔºâ
+-- ≤Â»Î≥¨º∂π‹¿Ì‘±Ω«…´ ˝æ›£®ø…∑√Œ À˘”–◊ ‘¥£©
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0001', 'BC_ADMIN','Ë∂ÖÁ∫ßÁÆ°ÁêÜÂëò');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0001', 'BC_ADMIN','≥¨º∂π‹¿Ì‘±');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where m.type_ > 1 and r.code='BC_ADMIN' order by r.ORDER_,m.ORDER_;
 
--- ÊèíÂÖ•ÈÄâÈ°πÁÆ°ÁêÜÂëòËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î—°œÓπ‹¿Ì‘±Ω«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0002', 'BC_OPTION','ÈÄâÈ°πÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0002', 'BC_OPTION','—°œÓπ‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_OPTION' 
 	and m.type_ > 1 and m.order_ in ('800301','800302')
 	order by m.order_;
 
--- ÊèíÂÖ•ÂÖ¨ÂëäÁÆ°ÁêÜÂëòËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Îπ´∏Êπ‹¿Ì‘±Ω«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0003', 'BC_BULLETIN','ÂÖ¨ÂëäÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0003', 'BC_BULLETIN','π´∏Êπ‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_BULLETIN' 
 	and m.type_ > 1 and (m.order_ like '04%')
 	order by m.order_;
 
--- ÊèíÂÖ•Áî®Êà∑ÂèçÈ¶àÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î”√ªß∑¥¿°π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0004', 'BC_FEEDBACK','ÂèçÈ¶àÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0004', 'BC_FEEDBACK','∑¥¿°π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_FEEDBACK' 
 	and m.type_ > 1 and m.order_ in ('011000','800303')
 	order by m.order_;
 
--- ÊèíÂÖ•ÈôÑ‰ª∂ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î∏Ωº˛π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0005', 'BC_ATTACH','ÈôÑ‰ª∂ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0005', 'BC_ATTACH','∏Ωº˛π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ATTACH' 
 	and m.type_ > 1 and m.order_ in ('800304')
 	order by m.order_;
 
--- ÊèíÂÖ•Ëê•ËøêÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î”™‘Àπ‹¿ÌΩ«…´ ˝æ›
 -- insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
--- 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0005', 'BS_BUSINESS','Ëê•ËøêÁÆ°ÁêÜ');
+-- 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0005', 'BS_BUSINESS','”™‘Àπ‹¿Ì');
 -- insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 -- 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_BUSINESS' 
 -- 	and m.type_ > 1 and m.order_ like '03%'
 -- 	order by m.order_;
 
--- ÊèíÂÖ•ËΩ¶ÈòüÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î≥µ∂”π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0101', 'BS_MOTORCADE','ËΩ¶ÈòüÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0101', 'BS_MOTORCADE','≥µ∂”π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_MOTORCADE' 
 	and m.type_ > 1 and m.order_ = '030100'
 	order by m.order_;
 
--- ÊèíÂÖ•ËΩ¶ËæÜÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î≥µ¡æπ‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102', 'BS_CAR','ËΩ¶ËæÜÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102', 'BS_CAR','≥µ¡æπ‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR' 
 	and m.type_ > 1 and m.order_ in ('030201','030202','031000')
 	order by m.order_;
 
--- ÊèíÂÖ•Âè∏Êú∫ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»ÎÀæª˙π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0103', 'BS_DRIVER','Âè∏Êú∫ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0103', 'BS_DRIVER','Àæª˙π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_DRIVER' 
 	and m.type_ > 1 and m.order_ in ('030301','030302','030303','031000')
 	order by m.order_;
 
--- ÊèíÂÖ•ÁªèÊµéÂêàÂêåÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Îæ≠º√∫œÕ¨π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104', 'BS_CONTRACT4CHARGER','ÁªèÊµéÂêàÂêåÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104', 'BS_CONTRACT4CHARGER','æ≠º√∫œÕ¨π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4CHARGER' 
 	and m.type_ > 1 and m.order_ in ('030402')
 	order by m.order_;
 
--- ÊèíÂÖ•Âä≥Âä®ÂêàÂêåÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î¿Õ∂Ø∫œÕ¨π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105', 'BS_CONTRACT4LABOUR','Âä≥Âä®ÂêàÂêåÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105', 'BS_CONTRACT4LABOUR','¿Õ∂Ø∫œÕ¨π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4LABOUR' 
 	and m.type_ > 1 and m.order_ in ('030401')
 	order by m.order_;
 
--- ÊèíÂÖ•ÈªëÂêçÂçïÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î∫⁄√˚µ•π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0106', 'BS_BLACKLIST','ÈªëÂêçÂçïÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0106', 'BS_BLACKLIST','∫⁄√˚µ•π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_BLACKLIST' 
 	and m.type_ > 1 and m.order_ in ('031100')
 	order by m.order_;
 
--- ÊèíÂÖ•‰∫ãÊïÖÁêÜËµîÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î ¬π ¿Ì≈‚π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0107', 'BS_ACCIDENT','‰∫ãÊïÖÁêÜËµîÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0107', 'BS_ACCIDENT',' ¬π ¿Ì≈‚π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ACCIDENT' 
 	and m.type_ > 1 and m.order_ in ('031200')
 	order by m.order_;
 
--- ÊèíÂÖ•‰∫§ÈÄöËøùÁ´†ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»ÎΩªÕ®Œ•’¬π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0108', 'BS_INFRACT_TRAFFIC','‰∫§ÈÄöËøùÁ´†ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0108', 'BS_INFRACT_TRAFFIC','ΩªÕ®Œ•’¬π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INFRACT_TRAFFIC' 
 	and m.type_ > 1 and m.order_ in ('031300')
 	order by m.order_;
 
--- ÊèíÂÖ•Ëê•ËøêËøùÁ´†ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î”™‘ÀŒ•’¬π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0109', 'BS_INFRACT_BUSINESS','Ëê•ËøêËøùÁ´†ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0109', 'BS_INFRACT_BUSINESS','”™‘ÀŒ•’¬π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INFRACT_BUSINESS' 
 	and m.type_ > 1 and m.order_ in ('031400')
 	order by m.order_;
 
--- ÊèíÂÖ•ÊäïËØâ‰∏éÂª∫ËÆÆÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»ÎÕ∂Àﬂ”ÎΩ®“Èπ‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0110', 'BS_ADVICE','ÊäïËØâ‰∏éÂª∫ËÆÆÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0110', 'BS_ADVICE','Õ∂Àﬂ”ÎΩ®“Èπ‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ADVICE' 
 	and m.type_ > 1 and m.order_ in ('031500')
 	order by m.order_;
 
--- ÊèíÂÖ•Ë°®Êâ¨ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î±Ì—Ôπ‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0111', 'BS_PRAISE','Ë°®Êâ¨ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0111', 'BS_PRAISE','±Ì—Ôπ‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_PRAISE' 
 	and m.type_ > 1 and m.order_ in ('031600')
 	order by m.order_;
 
--- ÊèíÂÖ•ËΩ¶ËæÜËØÅ‰ª∂ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î≥µ¡æ÷§º˛π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0112', 'BS_CERT4CAR','ËΩ¶ËæÜËØÅ‰ª∂ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0112', 'BS_CERT4CAR','≥µ¡æ÷§º˛π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT4CAR' 
 	and m.type_ > 1 and m.order_ in ('030202')
 	order by m.order_;
 
--- ÊèíÂÖ•Âè∏Êú∫ËØÅ‰ª∂ÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»ÎÀæª˙÷§º˛π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0113', 'BS_CERT4DRIVER','Âè∏Êú∫ËØÅ‰ª∂ÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0113', 'BS_CERT4DRIVER','Àæª˙÷§º˛π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT4DRIVER' 
 	and m.type_ > 1 and m.order_ in ('030302')
 	order by m.order_;
 
--- ÊèíÂÖ•ËΩ¶ËæÜ‰øùÂçïÁÆ°ÁêÜËßíËâ≤Êï∞ÊçÆ
+-- ≤Â»Î≥µ¡æ±£µ•π‹¿ÌΩ«…´ ˝æ›
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0114', 'BS_POLICY','ËΩ¶ËæÜ‰øùÂçïÁÆ°ÁêÜ');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0114', 'BS_POLICY','≥µ¡æ±£µ•π‹¿Ì');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_POLICY' 
 	and m.type_ > 1 and m.order_ in ('030203')
 	order by m.order_;
 
 
--- ÊèíÂÖ•ËÅåÂä°Êï∞ÊçÆ
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0000','ËÅåÂëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0100','Ëë£‰∫ãÈïø');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0200','È°æÈóÆ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0301','ÊÄªÁªèÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0302','ÂâØÊÄªÁªèÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0303','Â∏∏Âä°ÂâØÊÄªÁªèÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0401','ÁªèÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0402','ÂâØÁªèÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0501','‰∏ª‰ªª');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0502','ÂâØ‰∏ª‰ªª');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0601','‰∏ªÁÆ°');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0701','ÊñáÁßò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0801','Âä©ÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0802','Ë°åÊîøÂä©ÁêÜ');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0803','‰ºöËÆ°');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0804','ÁªÑÈïø');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0805','‰∫∫‰∫ã‰∏ìÂëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0806','ÊúçÂä°ÁõëÁù£Âëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0807','‰∏öÂä°Âëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0808','ËΩ¶ÁÆ°Âëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0809','ÂÆâÂÖ®Âëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0810','Êî∂Ê¨æÂëò');
-insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0811','Ê≥ïÂä°‰∏ìÂëò');
+-- ≤Â»Î÷∞ŒÒ ˝æ›
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0000','÷∞‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0100','∂≠ ¬≥§');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0200','πÀŒ ');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0301','◊‹æ≠¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0302','∏±◊‹æ≠¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0303','≥£ŒÒ∏±◊‹æ≠¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0401','æ≠¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0402','∏±æ≠¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0501','÷˜»Œ');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0502','∏±÷˜»Œ');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0601','÷˜π‹');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0701','Œƒ√ÿ');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0801','÷˙¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0802','––’˛÷˙¿Ì');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0803','ª·º∆');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0804','◊È≥§');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0805','»À ¬◊®‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0806','∑˛ŒÒº‡∂Ω‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0807','“µŒÒ‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0808','≥µπ‹‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0809','∞≤»´‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0810',' ’øÓ‘±');
+insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '0811','∑®ŒÒ◊®‘±');
 
 
--- ÊèíÂÖ•È°∂Â±ÇÂçï‰ΩçÊï∞ÊçÆ:ÊéíÂ∫èÂè∑ÁöÑÊ†ºÂºèÔºöaÂçï‰Ωç„ÄÅbÈÉ®Èó®„ÄÅcÂ≤ó‰Ωç„ÄÅd‰∫∫Âëò
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(1,'unit.dc.2', 0, false, 1, 'baochengzongbu','ÂÆùÂüéÊÄªÈÉ®', 'a1', 'baochengzongbu',NULL,NULL);
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(2,'unit.dc.3', 0, false, 1, 'baochengdaxin','ÂÆùÂüéÂ§ßÊñ∞', 'a2', 'baochengdaxin',NULL,NULL);
--- ÊèíÂÖ•Êï∞ÊçÆËΩ¨Êç¢ËÆ∞ÂΩïÈÅøÂÖçÈáçÂ§çËΩ¨Êç¢
+-- ≤Â»Î∂•≤„µ•Œª ˝æ›:≈≈–Ú∫≈µƒ∏Ò Ω£∫aµ•Œª°¢b≤ø√≈°¢c∏⁄Œª°¢d»À‘±
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(1,'unit.dc.2', 0, false, 1, 'baochengzongbu','±¶≥«◊‹≤ø', 'a1', 'baochengzongbu',NULL,NULL);
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(2,'unit.dc.3', 0, false, 1, 'baochengdaxin','±¶≥«¥Û–¬', 'a2', 'baochengdaxin',NULL,NULL);
+-- ≤Â»Î ˝æ›◊™ªªº«¬º±‹√‚÷ÿ∏¥◊™ªª
 insert into DC_RECORD (TYPE_, FROM_ID, TO_ID, FROM_TABLE, TO_TABLE, CREATE_DATE)
     values ('unit', 2, 1, 'within_config_file_third_kind', 'BC_IDENTITY_ACTOR', to_date('19-08-2011 12:49:23', 'dd-mm-yyyy hh24:mi:ss'));
 insert into DC_RECORD (TYPE_, FROM_ID, TO_ID, FROM_TABLE, TO_TABLE, CREATE_DATE)
     values ('unit', 3, 2, 'within_config_file_third_kind', 'BC_IDENTITY_ACTOR', to_date('19-08-2011 12:49:22', 'dd-mm-yyyy hh24:mi:ss'));
--- ÊèíÂÖ•ÂàÜÂÖ¨Âè∏Êï∞ÊçÆ
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(3,'unit.3', 0, false, 1, 'yifengongsi','‰∏ÄÂàÜÂÖ¨Âè∏', 'a1.a1', 'yifengongsi','[1]baochengzongbu','ÂÆùÂüéÊÄªÈÉ®');
+-- ≤Â»Î∑÷π´Àæ ˝æ›
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(3,'unit.3', 0, false, 1, 'yifengongsi','“ª∑÷π´Àæ', 'a1.a1', 'yifengongsi','[1]baochengzongbu','±¶≥«◊‹≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='yifengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(4,'unit.4', 0, false, 1, 'erfengongsi','‰∫åÂàÜÂÖ¨Âè∏', 'a1.a2', 'erfengongsi','[1]baochengzongbu','ÂÆùÂüéÊÄªÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(4,'unit.4', 0, false, 1, 'erfengongsi','∂˛∑÷π´Àæ', 'a1.a2', 'erfengongsi','[1]baochengzongbu','±¶≥«◊‹≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='erfengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(5,'unit.5', 0, false, 1, 'sanfengongsi','‰∏âÂàÜÂÖ¨Âè∏', 'a1.a3', 'sanfengongsi','[1]baochengzongbu','ÂÆùÂüéÊÄªÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(5,'unit.5', 0, false, 1, 'sanfengongsi','»˝∑÷π´Àæ', 'a1.a3', 'sanfengongsi','[1]baochengzongbu','±¶≥«◊‹≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='sanfengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(6,'unit.6', 0, false, 1, 'sifengongsi','ÂõõÂàÜÂÖ¨Âè∏', 'a1.a4', 'sifengongsi','[1]baochengzongbu','ÂÆùÂüéÊÄªÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(6,'unit.6', 0, false, 1, 'sifengongsi','Àƒ∑÷π´Àæ', 'a1.a4', 'sifengongsi','[1]baochengzongbu','±¶≥«◊‹≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='sifengongsi';
     
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(7,'unit.7', 0, false, 1, 'xiulichang','‰øÆÁêÜÂéÇ', 'a1.a5', 'xiulichang','[1]baochengzongbu','ÂÆùÂüéÊÄªÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(7,'unit.7', 0, false, 1, 'xiulichang','–ﬁ¿Ì≥ß', 'a1.a5', 'xiulichang','[1]baochengzongbu','±¶≥«◊‹≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='xiulichang';
 
--- ÊèíÂÖ•ÈÉ®Èó®Êï∞ÊçÆ
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(8,'department.8', 0, false, 2, 'xinxijishubu','‰ø°ÊÅØÊäÄÊúØÈÉ®', 'a1.b9999', 'xinxijishubu','[1]baochengzongbu','ÂÆùÂüéÊÄªÈÉ®');
+-- ≤Â»Î≤ø√≈ ˝æ›
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(8,'department.8', 0, false, 2, 'xinxijishubu','–≈œ¢ºº ı≤ø', 'a1.b9999', 'xinxijishubu','[1]baochengzongbu','±¶≥«◊‹≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='baochengzongbu' and af.code='xinxijishubu';
     
--- ÊèíÂÖ•‰∫∫Âëò:admin
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(9,'user.9', 0, false, 4, 'admin','Á≥ªÁªüÁÆ°ÁêÜÂëò', 'a1.b9999.d9999', 'chaojiguanliyuan','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+-- ≤Â»Î»À‘±:admin
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(9,'user.9', 0, false, 4, 'admin','œµÕ≥π‹¿Ì‘±', 'a1.b9999.d9999', 'chaojiguanliyuan','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='admin'; 
 insert into BC_IDENTITY_ACTOR_DETAIL (ID,CREATE_DATE,SEX,DUTY_ID) 
-    values ((select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),now(),0,(select d.id from BC_IDENTITY_DUTY d where d.name='ËÅåÂëò'));
+    values ((select a.id from BC_IDENTITY_ACTOR a where a.code='admin'),now(),0,(select d.id from BC_IDENTITY_DUTY d where d.name='÷∞‘±'));
 insert into BC_IDENTITY_ACTOR_HISTORY (ID,CREATE_DATE,ACTOR_TYPE,ACTOR_ID,ACTOR_NAME,UPPER_ID,UPPER_NAME,UNIT_ID,UNIT_NAME,PCODE,PNAME) 
     select NEXTVAL('CORE_SEQUENCE'),now(),a.type_,a.id,a.name,b.id,b.name,c.id,c.name,a.pcode,a.pname 
     from BC_IDENTITY_ACTOR a, BC_IDENTITY_ACTOR b, BC_IDENTITY_ACTOR c where a.code='admin' and b.code='xinxijishubu' and c.code='baochengzongbu'; 
--- ÊèíÂÖ•‰∫∫Âëò:ÊµãËØïÂëò
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(10,'user.10', 0, false, 4, 'dragon','ÊµãËØïÂëò', 'a1.b9999.d9999.1', 'ceshiyuan','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+-- ≤Â»Î»À‘±:≤‚ ‘‘±
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(10,'user.10', 0, false, 4, 'dragon','≤‚ ‘‘±', 'a1.b9999.d9999.1', 'ceshiyuan','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='dragon'; 
 insert into BC_IDENTITY_ACTOR_DETAIL (ID,CREATE_DATE,SEX,DUTY_ID) 
-    values ((select a.id from BC_IDENTITY_ACTOR a where a.code='dragon'),now(),0,(select d.id from BC_IDENTITY_DUTY d where d.name='ËÅåÂëò'));
+    values ((select a.id from BC_IDENTITY_ACTOR a where a.code='dragon'),now(),0,(select d.id from BC_IDENTITY_DUTY d where d.name='÷∞‘±'));
 insert into BC_IDENTITY_ACTOR_HISTORY (ID,CREATE_DATE,ACTOR_TYPE,ACTOR_ID,ACTOR_NAME,UPPER_ID,UPPER_NAME,UNIT_ID,UNIT_NAME,PCODE,PNAME) 
     select NEXTVAL('CORE_SEQUENCE'),now(),a.type_,a.id,a.name,b.id,b.name,c.id,c.name,a.pcode,a.pname 
     from BC_IDENTITY_ACTOR a, BC_IDENTITY_ACTOR b, BC_IDENTITY_ACTOR c where a.code='dragon' and b.code='xinxijishubu' and c.code='baochengzongbu'; 
     
--- Êõ¥Êñ∞‰∫∫Âëò‰∏éDetail‰ø°ÊÅØÁöÑÂÖ≥ËÅîÂÖ≥Á≥ª
+-- ∏¸–¬»À‘±”ÎDetail–≈œ¢µƒπÿ¡™πÿœµ
 update BC_IDENTITY_ACTOR a set detail_id = (select ad.id from BC_IDENTITY_ACTOR_DETAIL ad where ad.id = a.id)
     where a.type_=4 and exists (select 1 from BC_IDENTITY_ACTOR_DETAIL ad where ad.id = a.id);
     
--- ÊèíÂÖ•‰∫∫ÂëòÁöÑËÆ§ËØÅÊï∞ÊçÆ(ÂØÜÁ†ÅÈªòËÆ§‰∏∫888888ÁöÑmd5ÂÄº21218cca77804d2ba1922c33e0151105)
+-- ≤Â»Î»À‘±µƒ»œ÷§ ˝æ›(√‹¬Îƒ¨»œŒ™888888µƒmd5÷µ21218cca77804d2ba1922c33e0151105)
 insert into BC_IDENTITY_AUTH (ID,PASSWORD) 
     select a.id,md5('888888') from BC_IDENTITY_ACTOR a where a.type_=4; 
 
--- ÊèíÂÖ•Â≤ó‰ΩçÊï∞ÊçÆ
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(11,'group.11', 0, false, 3, 'chaojiguanligang','Ë∂ÖÁ∫ßÁÆ°ÁêÜÂ≤ó', 'a1.b9999.c9999','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+-- ≤Â»Î∏⁄Œª ˝æ›
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(11,'group.11', 0, false, 3, 'chaojiguanligang','≥¨º∂π‹¿Ì∏⁄', 'a1.b9999.c9999','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='chaojiguanligang'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.1', 0, false, 3, 'ceshigang1','ÊµãËØïÂ≤ó1', 'a1.b9999.c9999.1','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.1', 0, false, 3, 'ceshigang1','≤‚ ‘∏⁄1', 'a1.b9999.c9999.1','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang1'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.2', 0, false, 3, 'ceshigang2','ÊµãËØïÂ≤ó2', 'a1.b9999.c9999.2','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.2', 0, false, 3, 'ceshigang2','≤‚ ‘∏⁄2', 'a1.b9999.c9999.2','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang2'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.3', 0, false, 3, 'ceshigang3','ÊµãËØïÂ≤ó3', 'a1.b9999.c9999.3','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.3', 0, false, 3, 'ceshigang3','≤‚ ‘∏⁄3', 'a1.b9999.c9999.3','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang3'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.4', 0, false, 3, 'ceshigang4','ÊµãËØïÂ≤ó4', 'a1.b9999.c9999.4','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.4', 0, false, 3, 'ceshigang4','≤‚ ‘∏⁄4', 'a1.b9999.c9999.4','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang4'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.5', 0, false, 3, 'ceshigang5','ÊµãËØïÂ≤ó5', 'a1.b9999.c9999.5','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.5', 0, false, 3, 'ceshigang5','≤‚ ‘∏⁄5', 'a1.b9999.c9999.5','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang5'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.6', 0, false, 3, 'ceshigang6','ÊµãËØïÂ≤ó6', 'a1.b9999.c9999.6','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.6', 0, false, 3, 'ceshigang6','≤‚ ‘∏⁄6', 'a1.b9999.c9999.6','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang6'; 
-insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.7', 0, false, 3, 'ceshigang7','ÊµãËØïÂ≤ó7', 'a1.b9999.c9999.7','[1]baochengzongbu/[2]xinxijishubu','ÂÆùÂüéÊÄªÈÉ®/‰ø°ÊÅØÊäÄÊúØÈÉ®');
+insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) values(NEXTVAL('CORE_SEQUENCE'),'group.10.7', 0, false, 3, 'ceshigang7','≤‚ ‘∏⁄7', 'a1.b9999.c9999.7','[1]baochengzongbu/[2]xinxijishubu','±¶≥«◊‹≤ø/–≈œ¢ºº ı≤ø');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='xinxijishubu' and af.code='ceshigang7'; 
 
--- ÂÖ®Â±ÄÊõ¥Êñ∞ActorÁöÑpcode„ÄÅpnameÂÄº
+-- »´æ÷∏¸–¬Actorµƒpcode°¢pname÷µ
 select update_actor_pcodepname(0);
 
     
--- ËÆ©Ë∂ÖÁ∫ßÁÆ°ÁêÜÂëòÊã•ÊúâË∂ÖÁ∫ßÁÆ°ÁêÜÂ≤ó
+-- »√≥¨º∂π‹¿Ì‘±”µ”–≥¨º∂π‹¿Ì∏⁄
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'admin' 
     and am.code = 'chaojiguanligang'; 
 
--- ËÆ©È°∂Â±ÇÂçï‰ΩçÊã•ÊúâÈÄöÁî®ËßíËâ≤
+-- »√∂•≤„µ•Œª”µ”–Õ®”√Ω«…´
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BC_COMMON';
 
--- ËÆ©Ë∂ÖÁ∫ßÁÆ°ÁêÜÂëòÊã•ÊúâË∂ÖÁ∫ßÁÆ°ÁêÜÂëòËßíËâ≤
+-- »√≥¨º∂π‹¿Ì‘±”µ”–≥¨º∂π‹¿Ì‘±Ω«…´
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='admin' and r.code='BC_ADMIN';
 
--- ËÆ©Ë∂ÖÁ∫ßÁÆ°ÁêÜÂ≤óÊã•ÊúâÊâÄÊúâËßíËâ≤
+-- »√≥¨º∂π‹¿Ì∏⁄”µ”–À˘”–Ω«…´
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='chaojiguanligang';
 
 
--- ËÆ©ÊµãËØïÂëòÊã•ÊúâÊâÄÊúâÊµãËØïÂ≤ó
+-- »√≤‚ ‘‘±”µ”–À˘”–≤‚ ‘∏⁄
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'dragon' 
     and am.code like 'ceshigang%';
--- ËÆ©ÊµãËØïÂëòÊã•ÊúâÈÄöÁî®ËßíËâ≤
+-- »√≤‚ ‘‘±”µ”–Õ®”√Ω«…´
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='dragon' and r.code='BC_COMMON';
 
 	
--- ##Á≥ªÁªüÊ°åÈù¢Áõ∏ÂÖ≥Ê®°ÂùóÁöÑÂàùÂßãÂåñÊï∞ÊçÆ##
+-- ##œµÕ≥◊¿√Êœ‡πÿƒ£øÈµƒ≥ı ºªØ ˝æ›##
 
--- ÊèíÂÖ•Ê°åÈù¢Âø´Êç∑ÊñπÂºèÊï∞ÊçÆ
+-- ≤Â»Î◊¿√ÊøÏΩ›∑Ω Ω ˝æ›
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0001', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='ÂæÖÂäû‰∫ãÂä°';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0001', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='¥˝∞Ï ¬ŒÒ';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0002', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='Â∑≤Âäû‰∫ãÂä°';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0002', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='“—∞Ï ¬ŒÒ';
 	
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0101', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='ÁîµÂ≠êÂÖ¨Âëä';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0101', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='µÁ◊”π´∏Ê';
 	
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0201', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='ËΩ¶ËæÜ‰ø°ÊÅØ';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0201', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='≥µ¡æ–≈œ¢';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0202', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='Âè∏Êú∫‰ø°ÊÅØ';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0202', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='Àæª˙–≈œ¢';
 	
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '1001', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='‰∏™ÊÄßÂåñËÆæÁΩÆ';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '1001', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='∏ˆ–‘ªØ…Ë÷√';
 insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, '1002', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='Á≥ªÁªüÂèçÈ¶à';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '1002', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='œµÕ≥∑¥¿°';
 
--- ÊèíÂÖ•ÂÖ®Â±ÄÈÖçÁΩÆ‰ø°ÊÅØ
+-- ≤Â»Î»´æ÷≈‰÷√–≈œ¢
 insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME) 
 	values(1, 0, false,  '12', 'smoothness');
 
--- ÊèíÂÖ•ÊµèËßàÂô®ÈôÑ‰ª∂‰∏ãËΩΩ‰ø°ÊÅØ
+-- ≤Â»Î‰Ø¿¿∆˜∏Ωº˛œ¬‘ÿ–≈œ¢
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'chrome15.0.874.121', 25068792,'exe',false
-	,'Ë∞∑Ê≠åÊµèËßàÂô®Chrome15.0.exe','browser/chrome/chrome15.0.874.121.exe',
+	,'π»∏Ë‰Ø¿¿∆˜Chrome15.0.exe','browser/chrome/chrome15.0.874.121.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'firefox8.0.1', 16840048,'exe',false
-	,'ÁÅ´ÁãêÊµèËßàÂô®Firefox8.0.exe','browser/firefox/firefox8.0.1.exe',
+	,'ª∫¸‰Ø¿¿∆˜Firefox8.0.exe','browser/firefox/firefox8.0.1.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'safari5.1', 37806960,'exe',false
-	,'ËãπÊûúÊµèËßàÂô®Safari5.1.exe','browser/safari/safari5.1.exe',
+	,'∆ªπ˚‰Ø¿¿∆˜Safari5.1.exe','browser/safari/safari5.1.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'opera11.60', 8438376,'exe',false
-	,'Êå™Â®ÅÊµèËßàÂô®Opera11.60.exe','browser/opera/opera11.60.exe',
+	,'≈≤Õ˛‰Ø¿¿∆˜Opera11.60.exe','browser/opera/opera11.60.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'ie9.0', 18658608,'exe',false
-	,'ÂæÆËΩØÊµèËßàÂô®IE9.0.exe','browser/ie/IE9.0-Windows7-x86-chs.exe',
+	,'Œ¢»Ì‰Ø¿¿∆˜IE9.0.exe','browser/ie/IE9.0-Windows7-x86-chs.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'ie8.0', 16901472,'exe',false
-	,'ÂæÆËΩØÊµèËßàÂô®IE8.0.exe','browser/ie/IE8.0-WindowsXP-x86-chs.exe',
+	,'Œ¢»Ì‰Ø¿¿∆˜IE8.0.exe','browser/ie/IE8.0-WindowsXP-x86-chs.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 
--- ÊèíÂÖ•ÈÄâÈ°πÂàÜÁªÑ‰ø°ÊÅØ
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5000', 'motorcade.paymentDate', 'ËΩ¶ÈòüÁº¥Ë¥πÊó•', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5001', 'car.fuel.type', 'ËΩ¶ËæÜÁáÉÊñôÁ±ªÂûã', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5002', 'car.business.nature', 'ËΩ¶ËæÜËê•ËøêÊÄßË¥®', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5003', 'car.color', 'ËΩ¶ËæÜÈ¢úËâ≤', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5004', 'car.rank', 'ËΩ¶ËæÜÂÆöÁ∫ß', null); 
--- insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5005', 'car.type', 'ËΩ¶ËæÜÁ±ªÂûã', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5006', 'car.brand', 'ËΩ¶ËæÜÂéÇÁâå', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5013', 'car.taximeterFactory', 'ËΩ¶ËæÜËÆ°‰ª∑Âô®Âà∂ÈÄ†ÂéÇ', null); 
+-- ≤Â»Î—°œÓ∑÷◊È–≈œ¢
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5000', 'motorcade.paymentDate', '≥µ∂”Ω…∑—»’', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5001', 'car.fuel.type', '≥µ¡æ»º¡œ¿‡–Õ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5002', 'car.business.nature', '≥µ¡æ”™‘À–‘÷ ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5003', 'car.color', '≥µ¡æ—’…´', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5004', 'car.rank', '≥µ¡æ∂®º∂', null); 
+-- insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5005', 'car.type', '≥µ¡æ¿‡–Õ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5006', 'car.brand', '≥µ¡æ≥ß≈∆', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5013', 'car.taximeterFactory', '≥µ¡æº∆º€∆˜÷∆‘Ï≥ß', null); 
 
 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5007', 'driver.classes', 'Âè∏Êú∫Ëê•ËøêÁè≠Ê¨°', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5008', 'carMan.region', 'Âè∏Êú∫Ë¥£‰ªª‰∫∫Âå∫Âüü', null);
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5009', 'carMan.houseType', 'Âè∏Êú∫Ë¥£‰ªª‰∫∫Êà∑Âè£ÊÄßË¥®', null);
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5010', 'carMan.level', 'Âè∏Êú∫Ë¥£‰ªª‰∫∫Á≠âÁ∫ß', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5011', 'carMan.model', 'Âè∏Êú∫Ë¥£‰ªª‰∫∫ÂáÜÈ©æËΩ¶Âûã', null);  
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5012', 'blacklist.type', 'ÈªëÂêçÂçïÈôêÂà∂È°πÁõÆ', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5013', 'it.duty', 'Ëê•Ëøê‰∫ã‰ª∂‰∫§ÈÄöËøùÁ´†Ë¥£‰ªª', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5014', 'it.degree', 'Ëê•Ëøê‰∫ã‰ª∂‰∫§ÈÄöËøùÁ´†Á®ãÂ∫¶', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5015', 'it.properties', 'Ëê•Ëøê‰∫ã‰ª∂‰∫§ÈÄöËøùÁ´†ÊÄßË¥®', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5016', 'bs.cert', 'Ëê•Ëøê‰∫ã‰ª∂Ëê•ËøêÊ≤°Êî∂ËØÅ‰ª∂', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5017', 'bs.properties', 'Ëê•Ëøê‰∫ã‰ª∂Ëê•ËøêËøùÁ´†ÊÄßË¥®', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5018', 'ca.carmantype', 'Ëê•Ëøê‰∫ã‰ª∂‰∫ãÊïÖÁêÜËµîÂè∏Êú∫Á±ªÂûã', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5019', 'ca.department', 'Ëê•Ëøê‰∫ã‰ª∂‰∫ãÊïÖÁêÜËµîÂ§ÑÁêÜÈÉ®Èó®', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5020', 'ca.company', 'Ëê•Ëøê‰∫ã‰ª∂‰∫ãÊïÖÁêÜËµî‰øùÈô©ÂÖ¨Âè∏', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5021', 'ca.sort', 'Ëê•Ëøê‰∫ã‰ª∂‰∫ãÊïÖÁêÜËµî‰∫ãÊïÖÊÄßË¥®', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5022', 'ca.duty', 'Ëê•Ëøê‰∫ã‰ª∂‰∫ãÊïÖÁêÜËµîË¥£‰ªª', null);
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5023', 'ad.source', 'ÊäïËØâÂª∫ËÆÆÊù•Ê∫ê', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5024', 'pr.type', 'Ë°®Êâ¨Á±ªÂûã', null); 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5025', 'lb.insuranceType', 'Á§æ‰øùÈô©Áßç', null);
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5026', 'lb.buyUnit', 'Ë¥≠‰π∞Âçï‰Ωç', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5007', 'driver.classes', 'Àæª˙”™‘À∞‡¥Œ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5008', 'carMan.region', 'Àæª˙‘»Œ»À«¯”Ú', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5009', 'carMan.houseType', 'Àæª˙‘»Œ»Àªßø⁄–‘÷ ', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5010', 'carMan.level', 'Àæª˙‘»Œ»Àµ»º∂', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5011', 'carMan.model', 'Àæª˙‘»Œ»À◊ºº›≥µ–Õ', null);  
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5012', 'blacklist.type', '∫⁄√˚µ•œﬁ÷∆œÓƒø', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5013', 'it.duty', '”™‘À ¬º˛ΩªÕ®Œ•’¬‘»Œ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5014', 'it.degree', '”™‘À ¬º˛ΩªÕ®Œ•’¬≥Ã∂»', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5015', 'it.properties', '”™‘À ¬º˛ΩªÕ®Œ•’¬–‘÷ ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5016', 'bs.cert', '”™‘À ¬º˛”™‘À√ª ’÷§º˛', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5017', 'bs.properties', '”™‘À ¬º˛”™‘ÀŒ•’¬–‘÷ ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5018', 'ca.carmantype', '”™‘À ¬º˛ ¬π ¿Ì≈‚Àæª˙¿‡–Õ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5019', 'ca.department', '”™‘À ¬º˛ ¬π ¿Ì≈‚¥¶¿Ì≤ø√≈', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5020', 'ca.company', '”™‘À ¬º˛ ¬π ¿Ì≈‚±£œ’π´Àæ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5021', 'ca.sort', '”™‘À ¬º˛ ¬π ¿Ì≈‚ ¬π –‘÷ ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5022', 'ca.duty', '”™‘À ¬º˛ ¬π ¿Ì≈‚‘»Œ', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5023', 'ad.source', 'Õ∂ÀﬂΩ®“È¿¥‘¥', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5024', 'pr.type', '±Ì—Ô¿‡–Õ', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5025', 'lb.insuranceType', '…Á±£œ’÷÷', null);
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5026', 'lb.buyUnit', 'π∫¬Úµ•Œª', null);
 
 
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5014', 'contract.signType', 'Á≠æÁ∫¶Á±ªÂûã', null); 
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5014', 'contract.signType', '«©‘º¿‡–Õ', null); 
 
--- ÊèíÂÖ•ÂêåÊ≠•ÁöÑÈÖçÁΩÆÂèÇÊï∞
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '8000', 'sync', 'ÂêåÊ≠•ÈÖçÁΩÆ', null); 
+-- ≤Â»ÎÕ¨≤Ωµƒ≈‰÷√≤Œ ˝
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '8000', 'sync', 'Õ¨≤Ω≈‰÷√', null); 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'jiaowei.ws.soapUrl', 'http://61.144.39.126/middle/WSMiddle.asmx', '‰∫§ÂßîÊé•Âè£ÁöÑSoapUrl', null 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'jiaowei.ws.soapUrl', 'http://61.144.39.126/middle/WSMiddle.asmx', 'ΩªŒØΩ”ø⁄µƒSoapUrl', null 
 	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'jiaowei.ws.soapNamespace', 'http://61.144.39.126/middle/WSMiddle.asmx', '‰∫§ÂßîÊé•Âè£ÁöÑSoapNamespace', null 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'jiaowei.ws.soapNamespace', 'http://61.144.39.126/middle/WSMiddle.asmx', 'ΩªŒØΩ”ø⁄µƒSoapNamespace', null 
 	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'jiaowei.ws.qyid.baocheng', '17E0FFF7-7816-46A5-83A7-23D5C9F762AB', '‰∫§ÂßîÊé•Âè£ÁöÑÂÆùÊàê‰ºÅ‰∏öID', null 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'jiaowei.ws.qyid.baocheng', '17E0FFF7-7816-46A5-83A7-23D5C9F762AB', 'ΩªŒØΩ”ø⁄µƒ±¶≥…∆Û“µID', null 
 	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'jiaowei.ws.qyid.guangfa', '4CD105EB-9EA3-4660-9E85-4BA39AA7960B', '‰∫§ÂßîÊé•Âè£ÁöÑÂπøÂèë‰ºÅ‰∏öID', null 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'jiaowei.ws.qyid.guangfa', '4CD105EB-9EA3-4660-9E85-4BA39AA7960B', 'ΩªŒØΩ”ø⁄µƒπ„∑¢∆Û“µID', null 
 	from BC_OPTION_GROUP g where g.KEY_='sync'; 
 
--- ÊèíÂÖ•ËΩ¶ÈòüÁº¥Ë¥πÊó•ÈÄâÈ°πÊù°ÁõÆ‰ø°ÊÅØ
+-- ≤Â»Î≥µ∂”Ω…∑—»’—°œÓÃıƒø–≈œ¢
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '00', '0', 'ÊúàÊú´', null from BC_OPTION_GROUP g where g.KEY_='motorcade.paymentDate'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '00', '0', '‘¬ƒ©', null from BC_OPTION_GROUP g where g.KEY_='motorcade.paymentDate'; 
 CREATE OR REPLACE FUNCTION data_insert_motorcade_paymentDate() RETURNS void AS $$
 DECLARE
-	--ÂÆö‰πâÂèòÈáè
+	--∂®“Â±‰¡ø
 	maxrecords integer :=31;
 	i integer :=1;
 BEGIN
@@ -655,394 +655,394 @@ $$ LANGUAGE plpgsql;
 select data_insert_motorcade_paymentDate();
 
     
--- ÊèíÂÖ•ÈÄâÈ°πÊù°ÁõÆ‰ø°ÊÅØ
+-- ≤Â»Î—°œÓÃıƒø–≈œ¢
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'honghui', 'Á∫¢ÁÅ∞', null from BC_OPTION_GROUP g where g.KEY_='car.color'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'honghui', '∫Ïª“', null from BC_OPTION_GROUP g where g.KEY_='car.color'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'lvhui', 'ÁªøÁÅ∞', null from BC_OPTION_GROUP g where g.KEY_='car.color'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'lvhui', '¬Ãª“', null from BC_OPTION_GROUP g where g.KEY_='car.color'; 
 	
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yehuashiyouqi', 'Ê∂≤ÂåñÁü≥Ê≤πÊ∞î', null from BC_OPTION_GROUP g where g.KEY_='car.fuel.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yehuashiyouqi', '“∫ªØ Ø”Õ∆¯', null from BC_OPTION_GROUP g where g.KEY_='car.fuel.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'qiyou', 'Ê±ΩÊ≤π', null from BC_OPTION_GROUP g where g.KEY_='car.fuel.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'qiyou', '∆˚”Õ', null from BC_OPTION_GROUP g where g.KEY_='car.fuel.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'chaiyou', 'Êü¥Ê≤π', null from BC_OPTION_GROUP g where g.KEY_='car.fuel.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'chaiyou', '≤Ò”Õ', null from BC_OPTION_GROUP g where g.KEY_='car.fuel.type'; 
 	
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'hezuohetong', 'Âêà‰ΩúÂêàÂêå', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'hezuohetong', '∫œ◊˜∫œÕ¨', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'gongchehetong', '‰æõËΩ¶ÂêàÂêå', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'gongchehetong', 'π©≥µ∫œÕ¨', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'guokaohetong', 'ÊåÇÈù†ÂêàÂêå', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'guokaohetong', 'π“øø∫œÕ¨', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'chengbaohetong', 'ÊâøÂåÖÂêàÂêå', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'chengbaohetong', '≥–∞¸∫œÕ¨', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'huokuanche', 'Ë¥ßÊ¨æËΩ¶', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'huokuanche', 'ªıøÓ≥µ', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'danbaohuokuanche', 'ÊãÖ‰øùË¥ßÊ¨æËΩ¶', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'danbaohuokuanche', 'µ£±£ªıøÓ≥µ', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'hezuohetong(16y)', 'Âêà‰ΩúÂêàÂêå(16Âπ¥)', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'hezuohetong(16y)', '∫œ◊˜∫œÕ¨(16ƒÍ)', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yuangongzhi', 'ÂëòÂ∑•Âà∂', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yuangongzhi', '‘±π§÷∆', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'dabaoche', 'Â§ßÂåÖËΩ¶', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'dabaoche', '¥Û∞¸≥µ', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'banbaoche', 'ÂçäÂåÖËΩ¶', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'banbaoche', '∞Î∞¸≥µ', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'zhongbaoche', '‰∏≠Ê†áËΩ¶', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'zhongbaoche', '÷–±Í≥µ', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'gongchehetongSS', '‰æõËΩ¶ÂêàÂêåSS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'gongchehetongSS', 'π©≥µ∫œÕ¨SS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '13', 'hezuohetongSS', 'Âêà‰ΩúÂêàÂêåSS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '13', 'hezuohetongSS', '∫œ◊˜∫œÕ¨SS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '14', 'danbaohuokuancheSS', 'ÊãÖ‰øùË¥ßÊ¨æËΩ¶SS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '14', 'danbaohuokuancheSS', 'µ£±£ªıøÓ≥µSS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '15', 'dabaocheSS', 'Â§ßÂåÖËΩ¶SS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '15', 'dabaocheSS', '¥Û∞¸≥µSS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '16', 'huokuancheSS', 'Ë¥ßÊ¨æËΩ¶SS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '16', 'huokuancheSS', 'ªıøÓ≥µSS', null from BC_OPTION_GROUP g where g.KEY_='car.business.nature'; 
 	
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yiji', '‰∏ÄÁ∫ß', null from BC_OPTION_GROUP g where g.KEY_='car.rank'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yiji', '“ªº∂', null from BC_OPTION_GROUP g where g.KEY_='car.rank'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'erji', '‰∫åÁ∫ß', null from BC_OPTION_GROUP g where g.KEY_='car.rank'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'erji', '∂˛º∂', null from BC_OPTION_GROUP g where g.KEY_='car.rank'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 's3000', 's3000', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'qiya', 'Ëµ∑‰∫ö', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'qiya', '∆—«', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'qiya1.8', 'Ëµ∑‰∫ö1.8', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'qiya1.8', '∆—«1.8', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'qiya2.0', 'Ëµ∑‰∫ö2.0', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'qiya2.0', '∆—«2.0', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'fukang', 'ÂØåÂ∫∑', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'fukang', '∏ªøµ', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'hongqi', 'Á∫¢Êóó', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'hongqi', '∫Ï∆Ï', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'jieda', 'Êç∑Ëææ', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'jieda', 'Ω›¥Ô', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'richan', 'Êó•‰∫ß', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'richan', '»’≤˙', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'sangtana', 'Ê°ëÂ°îÁ∫≥', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'sangtana', '…£À˛ƒ…', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'suonata', 'Á¥¢Á∫≥Â°î', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'suonata', 'À˜ƒ…À˛', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'xiali', 'Â§èÂà©', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'xiali', 'œƒ¿˚', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'xiandai', 'Áé∞‰ª£', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'xiandai', 'œ÷¥˙', null from BC_OPTION_GROUP g where g.KEY_='car.brand'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zhengban', 'Ê≠£Áè≠', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zhengban', '’˝∞‡', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'fuban', 'ÂâØÁè≠', null from BC_OPTION_GROUP g where g.KEY_='driver.classes';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'fuban', '∏±∞‡', null from BC_OPTION_GROUP g where g.KEY_='driver.classes';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'dingban', 'È°∂Áè≠', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'dingban', '∂•∞‡', null from BC_OPTION_GROUP g where g.KEY_='driver.classes'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'bensheng', 'Êú¨ÁúÅ', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'bensheng', '±æ °', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'waisheng', 'Â§ñÁúÅ', null from BC_OPTION_GROUP g where g.KEY_='carMan.region';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'waisheng', 'Õ‚ °', null from BC_OPTION_GROUP g where g.KEY_='carMan.region';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'benshi', 'Êú¨Â∏Ç', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'benshi', '±æ –', null from BC_OPTION_GROUP g where g.KEY_='carMan.region'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'bendichengzhen', 'Êú¨Âú∞ÂüéÈïá', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'bendichengzhen', '±æµÿ≥«’Ú', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'bendinongcun', 'Êú¨Âú∞ÂÜúÊùë', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'bendinongcun', '±æµÿ≈©¥Â', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'waidichengzhen', 'Â§ñÂú∞ÂüéÈïá', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'waidichengzhen', 'Õ‚µÿ≥«’Ú', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'waidinongcun', 'Â§ñÂú∞ÂÜúÊùë', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'waidinongcun', 'Õ‚µÿ≈©¥Â', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'huadu', 'Ëä±ÈÉΩ', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'huadu', 'ª®∂º', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'panyu', 'Áï™Á¶∫', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';  
-  
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yiji', '‰∏ÄÁ∫ß', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'erji', '‰∫åÁ∫ß', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
- 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'sanji', '‰∏âÁ∫ß', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
-  
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'Apai', 'AÁâå', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'Bpai', 'BÁâå', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'Cpai', 'CÁâå', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'panyu', '∑¨ÿÆ', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';  
   
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '01', 'goumaifapiao', 'Ë¥≠‰π∞ÂèëÁ•®', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yiji', '“ªº∂', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '02', 'jianshen', 'Ê£ÄÂÆ°', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'erji', '∂˛º∂', null from BC_OPTION_GROUP g where g.KEY_='carMan.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '03', 'bubanzhengjian', 'Ë°•ÂäûËØÅ‰ª∂', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '04', 'guohu', 'ËøáÊà∑', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '05', 'zhuxiao', 'Ê≥®ÈîÄ', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '06', 'tingbanyiqieyewu', 'ÂÅúÂäû‰∏ÄÂàá‰∏öÂä°', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '07', 'jianguancheliang', 'ÁõëÁÆ°ËΩ¶ËæÜ', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '08', 'tixing', 'ÊèêÈÜí', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '09', 'buketuiyajin', '‰∏çÂèØÈÄÄÊäºÈáë', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+ 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'sanji', '»˝º∂', null from BC_OPTION_GROUP g where g.KEY_='carMan.level'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'batong', 'ÂÖ´ÈÄö', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'Apai', 'A≈∆', null from BC_OPTION_GROUP g where g.KEY_='carMan.model'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'shanghaixingda', '‰∏äÊµ∑ÂÖ¥Ëææ', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'Bpai', 'B≈∆', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'Cpai', 'C≈∆', null from BC_OPTION_GROUP g where g.KEY_='carMan.model';
+  
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'xinhu', 'Êñ∞Êà∑', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '01', 'goumaifapiao', 'π∫¬Ú∑¢∆±', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'xuyue', 'Áª≠Á∫¶', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '02', 'jianshen', 'ºÏ…Û', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'guohu', 'ËøáÊà∑', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
-
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '03', 'bubanzhengjian', '≤π∞Ï÷§º˛', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'daicha', 'ÂæÖÊü•', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '04', 'guohu', 'π˝ªß', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'youze', 'ÊúâË¥£', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '05', 'zhuxiao', '◊¢œ˙', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'wuze', 'Êó†Ë¥£', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
-
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '06', 'tingbanyiqieyewu', 'Õ£∞Ï“ª«–“µŒÒ', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yibanweizhang', '‰∏ÄËà¨ËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '07', 'jianguancheliang', 'º‡π‹≥µ¡æ', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'jichangweizhang', 'Êú∫Âú∫ËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '08', 'tixing', 'Ã·–—', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yanzhongweizhang', '‰∏•ÈáçËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'exingweizhang', 'ÊÅ∂ÊÄßËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'feibian', 'ÈùûÁºñ', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zhanchangweizhang', 'Á´ôÂú∫ËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'wuzigezhengyingyun', 'Êó†ËµÑÊ†ºËØÅËê•Ëøê', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'nuoyongtarenzigezhengyingyun', 'Êå™Áî®‰ªñ‰∫∫ËµÑÊ†ºËØÅËê•Ëøê', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'weizaozigezheng', '‰º™ÈÄ†ËµÑÊ†ºËØÅ', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'yirongyibiao', '‰ª™ÂÆπ‰ª™Ë°®', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'cherongchemao', 'ËΩ¶ÂÆπËΩ¶Ë≤å', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'shexianweizhangyunying', 'Ê∂âÂ´åËøùÁ´†Ëê•Ëøê', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yunyingweizhang', 'ËøêËê•ËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'weifancuofeng', 'ËøùÂèçÈîôÂ≥∞‰∫§Êé•Áè≠ËßÑÂÆö', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'cunzaibuwenmingxingwei', 'Â≠òÂú®‰∏çÊñáÊòéË°å‰∏∫', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'fuwuweizhang', 'ÊúçÂä°ËøùÁ´†', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'wuzhudongchujufapiao', 'Êó†‰∏ªÂä®Âá∫ÂÖ∑ÂèëÁ•®', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '13', 'jujuezhifarenyuanjiancha', 'ÊãíÁªùÊâßÊ≥ï‰∫∫ÂëòÊ£ÄÊü•', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '14', 'buanzhaoheliluxian', '‰∏çÊåâÁÖßÂêàÁêÜË∑ØÁ∫øÊàñËÄÖ‰πòÂÆ¢Ë¶ÅÊ±ÇÁöÑË∑ØÁ∫øË°åÈ©∂', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '15', 'weiqudejiashiyuankeyunzigezheng', 'Êú™ÂèñÂæóÈ©æÈ©∂ÂëòÂÆ¢ËøêËµÑÊ†ºËØÅÈ©æÈ©∂Âá∫ÁßüËΩ¶Êèê‰æõÂÆ¢Êà∑ÊúçÂä°', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '16', 'weifanchuangwenxiangmu', 'ËøùÂèçÂàõÊñáÈ°πÁõÆ', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
-
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'xingshizheng', 'Ë°åÈ©∂ËØÅ', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'daoluyunshuzheng', 'ÈÅìË∑ØËøêËæìËØÅ', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'keyunchuzuqichejingying', 'ÂÆ¢ËøêÂá∫ÁßüÊ±ΩËΩ¶ÁªèËê•ÊùÉ‰ΩøÁî®ËØÅ', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'lianyinghetong', 'ËÅîËê•ÂêàÂêå', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'fuwuzigezheng', 'ÊúçÂä°ËµÑÊ†ºËØÅ', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'yuanjulifangweimibiao', 'ËøúË∑ùÁ¶ªÈò≤‰º™ÂØÜÊ†á', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'cheliangtiepai', 'ËΩ¶ËæÜÈìÅÁâå', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
-
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'shangren', '‰º§‰∫∫', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'liangchexiangpeng', '‰∏§ËΩ¶Áõ∏Á¢∞', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'qingwen', 'ËΩªÂæÆ', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yiban', '‰∏ÄËà¨', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'zhongda', 'ÈáçÂ§ß', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'teda', 'ÁâπÂ§ß', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'cheliangbeidao', 'ËΩ¶ËæÜË¢´Áõó', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
-
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zerenren', 'Ë¥£‰ªª‰∫∫', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'siji', 'Âè∏Êú∫', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'feibian', 'ÈùûÁºñ', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
-
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'tianhedadui', 'Â§©Ê≤≥Â§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'yuexiudadui', 'Ë∂äÁßÄÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'haizhudadui', 'Êµ∑Áè†Â§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'liwandadui', 'ËçîÊπæÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'baiyunyidadui', 'ÁôΩ‰∫ë‰∏ÄÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'baiyunerdadui', 'ÁôΩ‰∫ë‰∫åÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'neihuandadui', 'ÂÜÖÁéØÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'gaosudadui', 'È´òÈÄüÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'huangpudadui', 'ÈªÑÂüîÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'dongshandadui', '‰∏úÂ±±Â§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'fangcundadui', 'Ëä≥ÊùëÂ§ßÈòü', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
-
-
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baiyun', 'ÁôΩ‰∫ë', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'dongshan', '‰∏úÂ±±', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'fangcun', 'Ëä≥Êùë', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'haizhu', 'Êµ∑Áè†', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'shengzhishuzhigongsi', 'ÁúÅÁõ¥Â±ûÊîØÂÖ¨Âè∏', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'yangguang', 'Èò≥ÂÖâ', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'yongan', 'Ê∞∏ÂÆâ', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yuexiu', 'Ë∂äÁßÄ', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'renshoubaoxian', '‰∏≠ÂõΩÂ§™Âπ≥Ê¥ã‰∫∫ÂØø‰øùÈô©ËÇ°‰ªΩÊúâÈôêÂÖ¨Âè∏', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'zhonghua', '‰∏≠Âçé', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'zhonghualianhe', '‰∏≠ÂçéËÅîÂêà', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '09', 'buketuiyajin', '≤ªø…ÕÀ—∫Ω', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'shangren', '‰º§‰∫∫', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'batong', '∞ÀÕ®', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'liangchexiangpeng', '‰∏§ËΩ¶Áõ∏Á¢∞', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'qingwen', 'ËΩªÂæÆ', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yiban', '‰∏ÄËà¨', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'zhongda', 'ÈáçÂ§ß', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'teda', 'ÁâπÂ§ß', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'cheliangbeidao', 'ËΩ¶ËæÜË¢´Áõó', null from BC_OPTION_GROUP g where g.KEY_='ca.sort';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yuhangrenxiangpeng', '‰∏éË°å‰∫∫Áõ∏Á¢∞', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'cheliangbeiqiang', 'ËΩ¶ËæÜË¢´Êä¢', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'zhongdashangren', 'ÈáçÂ§ß‰º§‰∫∫', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
-  
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'wuze', 'Êó†Ë¥£', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'quanze', 'ÂÖ®Ë¥£', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'zhuze', '‰∏ªË¥£', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'cize', 'Ê¨°Ë¥£', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'tongdeng', 'ÂêåÁ≠â', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'danfangquanze', 'ÂçïÊñπÂÖ®Ë¥£', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'qingshangbuxuzhuyuan', 'ËΩª‰º§‰∏çÈ°ª‰ΩèÈô¢', null from BC_OPTION_GROUP g where g.KEY_='ca.duty';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'shanghaixingda', '…œ∫£–À¥Ô', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'keguantongzhi', 'ÂÆ¢ÁÆ°ÈÄöÁü•', null from BC_OPTION_GROUP g where g.KEY_='ad.source'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'xinhu', '–¬ªß', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'dianhua', 'ÁîµËØù', null from BC_OPTION_GROUP g where g.KEY_='ad.source';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'xuyue', '–¯‘º', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'guohu', 'π˝ªß', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'daicha', '¥˝≤È', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'youze', '”–‘', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'wuze', 'Œﬁ‘', null from BC_OPTION_GROUP g where g.KEY_='it.duty'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yibanweizhang', '“ª∞„Œ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'jichangweizhang', 'ª˙≥°Œ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yanzhongweizhang', '—œ÷ÿŒ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'exingweizhang', '∂Ò–‘Œ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'feibian', '∑«±‡', null from BC_OPTION_GROUP g where g.KEY_='it.degree'; 
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zhanchangweizhang', '’æ≥°Œ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'wuzigezhengyingyun', 'Œﬁ◊ ∏Ò÷§”™‘À', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'nuoyongtarenzigezhengyingyun', '≈≤”√À˚»À◊ ∏Ò÷§”™‘À', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'weizaozigezheng', 'Œ±‘Ï◊ ∏Ò÷§', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'yirongyibiao', '“«»›“«±Ì', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'cherongchemao', '≥µ»›≥µ√≤', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'shexianweizhangyunying', '…Êœ”Œ•’¬”™‘À', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yunyingweizhang', '‘À”™Œ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'weifancuofeng', 'Œ•∑¥¥Ì∑ÂΩªΩ”∞‡πÊ∂®', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'cunzaibuwenmingxingwei', '¥Ê‘⁄≤ªŒƒ√˜––Œ™', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'fuwuweizhang', '∑˛ŒÒŒ•’¬', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'wuzhudongchujufapiao', 'Œﬁ÷˜∂Ø≥ˆæﬂ∑¢∆±', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '13', 'jujuezhifarenyuanjiancha', 'æ‹æ¯÷¥∑®»À‘±ºÏ≤È', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '14', 'buanzhaoheliluxian', '≤ª∞¥’’∫œ¿Ì¬∑œﬂªÚ’ﬂ≥ÀøÕ“™«Ûµƒ¬∑œﬂ–– ª', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '15', 'weiqudejiashiyuankeyunzigezheng', 'Œ¥»°µ√º› ª‘±øÕ‘À◊ ∏Ò÷§º› ª≥ˆ◊‚≥µÃ·π©øÕªß∑˛ŒÒ', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '16', 'weifanchuangwenxiangmu', 'Œ•∑¥¥¥ŒƒœÓƒø', null from BC_OPTION_GROUP g where g.KEY_='it.properties'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'xingshizheng', '–– ª÷§', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'daoluyunshuzheng', 'µ¿¬∑‘À ‰÷§', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'keyunchuzuqichejingying', 'øÕ‘À≥ˆ◊‚∆˚≥µæ≠”™»® π”√÷§', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'lianyinghetong', '¡™”™∫œÕ¨', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'fuwuzigezheng', '∑˛ŒÒ◊ ∏Ò÷§', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'yuanjulifangweimibiao', '‘∂æ‡¿Î∑¿Œ±√‹±Í', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'cheliangtiepai', '≥µ¡æÃ˙≈∆', null from BC_OPTION_GROUP g where g.KEY_='bs.cert'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'shangren', '…À»À', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'liangchexiangpeng', '¡Ω≥µœ‡≈ˆ', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'qingwen', '«·Œ¢', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yiban', '“ª∞„', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'zhongda', '÷ÿ¥Û', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'teda', 'Ãÿ¥Û', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'cheliangbeidao', '≥µ¡æ±ªµ¡', null from BC_OPTION_GROUP g where g.KEY_='bs.properties'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zerenren', '‘»Œ»À', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'siji', 'Àæª˙', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'feibian', '∑«±‡', null from BC_OPTION_GROUP g where g.KEY_='ca.carmantype'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'tianhedadui', 'ÃÏ∫”¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'yuexiudadui', '‘Ω–„¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'haizhudadui', '∫£÷È¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'liwandadui', '¿ÛÕÂ¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'baiyunyidadui', '∞◊‘∆“ª¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'baiyunerdadui', '∞◊‘∆∂˛¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'neihuandadui', 'ƒ⁄ª∑¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'gaosudadui', '∏ﬂÀŸ¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'huangpudadui', 'ª∆∆“¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'dongshandadui', '∂´…Ω¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'fangcundadui', '∑º¥Â¥Û∂”', null from BC_OPTION_GROUP g where g.KEY_='ca.department'; 
+
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baiyun', '∞◊‘∆', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'dongshan', '∂´…Ω', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'fangcun', '∑º¥Â', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'haizhu', '∫£÷È', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'shengzhishuzhigongsi', ' °÷± Ù÷ßπ´Àæ', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'yangguang', '—Ùπ‚', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'yongan', '”¿∞≤', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yuexiu', '‘Ω–„', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'renshoubaoxian', '÷–π˙Ã´∆Ω—Û»À Ÿ±£œ’π…∑›”–œﬁπ´Àæ', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'zhonghua', '÷–ª™', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'zhonghualianhe', '÷–ª™¡™∫œ', null from BC_OPTION_GROUP g where g.KEY_='ca.company'; 
+  
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'shangren', '…À»À', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'liangchexiangpeng', '¡Ω≥µœ‡≈ˆ', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'qingwen', '«·Œ¢', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yiban', '“ª∞„', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'zhongda', '÷ÿ¥Û', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'teda', 'Ãÿ¥Û', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'cheliangbeidao', '≥µ¡æ±ªµ¡', null from BC_OPTION_GROUP g where g.KEY_='ca.sort';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'yuhangrenxiangpeng', '”Î––»Àœ‡≈ˆ', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'cheliangbeiqiang', '≥µ¡æ±ª«¿', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'zhongdashangren', '÷ÿ¥Û…À»À', null from BC_OPTION_GROUP g where g.KEY_='ca.sort'; 
+  
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'wuze', 'Œﬁ‘', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'quanze', '»´‘', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'zhuze', '÷˜‘', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'cize', '¥Œ‘', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'tongdeng', 'Õ¨µ»', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'danfangquanze', 'µ•∑Ω»´‘', null from BC_OPTION_GROUP g where g.KEY_='ca.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'qingshangbuxuzhuyuan', '«·…À≤ª–Î◊°‘∫', null from BC_OPTION_GROUP g where g.KEY_='ca.duty';
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'keguantongzhi', 'øÕπ‹Õ®÷™', null from BC_OPTION_GROUP g where g.KEY_='ad.source'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'dianhua', 'µÁª∞', null from BC_OPTION_GROUP g where g.KEY_='ad.source';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '96900', '96900', null from BC_OPTION_GROUP g where g.KEY_='ad.source';
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'shougongsibiaoyang', 'ÂèóÂÖ¨Âè∏Ë°®Êâ¨', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'shougongsibiaoyang', ' ‹π´Àæ±Ì—Ô', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'shouchengkebiaoyang', 'Âèó‰πòÂÆ¢Ë°®Êâ¨', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'shouchengkebiaoyang', ' ‹≥ÀøÕ±Ì—Ô', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'shouqitadanweibiaoyang', 'ÂèóÂÖ∂ÂÆÉÂçï‰ΩçË°®Êâ¨', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'shouqitadanweibiaoyang', ' ‹∆‰À¸µ•Œª±Ì—Ô', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yueduyouxiu', 'Ë¢´ËØÑ‰∏∫ÊúàÂ∫¶‰ºòÁßÄÂè∏Êú∫', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yueduyouxiu', '±ª∆¿Œ™‘¬∂»”≈–„Àæª˙', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'nianduyouxiu', 'Ë¢´ËØÑ‰∏∫Âπ¥Â∫¶‰ºòÁßÄÂè∏Êú∫', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'nianduyouxiu', '±ª∆¿Œ™ƒÍ∂»”≈–„Àæª˙', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'jiaohaishiwu', '‰∫§ËøòÂ§±Áâ©', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'jiaohaishiwu', 'Ωªªπ ßŒÔ', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'shouzhuguanbumenbiaozhang', 'Âèó‰∏ªÁÆ°ÈÉ®Èó®Ë°®ÂΩ∞', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'shouzhuguanbumenbiaozhang', ' ‹÷˜π‹≤ø√≈±Ì’√', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'haorenhaoshi', 'Â•Ω‰∫∫Â•Ω‰∫ã(Êú™ÂèóÂÖ¨ÂºÄË°®ÂΩ∞)', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'haorenhaoshi', '∫√»À∫√ ¬(Œ¥ ‹π´ø™±Ì’√)', null from BC_OPTION_GROUP g where g.KEY_='pr.type';
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'wujin', '‰∫îÈáë', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'wujin', 'ŒÂΩ', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'gongshang', 'Â∑•‰º§', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'gongshang', 'π§…À', null from BC_OPTION_GROUP g where g.KEY_='lb.insuranceType';
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'guangzhoubaocheng', 'ÂπøÂ∑ûÂÆùÂüé', null from BC_OPTION_GROUP g where g.KEY_='lb.buyUnit';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'guangzhoubaocheng', 'π„÷›±¶≥«', null from BC_OPTION_GROUP g where g.KEY_='lb.buyUnit';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'guangzhouguangfa', 'ÂπøÂ∑ûÂπøÂèë', null from BC_OPTION_GROUP g where g.KEY_='lb.buyUnit';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'guangzhouguangfa', 'π„÷›π„∑¢', null from BC_OPTION_GROUP g where g.KEY_='lb.buyUnit';
 	
  
 
 
--- ÊèíÂÖ•‰ªªÂä°Ë∞ÉÂ∫¶ÊµãËØï‰ø°ÊÅØ
+-- ≤Â»Î»ŒŒÒµ˜∂»≤‚ ‘–≈œ¢
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
-	values(1,1,'Êó†ÂºÇÂ∏∏‰ªªÂä°ÊµãËØï','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, 'ÊµãËØï‰ø°ÊÅØ');
+	values(1,1,'Œﬁ“Ï≥£»ŒŒÒ≤‚ ‘','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, '≤‚ ‘–≈œ¢');
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
-	values(2,1,'ÊúâÂºÇÂ∏∏‰ªªÂä°ÊµãËØï','bc', 'schedulerTestMock', 'error','5/10 * * * * ? *','9902', 0, 'ÊµãËØï‰ø°ÊÅØ');
+	values(2,1,'”–“Ï≥£»ŒŒÒ≤‚ ‘','bc', 'schedulerTestMock', 'error','5/10 * * * * ? *','9902', 0, '≤‚ ‘–≈œ¢');
 
--- ÊèíÂÖ•ÊµãËØïÊ∂àÊÅØ
+-- ≤Â»Î≤‚ ‘œ˚œ¢
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
-	select NEXTVAL('CORE_SEQUENCE'),now() , 'ÊµãËØïÊ†áÈ¢ò1', 'ÊµãËØïÂÜÖÂÆπ1', 
+	select NEXTVAL('CORE_SEQUENCE'),now() , '≤‚ ‘±ÍÃ‚1', '≤‚ ‘ƒ⁄»›1', 
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin'),
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
-	select NEXTVAL('CORE_SEQUENCE'),now() , 'ÊµãËØïÊ†áÈ¢ò2', 'ÊµãËØïÂÜÖÂÆπ2', 
+	select NEXTVAL('CORE_SEQUENCE'),now() , '≤‚ ‘±ÍÃ‚2', '≤‚ ‘ƒ⁄»›2', 
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin'),
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
-	select NEXTVAL('CORE_SEQUENCE'),now() , 'ÊµãËØïÊ†áÈ¢ò3', 'ÊµãËØïÂÜÖÂÆπ3', 
+	select NEXTVAL('CORE_SEQUENCE'),now() , '≤‚ ‘±ÍÃ‚3', '≤‚ ‘ƒ⁄»›3', 
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin'),
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_MESSAGE (ID,SEND_DATE,SUBJECT,CONTENT,SENDER_ID,RECEIVER_ID) 
-	select NEXTVAL('CORE_SEQUENCE'),now() , 'ÊµãËØïÊ†áÈ¢ò4', null, 
+	select NEXTVAL('CORE_SEQUENCE'),now() , '≤‚ ‘±ÍÃ‚4', null, 
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin'),
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 
--- ÊèíÂÖ•1000Êù°ÁôªÂΩïÊï∞ÊçÆ
--- ÂàõÂª∫Â≠òÂÇ®ËøáÁ®ãÔºöloop_time‰∏∫Âæ™ÁéØÁöÑÊ¨°Êï∞
+-- ≤Â»Î1000Ãıµ«¬º ˝æ›
+-- ¥¥Ω®¥Ê¥¢π˝≥Ã£∫loop_timeŒ™—≠ª∑µƒ¥Œ ˝
 CREATE OR REPLACE FUNCTION test_create_syslog(loop_time integer,userCode varchar(255)) RETURNS VOID AS $$
 DECLARE
 	i integer :=0; 
@@ -1052,67 +1052,67 @@ BEGIN
 			RETURN;
 		END IF;
 		insert into BC_LOG_SYSTEM (TYPE_,FILE_DATE,SUBJECT,AUTHOR_ID,C_IP,S_IP,C_INFO) 
-			select 0,now(),concat(a.name,'ÁôªÂΩïÁ≥ªÁªü',i),b.id,'127.0.0.1','localhost','Chrome12'
+			select 0,now(),concat(a.name,'µ«¬ºœµÕ≥',i),b.id,'127.0.0.1','localhost','Chrome12'
 			from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.CODE=userCode;
 		i := i + 1; 
 	END LOOP; 
 END;
 $$ LANGUAGE plpgsql;
--- Ë∞ÉÁî®Â≠òÂÇ®ËøáÁ®ã
+-- µ˜”√¥Ê¥¢π˝≥Ã
 -- select test_create_syslog(500,'admin'); 
 -- select test_create_syslog(500,'designer'); 
 
 
--- ÊèíÂÖ•ËΩ¶Èòü
--- ‰∏ÄÂàÜËΩ¶Èòü
+-- ≤Â»Î≥µ∂”
+-- “ª∑÷≥µ∂”
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 1, 'MC-1', 0, 0, '000101', '‰∏ÄÂàÜ‰∏ÄÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏ÄÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 1, 'MC-1', 0, 0, '000101', '“ª∑÷“ª∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='“ª∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 2,'MC-2', 0, 0, '000102', '‰∏ÄÂàÜ‰∫åÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏ÄÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 2,'MC-2', 0, 0, '000102', '“ª∑÷∂˛∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='“ª∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 3,'MC-3', 0, 0, '000103', '‰∏ÄÂàÜ‰∏âÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏ÄÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 3,'MC-3', 0, 0, '000103', '“ª∑÷»˝∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='“ª∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 4,'MC-4', 0, 0, '000104', '‰∏ÄÂàÜÂõõÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏ÄÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
--- ‰∫åÂàÜËΩ¶Èòü
+	select 4,'MC-4', 0, 0, '000104', '“ª∑÷Àƒ∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='“ª∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
+-- ∂˛∑÷≥µ∂”
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 5,'MC-5', 0, 0, '000201', '‰∫åÂàÜ‰∏ÄÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∫åÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 5,'MC-5', 0, 0, '000201', '∂˛∑÷“ª∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='∂˛∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 6,'MC-6', 0, 0, '000202', '‰∫åÂàÜ‰∫åÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∫åÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 6,'MC-6', 0, 0, '000202', '∂˛∑÷∂˛∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='∂˛∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 7,'MC-7', 0, 0, '000203', '‰∫åÂàÜ‰∏âÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∫åÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 7,'MC-7', 0, 0, '000203', '∂˛∑÷»˝∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='∂˛∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 8,'MC-8', 0, 0, '000204', '‰∫åÂàÜÂõõÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∫åÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
--- ‰∏âÂàÜËΩ¶Èòü
+	select 8,'MC-8', 0, 0, '000204', '∂˛∑÷Àƒ∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='∂˛∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
+-- »˝∑÷≥µ∂”
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 9,'MC-9', 0, 0, '000301', '‰∏âÂàÜ‰∏ÄÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏âÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 9,'MC-9', 0, 0, '000301', '»˝∑÷“ª∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='»˝∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 10,'MC-10', 0, 0, '000302', '‰∏âÂàÜ‰∫åÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏âÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 10,'MC-10', 0, 0, '000302', '»˝∑÷∂˛∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='»˝∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 11,'MC-11', 0, 0, '000303', '‰∏âÂàÜ‰∏âÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏âÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 11,'MC-11', 0, 0, '000303', '»˝∑÷»˝∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='»˝∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 12,'MC-12', 0, 0, '000304', '‰∏âÂàÜÂõõÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='‰∏âÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
--- ÂõõÂàÜËΩ¶Èòü
+	select 12,'MC-12', 0, 0, '000304', '»˝∑÷Àƒ∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='»˝∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
+-- Àƒ∑÷≥µ∂”
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 13,'MC-13', 0, 0, '000401', 'ÂõõÂàÜ‰∏ÄÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='ÂõõÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 13,'MC-13', 0, 0, '000401', 'Àƒ∑÷“ª∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='Àƒ∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 14,'MC-14', 0, 0, '000402', 'ÂõõÂàÜ‰∫åÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='ÂõõÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 14,'MC-14', 0, 0, '000402', 'Àƒ∑÷∂˛∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='Àƒ∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 15,'MC-15', 0, 0, '000403', 'ÂõõÂàÜ‰∏âÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='ÂõõÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 15,'MC-15', 0, 0, '000403', 'Àƒ∑÷»˝∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='Àƒ∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
 insert into BS_MOTORCADE (ID,UID_,STATUS_,TYPE_,CODE,NAME,FILE_DATE,PAYMENT_DATE,UNIT_ID,AUTHOR_ID) 
-	select 16,'MC-16', 0, 0, '000404', 'ÂõõÂàÜÂõõÈòü', now(),'0',
-    (select id from BC_IDENTITY_ACTOR where name='ÂõõÂàÜÂÖ¨Âè∏'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='Á≥ªÁªüÁÆ°ÁêÜÂëò'); 
+	select 16,'MC-16', 0, 0, '000404', 'Àƒ∑÷Àƒ∂”', now(),'0',
+    (select id from BC_IDENTITY_ACTOR where name='Àƒ∑÷π´Àæ'),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='œµÕ≥π‹¿Ì‘±'); 
