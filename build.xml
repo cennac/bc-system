@@ -61,6 +61,9 @@
 				<fileset dir="${businessSql.dir}">
 					<include name="business.db.@{db}.create.sql" />
 				</fileset>
+				<fileset dir="${businessSql.dir}">
+					<include name="business.db.@{db}.create.fn.sql" />
+				</fileset>
 			</concat>
 		</sequential>
 	</macrodef>
