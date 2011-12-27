@@ -93,6 +93,8 @@
 		<class>cn.bc.business.carman.domain.CarManHistory</class>
 		<!-- 车辆保单 -->
 		<class>cn.bc.business.policy.domain.Policy</class>
+		<!-- 购买车保险种 -->
+		<class>cn.bc.business.policy.domain.BuyPlant</class>
 		<!-- 车辆保单险种 -->
 		<class>cn.bc.business.insuranceType.domain.InsuranceType</class>
 		
