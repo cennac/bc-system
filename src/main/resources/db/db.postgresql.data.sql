@@ -141,7 +141,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030203','车辆保单', '/bc-business/policys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030204','保单险种', '/bc-business/insuranceType/list', 'i0000' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030204','保单险种', '/bc-business/insuranceTypes/list', 'i0000' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
 
 -- 营运系统/司机管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
