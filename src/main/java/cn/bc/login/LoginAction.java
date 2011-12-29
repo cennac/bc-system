@@ -25,6 +25,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import cn.bc.Context;
+import cn.bc.ContextHolder;
 import cn.bc.chat.OnlineUser;
 import cn.bc.chat.service.OnlineUserService;
 import cn.bc.core.exception.CoreException;
@@ -129,10 +130,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 								+ DateUtils.getWasteTime(startTime));
 					}
 
-					// 创建默认的上下文实现并保存到session中
+					// 创建默认的上下文实现并保存到session和线程变量中
 					Context context = new SystemContextImpl();
 					this.session.put(SystemContext.KEY, context);
-
+					ContextHolder.set(context);
+					
 					// 将登录信息记录到session中
 					context.setAttr(SystemContext.KEY_USER, user);
 
@@ -336,6 +338,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			((org.apache.struts2.dispatcher.SessionMap<String, Object>) this.session)
 					.clear();// invalidate();
 		}
+		ContextHolder.remove();
 		return SUCCESS;
 	}
 }

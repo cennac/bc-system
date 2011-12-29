@@ -69,13 +69,16 @@
 	<category name="cn.bc">
 	  <priority value="WARN" />
 	</category>
+	<category name="cn.bc.ContextHolder">
+	  <priority value="DEBUG" />
+	</category>
  
 	<!-- bc -->
 	<category name="cn.bc.login.LoginAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.index.IndexAction">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.desktop.service.LoginServiceImpl">
 	  <priority value="WARN" />
@@ -87,7 +90,7 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
 	  <priority value="WARN" />
@@ -108,7 +111,7 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.spider.JinDunSpider4JiaoTongWeiFa">
-	  <priority value="INFO" />
+	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.sync.web.struts2.Sync4InfractTrafficsAction">
 	  <priority value="WARN" />
@@ -126,7 +129,7 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.business.carman.dao.hibernate.jpa.CarByDriverDaoImpl">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
     	
   	<!-- 设置默认的日志级别(该设置必须放在最后,否则加载会解析出错) -->
