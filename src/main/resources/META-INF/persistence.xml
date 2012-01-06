@@ -49,6 +49,7 @@
 
 		<!-- feedback -->
 		<class>cn.bc.feedback.domain.Feedback</class>
+		<class>cn.bc.feedback.domain.Reply</class>
 
 		<!-- option -->
 		<class>cn.bc.option.domain.OptionGroup</class>
