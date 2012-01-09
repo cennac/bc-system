@@ -421,6 +421,27 @@ ALTER TABLE BC_FEEDBACK ADD CONSTRAINT BCFK_FEEDBACK_AUTHOR FOREIGN KEY (AUTHOR_
 ALTER TABLE BC_FEEDBACK ADD CONSTRAINT BCFK_FEEDBACK_MODIFIER FOREIGN KEY (MODIFIER_ID) 
 	REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 
+-- 用户反馈的回复
+CREATE TABLE BC_FEEDBACK_REPLY (
+    ID BIGINT NOT NULL AUTO_INCREMENT,
+    PID BIGINT NOT NULL COMMENT '所属反馈的id',
+    UID_ VARCHAR(36) NOT NULL COMMENT '关联附件的标识号',
+    STATUS_ INT(1) NOT NULL COMMENT '状态:0-正常,1-禁用,2-删除',
+    SUBJECT VARCHAR(500) NOT NULL COMMENT '标题',
+    FILE_DATE DATETIME NOT NULL COMMENT '创建时间',
+    AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
+    MODIFIER_ID BIGINT COMMENT '最后修改人ID',
+    MODIFIED_DATE DATETIME COMMENT '最后修改时间',
+    CONTENT TEXT COMMENT '详细内容',
+    PRIMARY KEY (ID)
+) COMMENT='用户反馈的回复';
+ALTER TABLE BC_FEEDBACK_REPLY ADD CONSTRAINT BCFK_FEEDBACK_REPLY_PID FOREIGN KEY (PID) 
+	REFERENCES BC_FEEDBACK (ID);
+ALTER TABLE BC_FEEDBACK_REPLY ADD CONSTRAINT BCFK_FEEDBACK_REPLY_AUTHOR FOREIGN KEY (AUTHOR_ID) 
+	REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_FEEDBACK_REPLY ADD CONSTRAINT BCFK_FEEDBACK_REPLY_MODIFIER FOREIGN KEY (MODIFIER_ID) 
+	REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+
 
 -- 选项模块
 -- 选项分组
@@ -503,6 +524,10 @@ ALTER TABLE BC_SYNC_BASE ADD INDEX BCUQ_SYNC_ID (SYNC_CODE);
 
 
 -- ##bc平台的 mysql 自定义函数和存储过程##
+
+-- 模拟oracle dual功能的在hibernate hql中使用的视图
+DROP VIEW IF EXISTS bc_dual; 
+CREATE VIEW bc_dual AS select null;
 
 DELIMITER $$ 
 DROP PROCEDURE IF EXISTS update_actor_pcodepname $$ 
@@ -907,7 +932,7 @@ create table BS_CARMAN (
     CERT_CYZG            varchar(255) comment '从业资格证号',
     DRIVING_STATUS       varchar(255) comment '驾驶状态',
     OLD_UNIT_NAME             varchar(255) comment '分支机构：用于历史数据的保存',
-    EXT_ZRR              varchar(255) comment '责任人：用于历史数据的保存',
+    CHARGER	             varchar(255) comment '责任人信息',
     GZ                   int(1) default 0 comment '驾驶证是否广州:0-否,1-是',
     ACCESS_CERTS         varchar(255) comment '已考取证件：历史数据保存',
     DESC_                varchar(4000) comment '备注',
@@ -915,7 +940,6 @@ create table BS_CARMAN (
     AUTHOR_ID BIGINT NOT NULL COMMENT '创建人ID',
     MODIFIER_ID BIGINT COMMENT '最后修改人ID',
     MODIFIED_DATE datetime COMMENT '最后修改时间',
-    CHARGER	  varchar(255) comment '责任人信息',
     primary key (ID)
 ) COMMENT='司机责任人';
 ALTER TABLE BS_CARMAN ADD CONSTRAINT BSFK_CARMAN_AUTHOR FOREIGN KEY (AUTHOR_ID) 
@@ -1054,6 +1078,7 @@ ALTER TABLE BS_CONTRACT ADD CONSTRAINT BSFK_CONTRACT_MODIFIER FOREIGN KEY (MODIF
 ALTER TABLE BS_CONTRACT ADD CONSTRAINT FK_REFERENCE_77 FOREIGN KEY (PID)
       REFERENCES BS_CONTRACT (ID);
 CREATE INDEX BSIDX_CONTRACT_STATUS ON BS_CONTRACT (STATUS_);
+CREATE INDEX BSIDX_CONTRACT_PATCH_NO ON BS_CONTRACT (PATCH_NO);
 
 -- 司机责任人与合同的关联
 CREATE TABLE BS_CARMAN_CONTRACT(
@@ -1107,6 +1132,8 @@ CREATE TABLE BS_CONTRACT_LABOUR(
    GET_STARTDATE        DATETIME COMMENT '申领开始日期',
    GET_ENDDATE          DATETIME COMMENT '申领结束日期',
    REMARK               VARCHAR(255) COMMENT '备注',
+   STOPDATE		DATETIME COMMENT '停保日期',
+   LEAVEDATE		DATETIME COMMENT '离职日期',
    PRIMARY KEY (ID)
 ) COMMENT '司机劳动合同';
 ALTER TABLE BS_CONTRACT_LABOUR ADD CONSTRAINT BSFK_CONTRACT4LABOUR_CONTRACT FOREIGN KEY (ID)
@@ -1361,7 +1388,7 @@ CREATE TABLE BS_CASE_INFRACT_TRAFFIC(
    CHARGER2_NAME        VARCHAR(255) COMMENT '责任人2姓名',
    DUTY                 VARCHAR(255) COMMENT '责任',
    SORT                 VARCHAR(255) COMMENT '性质',
-   JEOM                 DECIMAL(3,1) COMMENT '扣分',
+   JEOM                 DECIMAL(3,1) DEFAULT 0 COMMENT '扣分',
    COMMENT_             VARCHAR(4000) COMMENT '处理意见',
    IS_DELIVER           INT(1) NOT NULL COMMENT '是否邮递：1-是',
    DELIVER_DATE         DATETIME COMMENT '邮递时间',
@@ -1393,9 +1420,9 @@ ALTER TABLE BS_CASE_INFRACT_TRAFFIC ADD CONSTRAINT BSFK_INFRACTT_CHARGER2 FOREIG
    CERT_KJ              VARCHAR(255) COMMENT '扣件证号',
    CERT_YY              VARCHAR(255) COMMENT '营运证号',
    DETAIN               VARCHAR(255) COMMENT '扣留物品',
-   JEOM                 DECIMAL(3,1) COMMENT '扣分',
-   PENALTY              DECIMAL(10,2) COMMENT '罚款',
-   PENALTY2             DECIMAL(10,2) COMMENT '违约金',
+   JEOM                 DECIMAL(3,1) DEFAULT 0 COMMENT '扣分',
+   PENALTY              DECIMAL(10,2) DEFAULT 0 COMMENT '罚款',
+   PENALTY2             DECIMAL(10,2) DEFAULT 0 COMMENT '违约金',
    AREA                 VARCHAR(255) COMMENT '所属区县',
    PULL_UNIT            VARCHAR(255) COMMENT '拖车单位',
    OPERATOR             VARCHAR(255) COMMENT '执法人',
@@ -1493,8 +1520,8 @@ CREATE TABLE BS_CASE_ADVICE(
    NOTICE_DATE          DATETIME COMMENT '通知时间',
    RESULT_              VARCHAR(4000) COMMENT '处理结果',
    TICKET               VARCHAR(255) COMMENT '车票号码',
-   MACHINE_PRICE        BIGINT COMMENT '计费器显示价格',
-   CHARGE               BIGINT COMMENT '实际收费',
+   MACHINE_PRICE        BIGINT DEFAULT 0 COMMENT '计费器显示价格',
+   CHARGE               BIGINT DEFAULT 0 COMMENT '实际收费',
    RIDING_TIME_START    DATETIME COMMENT '乘车起始时间',
    RIDING_TIME_END      DATETIME COMMENT '乘车结束时间',
    PATH_FROM            VARCHAR(255) COMMENT '乘车路线(从)',
@@ -1560,7 +1587,9 @@ CREATE TABLE BS_CAR_POLICY(
    VER_MAJOR            BIGINT COMMENT '主版本号',
    VER_MINOR            BIGINT COMMENT '次版本号',
    PATCH_NO             VARCHAR(255) NOT NULL COMMENT '批号',
-   MAIN                 INT(1) NOT NULL COMMENT '主体: 0-当前版本,1-历史版本'';',
+   MAIN                 INT(1) NOT NULL COMMENT '主体: 0-当前版本,1-历史版本',
+   PID                  BIGINT COMMENT '父级ID',
+   OP_TYPE              INT(1) NOT NULL COMMENT '操作类型：1：新建2：维护3：续保4：停保',
    STATUS_                             INT(1) NOT NULL COMMENT '状态：0-正常,1-注销',
    CAR_ID                              BIGINT NOT NULL COMMENT '投保车号',
    REGISTER_DATE                       DATETIME COMMENT '初登日期',
@@ -1579,6 +1608,7 @@ CREATE TABLE BS_CAR_POLICY(
    GREENSLIP_SOURCE                    VARCHAR(255)   COMMENT '强保人来源',
    LIABILITY_NO                        VARCHAR(255) NOT NULL COMMENT '责任险单号',
    AMOUNT                              DECIMAL(10,2) COMMENT'合计',
+   STOPDATE                            DATETIME COMMENT '停保日期',
    FILE_DATE                           DATETIME NOT NULL COMMENT '创建时间',
    AUTHOR_ID                           BIGINT NOT NULL COMMENT '创建人ID',
    MODIFIER_ID                         BIGINT COMMENT '最后修改人ID',
@@ -1595,24 +1625,37 @@ ALTER TABLE BS_CAR_POLICY ADD CONSTRAINT BSFK_CARPOLICY_CAR FOREIGN KEY (CAR_ID 
 CREATE INDEX BS_CAR_POLICY ON BS_CAR_POLICY (CAR_ID);
 
 -- 承保险种
-CREATE TABLE  BS_INSURANCE_TYPE(
+CREATE TABLE  BS_BUY_PLANT(
    ID                   BIGINT NOT NULL AUTO_INCREMENT,
-   PID                  BIGINT NOT NULL COMMENT '所属车辆保单ID',
+   PID                  BIGINT NOT NULL,
+   ORDER_               BIGINT COMMENT '排序号',
    NAME                 VARCHAR(255) NOT NULL COMMENT '险种名称',
    COVERAGE             DECIMAL(10,2) COMMENT '保额',
    PREMIUM              DECIMAL(10,2) COMMENT '保费',
+   DESC_                VARCHAR(4000) COMMENT '备注',
+   PRIMARY KEY (ID)
+) COMMENT '承保险种';
+ALTER TABLE BS_BUY_PLANT ADD CONSTRAINT BSFK_BUYPLANT_CARPOLICY FOREIGN KEY (PID)
+      REFERENCES BS_CAR_POLICY (ID);
+
+-- 车保险种
+CREATE TABLE  BS_INSURANCE_TYPE(
+   ID                   BIGINT NOT NULL AUTO_INCREMENT,
+   STATUS_              INT(1) NOT NULL COMMENT '状态：0-正常,1-禁用',
+   NAME                 VARCHAR(255) NOT NULL COMMENT '险种名称',
+   COVERAGE             DECIMAL(10,2) COMMENT '保额',
+   PREMIUM              DECIMAL(10,2) COMMENT '保费',
+   DESC_                VARCHAR(4000) COMMENT '备注',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
    AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
    MODIFIER_ID          BIGINT COMMENT '最后修改人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
    PRIMARY KEY (ID)
-) COMMENT '承保险种';
-ALTER TABLE BS_INSURANCE_TYPE ADD CONSTRAINT BSFK_CARPOLICY FOREIGN KEY (PID)
-      REFERENCES BS_CAR_POLICY (ID) ON DELETE RESTRICT ON UPDATE RESTRICT;
+) COMMENT '车保险种';
 ALTER TABLE BS_INSURANCE_TYPE ADD CONSTRAINT BSFK_INSURANCETYPE_AUTHOR FOREIGN KEY (AUTHOR_ID)
-      REFERENCES BS_INSURANCE_TYPE (ID);
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 ALTER TABLE BS_INSURANCE_TYPE ADD CONSTRAINT BSFK_INSURANCETYPE_MODIFIER FOREIGN KEY (MODIFIER_ID)
-      REFERENCES BS_INSURANCE_TYPE (ID);
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
   
       
 -- 从交委WebService接口同步的交通违章信息
@@ -1686,7 +1729,7 @@ ALTER TABLE BS_SYNC_JIAOWEI_YYWZ ADD INDEX BSIDX_JIAOWEIYYWZ_CERT (DRIVER_CERT);
 -- 从交委WebService接口同步的投诉与建议信息
 CREATE TABLE BS_SYNC_JIAOWEI_ADVICE (
     ID			BIGINT NOT NULL AUTO_INCREMENT,	
-    TIS_RECEIVE_CODE	VARCHAR(100) COMMENT '运政受理号',
+    C_ID		VARCHAR(255) NOT NULL,
     RECEIVE_CODE        VARCHAR(255) COMMENT '电话受理号',
     ADVISOR_NAME        VARCHAR(255) NOT NULL COMMENT '投诉人姓名',
     PATH_FROM           VARCHAR(255) COMMENT '乘车路线(从)',
@@ -1708,18 +1751,20 @@ CREATE TABLE BS_SYNC_JIAOWEI_ADVICE (
     ADVICE_BS		VARCHAR(255) COMMENT '投诉行业',
     SUBJECT             VARCHAR(255) COMMENT '投诉项目大类',
     SUBJECT2            VARCHAR(255) COMMENT '投诉项目小类',
-    MACHINE_PRICE       BIGINT COMMENT '计费器显示价格',
+    MACHINE_PRICE       VARCHAR(255) COMMENT '计费器显示价格',
     TICKET              VARCHAR(255) COMMENT '车票号码',
     CHARGE              VARCHAR(255) COMMENT '实际收费',
     DRIVER_SEX          VARCHAR(10) COMMENT '司机性别',
     SUGGEST_BS		VARCHAR(255) COMMENT '建议行业',
     BUSLINES            VARCHAR(255) COMMENT '公交线路或站场',
+    BUS_COLOR		VARCHAR(255) COMMENT '颜色',
+    REPLY		VARCHAR(255) COMMENT '是否回复',
 
     PRIMARY KEY (ID)
 ) COMMENT '交委WebService接口的投诉与建议信息';
 ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD CONSTRAINT BSFK_JIAOWEIADVICEBASE FOREIGN KEY (ID)
       REFERENCES BC_SYNC_BASE (ID);
-ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD INDEX BSIDX_JIAOWEIADVICE_CERT (DRIVER_CERT);
+ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD INDEX BSIDX_JIAOWEIADVICE_CERT (DRIVER_ID);
 
 
 -- 从金盾网抓取的交通违法信息
@@ -1889,3 +1934,62 @@ ALTER TABLE BS_ARRANGE_CAR ADD CONSTRAINT BSFK_ACAR_MOTORCADE FOREIGN KEY (MOTOR
       REFERENCES BS_MOTORCADE (ID);
 ALTER TABLE BS_ARRANGE_CAR ADD INDEX BSIDX_ACAR_CARPLATE (CAR_PLATE_TYPE,CAR_PLATE_NO);
 
+-- ##营运子系统的 mysql 自定义函数和存储过程##
+
+DELIMITER $$ 
+DROP FUNCTION IF EXISTS getDriverInfoByCarId $$ 
+-- 获取指定车辆实时的营运司机信息,只适用于对当前在案车辆的处理
+-- 返回值的格式为：张三(正班),李四(副班),小明(顶班)
+-- 返回值是先按营运班次正序排序再按司机的入职时间正序排序进行合并的
+-- 参数：cid - 车辆的id
+CREATE FUNCTION getDriverInfoByCarId(cid BIGINT) RETURNS varchar(4000)
+BEGIN
+	DECLARE driverInfo varchar(4000);
+	select group_concat(DISTINCT concat(m.name,'(',(case when cm.classes=1 then '正班' when cm.classes=2 then '副班' when cm.classes=3 then '顶班' else '无' end),')')
+    order by cm.classes asc,m.work_date asc separator ',')
+		into driverInfo
+		from BS_CAR_DRIVER cm
+			inner join BS_CARMAN m on m.id=cm.driver_id
+			where cm.status_=0 and cm.car_id=cid;
+	return driverInfo;
+END $$ 
+DELIMITER ; 
+
+DELIMITER $$ 
+DROP FUNCTION IF EXISTS getPrincipalInfoByCarId $$ 
+-- 获取指定车辆实时的经济合同责任人信息,只适用于对当前在案车辆的处理
+-- 返回值的格式为：张三,李四
+-- 返回值是按责任人的入职时间正序排序的
+-- 参数：cid - 车辆的id
+CREATE FUNCTION getPrincipalInfoByCarId(cid BIGINT) RETURNS varchar(4000) 
+BEGIN
+	DECLARE principalInfo varchar(4000);
+	select group_concat(DISTINCT m.name order by m.work_date asc separator ',') into principalInfo
+		from bs_car_contract cc
+			inner join bs_carman_contract cm on cm.contract_id=cc.contract_id
+			inner join bs_carman m on m.id=cm.man_id
+			where cc.car_id=cid;
+	return principalInfo;
+END $$ 
+DELIMITER ; 
+
+DELIMITER $$ 
+DROP FUNCTION IF EXISTS getPrincipalInfoByDriverId $$ 
+-- 获取指定司机所营运车辆的经济合同责任人信息,只适用于对当前在案司机的处理
+-- 返回值的格式为：张三,李四
+-- 返回值是按责任人的创建时间正序排序的
+-- 参数：did - 司机的id
+CREATE FUNCTION getPrincipalInfoByDriverId(did BIGINT) RETURNS varchar(4000) 
+BEGIN
+	DECLARE principalInfo varchar(4000);
+	select group_concat(DISTINCT p.name order by p.file_date asc separator ',') into principalInfo
+		from bs_car_driver cd
+			inner join bs_car_contract cc on cc.car_id=cd.car_id
+			inner join bs_contract c on c.id=cc.contract_id
+			inner join bs_carman_contract pm on pm.contract_id=cc.contract_id
+			inner join bs_carman p on p.id=pm.man_id
+			-- 正常的营运班次信息+当前经济合同 条件
+			where cd.status_=0 and c.main=0 and c.type_=2 and cd.driver_id=did;
+	return principalInfo;
+END $$ 
+DELIMITER ; 
