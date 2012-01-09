@@ -5,7 +5,7 @@
 	<!-- 文档按如下顺序布局可以保证在weblogic8下启动时不会报web.xml不规范的错误： display-name>description>context-param>filter>filter-mapping>listener>servlet 
 		>servlet-mapping>session-config>welcome-file-list>error-page>taglib -->
 
-	<display-name>bcsystem</display-name>
+	<display-name>bctest</display-name>
 
 	<welcome-file-list>
 		<welcome-file>/login.action</welcome-file>
@@ -42,7 +42,7 @@
 		-->
 		<init-param>
 			<param-name>appRealDir</param-name>
-			<param-value>/bcdata</param-value>
+			<param-value>/bcfile/bcdata4test</param-value>
 		</init-param>
 		<init-param>
 			<!-- 上传类型限制，如 "jpg,jpeg,bmp,gif,png"，为空代表无限制 -->

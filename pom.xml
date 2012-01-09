@@ -18,7 +18,7 @@
 		
 		<app.ts>20120109</app.ts>
 		<app.debug>false</app.debug>
-		<app.data.realPath>/bcdata</app.data.realPath>
+		<app.data.realPath>/bcfile/bcdata4test</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
 		
 		<!-- 数据库连接配置 -->
@@ -36,6 +36,9 @@
 	<profiles>
 		<profile>
 			<id>postgresql</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<db.type>postgresql</db.type>
 				<db.name>bcsystem</db.name>
@@ -54,9 +57,6 @@
 		</profile>
 		<profile>
 			<id>mysql</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<db.type>mysql</db.type>
 				<db.name>bcsystem</db.name>
@@ -95,7 +95,7 @@
 	</profiles>
 	
 	<build>
-		<finalName>bc-system</finalName>
+		<finalName>bctest</finalName>
 		<!-- 替换文件中的${...}标记的值 -->
 		<resources>
 			<resource>
