@@ -801,8 +801,6 @@ insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select 0, g.id, '01', 'xinhu', '新户', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select 0, g.id, '02', 'xuyue', '续签', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
-insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select 0, g.id, '03', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='contract.signType'; 
 
 insert into BC_OPTION_ITEM (STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
