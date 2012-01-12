@@ -22,47 +22,48 @@
 -- ###########################################################################
 
 -- #### 车辆相关 ####
-	---- 所属公司选项
-	insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5028', 'car.old.unit.name', '所属公司', null);
-	
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baocheng', '宝城', null from BC_OPTION_GROUP g where g.KEY_='car.old.unit.name'; 
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'guangfa', '广发', null from BC_OPTION_GROUP g where g.KEY_='car.old.unit.name';
-	
-	---- 报废原因选项
-	insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5029', 'car.scrap.reason', '报废原因', null);
-	
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'yuanyinzhuanlanguigongsi', '转蓝归公司', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason'; 
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'yuanyinzhuanlanguizerenren', '转蓝归责任人', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yuanyinbaofei', '报废', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'yuanyinbeidao', '被盗', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'yuanyinbeiqiang', '被抢', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
-	insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-		select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'yuanyinqita', '其它', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
-	
-	---- 增加车辆表字段
-	ALTER TABLE BS_CAR ADD COLUMN IS_LOGOUT		BOOLEAN DEFAULT FALSE;
-	ALTER TABLE BS_CAR ADD COLUMN RETURN_DATE	TIMESTAMP;
-	ALTER TABLE BS_CAR ADD COLUMN LOGOUT_REASON	INTEGER DEFAULT 2;
-	ALTER TABLE BS_CAR ADD COLUMN DISTANCE_SCRAP_MONTH  VARCHAR(20);
-	ALTER TABLE BS_CAR ADD COLUMN IS_VERIFY		BOOLEAN DEFAULT FALSE;
-	ALTER TABLE BS_CAR ADD COLUMN VERIFY_DATE	TIMESTAMP;
-	ALTER TABLE BS_CAR ADD COLUMN LOGOUT_REMARK	VARCHAR(4000);
-	
+---- 所属公司选项
+-- #更新原有的签约内容错误的排序号#
+UPDATE BC_OPTION_GROUP  SET ORDER_ = '5027' WHERE KEY_ = 'contract.signType';
 
-	COMMENT ON COLUMN BS_CAR.IS_LOGOUT IS '启动注销程序';
-	COMMENT ON COLUMN BS_CAR.RETURN_DATE IS '交车日期';
-	COMMENT ON COLUMN BS_CAR.LOGOUT_REASON IS '注销原因(0-转蓝归公司,1-转蓝归责任人,2-报废,3-被盗,4-被抢,5-其它)';
-	COMMENT ON COLUMN BS_CAR.DISTANCE_SCRAP_MONTH IS '离报废日期时间';
-	COMMENT ON COLUMN BS_CAR.IS_VERIFY IS '主管部门核准';
-	COMMENT ON COLUMN BS_CAR.VERIFY_DATE IS '核准日期';
-	COMMENT ON COLUMN BS_CAR.LOGOUT_REMARK IS '注销备注';
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5028', 'car.old.unit.name', '所属公司', null);
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baocheng', '宝城', null from BC_OPTION_GROUP g where g.KEY_='car.old.unit.name'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'guangfa', '广发', null from BC_OPTION_GROUP g where g.KEY_='car.old.unit.name';
+
+---- 报废原因选项
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5029', 'car.scrap.reason', '报废原因', null);
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zhuanlanguigongsi', '转蓝归公司', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'zhuanlanguizerenren', '转蓝归责任人', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'baofei', '报废', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'beidao', '被盗', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'beiqiang', '被抢', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'qita', '其它', null from BC_OPTION_GROUP g where g.KEY_='car.scrap.reason';
+
+---- 增加车辆表字段
+ALTER TABLE BS_CAR ADD COLUMN IS_LOGOUT		BOOLEAN DEFAULT FALSE;
+COMMENT ON COLUMN BS_CAR.IS_LOGOUT IS '起动注销程序';
+ALTER TABLE BS_CAR ADD COLUMN RETURN_DATE	TIMESTAMP;
+COMMENT ON COLUMN BS_CAR.RETURN_DATE IS '交车日期';
+ALTER TABLE BS_CAR ADD COLUMN LOGOUT_REASON	INTEGER DEFAULT 0;
+COMMENT ON COLUMN BS_CAR.LOGOUT_REASON IS '注销原因(0-"",0-转蓝归公司,1-转蓝归责任人,3-报废,4-被盗,5-被抢,99-其它)';
+ALTER TABLE BS_CAR ADD COLUMN DISTANCE_SCRAP_MONTH  VARCHAR(20);
+COMMENT ON COLUMN BS_CAR.DISTANCE_SCRAP_MONTH IS '离报废日期时间';
+ALTER TABLE BS_CAR ADD COLUMN IS_VERIFY		BOOLEAN DEFAULT FALSE;
+COMMENT ON COLUMN BS_CAR.IS_VERIFY IS '主管部门核准';
+ALTER TABLE BS_CAR ADD COLUMN VERIFY_DATE	TIMESTAMP;
+COMMENT ON COLUMN BS_CAR.VERIFY_DATE IS '核准日期';
+ALTER TABLE BS_CAR ADD COLUMN LOGOUT_REMARK	VARCHAR(4000);
+COMMENT ON COLUMN BS_CAR.LOGOUT_REMARK IS '注销原因';
 	
 	
 
