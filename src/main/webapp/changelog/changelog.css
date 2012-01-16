@@ -36,12 +36,15 @@ ul.cl-container {
 	padding: 0;
 	margin: 0;
 }
+ul.cl-container > li {
+	margin: 14px 0 0 0;
+}
 
 div.cl-header {
 	font-size: 14px;
 	font-weight: bold;
 	padding: 0px 0 2px 0;
-	margin: 14px 0 0 0;
+	margin: 0;
 	background-color: #ccc;
 }
 
@@ -69,18 +72,21 @@ span.cl-issuer {
 	margin: 4px;
 	min-width: 8em;
 	display: inline-block;
+	display: none;
 }
 
 span.cl-operate {
 	margin: 4px;
 	min-width: 10em;
 	display: inline-block;
+	cursor: pointer;
 }
 
 ul.cl-logs {
 	list-style: decimal-leading-zero;
 	padding: 0 0 0 24px;
 	margin: 0px;
+	display: none;
 }
 
 li.cl-log {
