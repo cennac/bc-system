@@ -25,8 +25,6 @@
 
 -- #### 车辆相关 ####
 ---- 所属公司选项
--- #更新原有的签约内容错误的排序号#
-UPDATE BC_OPTION_GROUP  SET ORDER_ = '5027' WHERE KEY_ = 'contract.signType';
 
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5028', 'car.old.unit.name', '所属公司', null);
 
@@ -50,6 +48,7 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '5', '5', '被抢', null from BC_OPTION_GROUP g where g.KEY_='car.logout.reason';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '9', '9', '其它', null from BC_OPTION_GROUP g where g.KEY_='car.logout.reason';
+
 
 ---- 增加车辆表字段
 ALTER TABLE BS_CAR ADD COLUMN IS_LOGOUT		BOOLEAN DEFAULT FALSE;
@@ -98,6 +97,14 @@ ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN ORIGIN VARCHAR(200);
 COMMENT ON COLUMN BS_CASE_ACCIDENT.ORIGIN IS '籍贯';
 
 -- #### 经济合同相关 ####
+-- #更新原有的签约内容错误的排序号#
+UPDATE BC_OPTION_GROUP  SET ORDER_ = '5027' WHERE KEY_ = 'contract.signType';
+
+---- 签约类型
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'xuyue', '续约', null from BC_OPTION_GROUP g where g.KEY_='contract.signType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'chongfabao', '重发包', null from BC_OPTION_GROUP g where g.KEY_='contract.signType';
 
 
 -- ####  ####
