@@ -11,22 +11,91 @@
 	<ul class="cl-container">
 		<li class="cl-expand">
 			<div class="cl-header">
-				<span class="cl-version">版本：0.5.2</span><span
-					class="cl-issueTime">发布时间：?</span><span class="cl-issuer">发布人：黄荣基</span><span
-					class="cl-operate">∧</span>
+				<span class="cl-version">版本：0.5.2</span><span class="cl-issueTime">发布时间：?</span><span
+					class="cl-issuer">发布人：黄荣基</span><span class="cl-operate">∧</span>
 			</div>
 			<ul class="cl-logs">
-				<li class="cl-log">修正车辆的注销处理</li>
-				<li class="cl-log">去除车辆、司机的删除功能</li>
-				<li class="cl-log">车辆、合同搜索车牌号时不区分大小写</li>
-				<li class="cl-log">恢复丢失的司机图片</li>
-				<li class="cl-log">车辆保单视图增加更多可导出的列：自编号、公司、分公司、车队</li>
-				<li class="cl-log">事故理赔表单增加新的字段：司机拖车费、第三者损失、第三者拖车费、司机伤人、第三者伤人、协议赔付和备注</li>
-				<li class="cl-log">事故理赔视图增加更多可导出的列，并添加了分公司、车队的信息列</li>
-				<li class="cl-log">劳动合同、经济合同续约时起始日期自动在上一合同的结束日期基础上加多1天</li>
-				<li class="cl-log">登录页面和主页面增加查看系统更新日志的功能</li>
-				<li class="cl-log">新建车辆时车辆定级默认为一级</li>
-				<li class="cl-log">当视图导出的列超过12时自动分开为左右多列并排显示</li>
+				<li class="cl-log"><div class="module">综合</div>
+					<div class="detail">车辆、劳动合同、经济合同搜索车牌号时不区分大小写</div>
+				</li>
+				<li class="cl-log"><div class="module">综合</div>
+					<div class="detail">登录页面和主页面增加查看系统更新日志的功能</div>
+				</li>
+				<li class="cl-log"><div class="module">综合</div>
+					<div class="detail">当视图导出的列超过12时自动分开为左右多列并排显示</div>
+				</li>
+				
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">修正车辆的注销处理，并导入原bc系统的车辆注销信息</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">去除车辆的删除功能</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">新建车辆时车辆定级默认为一级</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆保单视图增加更多可导出的列：自编号、公司、分公司、车队</div>
+				</li>
+				
+				<li class="cl-log"><div class="module">司机</div>
+					<div class="detail">去除司机的删除功能</div>
+				</li>
+				<li class="cl-log"><div class="module">司机</div>
+					<div class="detail">恢复丢失的司机图片</div>
+				</li>
+				<li class="cl-log"><div class="module">迁移记录</div>
+					<div class="detail">营运班次与迁移记录整合为迁移记录一个模块，简化用户的操作</div>
+				</li>
+				
+				<li class="cl-log"><div class="module">劳动合同</div>
+					<div class="detail">劳动合同续约时起始日期自动在上一合同的结束日期基础上加多1天</div>
+				</li>
+				<li class="cl-log"><div class="module">劳动合同</div>
+					<div class="detail">劳动合同续约、转车后可以直接打开查看新生成的劳动合同</div>
+				</li>
+				
+				<li class="cl-log"><div class="module">经济合同</div>
+					<div class="detail">经济合同续约时起始日期自动在上一合同的结束日期基础上加多1天</div>
+				</li>
+				<li class="cl-log"><div class="module">经济合同</div>
+					<div class="detail">修正部分经济合同数据转换后丢失责任人信息的错误</div>
+				</li>
+				<li class="cl-log"><div class="module">经济合同</div>
+					<div class="detail">经济合同增加续约、过户、重发包等合同变更操作</div>
+				</li>
+				<li class="cl-log"><div class="module">经济合同</div>
+					<div class="detail">经济合同增加新的字段：合同版本号，通过系统选项管理模块可以修改可选的合同版本号列表</div>
+				</li>
+				<li class="cl-log"><div class="module">经济合同</div>
+					<div class="detail">经济合同的注销处理，注销后不允许继续修改</div>
+				</li>
+				
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">车辆保单增加新的字段：责任险合计、商业险合计、强制险合计</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">车辆保单的承保险种删除保费字段列</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">新建车辆保单时如选中商业险保险公司，强制险保险公司也跟着自动选中</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">车辆保单视图和表单的责任险合计、商业险合计、强制险合计字段权限控制为只有车保管理员才能查看</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">车辆保单视图增加更多可导出的列，如分公司、车队、车辆自编号等</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">车辆保单的注销处理，注销后的单不允许继续修改</div>
+				</li>
+				
+				<li class="cl-log"><div class="module">事故理赔</div>
+					<div class="detail">事故理赔表单增加新的字段：司机拖车费、第三者损失、第三者拖车费、司机伤人、第三者伤人、协议赔付和备注</div>
+				</li>
+				<li class="cl-log"><div class="module">事故理赔</div>
+					<div class="detail">事故理赔视图增加更多可导出的列，并添加了分公司、车队的信息列</div>
+				</li>
 			</ul>
 		</li>
 		<li class="cl-expand">
@@ -36,9 +105,14 @@
 					class="cl-operate">∧</span>
 			</div>
 			<ul class="cl-logs">
-				<li class="cl-log">车辆视图添加更多可导出的列：自编号、公司、分公司、车队等，经营权号列只有车辆管理员可看到</li>
-				<li class="cl-log">车辆表单添加自编号、所属公司、注销信息等相关字段，且经营权号字段的信息只有车辆管理员可看到</li>
-				<li class="cl-log">登记车辆信息时车牌号码的输入限制为只能输入5个数字或字符</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆视图添加更多可导出的列：自编号、公司、分公司、车队等，经营权号列只有车辆管理员可看到</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆表单添加自编号、所属公司、注销信息等相关字段，且经营权号字段的信息只有车辆管理员可看到</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">登记车辆信息时车牌号码的输入限制为只能输入5个数字或字符</div></li>
 			</ul>
 		</li>
 		<li class="cl-expand">
