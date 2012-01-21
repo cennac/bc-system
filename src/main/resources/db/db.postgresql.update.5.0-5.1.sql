@@ -138,7 +138,7 @@ alter table bs_case_accident add column is_pay_two BOOLEAN DEFAULT FALSE;
 comment on column bs_case_accident.is_deliver_two is '第二次送保里的司机受款';
 alter TABLE bs_case_accident add column pay_driverId_two INTEGER;
 comment on  column bs_case_accident.pay_driverId_two is '第二次送保里的受款司机ID';
-alter TABLE bs_case_accident add column pay_driver__two VARCHAR(255);
+alter TABLE bs_case_accident add column pay_driver_two VARCHAR(255);
 comment on  column bs_case_accident.pay_driver_two is '第二次送保里的受款司机';
 alter table bs_case_accident add column pay_date_two TIMESTAMP;
 comment on column bs_case_accident.pay_date_two is '第二次送保里的司机受款日期';
