@@ -68,7 +68,7 @@
 					<div class="detail">经济合同增加新的字段：合同版本号，通过系统选项管理模块可以修改可选的合同版本号列表</div>
 				</li>
 				<li class="cl-log"><div class="module">经济合同</div>
-					<div class="detail">经济合同的注销处理，注销后不允许继续修改</div>
+					<div class="detail">经济合同的注销处理，注销后不允许继续修改，避免历史数据被修改</div>
 				</li>
 				
 				<li class="cl-log"><div class="module">车辆保单</div>
@@ -87,7 +87,7 @@
 					<div class="detail">车辆保单视图增加更多可导出的列，如分公司、车队、车辆自编号等</div>
 				</li>
 				<li class="cl-log"><div class="module">车辆保单</div>
-					<div class="detail">车辆保单的注销处理，注销后的单不允许继续修改</div>
+					<div class="detail">车辆保单的注销处理，注销后的单不允许继续修改，避免历史数据被修改</div>
 				</li>
 				
 				<li class="cl-log"><div class="module">事故理赔</div>
@@ -95,6 +95,21 @@
 				</li>
 				<li class="cl-log"><div class="module">事故理赔</div>
 					<div class="detail">事故理赔视图增加更多可导出的列，并添加了分公司、车队的信息列</div>
+				</li>
+				<li class="cl-log"><div class="module">事故理赔</div>
+					<div class="detail">事故理赔单在首次送保完成(指送保、保险公司赔付、司机受款都完成)后自动注销，如果有二次送保的情况，则必须在首次和二次送保都完成后才自动注销</div>
+				</li>
+				<li class="cl-log"><div class="module">事故理赔</div>
+					<div class="detail">事故理赔单注销后不允许继续修改，避免历史数据被修改</div>
+				</li>
+				<li class="cl-log"><div class="module">交通违法</div>
+					<div class="detail">修正接口同步生成的单保存时的错误</div>
+				</li>
+				<li class="cl-log"><div class="module">营运违章</div>
+					<div class="detail">修正接口同步生成的单保存时的错误</div>
+				</li>
+				<li class="cl-log"><div class="module">营运违章</div>
+					<div class="detail">修正交委接口的同步错误</div>
 				</li>
 			</ul>
 		</li>

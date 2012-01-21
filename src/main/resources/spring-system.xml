@@ -11,6 +11,8 @@
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<!-- 附件存储路径的配置 -->
+	<bean id="Attach" class="cn.bc.docs.domain.Attach" p:dataRealPath="${data_realPath}" p:dataSubPath="${data_subPath}" />
 
 	<!-- 配置crudDao、crudService的实现：这里使用的是模拟的内存实现，没有数据库 -->
 	<bean id="crudDao" class="cn.bc.test.mock.CrudDaoMock" />
