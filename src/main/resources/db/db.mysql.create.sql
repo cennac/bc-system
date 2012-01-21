@@ -962,7 +962,9 @@ ALTER TABLE BS_CARMAN_CERT ADD CONSTRAINT BSFK_CARMANCERT_CERT FOREIGN KEY (CERT
 CREATE TABLE BS_CAR(
    ID                   BIGINT NOT NULL auto_increment,
    UID_                 VARCHAR(36) NOT NULL,
-   STATUS_              INT(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
+   STATUS_              INT(1) NOT NULL COMMENT '状态：0-在案,1-注销,2-报废',
+   VER_MAJOR            BIGINT COMMENT '主版本号',
+   VER_MINOR            BIGINT COMMENT '次版本号',
    OLD_UNIT_NAME        VARCHAR(255) COMMENT '所属单位',
    MOTORCADE_ID         BIGINT NOT NULL COMMENT '所属车队ID',
    BS_TYPE              VARCHAR(255) COMMENT '营运性质',
@@ -1044,7 +1046,7 @@ CREATE TABLE BS_CONTRACT(
    ID                   BIGINT NOT NULL AUTO_INCREMENT,
    UID_                 VARCHAR(36) NOT NULL,
    PID                  BIGINT,
-   STATUS_              BIGINT NOT NULL COMMENT '状态：0-在案,1-失效,2-离职',
+   STATUS_              BIGINT NOT NULL COMMENT '状态：0-在案,1-注销,2-离职',
    VER_MAJOR            BIGINT COMMENT '主版本号',
    VER_MINOR            BIGINT COMMENT '次版本号',
    PATCH_NO             VARCHAR(255) NOT NULL COMMENT '批号',
@@ -1190,7 +1192,7 @@ CREATE TABLE BS_CAR_DRIVER(
    STATUS_ int(1) NOT NULL COMMENT '状态：0-已禁用,1-启用中,2-已删除',
    DRIVER_ID            BIGINT NOT NULL COMMENT '司机ID',
    CAR_ID               BIGINT NOT NULL COMMENT '车辆ID',
-   CLASSES              int(1) NOT NULL COMMENT '营运班次:如0-未定义，1-正班、2-副班、3-顶班',
+   CLASSES              int(1) NOT NULL COMMENT '营运班次:如0-未定义，1-正班、2-副班、3-顶班、4-主挂',
    FILE_DATE            DATETIME NOT NULL COMMENT '创建时间',
    AUTHOR_ID            BIGINT NOT NULL COMMENT '创建人ID',
    MODIFIED_DATE        DATETIME COMMENT '最后修改时间',
@@ -1214,11 +1216,13 @@ CREATE TABLE BS_CAR_DRIVER_HISTORY (
    DRIVER_ID            BIGINT  COMMENT '司机ID',
    FROM_CAR_ID          BIGINT  COMMENT  '原车辆ID',
    FROM_MOTORCADE_ID    BIGINT  COMMENT   '原车队ID',
-   FROM_CLASSES         int(1)  COMMENT   '营运班次:如1-正班、2-副班、3-顶班',
-   TO_CAR_ID            BIGINT  COMMENT   '新车辆ID',
+   FROM_CLASSES         int(1)  COMMENT   '营运班次:如1-正班、2-副班、3-顶班、4-主挂',
+   TO_CAR_ID            BIGINT  COMMENT   '新车辆ID(或主挂车辆)',
    TO_MOTORCADE_ID      BIGINT  COMMENT   '新车队ID',
-   TO_CLASSES           int(1)  COMMENT   '营运班次:如1-正班、2-副班、3-顶班',
-   MOVE_DATE            datetime  COMMENT      '迁移日期',
+   TO_CLASSES           int(1)  COMMENT   '营运班次:如1-正班、2-副班、3-顶班、4-主挂',
+   MOVE_DATE            datetime  COMMENT      '迁移日期(或顶班合同的开始日期)',
+   END_DATE             datetime  COMMENT      '顶班合同的结束日期',
+   SHIFTWORK            VARCHAR(255) COMMENT      '顶班车辆',
    MOVE_TYPE            int(1)  NOT NULL  COMMENT '迁移类型',  
    FROM_UNIT            VARCHAR(255) COMMENT  '原单位',
    TO_UNIT              VARCHAR(255) COMMENT  '新单位',
@@ -1608,7 +1612,7 @@ CREATE TABLE BS_CAR_POLICY(
    GREENSLIP_SOURCE                    VARCHAR(255)   COMMENT '强保人来源',
    LIABILITY_NO                        VARCHAR(255) NOT NULL COMMENT '责任险单号',
    AMOUNT                              DECIMAL(10,2) COMMENT'合计',
-   STOPDATE                            DATETIME COMMENT '停保日期',
+   STOP_DATE                            DATETIME COMMENT '停保日期',
    FILE_DATE                           DATETIME NOT NULL COMMENT '创建时间',
    AUTHOR_ID                           BIGINT NOT NULL COMMENT '创建人ID',
    MODIFIER_ID                         BIGINT COMMENT '最后修改人ID',
@@ -1956,33 +1960,33 @@ END $$
 DELIMITER ; 
 
 DELIMITER $$ 
-DROP FUNCTION IF EXISTS getPrincipalInfoByCarId $$ 
+DROP FUNCTION IF EXISTS getChargerInfoByCarId $$ 
 -- 获取指定车辆实时的经济合同责任人信息,只适用于对当前在案车辆的处理
 -- 返回值的格式为：张三,李四
 -- 返回值是按责任人的入职时间正序排序的
 -- 参数：cid - 车辆的id
-CREATE FUNCTION getPrincipalInfoByCarId(cid BIGINT) RETURNS varchar(4000) 
+CREATE FUNCTION getChargerInfoByCarId(cid BIGINT) RETURNS varchar(4000) 
 BEGIN
-	DECLARE principalInfo varchar(4000);
-	select group_concat(DISTINCT m.name order by m.work_date asc separator ',') into principalInfo
+	DECLARE chargerInfo varchar(4000);
+	select group_concat(DISTINCT m.name order by m.work_date asc separator ',') into chargerInfo
 		from bs_car_contract cc
 			inner join bs_carman_contract cm on cm.contract_id=cc.contract_id
 			inner join bs_carman m on m.id=cm.man_id
 			where cc.car_id=cid;
-	return principalInfo;
+	return chargerInfo;
 END $$ 
 DELIMITER ; 
 
 DELIMITER $$ 
-DROP FUNCTION IF EXISTS getPrincipalInfoByDriverId $$ 
+DROP FUNCTION IF EXISTS getChargerInfoByDriverId $$ 
 -- 获取指定司机所营运车辆的经济合同责任人信息,只适用于对当前在案司机的处理
 -- 返回值的格式为：张三,李四
 -- 返回值是按责任人的创建时间正序排序的
 -- 参数：did - 司机的id
-CREATE FUNCTION getPrincipalInfoByDriverId(did BIGINT) RETURNS varchar(4000) 
+CREATE FUNCTION getChargerInfoByDriverId(did BIGINT) RETURNS varchar(4000) 
 BEGIN
-	DECLARE principalInfo varchar(4000);
-	select group_concat(DISTINCT p.name order by p.file_date asc separator ',') into principalInfo
+	DECLARE chargerInfo varchar(4000);
+	select group_concat(DISTINCT p.name order by p.file_date asc separator ',') into chargerInfo
 		from bs_car_driver cd
 			inner join bs_car_contract cc on cc.car_id=cd.car_id
 			inner join bs_contract c on c.id=cc.contract_id
@@ -1990,6 +1994,6 @@ BEGIN
 			inner join bs_carman p on p.id=pm.man_id
 			-- 正常的营运班次信息+当前经济合同 条件
 			where cd.status_=0 and c.main=0 and c.type_=2 and cd.driver_id=did;
-	return principalInfo;
+	return chargerInfo;
 END $$ 
 DELIMITER ; 

@@ -753,7 +753,7 @@ ALTER TABLE BC_SYNC_BASE ADD CONSTRAINT BCUK_SYNC_ID UNIQUE (SYNC_TYPE,SYNC_CODE
 -- ##bc平台的 postgresql 自定义函数和存储过程##
 
 -- 模拟oracle dual功能的在hibernate hql中使用的视图
-CREATE OR REPLACE VIEW bc_dual AS SELECT NULL;
+CREATE OR REPLACE VIEW bc_dual AS SELECT NULL::unknown;
 
 -- 创建更新actor的pcode和pname的存储过程：会递归处理下级单位和部门
 --	pid: actor所隶属上级的id，为0代表顶层单位
@@ -1230,7 +1230,7 @@ create table BS_CARMAN (
     GZ                   boolean default false,
     ACCESS_CERTS         VARCHAR(255),
     DESC_                VARCHAR(4000),
-    CHARGER		VARCHAR(255),
+    CHARGER		VARCHAR(4000),
     FILE_DATE TIMESTAMP NOT NULL,
     AUTHOR_ID INTEGER NOT NULL,
     MODIFIER_ID INTEGER,
@@ -1299,12 +1299,14 @@ ALTER TABLE BS_CARMAN_CERT ADD CONSTRAINT BSFK_CARMANCERT_CERT FOREIGN KEY (CERT
 -- 车辆 
 CREATE TABLE BS_CAR (
    ID                   INTEGER           NOT NULL,
-   UID_                 VARCHAR(36)         NOT NULL,
-   STATUS_              INTEGER            NOT NULL,
+   UID_                 VARCHAR(36)       NOT NULL,
+   STATUS_              INTEGER           NOT NULL,
+   VER_MAJOR            NUMERIC(2),
+   VER_MINOR            NUMERIC(3),
    OLD_UNIT_NAME        VARCHAR(255),
    MOTORCADE_ID         INTEGER,
-   DRIVER		VARCHAR(255),
-   CHARGER		VARCHAR(255),
+   DRIVER		VARCHAR(4000),
+   CHARGER		VARCHAR(4000),
    BS_TYPE              VARCHAR(255),
    CODE                 VARCHAR(255),
    ORIGIN_NO            VARCHAR(255),
@@ -1350,14 +1352,16 @@ CREATE TABLE BS_CAR (
    DESC1                VARCHAR(4000),
    DESC2                VARCHAR(4000),
    DESC3                VARCHAR(4000),
-   FILE_DATE            TIMESTAMP NOT NULL,
-   AUTHOR_ID            INTEGER NOT NULL,
+   FILE_DATE            TIMESTAMP	NOT NULL,
+   AUTHOR_ID            INTEGER		NOT NULL,
    MODIFIER_ID          INTEGER,
    MODIFIED_DATE        TIMESTAMP,
    CONSTRAINT BSPK_CAR PRIMARY KEY (ID)
 );
 COMMENT ON TABLE BS_CAR IS '车辆';
-COMMENT ON COLUMN BS_CAR.STATUS_ IS '状态：0-启用中,1-已禁用,2-已删除';
+COMMENT ON COLUMN BS_CAR.STATUS_ IS '状态：0-在案,1-注销,2-报废';
+COMMENT ON COLUMN BS_CAR.VER_MAJOR IS '主版本号';
+COMMENT ON COLUMN BS_CAR.VER_MINOR IS '次版本号';
 COMMENT ON COLUMN BS_CAR.OLD_UNIT_NAME IS '所属单位';
 COMMENT ON COLUMN BS_CAR.MOTORCADE_ID IS '所属车队ID';
 COMMENT ON COLUMN BS_CAR.DRIVER IS '司机信息';
@@ -1458,7 +1462,7 @@ CREATE TABLE BS_CONTRACT
    END_DATE             TIMESTAMP                 NOT NULL,
    CONTENT              VARCHAR(4000),
    EXT_STR1             VARCHAR(255),
-   EXT_STR2             VARCHAR(255),
+   EXT_STR2             VARCHAR(4000),
    EXT_STR3             VARCHAR(255),
    EXT_NUM1             INTEGER,
    EXT_NUM2             INTEGER,
@@ -1471,7 +1475,7 @@ CREATE TABLE BS_CONTRACT
 );
 
 COMMENT ON TABLE BS_CONTRACT IS'合同';
-COMMENT ON COLUMN BS_CONTRACT.STATUS_ IS'状态：0-正常,1-失效,2-离职';
+COMMENT ON COLUMN BS_CONTRACT.STATUS_ IS'状态：0-在案,1-注销,2-离职';
 COMMENT ON COLUMN BS_CONTRACT.VER_MAJOR IS '主版本号';
 COMMENT ON COLUMN BS_CONTRACT.VER_MINOR IS '次版本号';
 COMMENT ON COLUMN BS_CONTRACT.PATCH_NO IS '批号';
@@ -1641,7 +1645,7 @@ COMMENT ON TABLE BS_CAR_DRIVER IS '司机营运车辆';
 COMMENT ON COLUMN BS_CAR_DRIVER.STATUS_ IS '状态：0-启用中,1-已禁用,2-已删除';
 COMMENT ON COLUMN BS_CAR_DRIVER.DRIVER_ID IS '司机ID';
 COMMENT ON COLUMN BS_CAR_DRIVER.CAR_ID IS '车辆ID';
-COMMENT ON COLUMN BS_CAR_DRIVER.CLASSES IS '营运班次:如1-正班、2-副班、3-顶班';
+COMMENT ON COLUMN BS_CAR_DRIVER.CLASSES IS '营运班次:如1-正班、2-副班、3-顶班、4-主挂';
 COMMENT ON COLUMN BS_CAR_DRIVER.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_CAR_DRIVER.AUTHOR_ID IS '创建人ID';
 COMMENT ON COLUMN BS_CAR_DRIVER.MODIFIED_DATE IS '最后修改时间';
@@ -1674,6 +1678,8 @@ CREATE TABLE BS_CAR_DRIVER_HISTORY (
    TO_UNIT                VARCHAR(255),
    HAND_PAPERS_DATE      TIMESTAMP,
    CANCEL_ID            VARCHAR(255),
+   END_DATE             TIMESTAMP,
+   SHIFTWORK            VARCHAR(255),
    FILE_DATE            TIMESTAMP                 NOT NULL,
    AUTHOR_ID            INTEGER           NOT NULL,
    MODIFIED_DATE        TIMESTAMP,
@@ -1685,16 +1691,18 @@ COMMENT ON TABLE BS_CAR_DRIVER_HISTORY IS '迁移记录';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.DRIVER_ID IS '司机ID';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FROM_CAR_ID IS '原车辆ID';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FROM_MOTORCADE_ID IS '原车队ID';
-COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FROM_CLASSES IS '营运班次:如1-正班、2-副班、3-顶班';
-COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_CAR_ID IS '新车辆ID';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FROM_CLASSES IS '营运班次:如1-正班、2-副班、3-顶班、4-主挂';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_CAR_ID IS '新车辆ID(或主挂车)';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_MOTORCADE_ID IS '新车队ID';
-COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_CLASSES IS '营运班次:如1-正班、2-副班、3-顶班';
-COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_DATE IS '迁移日期';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_CLASSES IS '营运班次:如1-正班、2-副班、3-顶班、4-主挂';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_DATE IS '迁移日期(或顶班合同的开始日期)';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FROM_UNIT IS '原单位';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_UNIT IS '现单位';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.HAND_PAPERS_DATE IS '交证日期';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.CANCEL_ID IS '注销单号';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.END_DATE IS '顶班合同结束日期';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.SHIFTWORK IS '顶班车辆';
 
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.AUTHOR_ID IS '创建人ID';
@@ -2256,23 +2264,23 @@ ALTER TABLE BS_CASE_PRAISE ADD CONSTRAINT BSFK_PRAISE_RECEIVER FOREIGN KEY (RECE
 -- 工伤
 CREATE TABLE BS_INDUSTRIAL_INJURY 
 (
-   ID                   INTEGER           NOT NULL,
-   UID_                 VARCHAR(36)         NOT NULL,
-   CONTRACT_ID          INTEGER           NOT NULL,
-   STATUS_		INTEGER	     NOT NULL,
-   CODE                 VARCHAR(255)        NOT NULL,
+   ID                   INTEGER         NOT NULL,
+   UID_                 VARCHAR(36)     NOT NULL,
+   CONTRACT_ID          INTEGER         NOT NULL,
+   STATUS_		INTEGER		NOT NULL,
+   CODE                 VARCHAR(255)    NOT NULL,
    HAPPEN_DATE          TIMESTAMP,
    CONFIRM_DATE         TIMESTAMP,
    START_DATE           TIMESTAMP,
    END_DATE             TIMESTAMP,
    COMPENSATION         VARCHAR(255),
-   MONEY                NUMERIC(10,2),
-   IS_OAS               INTEGER            DEFAULT 0,
-   IS_IN_HOSPITAL       INTEGER            DEFAULT 0,
-   IS_LI                INTEGER            DEFAULT 0,
+   MONEY                NUMERIC(10,2),        
+   IS_OAS               BOOLEAN          DEFAULT FALSE,
+   IS_IN_HOSPITAL       BOOLEAN          DEFAULT FALSE,
+   IS_LI                BOOLEAN          DEFAULT FALSE,
    DESCRIPTION          VARCHAR(4000),
-   FILE_DATE            TIMESTAMP                 NOT NULL,
-   AUTHOR_ID            INTEGER           NOT NULL,
+   FILE_DATE            TIMESTAMP        NOT NULL,
+   AUTHOR_ID            INTEGER          NOT NULL,
    MODIFIER_ID          INTEGER,
    MODIFIED_DATE        TIMESTAMP,
    CONSTRAINT PK_BS_INDUSTRIAL_INJURY PRIMARY KEY (ID)
@@ -2329,7 +2337,7 @@ CREATE TABLE BS_CAR_POLICY (
    GREENSLIP_END_DATE                 TIMESTAMP,
    GREENSLIP_SOURCE     VARCHAR(255),
    LIABILITY_NO         VARCHAR(255),
-   STOPDATE             TIMESTAMP,
+   STOP_DATE             TIMESTAMP,
    AMOUNT               NUMERIC(10,2),
    FILE_DATE            TIMESTAMP                 NOT NULL,
    AUTHOR_ID            INTEGER           NOT NULL,
@@ -2361,7 +2369,7 @@ COMMENT ON COLUMN BS_CAR_POLICY.GREENSLIP_START_DATE IS '强制险开始日期';
 COMMENT ON COLUMN BS_CAR_POLICY.GREENSLIP_END_DATE IS '强制险结束日期';
 COMMENT ON COLUMN BS_CAR_POLICY.GREENSLIP_SOURCE IS '强保人来源';
 COMMENT ON COLUMN BS_CAR_POLICY.LIABILITY_NO IS '责任险单号';
-COMMENT ON COLUMN BS_CAR_POLICY.STOPDATE IS '停保日期';
+COMMENT ON COLUMN BS_CAR_POLICY.STOP_DATE IS '停保日期';
 COMMENT ON COLUMN BS_CAR_POLICY.AMOUNT IS '合计';
 COMMENT ON COLUMN BS_CAR_POLICY.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_CAR_POLICY.AUTHOR_ID IS '创建人ID';
@@ -2557,7 +2565,7 @@ CREATE TABLE BS_SYNC_JIAOWEI_ADVICE (
     ADVISOR_CERT        VARCHAR(255),
     OLD_UNIT_NAME       VARCHAR(255),
     CAR_PLATE		VARCHAR(255),
-    DRIVER_ID		VARCHAR(255),
+    DRIVER_CERT		VARCHAR(255),
     DRIVER_CHAR         VARCHAR(255),
     CONTENT		VARCHAR(4000) NOT NULL,
     RECEIVE_DATE        TIMESTAMP,
@@ -2589,7 +2597,7 @@ COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.ADVISOR_PHONE IS '投诉人电话';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.ADVISOR_CERT IS '投诉人证件号';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.OLD_UNIT_NAME IS '车属单位';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.CAR_PLATE IS '车牌号码';
-COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.DRIVER_ID IS '资格证号';
+COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.DRIVER_CERT IS '资格证号';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.DRIVER_CHAR IS '司机特征';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.CONTENT IS '投诉内容';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.RECEIVE_DATE IS '受理时间';
@@ -2608,7 +2616,7 @@ COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.BUS_COLOR IS '颜色';
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.REPLY IS '是否回复';
 ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD CONSTRAINT BSFK_JIAOWEIADVICEBASE FOREIGN KEY (ID)
       REFERENCES BC_SYNC_BASE (ID);
-CREATE INDEX BCIDX_JIAOWEIADVICE_DRIVER_CERT ON BS_SYNC_JIAOWEI_ADVICE (DRIVER_ID);
+CREATE INDEX BCIDX_JIAOWEIADVICE_DRIVER_CERT ON BS_SYNC_JIAOWEI_ADVICE (DRIVER_CERT);
 
 -- 从金盾网抓取的交通违法信息
 CREATE TABLE BS_SYNC_JINDUN_JTWF (
@@ -2655,7 +2663,7 @@ CREATE INDEX BCIDX_JINDUNJTWF_CAR ON BS_SYNC_JINDUN_JTWF (CAR_PLATE_TYPE,CAR_PLA
 -- ##营运子系统的 postgresql 自定义函数和存储过程##
 
 -- 获取指定车辆实时的营运司机信息,只适用于对当前在案车辆的处理
--- 返回值的格式为：张三(正班),李四(副班),小明(顶班)
+-- 返回值的格式为：张三,正班,id1;李四,副班,id2;小明,顶班,id3;小军,主挂,id4
 -- 返回值是先按营运班次正序排序再按司机的入职时间正序排序进行合并的
 -- 参数：cid - 车辆的id
 CREATE OR REPLACE FUNCTION getDriverInfoByCarId(cid IN integer) RETURNS varchar AS $$
@@ -2663,9 +2671,9 @@ DECLARE
 	--定义变量
 	driverInfo varchar(4000);
 BEGIN
-	select string_agg(concat(name,'(',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '顶班' else '无' end),')'),',')
+	select string_agg(concat(name,',',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '顶班' when classes=4 then '主挂' else '无' end),',',id),';')
 		into driverInfo
-		from (select m.name as name,cm.classes as classes 
+		from (select m.id as id,m.name as name,cm.classes as classes 
 			from BS_CAR_DRIVER cm
 			inner join BS_CARMAN m on m.id=cm.driver_id
 			where cm.status_=0 and cm.car_id=cid
@@ -2678,19 +2686,21 @@ $$ LANGUAGE plpgsql;
 -- 返回值的格式为：张三,李四
 -- 返回值是按责任人的入职时间正序排序的
 -- 参数：cid - 车辆的id
-CREATE OR REPLACE FUNCTION getPrincipalInfoByCarId(cid IN integer) RETURNS varchar AS $$
+CREATE OR REPLACE FUNCTION getChargerInfoByCarId(cid IN integer) RETURNS varchar AS $$
 DECLARE
 	--定义变量
-	principalInfo varchar(4000);
+	chargerInfo varchar(4000);
 BEGIN
-	select string_agg(name,',') into principalInfo
-		from (SELECT m.name as name
+	select string_agg(concat(name,',',id),';') into chargerInfo
+		from (SELECT m.name as name,m.id as id
 			FROM bs_car_contract cc
-			inner join bs_carman_contract cm on cm.contract_id=cc.contract_id
+			inner join bs_contract c on c.id=cc.contract_id
+			inner join bs_contract_charger c1 on c1.id=c.id
+			inner join bs_carman_contract cm on cm.contract_id=c.id
 			inner join bs_carman m on m.id=cm.man_id
 			where cc.car_id=cid
 			order by m.work_date asc) as t;
-	return principalInfo;
+	return chargerInfo;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2698,22 +2708,89 @@ $$ LANGUAGE plpgsql;
 -- 返回值的格式为：张三,李四
 -- 返回值是按责任人的创建时间正序排序的
 -- 参数：did - 司机的id
-CREATE OR REPLACE FUNCTION getPrincipalInfoByDriverId(did IN integer) RETURNS varchar AS $$
+CREATE OR REPLACE FUNCTION getChargerInfoByDriverId(did IN integer) RETURNS varchar AS $$
 DECLARE
 	--定义变量
-	principalInfo varchar(4000);
+	chargerInfo varchar(4000);
 BEGIN
-	select string_agg(name,',') into principalInfo
-		from (SELECT distinct p.name as name,p.file_date
+	select string_agg(concat(name,',',id),';') into chargerInfo
+		from (SELECT distinct p.name as name,p.id as id,p.file_date
 			FROM bs_car_driver cd
 			inner join bs_car_contract cc on cc.car_id=cd.car_id
 			inner join bs_contract c on c.id=cc.contract_id
 			inner join bs_carman_contract pm on pm.contract_id=cc.contract_id
 			inner join bs_carman p on p.id=pm.man_id
 			-- 正常的营运班次信息+当前经济合同 条件
-			where cd.status_=0 and c.main=0 and c.type_=2 and cd.driver_id=did
+			where cd.status_=0 and c.status_=0 and c.main=0 and c.type_=2 and cd.driver_id=did
 			order by p.file_date asc) as t;
-	return principalInfo;
+	return chargerInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 获取指定经济合同的车辆信息
+-- 返回值的格式为：粤A.xxxx1,id1;粤A.xxxx2,id2
+-- 返回值是按合同的创建时间正序排序的
+-- 参数：cid - 经济合同的id
+CREATE OR REPLACE FUNCTION getCarInfoByChargerContractId(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	carInfo varchar(4000);
+BEGIN
+	select string_agg(concat(plateType,'.',plateNo,',',id),';') into carInfo
+		from (SELECT car.plate_type as plateType,car.plate_no as plateNo,car.id as id
+			FROM bs_car_contract cc
+			inner join bs_contract c on c.id=cc.contract_id
+			inner join bs_contract_charger c1 on c1.id=c.id
+			inner join bs_car car on car.id=cc.car_id
+			where cc.contract_id=cid
+			order by c.file_date desc) as t;
+
+	return carInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- 获取指定经济合同的责任人信息
+-- 返回值的格式为：姓名1,id1;姓名2,id2
+-- 返回值是按合同的创建时间正序排序的
+-- 参数：cid - 经济合同的id
+CREATE OR REPLACE FUNCTION getChargerInfoByChargerContractId(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	chargerInfo varchar(4000);
+BEGIN
+	select string_agg(concat(name,',',id),';') into chargerInfo
+		from (SELECT p.name as name,p.id as id
+			FROM bs_carman_contract cc
+			inner join bs_contract c on c.id=cc.contract_id
+			inner join bs_contract_charger c1 on c1.id=c.id
+			inner join bs_carman p on p.id=cc.man_id
+			where cc.contract_id=cid
+			order by p.work_date asc) as t;
+
+	return chargerInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 获取指定劳动合同的车辆信息
+-- 返回值的格式为：粤A.xxxx1,id1;粤A.xxxx2,id2
+-- 返回值是按合同的创建时间正序排序的
+-- 参数：cid - 劳动合同的id
+CREATE OR REPLACE FUNCTION getCarInfoByLabourContractId(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	carInfo varchar(4000);
+BEGIN
+	select string_agg(concat(plateType,'.',plateNo,',',id),';') into carInfo
+		from (SELECT car.plate_type as plateType,car.plate_no as plateNo,car.id as id
+			FROM bs_car_contract cc
+			inner join bs_contract c on c.id=cc.contract_id
+			inner join bs_contract_labour c1 on c1.id=c.id
+			inner join bs_car car on car.id=cc.car_id
+			where cc.contract_id=cid
+			order by c.file_date desc) as t;
+
+	return carInfo;
 END;
 $$ LANGUAGE plpgsql;
 
