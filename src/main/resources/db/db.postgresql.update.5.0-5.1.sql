@@ -94,16 +94,54 @@ ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN THIRD_LOSS NUMERIC(10,2);
 COMMENT ON COLUMN BS_CASE_ACCIDENT.THIRD_LOSS IS '第三者损失';
 ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN THIRD_COST NUMERIC(10,2);
 COMMENT ON COLUMN BS_CASE_ACCIDENT.THIRD_COST IS '第三者拖车费';
-ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN CARMAN_HURT_COUNT  INTEGER;
-COMMENT ON COLUMN BS_CASE_ACCIDENT.CARMAN_HURT_COUNT IS '司机伤人';
-ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN THIRD_HURT_COUNT INTEGER;
-COMMENT ON COLUMN BS_CASE_ACCIDENT.THIRD_HURT_COUNT IS '第三者伤人';
 ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN AGREEMENT_PAYMENT NUMERIC(10,2);
 COMMENT ON COLUMN BS_CASE_ACCIDENT.AGREEMENT_PAYMENT IS '协议赔付';
 ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN DESC_ VARCHAR(4000);
 COMMENT ON COLUMN BS_CASE_ACCIDENT.DESC_ IS '备注';
 ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN ORIGIN VARCHAR(200);
 COMMENT ON COLUMN BS_CASE_ACCIDENT.ORIGIN IS '籍贯';
+
+alter TABLE bs_case_accident add COLUMN CLAIM_AMOUNT NUMERIC(10,2);
+COMMENT ON COLUMN bs_case_accident.CLAIM_AMOUNT IS '出险金额';
+alter TABLE bs_case_accident add column CAR_wounding NUMERIC(10,2);
+comment on column bs_case_accident.car_wounding is '自车伤人';
+alter TABLE bs_case_accident add column third_wounding NUMERIC(10,2);
+comment on column bs_case_accident.third_wounding is '第三者伤人';
+alter table bs_case_accident add column medical_fee NUMERIC(10,2);
+comment on column bs_case_accident.medical_fee is '第三者医疗费用';
+alter TABLE bs_case_accident add column pay_driverId INTEGER;
+comment on  column bs_case_accident.pay_driverId is '送保的受款司机ID';
+alter TABLE bs_case_accident add column pay_driver VARCHAR(255);
+comment on  column bs_case_accident.pay_driver is '送保的受款司机';
+alter table bs_case_accident add column is_deliver_second BOOLEAN DEFAULT FALSE;
+comment on column bs_case_accident.is_deliver_second is '是否第二次送保';
+alter table bs_case_accident add column is_deliver_two BOOLEAN DEFAULT FALSE;
+comment on column bs_case_accident.is_deliver_two is '第二次送保里的送保';
+alter table bs_case_accident add column deliver_date_two TIMESTAMP;
+comment on column bs_case_accident.deliver_date_two is '第二次送保里的送保日期';
+alter table bs_case_accident add column deliver_money_two NUMERIC(10,2);
+comment on column bs_case_accident.deliver_money_two is '第二次送保里的送保金额';
+
+alter table bs_case_accident add column is_claim_two BOOLEAN DEFAULT FALSE;
+comment on column bs_case_accident.is_claim_two is '第二次送保里的赔付';
+alter table bs_case_accident add column claim_date_two TIMESTAMP;
+comment on column bs_case_accident.claim_date_two is '第二次送保里的赔付日期';
+alter table bs_case_accident add column claim_money_two NUMERIC(10,2);
+comment on column bs_case_accident.claim_money_two is '第二次送保里的赔付金额';
+
+alter table bs_case_accident add column is_pay_two BOOLEAN DEFAULT FALSE;
+comment on column bs_case_accident.is_deliver_two is '第二次送保里的司机受款';
+alter TABLE bs_case_accident add column pay_driverId_two INTEGER;
+comment on  column bs_case_accident.pay_driverId_two is '第二次送保里的受款司机ID';
+alter TABLE bs_case_accident add column pay_driver__two VARCHAR(255);
+comment on  column bs_case_accident.pay_driver_two is '第二次送保里的受款司机';
+alter table bs_case_accident add column pay_date_two TIMESTAMP;
+comment on column bs_case_accident.pay_date_two is '第二次送保里的司机受款日期';
+alter table bs_case_accident add column pay_money_two NUMERIC(10,2);
+comment on column bs_case_accident.pay_money_two is '第二次送保里的司机受款金额';
+
+
+
 
 
 
