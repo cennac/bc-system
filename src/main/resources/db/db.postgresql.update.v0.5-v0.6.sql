@@ -145,7 +145,10 @@ comment on column bs_case_accident.pay_date_two is '第二次送保里的司机�
 alter table bs_case_accident add column pay_money_two NUMERIC(10,2);
 comment on column bs_case_accident.pay_money_two is '第二次送保里的司机受款金额';
 
-
+UPDATE bs_case_accident SET is_claim_two = FALSE;
+UPDATE bs_case_accident SET is_deliver_second = FALSE;
+UPDATE bs_case_accident SET is_deliver_two = FALSE;
+UPDATE bs_case_accident SET is_pay_two = FALSE;
 
 
 
