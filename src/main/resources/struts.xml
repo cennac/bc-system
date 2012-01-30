@@ -57,6 +57,7 @@
 	<include file="cn/bc/business/policy/web/struts2/struts.xml" />
 	<include file="cn/bc/business/arrange/web/struts2/struts.xml" />
 	<include file="cn/bc/business/insuranceType/web/struts2/struts.xml" />
+	<include file="cn/bc/business/carmodel/web/struts2/struts.xml" />
 	
 
 	<!-- 项目自定义的配置文件 -->

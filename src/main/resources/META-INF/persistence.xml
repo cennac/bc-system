@@ -119,6 +119,8 @@
 
 		<!-- 工伤 -->
 		<class>cn.bc.business.injury.domain.Injury</class>
+		<!-- 车型配置 -->
+		<class>cn.bc.business.carmodel.domain.CarModel</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
