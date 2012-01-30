@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
@@ -28,23 +26,19 @@ import org.springframework.util.StringUtils;
 
 import cn.bc.Context;
 import cn.bc.ContextHolder;
-import cn.bc.chat.OnlineUser;
-import cn.bc.chat.service.OnlineUserService;
 import cn.bc.core.exception.CoreException;
 import cn.bc.core.util.DateUtils;
 import cn.bc.desktop.service.LoginService;
 import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.ActorHistory;
 import cn.bc.identity.domain.AuthData;
+import cn.bc.identity.event.LoginEvent;
+import cn.bc.identity.event.LogoutEvent;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextImpl;
 import cn.bc.log.domain.Syslog;
-import cn.bc.log.service.SyslogService;
-import cn.bc.log.web.struts2.SyslogAction;
-import cn.bc.web.util.WebUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.util.LocalizedTextUtil;
 
 /**
  * 登录处理
@@ -61,10 +55,9 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	public String name;// 帐号
 	public String password;// 密码
 	public String msg;// 登录信息
+	public String sid;// 会话id
 	public boolean success;// 登录是否成功
-	private OnlineUserService onlineUserService;
 	private LoginService loginService;
-	private SyslogService syslogService;
 	private Map<String, Object> session;
 	private ApplicationEventPublisher eventPublisher;
 
@@ -74,18 +67,8 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	}
 
 	@Autowired
-	public void setOnlineUserService(OnlineUserService onlineUserService) {
-		this.onlineUserService = onlineUserService;
-	}
-
-	@Autowired
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
-	}
-
-	@Autowired
-	public void setSyslogService(SyslogService syslogService) {
-		this.syslogService = syslogService;
 	}
 
 	public void setSession(Map<String, Object> session) {
@@ -93,6 +76,10 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	}
 
 	public String execute() throws Exception {
+		return SUCCESS;
+	}
+
+	public String doRelogin() throws Exception {
 		return SUCCESS;
 	}
 
@@ -126,18 +113,12 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					msg = "密码错误！";
 					success = false;
 				} else {
-					HttpServletRequest request = ServletActionContext
-							.getRequest();
-					String clientIp = WebUtils.getClientIP(request);
 					if (logger.isInfoEnabled()) {
-						String info = user.getName() + "登录系统";
-						info += ",ip=" + clientIp;
-						info += ",host=" + request.getRemoteHost();
-						logger.info(info);
-						msg = "登录成功，跳转到系统主页！";
 						logger.info("doLogin.authOk："
 								+ DateUtils.getWasteTime(startTime));
 					}
+					
+					sid = ServletActionContext.getRequest().getSession().getId();
 
 					// 创建默认的上下文实现并保存到session和线程变量中
 					Context context = new SystemContextImpl();
@@ -225,40 +206,10 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					// 登录时间
 					Calendar now = Calendar.getInstance();
 					this.session.put("loginTime", now);
-					
-					// 发布登录事件
-					//this.eventPublisher.publishEvent(new LoginEvent(this,userHistory,Syslog.TYPE_LOGIN));
 
-					// 记录登陆日志
-					boolean traceClientMAC = "true"
-							.equalsIgnoreCase(getText("app.traceClientMachine"));
-					request = ServletActionContext.getRequest();
-					Syslog log = SyslogAction.buildSyslog(
-							now,
-							Syslog.TYPE_LOGIN,
-							userHistory,
-							userHistory.getName()
-									+ LocalizedTextUtil.findText(
-											SyslogAction.class, "syslog.login",
-											this.getLocale()), traceClientMAC,
-							ServletActionContext.getRequest());
-					syslogService.save(log);
-
-					// 记录在线用户
-					OnlineUser onlineUser = new OnlineUser();
-					onlineUser.setLoginTime(now);
-					onlineUser.setId(user.getId());
-					onlineUser.setUid(user.getUid());
-					onlineUser.setName(user.getName());
-					onlineUser.setCode(user.getCode());
-					onlineUser.setPname(user.getPname());
-					onlineUser.setFullName(user.getFullName());
-					onlineUser.setIp(clientIp);
-					onlineUser.setSid(request.getSession().getId());
-					onlineUser.setBrowser(WebUtils.getBrowser(request));
-					onlineUser.setMac(traceClientMAC ? WebUtils
-							.getMac(clientIp) : "no trace");
-					this.onlineUserService.add(onlineUser);
+					// 发布用户登录事件
+					this.eventPublisher.publishEvent(new LoginEvent(this, user,
+							userHistory, Syslog.TYPE_LOGIN));
 				}
 			}
 		}
@@ -326,31 +277,22 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	// 注销
 	public String doLogout() throws Exception {
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
-		ActorHistory user = null;
+		ActorHistory userHistory = null;
 		if (context != null)
-			user = context.getUserHistory();
-		if (user != null) {// 表明之前session还没过期
-			Calendar now = Calendar.getInstance();
-			Syslog log = SyslogAction.buildSyslog(
-					now,
-					Syslog.TYPE_LOGOUT,
-					user,
-					user.getName()
-							+ LocalizedTextUtil.findText(SyslogAction.class,
-									"syslog.logout", this.getLocale()),
-					"true".equalsIgnoreCase(getText("app.traceClientMachine")),
-					ServletActionContext.getRequest());
-			syslogService.save(log);
-
-			// 移除下线用户
-			this.onlineUserService.remove(ServletActionContext.getRequest()
-					.getSession().getId());
+			userHistory = context.getUserHistory();
+		if (userHistory != null) {// 表明之前session还没过期
+			// 发布用户退出事件
+			this.eventPublisher.publishEvent(new LogoutEvent(this, userHistory,
+					Syslog.TYPE_LOGIN));
 
 			// 将session设置为无效：使用clear而不是invalidate可以避免session的id变了
 			((org.apache.struts2.dispatcher.SessionMap<String, Object>) this.session)
 					.clear();// invalidate();
 		}
+
+		// 清空线程变量
 		ContextHolder.remove();
+
 		return SUCCESS;
 	}
 }

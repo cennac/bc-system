@@ -12,7 +12,7 @@
 	</welcome-file-list>
 	<session-config>
 		<!-- session超时设置，设为不大于0的数将永远不过时，单位为分钟 -->
-		<session-timeout>60</session-timeout>
+		<session-timeout>1</session-timeout>
 	</session-config>
 
 	<!-- Log4j -->
@@ -64,7 +64,7 @@
 	<!-- Jetty WebSocket -->
 	<servlet>
 		<servlet-name>WSChat</servlet-name>
-		<servlet-class>cn.bc.websocket.jetty.WebSocketChatServlet</servlet-class>
+		<servlet-class>cn.bc.websocket.jetty.ChatWebSocketServlet</servlet-class>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -82,9 +82,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!-- 配置记录超时日志的监听器 -->
+	<!-- 配置Session的监听器 -->
 	<listener>
-		<listener-class>cn.bc.log.web.SyslogSessionListener</listener-class>
+		<listener-class>cn.bc.web.listener.BcSessionListener</listener-class>
 	</listener>
 
 	<!-- Spring Open Session or EntityManager In View filter:这个必须放在其他filter前，否则无效 -->
