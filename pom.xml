@@ -3,20 +3,20 @@
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>0.7-SNAPSHOT</version>
+		<version>0.8-SNAPSHOT</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
-  	<version>0.5-SNAPSHOT</version>
+  	<version>0.7-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
 	
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>0.7-SNAPSHOT</framework.version>
+		<framework.version>0.8-SNAPSHOT</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>0.5-SNAPSHOT</business.version>
+		<business.version>0.7-SNAPSHOT</business.version>
 		
-		<app.ts>20120109</app.ts>
+		<app.ts>20120129</app.ts>
 		<app.debug>false</app.debug>
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
