@@ -61,6 +61,7 @@ drop table if exists BS_CAR_DRIVER;
 drop table if exists BS_CAR_CERT;
 
 -- 车辆
+drop table if exists BS_CAR_MODEL;
 drop table if exists BS_CAR;
 
 -- 车队历史车辆数
@@ -152,3 +153,5 @@ DROP TABLE IF EXISTS BC_OPTION_GROUP;
 DROP TABLE IF EXISTS BC_SD_LOG;
 DROP TABLE IF EXISTS BC_SD_JOB;
 
+-- 删除视图
+DROP VIEW IF EXISTS bc_dual;

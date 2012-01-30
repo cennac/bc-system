@@ -19,6 +19,8 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
@@ -52,7 +54,8 @@ import com.opensymphony.xwork2.util.LocalizedTextUtil;
  */
 @Controller
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class LoginAction extends ActionSupport implements SessionAware {
+public class LoginAction extends ActionSupport implements SessionAware,
+		ApplicationEventPublisherAware {
 	private static final long serialVersionUID = 1L;
 	private static Log logger = LogFactory.getLog(LoginAction.class);
 	public String name;// 帐号
@@ -63,6 +66,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private LoginService loginService;
 	private SyslogService syslogService;
 	private Map<String, Object> session;
+	private ApplicationEventPublisher eventPublisher;
+
+	public void setApplicationEventPublisher(
+			ApplicationEventPublisher applicationEventPublisher) {
+		this.eventPublisher = applicationEventPublisher;
+	}
 
 	@Autowired
 	public void setOnlineUserService(OnlineUserService onlineUserService) {
@@ -134,7 +143,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					Context context = new SystemContextImpl();
 					this.session.put(SystemContext.KEY, context);
 					ContextHolder.set(context);
-					
+
 					// 将登录信息记录到session中
 					context.setAttr(SystemContext.KEY_USER, user);
 
@@ -216,6 +225,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					// 登录时间
 					Calendar now = Calendar.getInstance();
 					this.session.put("loginTime", now);
+					
+					// 发布登录事件
+					//this.eventPublisher.publishEvent(new LoginEvent(this,userHistory,Syslog.TYPE_LOGIN));
 
 					// 记录登陆日志
 					boolean traceClientMAC = "true"
