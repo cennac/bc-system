@@ -23,6 +23,8 @@
 -- 6) 添加表注释：COMMENT ON TABLE 表名 IS '注释';
 -- ###########################################################################
 
--- ####  ####
+-- #### 车型配置相关  ####
+ALTER TABLE BS_CAR_MODEL ADD COLUMN ORDER_ varchar(100);
+COMMENT ON COLUMN BS_CAR_MODEL.ORDER_ IS '排序号';
 
 -- ####  ####
