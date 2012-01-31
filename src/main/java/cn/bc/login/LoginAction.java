@@ -56,6 +56,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	public String password;// 密码
 	public String msg;// 登录信息
 	public String sid;// 会话id
+	public String md5;// 会话md5
 	public boolean success;// 登录是否成功
 	private LoginService loginService;
 	private Map<String, Object> session;
@@ -101,7 +102,6 @@ public class LoginAction extends ActionSupport implements SessionAware,
 				success = false;
 			} else {
 				// 密码验证
-				String md5;
 				if (this.password.length() != 32) {// 明文密码先进行md5加密
 					md5 = DigestUtils.md5DigestAsHex(this.password
 							.getBytes("UTF-8"));
@@ -117,8 +117,12 @@ public class LoginAction extends ActionSupport implements SessionAware,
 						logger.info("doLogin.authOk："
 								+ DateUtils.getWasteTime(startTime));
 					}
-					
-					sid = ServletActionContext.getRequest().getSession().getId();
+
+					// 首次登录分配一个唯一id值
+					if (sid == null || sid.length() == 0)
+						sid = ServletActionContext.getRequest().getSession()
+								.getId();
+					// sid = UUID.randomUUID().toString();
 
 					// 创建默认的上下文实现并保存到session和线程变量中
 					Context context = new SystemContextImpl();
@@ -205,10 +209,13 @@ public class LoginAction extends ActionSupport implements SessionAware,
 
 					// 登录时间
 					Calendar now = Calendar.getInstance();
-					this.session.put("loginTime", now);
+					this.session.put("loginTime",
+							DateUtils.formatCalendar2Second(now));
+					this.session.put("sid", sid);
 
 					// 发布用户登录事件
-					this.eventPublisher.publishEvent(new LoginEvent(this, user,
+					this.eventPublisher.publishEvent(new LoginEvent(this,
+							ServletActionContext.getRequest(), user,
 							userHistory, Syslog.TYPE_LOGIN));
 				}
 			}
