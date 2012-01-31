@@ -54,4 +54,5 @@
 	<bean class="cn.bc.log.event.LogoutNotifier4Syslog"/>
 	<bean class="cn.bc.log.event.SessionDestroyedNotifier4Syslog"/>
 	<bean class="cn.bc.websocket.event.SessionDestroyedNotifier4WebSocket"/>
+	<bean class="cn.bc.websocket.event.LoginNotifier4WebSocket"/>
 </beans>

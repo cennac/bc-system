@@ -61,10 +61,17 @@
 		<url-pattern>/upload/*</url-pattern>
 	</servlet-mapping>
 	
-	<!-- Jetty WebSocket -->
+	<!-- Jetty WebSocket-->
 	<servlet>
 		<servlet-name>WSChat</servlet-name>
 		<servlet-class>cn.bc.websocket.jetty.ChatWebSocketServlet</servlet-class>
+		<init-param>
+			<!-- 超时控制，单位为毫秒，默认为5分钟(300000)，如果这个时间小于web的超时时间，
+				又自动重新连接websocket，则可保证web永远都不会超时了
+			 -->
+			<param-name>maxIdleTime</param-name>
+			<param-value>120000</param-value>
+		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 	<servlet-mapping>
