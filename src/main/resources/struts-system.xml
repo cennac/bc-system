@@ -18,6 +18,9 @@
 		<action name="logout" class="loginAction" method="doLogout">
 			<result type="redirect">/login</result>
 		</action>
+		<action name="relogin" class="loginAction" method="doRelogin">
+			<result>/bc/login/relogin.jsp</result>
+		</action>
 	</package>
 	<!-- 主页配置 -->
 	<package name="index" extends="struts-default" namespace="/">

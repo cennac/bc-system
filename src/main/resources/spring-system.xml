@@ -46,4 +46,13 @@
 		<property name="cacheManager"> <ref local="cacheManager" /> </property> <property 
 		name="cacheName"> <value>org.taha.cache.METHOD_CACHE</value> </property> 
 		</bean> -->
+		
+	<bean id="chatWebSocket" class="cn.bc.websocket.jetty.ChatWebSocket" scope="prototype"/>
+		
+	<!-- 项目的相关事件监听器配置 -->
+	<bean class="cn.bc.log.event.LoginNotifier4Syslog"/>
+	<bean class="cn.bc.log.event.LogoutNotifier4Syslog"/>
+	<bean class="cn.bc.log.event.SessionDestroyedNotifier4Syslog"/>
+	<bean class="cn.bc.websocket.event.SessionDestroyedNotifier4WebSocket"/>
+	<bean class="cn.bc.websocket.event.LoginNotifier4WebSocket"/>
 </beans>

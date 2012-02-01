@@ -11,8 +11,29 @@
 	<ul class="cl-container">
 		<li class="cl-expand">
 			<div class="cl-header">
-				<span class="cl-version">版本：0.5.2</span><span class="cl-issueTime">发布时间：?</span><span
-					class="cl-issuer">发布人：黄荣基</span><span class="cl-operate">∧</span>
+				<span class="cl-version">版本：0.7</span>
+				<span class="cl-issueTime">发布时间：2012-02-?? ??:??</span>
+				<span class="cl-issuer">发布人：黄荣基</span>
+				<span class="cl-operate">∧</span>
+			</div>
+			<ul class="cl-logs">
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">增加车型配置模块（配置厂牌型号相关联的硬件参数信息）</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆表单中选择厂牌型号后自动填写其它相关域的信息</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆表单中增加通过车辆自编号自动查找原车号的功能</div>
+				</li>
+			</ul>
+		</li>
+		<li class="cl-expand">
+			<div class="cl-header">
+				<span class="cl-version">版本：0.6</span>
+				<span class="cl-issueTime">发布时间：2012-01-21 16:00</span>
+				<span class="cl-issuer">发布人：黄荣基</span>
+				<span class="cl-operate">∧</span>
 			</div>
 			<ul class="cl-logs">
 				<li class="cl-log"><div class="module">综合</div>
@@ -24,7 +45,15 @@
 				<li class="cl-log"><div class="module">综合</div>
 					<div class="detail">当视图导出的列超过12时自动分开为左右多列并排显示</div>
 				</li>
-				
+
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆视图添加更多可导出的列：自编号、公司、分公司、车队等，经营权号列只有车辆管理员可看到</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆表单添加自编号、所属公司、注销信息等相关字段，且经营权号字段的信息只有车辆管理员可看到</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">登记车辆信息时车牌号码的输入限制为只能输入5个数字或字符</div></li>
 				<li class="cl-log"><div class="module">车辆</div>
 					<div class="detail">修正车辆的注销处理，并导入原bc系统的车辆注销信息</div>
 				</li>
@@ -32,12 +61,9 @@
 					<div class="detail">去除车辆的删除功能</div>
 				</li>
 				<li class="cl-log"><div class="module">车辆</div>
-					<div class="detail">新建车辆时车辆定级默认为一级</div>
+					<div class="detail">新建车辆时车辆定级默认为一级、颜色默认为绿灰、燃料类型默认为汽油</div>
 				</li>
-				<li class="cl-log"><div class="module">车辆</div>
-					<div class="detail">车辆保单视图增加更多可导出的列：自编号、公司、分公司、车队</div>
-				</li>
-				
+
 				<li class="cl-log"><div class="module">司机</div>
 					<div class="detail">去除司机的删除功能</div>
 				</li>
@@ -47,14 +73,14 @@
 				<li class="cl-log"><div class="module">迁移记录</div>
 					<div class="detail">营运班次与迁移记录整合为迁移记录一个模块，简化用户的操作</div>
 				</li>
-				
+
 				<li class="cl-log"><div class="module">劳动合同</div>
 					<div class="detail">劳动合同续约时起始日期自动在上一合同的结束日期基础上加多1天</div>
 				</li>
 				<li class="cl-log"><div class="module">劳动合同</div>
 					<div class="detail">劳动合同续约、转车后可以直接打开查看新生成的劳动合同</div>
 				</li>
-				
+
 				<li class="cl-log"><div class="module">经济合同</div>
 					<div class="detail">经济合同续约时起始日期自动在上一合同的结束日期基础上加多1天</div>
 				</li>
@@ -70,7 +96,10 @@
 				<li class="cl-log"><div class="module">经济合同</div>
 					<div class="detail">经济合同的注销处理，注销后不允许继续修改，避免历史数据被修改</div>
 				</li>
-				
+
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">车辆保单视图增加更多可导出的列：自编号、公司、分公司、车队</div>
+				</li>
 				<li class="cl-log"><div class="module">车辆保单</div>
 					<div class="detail">车辆保单增加新的字段：责任险合计、商业险合计、强制险合计</div>
 				</li>
@@ -89,7 +118,7 @@
 				<li class="cl-log"><div class="module">车辆保单</div>
 					<div class="detail">车辆保单的注销处理，注销后的单不允许继续修改，避免历史数据被修改</div>
 				</li>
-				
+
 				<li class="cl-log"><div class="module">事故理赔</div>
 					<div class="detail">事故理赔表单增加新的字段：司机拖车费、第三者损失、第三者拖车费、司机伤人、第三者伤人、协议赔付和备注</div>
 				</li>
@@ -97,7 +126,7 @@
 					<div class="detail">事故理赔视图增加更多可导出的列，并添加了分公司、车队的信息列</div>
 				</li>
 				<li class="cl-log"><div class="module">事故理赔</div>
-					<div class="detail">事故理赔单在首次送保完成(指送保、保险公司赔付、司机受款都完成)后自动注销，如果有二次送保的情况，则必须在首次和二次送保都完成后才自动注销</div>
+					<div class="detail">事故理赔单在首次送保完成(指送保、保险公司赔付、司机受款都完成)后自动结案，如果有二次送保的情况，则必须在首次和二次送保都完成后才自动结案</div>
 				</li>
 				<li class="cl-log"><div class="module">事故理赔</div>
 					<div class="detail">事故理赔单注销后不允许继续修改，避免历史数据被修改</div>
@@ -115,26 +144,10 @@
 		</li>
 		<li class="cl-expand">
 			<div class="cl-header">
-				<span class="cl-version">版本：0.5.1</span><span class="cl-issueTime">发布时间：2012-01-13
-					13:30:00</span><span class="cl-issuer">发布人：黄荣基</span><span
-					class="cl-operate">∧</span>
-			</div>
-			<ul class="cl-logs">
-				<li class="cl-log"><div class="module">车辆</div>
-					<div class="detail">车辆视图添加更多可导出的列：自编号、公司、分公司、车队等，经营权号列只有车辆管理员可看到</div>
-				</li>
-				<li class="cl-log"><div class="module">车辆</div>
-					<div class="detail">车辆表单添加自编号、所属公司、注销信息等相关字段，且经营权号字段的信息只有车辆管理员可看到</div>
-				</li>
-				<li class="cl-log"><div class="module">车辆</div>
-					<div class="detail">登记车辆信息时车牌号码的输入限制为只能输入5个数字或字符</div></li>
-			</ul>
-		</li>
-		<li class="cl-expand">
-			<div class="cl-header">
-				<span class="cl-version">版本：0.5</span><span class="cl-issueTime">发布时间：2012-01-11
-					08:30:00</span><span class="cl-issuer">发布人：黄荣基</span><span
-					class="cl-operate">∧</span>
+				<span class="cl-version">版本：0.5</span>
+				<span class="cl-issueTime">发布时间：2012-01-11 08:30</span>
+				<span class="cl-issuer">发布人：黄荣基</span>
+				<span class="cl-operate">∧</span>
 			</div>
 			<ul class="cl-logs">
 				<li class="cl-log">首次发布</li>
