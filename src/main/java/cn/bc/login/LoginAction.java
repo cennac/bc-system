@@ -212,6 +212,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					this.session.put("loginTime",
 							DateUtils.formatCalendar2Second(now));
 					this.session.put("sid", sid);
+					this.session.put("md5", md5);
 
 					// 发布用户登录事件
 					this.eventPublisher.publishEvent(new LoginEvent(this,
