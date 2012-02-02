@@ -27,6 +27,66 @@
 ALTER TABLE BS_CAR_MODEL ADD COLUMN ORDER_ VARCHAR(100);
 COMMENT ON COLUMN BS_CAR_MODEL.ORDER_ IS '排序号';
 
+INSERT INTO BS_CAR_MODEL (
+id,
+uid_,
+status_,
+factory_type,
+factory_model,
+engine_type,
+fuel_type,
+displacement,
+power,
+turn_type,
+tire_count,
+tire_standard,
+tire_front_distance,
+tire_behind_distance,
+axis_distance,
+axis_count,
+piece_count,
+dim_len,
+dim_width,
+dim_height,
+total_weight,
+access_weight,
+access_count,
+file_date,
+author_id,
+modifier_id,
+modified_date,
+order_
+)VALUES(
+NEXTVAL('CORE_SEQUENCE'), 
+'CarModel.1', 
+'0', 
+'桑塔纳', 
+'SVW7182QQD', 
+'CKZ',
+'汽油', 
+'1781',
+'74.00',
+'方向盘',
+'4',
+'195/60 R14 86H',
+'1414',
+'1422',
+'2656',
+'2',
+'0',
+'4687',
+'1700',
+'1450',
+'1595',
+'0',
+'5',
+now(),
+'1136',
+'1136',
+now(),
+'1000');
+
+
 -- ####  ####
 
 -- #### 金盾网交通违法相关  ####
@@ -64,3 +124,7 @@ ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD COLUMN MOTORCADE_NAME VARCHAR(255);
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.MOTORCADE_NAME IS '所属车队';
 
 -- ####  ####
+
+-- #### 添加司机营运车辆字段  ####
+ALTER TABLE BS_CAR_DRIVER ADD COLUMN PID INTEGER;
+COMMENT ON COLUMN BS_CAR_DRIVER.PID IS '相对应的迁移记录id';
