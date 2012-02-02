@@ -564,7 +564,7 @@ insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SU
 	,'火狐浏览器Firefox10.0.exe','browser/firefox/firefox10.0.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'safari5.1.2', 37806960,'exe',false
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'safari5.1.2', 38291312,'exe',false
 	,'苹果浏览器Safari5.1.exe','browser/safari/safari5.1.2.exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)

@@ -70,8 +70,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 			// 产品环境使用资源文件配置的值
 			ts = getText("app.ts");
 		}
-		
-		//记录session的id
+
+		// 记录session的id
 		sid = ServletActionContext.getRequest().getSession().getId();
 	}
 
@@ -168,7 +168,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		}
 
 		// 循环顶层模块生成菜单
-		Menu menu = this.buildMenu4Resources(topResources, parentChildren);
+		Menu menu = this
+				.buildMenu4Resources(topResources, parentChildren, true);
 		menu.addClazz("startMenu").addClazz("bc-menubar").setId("sysmenu");
 
 		this.startMenu = menu.toString();
@@ -214,8 +215,9 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	}
 
 	private Menu buildMenu4Resources(List<Resource> resources,
-			Map<Resource, Set<Resource>> parentChildren) {
+			Map<Resource, Set<Resource>> parentChildren, boolean isTop) {
 		Menu menu = new Menu();
+		if(!isTop) menu.addClazz("ui-state-default");
 		MenuItem menuItem;
 		for (Resource m : resources) {
 			menuItem = buildMenuItem4Resource(m, parentChildren);
@@ -250,7 +252,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 			Set<Resource> childResources = parentChildren.get(m);// 模块下的子模块
 			if (childResources != null && !childResources.isEmpty()) {
 				menuItem.setChildMenu(buildMenu4Resources(
-						toSortList(childResources), parentChildren));
+						toSortList(childResources), parentChildren, false));
 			}
 		}
 		return menuItem;
