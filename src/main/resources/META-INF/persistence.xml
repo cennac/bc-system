@@ -65,7 +65,9 @@
 		<class>cn.bc.business.sync.domain.JiaoWeiYYWZ</class>
 		<class>cn.bc.business.sync.domain.JiaoWeiADVICE</class>
 		<class>cn.bc.business.spider.domain.JinDunJTWF</class>
-
+		
+		<!-- 籍贯 -->
+		<class>cn.bc.placeorigin.domian.PlaceOrigin</class>
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->
