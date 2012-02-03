@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
@@ -36,7 +38,6 @@ import cn.bc.identity.event.LoginEvent;
 import cn.bc.identity.event.LogoutEvent;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextImpl;
-import cn.bc.log.domain.Syslog;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -113,19 +114,22 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					msg = "密码错误！";
 					success = false;
 				} else {
+					HttpServletRequest request = ServletActionContext
+							.getRequest();
 					if (logger.isInfoEnabled()) {
 						logger.info("doLogin.authOk："
-								+ DateUtils.getWasteTime(startTime));
+								+ DateUtils.getWasteTime(startTime) + ",sid="
+								+ sid + ",session id="
+								+ request.getSession().getId());
 					}
 
 					// 首次登录分配一个唯一id值
 					if (sid == null || sid.length() == 0)
-						sid = ServletActionContext.getRequest().getSession()
-								.getId();
+						sid = request.getSession().getId();
 					// sid = UUID.randomUUID().toString();
 
 					// 创建默认的上下文实现并保存到session和线程变量中
-					Context context = new SystemContextImpl();
+					SystemContext context = new SystemContextImpl();
 					this.session.put(SystemContext.KEY, context);
 					ContextHolder.set(context);
 
@@ -136,6 +140,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					ActorHistory userHistory = (ActorHistory) map
 							.get("history");
 					context.setAttr(SystemContext.KEY_USER_HISTORY, userHistory);
+					context.setAttr(SystemContext.KEY_USER, user);
 
 					// 获取用户的祖先组织信息（单位、部门、岗位及上级的上级）
 					List<Map<String, String>> uppers = this.loginService
@@ -215,9 +220,10 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					this.session.put("md5", md5);
 
 					// 发布用户登录事件
-					this.eventPublisher.publishEvent(new LoginEvent(this,
-							ServletActionContext.getRequest(), user,
-							userHistory, Syslog.TYPE_LOGIN));
+					LoginEvent loginEvent = new LoginEvent(this, request, user,
+							userHistory, sid);
+					this.session.put("loginEvent", loginEvent);
+					this.eventPublisher.publishEvent(loginEvent);
 				}
 			}
 		}
@@ -285,13 +291,17 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	// 注销
 	public String doLogout() throws Exception {
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
+		Actor user = null;
 		ActorHistory userHistory = null;
-		if (context != null)
+		if (context != null) {
 			userHistory = context.getUserHistory();
+			user = context.getUser();
+		}
 		if (userHistory != null) {// 表明之前session还没过期
 			// 发布用户退出事件
-			this.eventPublisher.publishEvent(new LogoutEvent(this, userHistory,
-					Syslog.TYPE_LOGIN));
+			this.eventPublisher.publishEvent(new LogoutEvent(this,
+					ServletActionContext.getRequest(), user, userHistory,
+					(String) this.session.get("sid")));
 
 			// 将session设置为无效：使用clear而不是invalidate可以避免session的id变了
 			((org.apache.struts2.dispatcher.SessionMap<String, Object>) this.session)
