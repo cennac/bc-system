@@ -89,9 +89,6 @@ drop table if exists BS_CERT;
 -- 司机责任人
 drop table if exists BS_CARMAN;
 
--- 车型配置
-drop table if exists BS_CAR_MODEL; 
-
 -- ##BC平台的 postgresql 删表脚本##
 
 -- 用于生成hibernate id的序列
