@@ -17,7 +17,7 @@
 		<param name="MaxFileSize"  value="1024KB"/>
 		<param name="MaxBackupIndex" value="4"/> 
 
-		<param name="File" value="bc-system.log"/> 
+		<param name="File" value="bcsystem_v0.log"/> 
 		
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d %5p %c{1} %m%n"/>
@@ -26,67 +26,53 @@
 	
   	<!-- spring -->
 	<category name="org.springframework">
-	  <priority value="ERROR" />
+	  <priority value="WARN" />
 	</category>
   	<!-- spring：设为INFO，查看加载了哪些xml配置文件 -->
 	<category name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader">
-	  <priority value="ERROR" />
+	  <priority value="WARN" />
 	</category>
     
   	<!-- hibernate -->
 	<category name="org.hibernate">
-	  <priority value="ERROR" />
+	  <priority value="WARN" />
 	</category>
 	<!-- hibernate：设为DEBUG，查看实际的sql语句，相当于hibernate.show_sql=true (org.hibernate.jdbc.util.SQLStatementLogger) -->
 	<category name="org.hibernate.SQL">
-	  <priority value="DEBUG" />
+	  <priority value="WARN" />
 	</category>
 	<!-- hibernate：设为INFO，查看实体对象映射到哪张数据表；设为DEBUG则可以查看实体属性与表中列的映射对应关系 -->
 	<category name="org.hibernate.cfg.HbmBinder">
-	  <priority value="ERROR" />
+	  <priority value="WARN" />
 	</category>
 	
 	<!-- struts2 -->
     <category name="org.apache.struts2">
-    	 <priority value="ERROR" />
+    	 <priority value="WARN" />
     </category>
 	<!-- struts2：设为DEBUG，查看转发到那个jsp文件 -->
     <category name="org.apache.struts2.dispatcher.ServletDispatcherResult">
-    	 <priority value="ERROR" />
+    	 <priority value="WARN" />
     </category>
     <category name="com.opensymphony">
-    	<priority value="ERROR" />
+    	<priority value="WARN" />
     </category>
 	<!-- struts2：设为DEBUG，查看加载了哪些xml配置文件 -->
     <category name="com.opensymphony.xwork2.util.FileManager">
-    	<priority value="ERROR" />
+    	<priority value="WARN" />
     </category>
 	<category name="freemarker">
-	  <priority value="ERROR" />
+	  <priority value="WARN" />
 	</category>
 
 	<!-- bc -->
-	<category name="cn.bc">
-	  <priority value="WARN" />
-	</category>
 	<category name="cn.bc.ContextHolder">
-	  <priority value="DEBUG" />
-	</category>
- 
-	<!-- bc -->
-	<category name="cn.bc.login.LoginAction">
 	  <priority value="WARN" />
+	</category>
+	<category name="cn.bc.login.LoginAction">
+	  <priority value="INFO" />
 	</category>
 	<category name="cn.bc.index.IndexAction">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.desktop.service.LoginServiceImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.web.struts2.interceptor.CacheInterceptor">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.web.struts2.interceptor.AuthIterceptor">
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
@@ -95,43 +81,7 @@
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
 	  <priority value="WARN" />
 	</category>
-	<category name="cn.bc.websocket.jetty.WebSocketChatServlet">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.websocket.jetty.ChatWebSocket">
-	  <priority value="ERROR" />
-	</category>
-	<category name="cn.bc.chat.service.OnlineUserServiceImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.log.web.SyslogSessionListener">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.spider.service.BsSpiderServiceImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.spider.JinDunSpider4JiaoTongWeiFa">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.sync.web.struts2.Sync4InfractTrafficsAction">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.ws.service.WSMiddleImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.spider.Spider4JinDunJTWF">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.sync.service.BsSyncServiceImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.sync.dao.hibernate.jpa.SyncBaseDaoImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business.carman.dao.hibernate.jpa.CarByDriverDaoImpl">
-	  <priority value="WARN" />
-	</category>
-	<category name="cn.bc.business">
+	<category name="cn.bc.web.listener.BcSessionListener">
 	  <priority value="DEBUG" />
 	</category>
     	
