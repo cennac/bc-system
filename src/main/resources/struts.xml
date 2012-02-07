@@ -41,6 +41,7 @@
 	<include file="cn/bc/option/web/struts2/struts.xml" />
 	<include file="cn/bc/scheduler/web/struts2/struts.xml" />
 	<include file="cn/bc/chat/web/struts2/struts.xml" />
+	<include file="cn/bc/websocket/web/struts2/struts.xml" />
 	<include file="cn/bc/sync/web/struts2/struts.xml" />
 
 	<!-- bc营运管理子系统的配置文件 -->
