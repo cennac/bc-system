@@ -134,3 +134,13 @@ COMMENT ON COLUMN BC_LOG_SYSTEM.C_MAC IS '登录用户mac地址';
 -- #### 经济合同相关  ####
 ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN PAYMENT_DATE	TIMESTAMP;
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.PAYMENT_DATE IS '缴费日期';
+
+
+-- #### 营运事件基表:增加所属公司字段  ####
+ALTER TABLE BS_CASE_BASE ADD COLUMN COMPANY VARCHAR(255);
+COMMENT ON COLUMN BS_CASE_BASE.COMPANY IS '所属公司:如宝城、广发';
+
+
+-- #### 车辆相关:所属公司字段改名及对应选项的key值修改  ####
+ALTER TABLE BS_CAR RENAME OLD_UNIT_NAME TO COMPANY;
+update bc_option_group set key_='car.company' where key_='car.old.unit.name';
