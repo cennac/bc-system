@@ -144,3 +144,7 @@ COMMENT ON COLUMN BS_CASE_BASE.COMPANY IS '所属公司:如宝城、广发';
 -- #### 车辆相关:所属公司字段改名及对应选项的key值修改  ####
 ALTER TABLE BS_CAR RENAME OLD_UNIT_NAME TO COMPANY;
 update bc_option_group set key_='car.company' where key_='car.old.unit.name';
+
+
+-- #### 黑名单相关:所属公司字段改名  ####
+ALTER TABLE BS_BLACKLIST RENAME OLD_UNIT_NAME TO COMPANY;
