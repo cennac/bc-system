@@ -134,3 +134,67 @@ COMMENT ON COLUMN BC_LOG_SYSTEM.C_MAC IS '登录用户mac地址';
 -- #### 经济合同相关  ####
 ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN PAYMENT_DATE	TIMESTAMP;
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.PAYMENT_DATE IS '缴费日期';
+
+-- #### 车辆保单险种相关 ####
+ALTER TABLE bs_insurance_type ALTER COLUMN coverage TYPE VARCHAR(255);
+
+ALTER TABLE bs_insurance_type ADD COLUMN type_ INTEGER  NOT NULL DEFAULT 0;
+COMMENT ON COLUMN bs_insurance_type.type_ IS '险种类型 0-险种，1-模板';
+
+ALTER TABLE bs_insurance_type ADD COLUMN pid INTEGER;
+COMMENT ON COLUMN bs_insurance_type.pid IS '所属模板的ID';
+
+ALTER TABLE bs_insurance_type ADD CONSTRAINT BSFK_INSURANCE_TEMPLATE FOREIGN KEY (PID)
+			REFERENCES bs_insurance_type (ID);
+
+INSERT INTO bs_insurance_type(id,status_,name,file_date,author_id,type_) 
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中华承保险种模板',now(),1136,1);
+INSERT INTO bs_insurance_type(id,status_,name,file_date,author_id,type_) 
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中保承保险种模板',now(),1136,1);
+
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位（司机）','',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位（乘客）','',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位','免赔',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','免赔',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
