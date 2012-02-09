@@ -212,3 +212,9 @@ INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
 			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),1136,id  
 				from bs_insurance_type where name='中保承保险种模板';
+
+
+-- #### 附件表增加ICON字段  ####
+ALTER TABLE BC_DOCS_ATTACH ADD COLUMN ICON VARCHAR(255);
+COMMENT ON COLUMN BC_DOCS_ATTACH.ICON IS '扩展字段';
+update BC_IDENTITY_RESOURCE set URL='/bc/browser/list' where URL='/bc/attach/browser';

@@ -555,29 +555,29 @@ insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME)
 	values(1, 0, false,  '12', 'smoothness');
 
 -- 插入浏览器附件下载信息
-insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'chrome17.0.963.46(default)', 25548496,'exe',false
-	,'谷歌浏览器Chrome17.0.exe','browser/chrome/chrome17.0.963.46(default).exe',
+insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,ICON,AUTHOR_ID)
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser4old', 'ie8.0', 16901472,'exe',false
+	,'微软浏览器IE8.0.exe','browser/ie/IE8.0-WindowsXP-x86-chs.exe','ie8',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
-insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'firefox10.0', 17835344,'exe',false
-	,'火狐浏览器Firefox10.0.exe','browser/firefox/firefox10.0.exe',
+insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,ICON,AUTHOR_ID)
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser4html5', 'ie9.0', 18658608,'exe',false
+	,'微软浏览器IE9.0.exe','browser/ie/IE9.0-Windows7-x86-chs.exe','ie9',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
-insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'safari5.1.2', 38291312,'exe',false
-	,'苹果浏览器Safari5.1.exe','browser/safari/safari5.1.2.exe',
+insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,ICON,AUTHOR_ID)
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser4html5', 'opera11.60', 8438376,'exe',false
+	,'挪威浏览器Opera11.60.exe','browser/opera/opera11.60.exe','opera11',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
-insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'opera11.60', 8438376,'exe',false
-	,'挪威浏览器Opera11.60.exe','browser/opera/opera11.60.exe',
+insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,ICON,AUTHOR_ID)
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser4html5', 'safari5.1.2', 38291312,'exe',false
+	,'苹果浏览器Safari5.1.exe','browser/safari/safari5.1.2.exe','safari5',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
-insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'ie9.0', 18658608,'exe',false
-	,'微软浏览器IE9.0.exe','browser/ie/IE9.0-Windows7-x86-chs.exe',
+insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,ICON,AUTHOR_ID)
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser4html5', 'firefox10.0', 17835344,'exe',false
+	,'火狐浏览器Firefox10.0.exe','browser/firefox/firefox10.0.exe','firefox5',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
-insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'ie8.0', 16901472,'exe',false
-	,'微软浏览器IE8.0.exe','browser/ie/IE8.0-WindowsXP-x86-chs.exe',
+insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,ICON,AUTHOR_ID)
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser4html5', 'chrome17.0.963.46(default)', 25548496,'exe',false
+	,'谷歌浏览器Chrome17.0.exe','browser/chrome/chrome17.0.963.46(default).exe','chrome12',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 
 -- 插入选项分组信息
