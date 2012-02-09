@@ -556,8 +556,8 @@ insert into BC_DESKTOP_PERSONAL (ID,STATUS_,INNER_,FONT,THEME)
 
 -- 插入浏览器附件下载信息
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
-	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'chrome16.0.912.63', 25185048,'exe',false
-	,'谷歌浏览器Chrome16.0.exe','browser/chrome/chrome16.0.912.63.exe',
+	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'chrome17.0.963.46(default)', 25548496,'exe',false
+	,'谷歌浏览器Chrome17.0.exe','browser/chrome/chrome17.0.963.46(default).exe',
 	(select b.id from BC_IDENTITY_ACTOR a inner join BC_IDENTITY_ACTOR_HISTORY b on b.actor_id=a.id where a.code='admin');
 insert into BC_DOCS_ATTACH (ID,FILE_DATE,STATUS_,PTYPE,PUID,SIZE_,EXT,APPPATH,SUBJECT,PATH,AUTHOR_ID)
 	select NEXTVAL('CORE_SEQUENCE'),now() , 0, 'browser', 'firefox10.0', 17835344,'exe',false
