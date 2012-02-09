@@ -12,7 +12,7 @@
 	</welcome-file-list>
 	<session-config>
 		<!-- session超时设置，设为不大于0的数将永远不过时，单位为分钟 -->
-		<session-timeout>1</session-timeout>
+		<session-timeout>60</session-timeout>
 	</session-config>
 
 	<!-- Log4j -->
@@ -70,7 +70,7 @@
 				又自动重新连接websocket，则可保证web永远都不会超时了
 			 -->
 			<param-name>maxIdleTime</param-name>
-			<param-value>120000</param-value>
+			<param-value>3900000</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>

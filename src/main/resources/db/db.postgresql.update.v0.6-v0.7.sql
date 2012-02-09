@@ -87,8 +87,6 @@ now(),
 '1000');
 
 
--- ####  ####
-
 -- #### 金盾网交通违法相关  ####
 ALTER TABLE BS_SYNC_JINDUN_JTWF ADD COLUMN UNIT_NAME VARCHAR(255);
 COMMENT ON COLUMN BS_SYNC_JINDUN_JTWF.UNIT_NAME IS '分公司';
@@ -96,7 +94,6 @@ COMMENT ON COLUMN BS_SYNC_JINDUN_JTWF.UNIT_NAME IS '分公司';
 ALTER TABLE BS_SYNC_JINDUN_JTWF ADD COLUMN MOTORCADE_NAME VARCHAR(255);
 COMMENT ON COLUMN BS_SYNC_JINDUN_JTWF.MOTORCADE_NAME IS '所属车队';
 
--- ####  ####
 
 -- #### 交委接口交通违法相关  ####
 ALTER TABLE BS_SYNC_JIAOWEI_JTWF ADD COLUMN UNIT_NAME VARCHAR(255);
@@ -105,7 +102,6 @@ COMMENT ON COLUMN BS_SYNC_JIAOWEI_JTWF.UNIT_NAME IS '分公司';
 ALTER TABLE BS_SYNC_JIAOWEI_JTWF ADD COLUMN MOTORCADE_NAME VARCHAR(255);
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_JTWF.MOTORCADE_NAME IS '所属车队';
 
--- ####  ####
 
 -- #### 交委接口营运违章相关  ####
 ALTER TABLE BS_SYNC_JIAOWEI_YYWZ ADD COLUMN UNIT_NAME VARCHAR(255);
@@ -114,7 +110,6 @@ COMMENT ON COLUMN BS_SYNC_JIAOWEI_YYWZ.UNIT_NAME IS '分公司';
 ALTER TABLE BS_SYNC_JIAOWEI_YYWZ ADD COLUMN MOTORCADE_NAME VARCHAR(255);
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_YYWZ.MOTORCADE_NAME IS '所属车队';
 
--- ####  ####
 
 -- #### 交委接口投诉与建议相关  ####
 ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD COLUMN UNIT_NAME VARCHAR(255);
@@ -123,8 +118,97 @@ COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.UNIT_NAME IS '分公司';
 ALTER TABLE BS_SYNC_JIAOWEI_ADVICE ADD COLUMN MOTORCADE_NAME VARCHAR(255);
 COMMENT ON COLUMN BS_SYNC_JIAOWEI_ADVICE.MOTORCADE_NAME IS '所属车队';
 
--- ####  ####
 
 -- #### 添加司机营运车辆字段  ####
 ALTER TABLE BS_CAR_DRIVER ADD COLUMN PID INTEGER;
 COMMENT ON COLUMN BS_CAR_DRIVER.PID IS '相对应的迁移记录id';
+
+
+-- #### 登录日志相关  ####
+ALTER TABLE BC_LOG_SYSTEM ADD COLUMN SID VARCHAR(255);
+COMMENT ON COLUMN BC_LOG_SYSTEM.SID IS '登录用户的session id';
+ALTER TABLE BC_LOG_SYSTEM ADD COLUMN C_MAC VARCHAR(255);
+COMMENT ON COLUMN BC_LOG_SYSTEM.C_MAC IS '登录用户mac地址';
+
+
+-- #### 经济合同相关  ####
+ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN PAYMENT_DATE	TIMESTAMP;
+COMMENT ON COLUMN BS_CONTRACT_CHARGER.PAYMENT_DATE IS '缴费日期';
+
+
+-- #### 营运事件基表:增加所属公司字段  ####
+ALTER TABLE BS_CASE_BASE ADD COLUMN COMPANY VARCHAR(255);
+COMMENT ON COLUMN BS_CASE_BASE.COMPANY IS '所属公司:如宝城、广发';
+
+
+-- #### 车辆相关:所属公司字段改名及对应选项的key值修改  ####
+ALTER TABLE BS_CAR RENAME OLD_UNIT_NAME TO COMPANY;
+update bc_option_group set key_='car.company' where key_='car.old.unit.name';
+
+
+-- #### 黑名单相关:所属公司字段改名  ####
+ALTER TABLE BS_BLACKLIST RENAME OLD_UNIT_NAME TO COMPANY;
+
+-- #### 车辆保单险种相关 ####
+ALTER TABLE bs_insurance_type ALTER COLUMN coverage TYPE VARCHAR(255);
+
+ALTER TABLE bs_insurance_type ADD COLUMN type_ INTEGER  NOT NULL DEFAULT 0;
+COMMENT ON COLUMN bs_insurance_type.type_ IS '险种类型 0-险种，1-模板';
+
+ALTER TABLE bs_insurance_type ADD COLUMN pid INTEGER;
+COMMENT ON COLUMN bs_insurance_type.pid IS '所属模板的ID';
+
+ALTER TABLE bs_insurance_type ADD CONSTRAINT BSFK_INSURANCE_TEMPLATE FOREIGN KEY (PID)
+			REFERENCES bs_insurance_type (ID);
+
+INSERT INTO bs_insurance_type(id,status_,name,file_date,author_id,type_) 
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中华承保险种模板',now(),1136,1);
+INSERT INTO bs_insurance_type(id,status_,name,file_date,author_id,type_) 
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中保承保险种模板',now(),1136,1);
+
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位（司机）','',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位（乘客）','',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位','免赔',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','',now(),1136,id  
+				from bs_insurance_type where name='中华承保险种模板';
+
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','免赔',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),1136,id  
+				from bs_insurance_type where name='中保承保险种模板';
