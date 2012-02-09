@@ -213,25 +213,5 @@ INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid)
 			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),1136,id  
 				from bs_insurance_type where name='中保承保险种模板';
 				
--- #### 插入迁移类型选项分组信息 ####
-insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5031', 'carByDriverHistory.moveType', '迁移类型', null); 
 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '5', '新入职', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '4', '交回未注销', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '0', '车辆到车辆', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '8', '交回后转车', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '2', '注销未有去向', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', '1', '公司到公司(已注销)', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', '3', '由外公司迁回', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType'; 
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', '6', '车队到车队', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType';
-insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', '7', '顶班', null from BC_OPTION_GROUP g where g.KEY_='carByDriverHistory.moveType';
 	
