@@ -33,13 +33,13 @@
 		<concatSql4create db="postgresql" />
 		<concatSql4drop db="postgresql" />
 
-		<!-- mysql -->
+		<!-- mysql
 		<concatSql4create db="mysql" />
-		<concatSql4drop db="mysql" />
+		<concatSql4drop db="mysql" /> -->
 		
-		<!-- oracle -->
+		<!-- oracle
 		<concatSql4create db="oracle" encoding="GBK"/>
-		<concatSql4drop db="oracle" encoding="GBK"/>
+		<concatSql4drop db="oracle" encoding="GBK"/> -->
 	</target>
 
 	<!-- 合并各个模块中定义的sql建表脚本的宏 -->
