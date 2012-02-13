@@ -62,6 +62,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	private LoginService loginService;
 	private Map<String, Object> session;
 	private ApplicationEventPublisher eventPublisher;
+	public boolean relogin;//是否是重登陆
 
 	public void setApplicationEventPublisher(
 			ApplicationEventPublisher applicationEventPublisher) {
@@ -221,7 +222,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 
 					// 发布用户登录事件
 					LoginEvent loginEvent = new LoginEvent(this, request, user,
-							userHistory, sid);
+							userHistory, sid, relogin);
 					this.session.put("loginEvent", loginEvent);
 					this.eventPublisher.publishEvent(loginEvent);
 				}
