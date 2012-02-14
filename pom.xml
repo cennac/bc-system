@@ -3,20 +3,20 @@
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.9-SNAPSHOT</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
-  	<version>0.7-SNAPSHOT</version>
+  	<version>0.9-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
 	
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>0.8-SNAPSHOT</framework.version>
+		<framework.version>0.9-SNAPSHOT</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>0.7-SNAPSHOT</business.version>
+		<business.version>0.9-SNAPSHOT</business.version>
 		
-		<app.ts>20120129</app.ts>
+		<app.ts>20120213</app.ts>
 		<app.debug>false</app.debug>
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
@@ -61,7 +61,7 @@
 				<db.type>mysql</db.type>
 				<db.name>bcsystem</db.name>
 				<db.port>3306</db.port>
-				<db.sequence></db.sequence>
+				<db.sequence />
 				<db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
 				<db.url><![CDATA[jdbc:mysql://${db.ip}:${db.port}/${db.name}?useUnicode=true&characterEncoding=UTF-8]]></db.url>
 				<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>

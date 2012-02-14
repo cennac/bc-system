@@ -152,4 +152,6 @@ bc-system
     app.debug=false
     app.ts=20120110
     app.data.realPath=/bcfile/bcdata4test
+    app.version=0.8
+修改 bc/index/desktop.jsp中websocket的连接地址
 
