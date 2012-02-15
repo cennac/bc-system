@@ -23,4 +23,114 @@
 -- 6) 添加表注释：COMMENT ON TABLE 表名 IS '注释';
 -- ###########################################################################
 
+--##查找司机营运车辆的自定义函数和存储过程##
+CREATE OR REPLACE FUNCTION getCarInfoByDriverId(did IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	caridInfo varchar(4000);
+BEGIN
+	select string_agg(concat(name,',',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '顶班' when classes=4 then '主挂' else '无' end),',',id),';')
+		into caridInfo
+		from (select c.id as id,concat(c.plate_type,'.',c.plate_no) as name,cm.classes as classes 
+			from BS_CAR_DRIVER cm
+			inner join bs_car c on c.id=cm.car_id
+			where cm.status_=0 and cm.driver_id=did
+			order by cm.classes asc,c.file_date asc) as t;
+	return caridInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--##将现有的迁移记录的最新的迁移记录标识为当前的迁移记录##
+CREATE OR REPLACE FUNCTION updateCarByDriverHistory4Min(did IN integer) RETURNS integer AS $$
+DECLARE
+	--定义变量
+	main integer;
+BEGIN
+	
+	update BS_CAR_DRIVER_HISTORY set main=0 where id in (
+		select  id from BS_CAR_DRIVER_HISTORY where driver_id=did order by move_date desc limit 1 );
+
+	return main;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--##获取司机最新的迁移类型##
+CREATE OR REPLACE FUNCTION getDriverMoveTypeByDriverId(did IN integer) RETURNS integer AS $$
+DECLARE
+	--定义变量
+	moveType integer;
+BEGIN
+	select  h.move_type
+		into moveType
+		from BS_CAR_DRIVER_HISTORY h where h.driver_id=did order by h.file_date desc limit 1;
+	return moveType;
+END;
+$$ LANGUAGE plpgsql;
+
+--##获取司机最新的驾驶状态--
+CREATE OR REPLACE FUNCTION getDriverClassesByDriverId(did IN integer) RETURNS integer AS $$
+DECLARE
+	--定义变量
+	classes integer;
+BEGIN
+	select  c.classes
+		into classes
+		from BS_CAR_DRIVER c where driver_id=did order by c.file_date desc limit 1;
+	return classes;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--##获取司机最新的营运的主车辆ID--
+CREATE OR REPLACE FUNCTION getDriverMainCarIdByDriverId(did IN integer) RETURNS integer AS $$
+DECLARE
+	--定义变量
+	mainCarId integer;
+BEGIN
+	select  c.car_id
+		into mainCarId
+		from BS_CAR_DRIVER c where c.status_=0 and (c.classes=1 or c.classes=2 or c.classes=4) and driver_id=did;
+	return mainCarId;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--##司机表添加的字段：
+
+--主车辆
+ALTER TABLE BS_CARMAN ADD COLUMN MAIN_CAR_ID INTEGER;
+COMMENT ON COLUMN BS_CARMAN.MAIN_CAR_ID IS '主车辆id';
+--营运车辆
+ALTER TABLE BS_CARMAN ADD COLUMN CARINFO VARCHAR(4000);
+COMMENT ON COLUMN BS_CARMAN.CARINFO IS '营运车辆';
+--迁移类型
+ALTER TABLE BS_CARMAN ADD COLUMN MOVE_TYPE INTEGER;
+COMMENT ON COLUMN BS_CARMAN.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车';
+
+--营运班次
+ALTER TABLE BS_CARMAN ADD COLUMN CLASSES INTEGER;
+COMMENT ON COLUMN BS_CARMAN.CLASSES IS '营运班次:如0-""、1-正班、2-副班、3-顶班、4-主挂';
+
+
+--更新司机最新的驾驶状态
+UPDATE BS_CARMAN SET CLASSES = getDriverClassesByDriverId(ID);
+
+--更新司机最新营运班次后，将CLASSES为NULL的设为0(标识空值)
+UPDATE BS_CARMAN SET CLASSES =0 WHERE CLASSES IS NULL;
+
+
+--更新司机最新的迁移类型
+UPDATE BS_CARMAN SET MOVE_TYPE = getDriverMoveTypeByDriverId(ID);
+
+--更新司机最新迁移类型后，将MOVE_TYPE为NULL的设为-1(标识空值)
+UPDATE BS_CARMAN SET MOVE_TYPE =-1 WHERE MOVE_TYPE IS NULL;
+
+--更新司机最新的营运车辆
+UPDATE BS_CARMAN SET CARINFO =getCarInfoByDriverId(ID);
+
+--更新司机最新的主车辆
+UPDATE BS_CARMAN SET MAIN_CAR_ID =getDriverMainCarIdByDriverId(ID);
+
 -- ####   ####
