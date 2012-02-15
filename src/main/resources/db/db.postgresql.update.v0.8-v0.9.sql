@@ -139,4 +139,9 @@ UPDATE BS_CARMAN SET MAIN_CAR_ID = getDriverMainCarIdByDriverId(ID);
 --更新车辆购买险种的备注字段为空
 UPDATE BS_BUY_PLANT SET DESC_ = NULL;
 
+--##车辆表
+--车辆表添加道路运输证号字段
+ALTER TABLE BS_CAR ADD COLUMN CERT_NO4 INTEGER;
+COMMENT ON COLUMN BS_CAR.CERT_NO4 IS '道路运输证号';
+
 -- ####   ####
