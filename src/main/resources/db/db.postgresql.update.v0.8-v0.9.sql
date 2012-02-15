@@ -137,4 +137,17 @@ UPDATE BS_CARMAN SET MAIN_CAR_ID =getDriverMainCarIdByDriverId(ID);
 ALTER TABLE BS_CAR ADD COLUMN CERT_NO4 VARCHAR(255);
 COMMENT ON COLUMN BS_CAR.CERT_NO4 IS '道路运输证号';
 
--- ####   ####
+-- #### 车辆：可选车架号前缀 ####
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5031', 'car.vin.prefix', '车架号前缀', null);
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'LSVT91338BN', 'LSVT91338BN', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'LJDCAA23060', 'LJDCAA23060', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '20', 'LBEEFAJA28X', 'LBEEFAJA28X', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '30', 'LFVAA11G413', 'LFVAA11G413', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
