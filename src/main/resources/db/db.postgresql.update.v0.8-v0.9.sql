@@ -118,19 +118,50 @@ COMMENT ON COLUMN BS_CARMAN.CLASSES IS '营运班次:如0-""、1-正班、2-副�
 UPDATE BS_CARMAN SET CLASSES = getDriverClassesByDriverId(ID);
 
 --更新司机最新营运班次后，将CLASSES为NULL的设为0(标识空值)
-UPDATE BS_CARMAN SET CLASSES =0 WHERE CLASSES IS NULL;
+UPDATE BS_CARMAN SET CLASSES = 0 WHERE CLASSES IS NULL;
 
 
 --更新司机最新的迁移类型
 UPDATE BS_CARMAN SET MOVE_TYPE = getDriverMoveTypeByDriverId(ID);
 
 --更新司机最新迁移类型后，将MOVE_TYPE为NULL的设为-1(标识空值)
-UPDATE BS_CARMAN SET MOVE_TYPE =-1 WHERE MOVE_TYPE IS NULL;
+UPDATE BS_CARMAN SET MOVE_TYPE = -1 WHERE MOVE_TYPE IS NULL;
 
 --更新司机最新的营运车辆
-UPDATE BS_CARMAN SET CARINFO =getCarInfoByDriverId(ID);
+UPDATE BS_CARMAN SET CARINFO = getCarInfoByDriverId(ID);
 
 --更新司机最新的主车辆
-UPDATE BS_CARMAN SET MAIN_CAR_ID =getDriverMainCarIdByDriverId(ID);
+UPDATE BS_CARMAN SET MAIN_CAR_ID = getDriverMainCarIdByDriverId(ID);
 
--- ####   ####
+
+
+--##参保险种表
+--更新车辆购买险种的备注字段为空
+UPDATE BS_BUY_PLANT SET DESC_ = NULL;
+
+--##车辆表
+-- #### 车辆：添加道路运输证号 ####
+ALTER TABLE BS_CAR ADD COLUMN CERT_NO4 VARCHAR(255);
+COMMENT ON COLUMN BS_CAR.CERT_NO4 IS '道路运输证号';
+
+-- #### 车辆：可选车架号前缀 ####
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5031', 'car.vin.prefix', '车架号前缀', null);
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'LSVT91338BN', 'LSVT91338BN', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'LJDCAA23060', 'LJDCAA23060', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '20', 'LBEEFAJA28X', 'LBEEFAJA28X', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '30', 'LFVAA11G413', 'LFVAA11G413', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+
+--##投诉表
+-- #### 资源配置 ####
+UPDATE BC_IDENTITY_RESOURCE SET NAME='客管投诉',URL='/bc-business/caseAdvices/paging?type=2' WHERE NAME='投诉与建议';
+UPDATE BC_IDENTITY_RESOURCE SET NAME='公司投诉',URL='/bc-business/caseAdvices/paging?type=6',ICONCLASS='i0708' WHERE NAME='表扬'
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','表扬', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';

@@ -7,6 +7,6 @@ jQuery(function($){
 		}else{
 			$this.text("∧");
 		}
-		$li.toggleClass("cl-expand");
+		$li.toggleClass("cl-expand cl-collapse");
 	});
 });
