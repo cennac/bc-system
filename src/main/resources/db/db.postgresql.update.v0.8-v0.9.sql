@@ -165,3 +165,11 @@ UPDATE BC_IDENTITY_RESOURCE SET NAME='客管投诉',URL='/bc-business/caseAdvice
 UPDATE BC_IDENTITY_RESOURCE SET NAME='公司投诉',URL='/bc-business/caseAdvices/paging?type=6',ICONCLASS='i0708' WHERE NAME='表扬'
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','表扬', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+-- #### 责任 OptionItem ####
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5032', 'ad.duty', '责任', null);
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'wuze', '无责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'yibanyouze', '一般有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yanzhongwuze', '严重有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
