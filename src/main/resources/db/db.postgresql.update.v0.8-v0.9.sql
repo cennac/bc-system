@@ -158,3 +158,10 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '30', 'LFVAA11G413', 'LFVAA11G413', null, null 
 	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+
+--##投诉表
+-- #### 资源配置 ####
+UPDATE BC_IDENTITY_RESOURCE SET NAME='客管投诉',URL='/bc-business/caseAdvices/paging?type=2' WHERE NAME='投诉与建议';
+UPDATE BC_IDENTITY_RESOURCE SET NAME='公司投诉',URL='/bc-business/caseAdvices/paging?type=6',ICONCLASS='i0708' WHERE NAME='表扬'
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','表扬', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
