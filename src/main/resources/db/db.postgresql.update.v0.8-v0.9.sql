@@ -323,9 +323,9 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON)
 --##投诉表
 -- #### 资源配置 ####
 UPDATE BC_IDENTITY_RESOURCE SET NAME='客管投诉',URL='/bc-business/caseAdvices/paging?type=2' WHERE NAME='投诉与建议';
-UPDATE BC_IDENTITY_RESOURCE SET ORDER='031700' WHERE NAME='表扬';
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031600','公司投诉', '/bc-business/caseAdvices/paging?type=6', 'i0708' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+UPDATE BC_IDENTITY_RESOURCE SET ORDER_='031700' WHERE NAME='表扬';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS,pname) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031600','公司投诉', '/bc-business/caseAdvices/paging?type=6', 'i0708','营运系统' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 -- #### 责任 OptionItem ####
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5032', 'ad.duty', '责任', null);
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
