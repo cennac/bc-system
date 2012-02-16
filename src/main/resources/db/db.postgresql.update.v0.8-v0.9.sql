@@ -64,8 +64,21 @@ DECLARE
 BEGIN
 	select  h.move_type
 		into moveType
-		from BS_CAR_DRIVER_HISTORY h where h.driver_id=did order by h.file_date desc limit 1;
+		from BS_CAR_DRIVER_HISTORY h where h.driver_id=did order by h.move_date desc limit 1;
 	return moveType;
+END;
+$$ LANGUAGE plpgsql;
+
+--##获取司机最新的迁移日期##
+CREATE OR REPLACE FUNCTION getDriverMoveDateByDriverId(did IN integer) RETURNS timestamp AS $$
+DECLARE
+	--定义变量
+	moveDate timestamp;
+BEGIN
+	select  h.move_date
+		into moveDate
+		from BS_CAR_DRIVER_HISTORY h where h.driver_id=did order by h.move_date desc limit 1;
+	return moveDate;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -108,6 +121,9 @@ COMMENT ON COLUMN BS_CARMAN.CARINFO IS '营运车辆';
 --迁移类型
 ALTER TABLE BS_CARMAN ADD COLUMN MOVE_TYPE INTEGER;
 COMMENT ON COLUMN BS_CARMAN.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车';
+--迁移日期
+ALTER TABLE BS_CARMAN ADD COLUMN MOVE_DATE TIMESTAMP;
+COMMENT ON COLUMN BS_CARMAN.MOVE_DATE IS '迁移日期';
 
 --营运班次
 ALTER TABLE BS_CARMAN ADD COLUMN CLASSES INTEGER;
@@ -123,6 +139,9 @@ UPDATE BS_CARMAN SET CLASSES = 0 WHERE CLASSES IS NULL;
 
 --更新司机最新的迁移类型
 UPDATE BS_CARMAN SET MOVE_TYPE = getDriverMoveTypeByDriverId(ID);
+
+--更新司机最新的迁移日期
+UPDATE BS_CARMAN SET MOVE_DATE = getDriverMoveDateByDriverId(ID);
 
 --更新司机最新迁移类型后，将MOVE_TYPE为NULL的设为-1(标识空值)
 UPDATE BS_CARMAN SET MOVE_TYPE = -1 WHERE MOVE_TYPE IS NULL;
