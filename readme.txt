@@ -155,3 +155,6 @@ bc-system
     app.version=0.8
 修改 bc/index/desktop.jsp中websocket的连接地址
 
+3)发布bcdev开发系统 >mvn clean package -Pbcdev -Dapp.version=0.9b4 -Dapp.ts=20120216 -Dapp.version=0.9b4 -Dapp.ws.url=ws://192.168.0.222:8095/bcdev/ws
+4)发布bctest测试系统 >mvn clean package -Pbctest -Dmaven.build.finalName=bctest_v0.9b4 -Dapp.version=0.9b4 -Dapp.ts=20120216
+5)发布bcsystem正式系统 >mvn clean package -Pbcsystem -Dmaven.build.finalName=bcsystem_v0.9 -Dapp.version=0.9 -Dapp.ts=20120216
