@@ -140,8 +140,8 @@ UPDATE BS_CARMAN SET MAIN_CAR_ID = getDriverMainCarIdByDriverId(ID);
 UPDATE BS_BUY_PLANT SET DESC_ = NULL;
 
 --##车辆表
---车辆表添加道路运输证号字段
-ALTER TABLE BS_CAR ADD COLUMN CERT_NO4 VARCHAR(4000);
+-- #### 车辆：添加道路运输证号 ####
+ALTER TABLE BS_CAR ADD COLUMN CERT_NO4 VARCHAR(255);
 COMMENT ON COLUMN BS_CAR.CERT_NO4 IS '道路运输证号';
 
 --##迁移记录里的公司名
@@ -282,3 +282,24 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
  
 
 -- ####   ####
+-- #### 车辆：可选车架号前缀 ####
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5031', 'car.vin.prefix', '车架号前缀', null);
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'LSVT91338BN', 'LSVT91338BN', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'LJDCAA23060', 'LJDCAA23060', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '20', 'LBEEFAJA28X', 'LBEEFAJA28X', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '30', 'LFVAA11G413', 'LFVAA11G413', null, null 
+	from BC_OPTION_GROUP g where g.KEY_='car.vin.prefix'; 
+
+--##投诉表
+-- #### 资源配置 ####
+UPDATE BC_IDENTITY_RESOURCE SET NAME='客管投诉',URL='/bc-business/caseAdvices/paging?type=2' WHERE NAME='投诉与建议';
+UPDATE BC_IDENTITY_RESOURCE SET NAME='公司投诉',URL='/bc-business/caseAdvices/paging?type=6',ICONCLASS='i0708' WHERE NAME='表扬'
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','表扬', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
