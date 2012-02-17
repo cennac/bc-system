@@ -295,6 +295,12 @@
 			<artifactId>bc-business-carmodel</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 综合查询 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-mix</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 		<!-- WebService接口实现 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>

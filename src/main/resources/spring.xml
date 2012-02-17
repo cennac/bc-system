@@ -72,11 +72,11 @@
 	<import resource="classpath:cn/bc/business/sync/spring.xml"/>
 	<import resource="classpath:cn/bc/business/injury/spring.xml"/>
 	<import resource="classpath:cn/bc/business/insuranceType/spring.xml"/>
-
 	<import resource="classpath:cn/bc/business/arrange/spring.xml"/>
 	<import resource="classpath:cn/bc/business/policy/spring.xml"/>
-	
 	<import resource="classpath:cn/bc/business/carmodel/spring.xml"/>
+	<import resource="classpath:cn/bc/business/mix/spring.xml"/>
+	
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-system.xml" />
 </beans>
