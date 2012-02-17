@@ -40,6 +40,33 @@
 		<!-- oracle
 		<concatSql4create db="oracle" encoding="GBK"/>
 		<concatSql4drop db="oracle" encoding="GBK"/> -->
+		
+		<!-- 替换一些文件的内容 -->
+		<echo message="app.name=${app.name}"/>
+		<echo message="app.ver=${app.ver}"/>
+		<echo message="app.data.realPath=${app.data.realPath}"/>
+		<!-- log4j日志配置文件-->
+		<replace dir="./target/${app.name}_${app.ver}/WEB-INF/classes" encoding="utf-8">
+			<include name="log4j.xml"/>
+			<replacefilter token="&lt;param name=&quot;File&quot; value=&quot;bcsystem.log&quot;/&gt;" 
+				value="&lt;param name=&quot;File&quot; value=&quot;${app.name}_${app.ver}.log&quot;/&gt;"/>
+		</replace>
+		<!-- web.xml日志配置文件-->
+		<replace dir="./target/${app.name}_${app.ver}/WEB-INF" encoding="utf-8">
+			<include name="web.xml"/>
+			<replacefilter token="&lt;param-value&gt;/bcdata&lt;/param-value&gt;" 
+				value="&lt;param-value&gt;${app.data.realPath}&lt;/param-value&gt;"/>
+		</replace>
+		
+		<!-- 删除一些文件 -->
+		<delete file="./target/${app.name}_${app.ver}/WEB-INF/jetty-env.xml"/>
+		<delete dir="./target/${app.name}_${app.ver}/WEB-INF/classes/WEB-INF"/>
+		
+		<!-- 重新打包成zip文件 -->
+		<tstamp>
+	       <format property="NOW" pattern="yyyyMMddHHmmss" locale="en"/>
+	    </tstamp>
+		<zip destfile="${build.dir}/${app.name}_${app.ver}_${NOW}.zip" basedir="./target/${app.name}_${app.ver}" includes="**/*"/>
 	</target>
 
 	<!-- 合并各个模块中定义的sql建表脚本的宏 -->
