@@ -370,3 +370,6 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'yibanyouze', '一般有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yanzhongwuze', '严重有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
+-- ##### 删除接诉日期,投诉类型的非空约束 ####
+ALTER TABLE bs_case_advice ALTER COLUMN receive_date DROP NOT NULL;
+ALTER TABLE bs_case_advice ALTER COLUMN advice_type DROP NOT NULL; 
