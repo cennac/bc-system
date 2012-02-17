@@ -57,6 +57,7 @@
 	<import resource="classpath:cn/bc/chat/spring.xml"/>
 	<import resource="classpath:cn/bc/sync/spring.xml"/>
 	<import resource="classpath:cn/bc/websocket/spring.xml"/>
+	<import resource="classpath:cn/bc/placeorigin/spring.xml"/>
 
 	<!-- bc营运管理子系统 -->
 	<import resource="classpath:cn/bc/business/cert/spring.xml"/>
