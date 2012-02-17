@@ -29,7 +29,7 @@ DECLARE
 	--定义变量
 	caridInfo varchar(4000);
 BEGIN
-	select string_agg(concat(name,',',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '顶班' when classes=4 then '主挂' else '无' end),',',id),';')
+	select string_agg(concat(name,',',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '主挂' when classes=4 then '顶班' else '无' end),',',id),';')
 		into caridInfo
 		from (select c.id as id,concat(c.plate_type,'.',c.plate_no) as name,cm.classes as classes 
 			from BS_CAR_DRIVER cm
@@ -334,3 +334,35 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'yibanyouze', '一般有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yanzhongwuze', '严重有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
+	
+--##顶班的key值与主挂的key值调换
+	
+	
+--##先将顶班(3)的值转为5
+--营运班次表
+UPDATE BS_CAR_DRIVER SET CLASSES=5 WHERE CLASSES=3;
+--迁移记录表
+UPDATE BS_CAR_DRIVER_HISTORY SET FROM_CLASSES=5 WHERE FROM_CLASSES=3;
+UPDATE BS_CAR_DRIVER_HISTORY SET TO_CLASSES=5 WHERE TO_CLASSES=3;
+--司机表
+UPDATE BS_CARMAN SET CLASSES=5 WHERE CLASSES=3;
+
+--##将主挂(4)的值转为3主挂(3)
+--营运班次表
+UPDATE BS_CAR_DRIVER SET CLASSES=3 WHERE CLASSES=4;
+--迁移记录表
+UPDATE BS_CAR_DRIVER_HISTORY SET FROM_CLASSES=3 WHERE FROM_CLASSES=4;
+UPDATE BS_CAR_DRIVER_HISTORY SET TO_CLASSES=3 WHERE TO_CLASSES=4;
+--司机表
+UPDATE BS_CARMAN SET CLASSES=3 WHERE CLASSES=4;
+
+--##将5转为顶班(4)
+--营运班次表
+UPDATE BS_CAR_DRIVER SET CLASSES=4 WHERE CLASSES=5;
+--迁移记录表
+UPDATE BS_CAR_DRIVER_HISTORY SET FROM_CLASSES=4 WHERE FROM_CLASSES=5;
+UPDATE BS_CAR_DRIVER_HISTORY SET TO_CLASSES=4 WHERE TO_CLASSES=5;
+--司机表
+UPDATE BS_CARMAN SET CLASSES=4 WHERE CLASSES=5;
+
+	
