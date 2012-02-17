@@ -6,7 +6,6 @@
 		<version>0.9-SNAPSHOT</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
-  	<version>0.9-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
 	
@@ -16,17 +15,20 @@
 		<!-- 营运子系统的版本号 -->
 		<business.version>0.9-SNAPSHOT</business.version>
 		
+		<app.name>bcsystem</app.name>
+		<app.ver>${project.version}</app.ver>
 		<app.ts>20120213</app.ts>
 		<app.debug>false</app.debug>
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
+		<app.ws.url>(location.protocol == "https" ? "wss://" : "ws://") + location.host + bc.root + "/ws"</app.ws.url>
 		
 		<!-- 数据库连接配置 -->
 		<db.sequence.default>HIBERNATE_SEQUENCE</db.sequence.default>
 		<db.ip>localhost</db.ip>
-		<db.username>bcsystem</db.username>
-		<db.password>bcsystem</db.password>
-		<jndi.name>${db.name}</jndi.name>
+		<db.username>${app.name}</db.username>
+		<db.password>${app.name}</db.password>
+		<jndi.name>${app.name}</jndi.name>
 		
 		<!-- 警示：update/create-drop/create/validate，如果在classpath中有/import.sql文件， 
 			hibernate3在启动时会执行 -->
@@ -34,6 +36,95 @@
 		<hibernate.show_sql>false</hibernate.show_sql>
 	</properties>
 	<profiles>
+		<profile>
+			<id>bcdev</id>
+			<properties>
+				<app.name>bcdev</app.name>
+				<app.ver>0.9b4</app.ver>
+				<app.ts>20120216</app.ts>
+				<app.debug>false</app.debug>
+				<app.data.realPath>/file/bcdata4dev</app.data.realPath>
+				<app.ws.url>'ws://192.168.0.222:8095/bcdev/ws'</app.ws.url>
+				<jetty.path>${app.name}</jetty.path>
+				
+				<db.type>postgresql</db.type>
+				<db.ip>localhost</db.ip>
+				<db.name>${app.name}</db.name>
+				<db.username>${app.name}</db.username>
+				<db.password>${app.name}</db.password>
+				<db.port>5432</db.port>
+				<db.sequence>${db.sequence.default}</db.sequence>
+				<db.driverClassName>org.postgresql.Driver</db.driverClassName>
+				<db.url><![CDATA[jdbc:postgresql://${db.ip}:${db.port}/${db.name}]]></db.url>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>bctest</id>
+			<properties>
+				<app.name>bctest</app.name>
+				<app.ver>0.9b4</app.ver>
+				<app.ts>20120216</app.ts>
+				<app.debug>false</app.debug>
+				<app.data.realPath>/file/bcdata4test</app.data.realPath>
+				<app.ws.url>'ws://192.168.0.222:8090/${app.name}/ws'</app.ws.url>
+				<jetty.path>${app.name}</jetty.path>
+				
+				<jndi.name>bcsystem</jndi.name>
+				<db.type>postgresql</db.type>
+				<db.ip>localhost</db.ip>
+				<db.name>bcsystem</db.name>
+				<db.username>${db.name}</db.username>
+				<db.password>${db.name}</db.password>
+				<db.port>5432</db.port>
+				<db.sequence>${db.sequence.default}</db.sequence>
+				<db.driverClassName>org.postgresql.Driver</db.driverClassName>
+				<db.url><![CDATA[jdbc:postgresql://${db.ip}:${db.port}/${db.name}]]></db.url>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>bcsystem</id>
+			<properties>
+				<app.name>bcsystem</app.name>
+				<app.ver>0.9b4</app.ver>
+				<app.ts>20120216</app.ts>
+				<app.debug>false</app.debug>
+				<app.data.realPath>/file/bcdata4test</app.data.realPath>
+				<app.ws.url>'ws://192.168.0.253:8090/${app.name}/ws'</app.ws.url>
+				<jetty.path>${app.name}</jetty.path>
+				
+				<db.type>postgresql</db.type>
+				<db.ip>localhost</db.ip>
+				<db.name>${app.name}</db.name>
+				<db.username>${app.name}</db.username>
+				<db.password>${app.name}</db.password>
+				<db.port>5432</db.port>
+				<db.sequence>${db.sequence.default}</db.sequence>
+				<db.driverClassName>org.postgresql.Driver</db.driverClassName>
+				<db.url><![CDATA[jdbc:postgresql://${db.ip}:${db.port}/${app.name}]]></db.url>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		
 		<profile>
 			<id>postgresql</id>
 			<properties>
@@ -95,7 +186,7 @@
 	</profiles>
 	
 	<build>
-		<finalName>bc-system</finalName>
+		<finalName>${app.name}_${app.ver}</finalName>
 		<!-- 替换文件中的${...}标记的值 -->
 		<resources>
 			<resource>
