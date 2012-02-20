@@ -502,3 +502,16 @@ ALTER TABLE BC_PLACEORIGIN ADD CONSTRAINT BCFK_PLACEORIGIN_AUTHORID FOREIGN KEY 
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 ALTER TABLE BC_PLACEORIGIN ADD CONSTRAINT BCFK_PLACEORIGIN_MODIFIER FOREIGN KEY (MODIFIER_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);	
+
+--##车辆保单表
+ALTER TABLE BS_CAR_POLICY ADD COLUMN BUY_PLANT varchar(4000);
+COMMENT ON COLUMN BS_CAR_POLICY.BUY_PLANT IS '保单的险种列，字符串格式保存';
+
+-- #### 更新险种列数据 ####
+update bs_car_policy as p 
+	set buy_plant=
+		(select string_agg(concat(name,'[',coverage,')'],'  ')
+				from (select *
+							from bs_buy_plant b
+							where b.pid=p.id
+							order by b.order_) as t);
