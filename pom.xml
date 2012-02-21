@@ -259,6 +259,12 @@
 			<artifactId>bc-business-blacklist</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 证照遗失 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-certLost</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 		<!-- 营运事件 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
