@@ -628,3 +628,13 @@ COMMENT ON COLUMN BS_CERT_LOST_ITEM.IS_REMAINS IS '是否有残骸';
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.DESC_ IS '备注';
 ALTER TABLE BS_CERT_LOST_ITEM ADD CONSTRAINT BSFK_LOSTITEM_BASE FOREIGN KEY (PID)
       REFERENCES BS_CERT_LOST (ID);							
+--##向营运系统中添加证照遗失模块
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','证照遗失', '/bc-business/certLosts/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+-- 插入证照遗失管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0116', 'BS_CERT_LOST','证照遗失管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INSURANCE_TYPE' 
+	and m.type_ > 1 and m.order_ in ('031700')
+	order by m.order_;
