@@ -89,9 +89,6 @@ drop table if exists BS_CERT;
 -- 司机责任人
 drop table if exists BS_CARMAN;
 
---LPG配置
-DROP TABLE IF EXISTS BS_CAR_LPGMODEL;
-
 -- ##BC平台的 postgresql 删表脚本##
 
 -- 用于生成hibernate id的序列
@@ -128,9 +125,6 @@ DROP TABLE IF EXISTS BC_WORK;
 -- 消息管理
 DROP TABLE IF EXISTS BC_MESSAGE;
 
---籍贯管理
-DROP TABLE IF EXISTS BC_PLACEORIGIN;
-
 -- 个性化设置
 DROP TABLE IF EXISTS BC_DESKTOP_SHORTCUT;
 DROP TABLE IF EXISTS BC_DESKTOP_PERSONAL;
@@ -158,6 +152,3 @@ DROP TABLE IF EXISTS BC_SD_JOB;
 
 -- 删除视图
 DROP VIEW IF EXISTS bc_dual;
-
-
-
