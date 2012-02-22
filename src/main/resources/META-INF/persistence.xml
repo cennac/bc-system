@@ -104,6 +104,11 @@
 		<!-- 黑名单 -->
 		<class>cn.bc.business.blacklist.domain.Blacklist</class>
 		
+		<!-- 证照遗失管理 -->
+		<class>cn.bc.business.certLost.domain.CertLost</class>
+		<!-- 遗失的证照 -->
+		<class>cn.bc.business.certLost.domain.CertLostItem</class>
+		
 		<!-- 合同  -->
 		<class>cn.bc.business.contract.domain.Contract</class>
 		<class>cn.bc.business.contract.domain.Contract4Charger</class>
@@ -123,6 +128,8 @@
 		<class>cn.bc.business.injury.domain.Injury</class>
 		<!-- 车型配置 -->
 		<class>cn.bc.business.carmodel.domain.CarModel</class>
+		<!-- LPG配置 -->
+		<class>cn.bc.business.carlpg.domain.CarLPG</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
