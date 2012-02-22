@@ -580,7 +580,7 @@ COMMENT ON COLUMN BS_CAR_POLICY.BUY_PLANT IS '保单的险种列，字符串格�
 -- #### 更新险种列数据 ####
 update bs_car_policy as p 
 	set buy_plant=
-		(select string_agg(concat(name,'[',coverage,')'],'  ')
+		(select string_agg(concat(name,'[',coverage,']'),'  ')
 				from (select *
 							from bs_buy_plant b
 							where b.pid=p.id
