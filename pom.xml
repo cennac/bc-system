@@ -44,7 +44,7 @@
 				<app.ts>20120222</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4dev</app.data.realPath>
-				<app.ws.url>'ws://192.168.0.222:8095/bcdev/ws'</app.ws.url>
+				<app.ws.url>"ws://192.168.0.222:8095/bcdev/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
 				
 				<db.type>postgresql</db.type>
@@ -73,7 +73,7 @@
 				<app.ts>20120216</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
-				<app.ws.url>'ws://192.168.0.222:8090/${app.name}/ws'</app.ws.url>
+				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
 				
 				<jndi.name>bcsystem</jndi.name>
@@ -103,7 +103,7 @@
 				<app.ts>20120216</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
-				<app.ws.url>'ws://192.168.0.253:8090/${app.name}/ws'</app.ws.url>
+				<app.ws.url>"ws://192.168.0.253:8090/${app.name}/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
 				
 				<db.type>postgresql</db.type>

@@ -790,5 +790,5 @@ insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,I
 -- 让通用角色拥有车辆查询权限
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
-	and m.type_ > 1 and m.NAME = '车辆查询'
+	and m.type_ > 1 and m.NAME in ('车辆查询','公司投诉')
 	order by m.order_;
