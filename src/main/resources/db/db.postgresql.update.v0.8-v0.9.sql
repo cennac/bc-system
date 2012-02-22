@@ -778,3 +778,17 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INSURANCE_TYPE' 
 	and m.type_ > 1 and m.order_ in ('031700')
 	order by m.order_;
+
+-- 营运系统/车辆查询
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030001','车辆查询', '/bc-business/infoCenter/main', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+
+-- 插入桌面快捷方式:车辆查询
+insert into BC_DESKTOP_SHORTCUT (ID, STATUS_,INNER_,ORDER_,STANDALONE,NAME,URL,ICONCLASS,SID,AID) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, '0200', false, s.name, s.url,s.iconclass, s.id, 0 from BC_IDENTITY_RESOURCE s where name='车辆查询';
+
+-- 让通用角色拥有车辆查询权限
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.NAME = '车辆查询'
+	order by m.order_;
