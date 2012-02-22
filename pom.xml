@@ -40,8 +40,8 @@
 			<id>bcdev</id>
 			<properties>
 				<app.name>bcdev</app.name>
-				<app.ver>0.9b4</app.ver>
-				<app.ts>20120216</app.ts>
+				<app.ver>0.9</app.ver>
+				<app.ts>20120222</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4dev</app.data.realPath>
 				<app.ws.url>'ws://192.168.0.222:8095/bcdev/ws'</app.ws.url>

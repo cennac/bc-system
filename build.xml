@@ -28,7 +28,7 @@
 		</delete>
 	</target>
 
-	<target name="build">
+	<target name="buildSql">
 		<!-- postgresql -->
 		<concatSql4create db="postgresql" />
 		<concatSql4drop db="postgresql" />
@@ -40,7 +40,11 @@
 		<!-- oracle
 		<concatSql4create db="oracle" encoding="GBK"/>
 		<concatSql4drop db="oracle" encoding="GBK"/> -->
-		
+		</target>
+
+	<target name="build">
+		<antcall target="buildSql"/>	
+	
 		<!-- 替换一些文件的内容 -->
 		<echo message="app.name=${app.name}"/>
 		<echo message="app.ver=${app.ver}"/>
