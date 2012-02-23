@@ -403,7 +403,6 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 
 -- ##### 删除接诉日期,投诉类型的非空约束 ####
 ALTER TABLE bs_case_advice ALTER COLUMN receive_date DROP NOT NULL;
-ALTER TABLE bs_case_advice ALTER COLUMN advice_type DROP NOT NULL; 
 
 
 
