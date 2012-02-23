@@ -768,23 +768,23 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
   
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '01', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '01', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '02', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '02', 'tingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '03', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '03', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '04', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '04', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '05', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '05', 'goumaifapiao', '购买发票', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '06', 'tingbanyiqieyewu', '停办一切业务', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '06', 'jianshen', '检审', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '07', 'jianguancheliang', '监管车辆', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '07', 'bubanzhengjian', '补办证件', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '08', 'tixing', '提醒', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '08', 'guohu', '过户', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '09', 'buketuiyajin', '不可退押金', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
+	select NEXTVAL('CORE_SEQUENCE'), 1, g.id, '09', 'zhuxiao', '注销', null from BC_OPTION_GROUP g where g.KEY_='blacklist.type'; 
   
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'batong', '八通', null from BC_OPTION_GROUP g where g.KEY_='car.taximeterFactory'; 
