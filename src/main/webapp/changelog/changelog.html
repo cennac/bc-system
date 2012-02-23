@@ -12,7 +12,7 @@
 		<li class="cl-expand">
 			<div class="cl-header">
 				<span class="cl-version">版本：0.9</span>
-				<span class="cl-issueTime">发布时间：2012-02-16 17:00</span>
+				<span class="cl-issueTime">发布时间：2012-02-22 17:30</span>
 				<span class="cl-issuer">发布人：黄荣基</span>
 				<span class="cl-operate">∧</span>
 				<span class="cl-from">来源</span>
@@ -22,9 +22,17 @@
 					<div class="detail">表单增加最大最小化功能</div>
 					<div class="from">2012-02-06 sys</div>
 				</li>
+				<li class="cl-log"><div class="module">平台</div>
+					<div class="detail">增加籍贯管理模块</div>
+					<div class="from">2012-02-06 wing</div>
+				</li>
 				<li class="cl-log"><div class="module">迁移记录</div>
 					<div class="detail">迁出迁入公司可输可选</div>
 					<div class="from">2012-02-06 may</div>
+				</li>
+				<li class="cl-log"><div class="module">迁移记录</div>
+					<div class="detail">迁移类型的创建与司机的状态同步更新：新入职、转车、迁回、交回后转车为在案，其余3中为注销</div>
+					<div class="from">2012-02-15 may</div>
 				</li>
 				<li class="cl-log"><div class="module">事故理赔</div>
 					<div class="detail">新建时自动生成自编号</div>
@@ -34,12 +42,28 @@
 					<div class="detail">事故理赔增加有车和事发时间自动显示相关保单功能</div>
 					<div class="from">2012-02-06 yjx</div>
 				</li>
+				<li class="cl-log"><div class="module">事故理赔</div>
+					<div class="detail">选择车辆后自动确认司机类型信息</div>
+					<div class="from">2012-02-06 yjx</div>
+				</li>
+				<li class="cl-log"><div class="module">事故理赔</div>
+					<div class="detail">优化高级查询，可以一次性查询指定期限内商业险或强制险将过期的保单</div>
+					<div class="from">2012-02-17 hwl</div>
+				</li>
 				<li class="cl-log"><div class="module">投诉与建议</div>
-					<div class="detail">投诉与建议,资源配置拆分为客管投诉,公司投诉</div>
+					<div class="detail">投诉与建议拆分为客管投诉、公司投诉，并按要求重新布局调整</div>
 					<div class="from">2012-02-14 fyh</div>
 				</li>
 				<li class="cl-log"><div class="module">司机</div>
-					<div class="detail">新建司机信息广州驾证默认为“是”</div>
+					<div class="detail">输入身份证后可自动识别籍贯、区域、出生日期信息</div>
+					<div class="from">2012-02-06 may</div>
+				</li>
+				<li class="cl-log"><div class="module">司机</div>
+					<div class="detail">司机视图高级搜索添加班次和迁移类型搜索</div>
+					<div class="from">2012-02-06 may</div>
+				</li>
+				<li class="cl-log"><div class="module">司机</div>
+					<div class="detail">新建司机信息广州驾证默认为“是”、类型默认是“司机和责任人”</div>
 					<div class="from">2012-02-15 may</div>
 				</li>
 				<li class="cl-log"><div class="module">司机</div>
@@ -49,6 +73,10 @@
 				<li class="cl-log"><div class="module">司机</div>
 					<div class="detail">司机表单的合同页签拆分为劳动合同和经济合同两个页签显示</div>
 					<div class="from">2012-02-10 may</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆</div>
+					<div class="detail">车辆增加LPG设备、电视广告屏信息的录入</div>
+					<div class="from">2012-02-17 may</div>
 				</li>
 				<li class="cl-log"><div class="module">车辆</div>
 					<div class="detail">车辆增加遗漏的道路运输证号</div>
@@ -66,13 +94,29 @@
 					<div class="detail">车辆表单的合同页签拆分为劳动合同和经济合同两个页签显示</div>
 					<div class="from">2012-02-10 may</div>
 				</li>
+				<li class="cl-log"><div class="module">经济合同</div>
+					<div class="detail">新建经济合同时，包含检审费用默认为“是”</div>
+					<div class="from">2012-02-17 may</div>
+				</li>
+				<li class="cl-log"><div class="module">黑名单</div>
+					<div class="detail">黑名单锁定后可以继续编辑保存而不解锁，另外锁定原因改为非必填</div>
+					<div class="from">2012-02-14 may</div>
+				</li>
+				<li class="cl-log"><div class="module">车辆保单</div>
+					<div class="detail">视图增加承保险种列</div>
+					<div class="from">2012-02-06 hewl</div>
+				</li>
+				<li class="cl-log"><div class="module">客户投诉</div>
+					<div class="detail">增加核准处理（加核准意见等）</div>
+					<div class="from">2012-02-17 fyh</div>
+				</li>
 				<li class="cl-log"><div class="module">交通违法</div>
 					<div class="detail">交委接口交通违法可批量生成</div>
 					<div class="from">2012-02-06 fyh</div>
 				</li>
 			</ul>
 		</li>
-		<li class="cl-expand">
+		<li class="cl-collapse">
 			<div class="cl-header">
 				<span class="cl-version">版本：0.8</span>
 				<span class="cl-issueTime">发布时间：2012-02-13 17:30</span>
