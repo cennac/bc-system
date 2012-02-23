@@ -1357,78 +1357,80 @@ INSERT INTO BS_CAR_MODEL (id,uid_,status_,factory_type,factory_model,engine_type
 	,modifier_id,modified_date,order_)
 	VALUES(NEXTVAL('CORE_SEQUENCE'), 'CarModel.1', '0', '桑塔纳', 'SVW7182QQD', 'CKZ','汽油'
 	, '1781','74.00','方向盘','4','195/60 R14 86H','1414','1422','2656','2','0','4687'
-	,'1700','1450','1595','0','5',now(),'1136','1136',now(),'1000');
+	,'1700','1450','1595','0','5',now()
+	,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员')
+	,null,null,'1000');
 
 	
 -- 插入车辆保单险种及模版
 INSERT INTO bs_insurance_type(id,status_,name,file_date,author_id,type_,order_) 
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中华承保险种模板',now(),1136,1,'01000');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中华承保险种模板',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),1,'01000');
 INSERT INTO bs_insurance_type(id,status_,name,file_date,author_id,type_,order_) 
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中保承保险种模板',now(),1136,1,'02000');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'中保承保险种模板',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),1,'02000');
 
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),1136,id,'01001'
+			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'01001'
 				from bs_insurance_type where name='中华承保险种模板';
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),1136,id,'01002'  
+			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'01002'  
 				from bs_insurance_type where name='中华承保险种模板';
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,id,'01003'   
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'01003'   
 				from bs_insurance_type where name='中华承保险种模板';
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,id,'01004'  
+			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'01004'  
 				from bs_insurance_type where name='中华承保险种模板';
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),1136,id,'01005'  
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'01005'  
 				from bs_insurance_type where name='中华承保险种模板';
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'免赔','0',now(),1136,id,'01006'  
-				from bs_insurance_type where name='中华承保险种模板';
-
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),1136,id,'02001'  
-				from bs_insurance_type where name='中保承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),1136,id,'02002'   
-				from bs_insurance_type where name='中保承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,id,'02003'  
-				from bs_insurance_type where name='中保承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,id,'02004'  
-				from bs_insurance_type where name='中保承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),1136,id,'02005'  
-				from bs_insurance_type where name='中保承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_,desc_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'免赔','0',now(),1136,id,'02006','车身ZB 第三者√座位√'  
-				from bs_insurance_type where name='中保承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_,desc_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'座位（司机）','0',now(),1136,id,'02007','10,000.00/座*4座'  
-				from bs_insurance_type where name='中华承保险种模板';
-INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_,desc_)
-			select NEXTVAL('CORE_SEQUENCE'),0,'座位（乘客）','0',now(),1136,id,'02008','10,000.00/座*1座'  
+			select NEXTVAL('CORE_SEQUENCE'),0,'免赔','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'01006'  
 				from bs_insurance_type where name='中华承保险种模板';
 
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'车身','ZB',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02001'  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'盗抢','ZB',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02002'   
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02003'  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02004'  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'交强险','122000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02005'  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_,desc_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'免赔','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02006','车身ZB 第三者√座位√'  
+				from bs_insurance_type where name='中保承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_,desc_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位（司机）','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02007','10,000.00/座*4座'  
+				from bs_insurance_type where name='中华承保险种模板';
+INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,pid,order_,desc_)
+			select NEXTVAL('CORE_SEQUENCE'),0,'座位（乘客）','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),id,'02008','10,000.00/座*1座'  
+				from bs_insurance_type where name='中华承保险种模板';
+
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),1136,'99001');  
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'承运人','1500000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99001');  
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'强三险','122000',now(),1136,'99002'); 
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'强三险','122000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99002'); 
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'盗抢','0',now(),1136,'99003');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'盗抢','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99003');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),1136,'99004');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'第三者','500000',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99004');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'车身','0',now(),1136,'99005');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'车身','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99005');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'座位','0',now(),1136,'99006');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'座位','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99006');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'玻璃','0',now(),1136,'99007');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'玻璃','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99007');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'自燃','0',now(),1136,'99008');	
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'自燃','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99008');	
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'备注','0',now(),1136,'99009');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'备注','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99009');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'标准保费','0',now(),1136,'99010');
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'标准保费','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99010');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
-			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'保单号','0',now(),1136,'99011');	
+			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'保单号','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99011');	
