@@ -153,4 +153,13 @@ ALTER TABLE BS_CERT_LOST_ITEM ADD COLUMN LOST_ADDRESS VARCHAR(4000);
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.LOST_ADDRESS IS '遗失地点';
 
 
+-- ##车辆保单表
+-- 优化视图险种列的显示
+update bs_car_policy as p 
+	set buy_plant=
+		(select string_agg(concat('[',name,':',coverage,']'),'  ')
+				from (select *
+							from bs_buy_plant b
+							where b.pid=p.id 
+							order by b.order_) as t);
       				
