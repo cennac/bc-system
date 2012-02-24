@@ -63,7 +63,7 @@
 		</replace>
 		
 		<!-- 删除一些文件 -->
-		<delete file="./target/${app.name}_${app.ver}/WEB-INF/jetty-env.xml"/>
+		<!-- <delete file="./target/${app.name}_${app.ver}/WEB-INF/jetty-env.xml"/> -->
 		<delete dir="./target/${app.name}_${app.ver}/WEB-INF/classes/WEB-INF"/>
 		
 		<!-- 重新打包成zip文件 -->

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>cn.bc</groupId>
@@ -8,13 +9,13 @@
 	<artifactId>bc-system</artifactId>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
-	
+
 	<properties>
 		<!-- 平台的版本号 -->
 		<framework.version>1.0-SNAPSHOT</framework.version>
 		<!-- 营运子系统的版本号 -->
 		<business.version>1.0-SNAPSHOT</business.version>
-		
+
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
 		<app.ts>20120223</app.ts>
@@ -22,14 +23,14 @@
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
 		<app.ws.url>(location.protocol == "https" ? "wss://" : "ws://") + location.host + bc.root + "/ws"</app.ws.url>
-		
+
 		<!-- 数据库连接配置 -->
 		<db.sequence.default>HIBERNATE_SEQUENCE</db.sequence.default>
 		<db.ip>localhost</db.ip>
 		<db.username>${app.name}</db.username>
 		<db.password>${app.name}</db.password>
 		<jndi.name>${app.name}</jndi.name>
-		
+
 		<!-- 警示：update/create-drop/create/validate，如果在classpath中有/import.sql文件， 
 			hibernate3在启动时会执行 -->
 		<hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
@@ -46,7 +47,7 @@
 				<app.data.realPath>/file/bcdata4dev</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8095/bcdev/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
-				
+
 				<db.type>postgresql</db.type>
 				<db.ip>localhost</db.ip>
 				<db.name>${app.name}</db.name>
@@ -75,7 +76,7 @@
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
-				
+
 				<jndi.name>bcsystem</jndi.name>
 				<db.type>postgresql</db.type>
 				<db.ip>localhost</db.ip>
@@ -102,10 +103,10 @@
 				<app.ver>1.0</app.ver>
 				<app.ts>20120223</app.ts>
 				<app.debug>false</app.debug>
-				<app.data.realPath>/file/bcdata4test</app.data.realPath>
+				<app.data.realPath>/file/bcdata</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.253:8090/${app.name}/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
-				
+
 				<db.type>postgresql</db.type>
 				<db.ip>localhost</db.ip>
 				<db.name>${app.name}</db.name>
@@ -124,7 +125,7 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		
+
 		<profile>
 			<id>postgresql</id>
 			<properties>
@@ -184,7 +185,7 @@
 			</dependencies>
 		</profile>
 	</profiles>
-	
+
 	<build>
 		<finalName>${app.name}_${app.ver}</finalName>
 		<!-- 替换文件中的${...}标记的值 -->
@@ -200,18 +201,28 @@
 				</includes>
 				<filtering>true</filtering>
 			</resource>
-			<resource>
-				<directory>src/main/webapp</directory>
-				<includes>
-					<include>**/web.xml</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
 		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>WEB-INF/jetty-env-ref.xml</include>
+							</includes>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -220,9 +231,9 @@
 		<developerConnection>scm:git:[fetch=]git://localhost/bc-system.git[push=]git@localhost:bc-system.git</developerConnection>
 		<url>http://localhost/bc-system</url>
 	</scm>
-	
+
 	<dependencies>
-		<!-- ##营运子系统模块##-->
+		<!-- ##营运子系统模块## -->
 		<!-- 证件 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
@@ -288,7 +299,7 @@
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-insuranceType</artifactId>
 			<version>${business.version}</version>
-		</dependency>		
+		</dependency>
 		<!-- 考勤管理 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
@@ -307,7 +318,7 @@
 			<artifactId>bc-business-carlpg</artifactId>
 			<version>${business.version}</version>
 		</dependency>
-		
+
 		<!-- 综合查询 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
@@ -330,13 +341,13 @@
 			<artifactId>bc-business-spider</artifactId>
 			<version>${business.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-charger</artifactId>
 			<version>${business.version}</version>
 		</dependency>
-		
+
 		<!-- 平台模块 -->
 		<dependency>
 			<groupId>cn.bc</groupId>
@@ -415,7 +426,7 @@
 			<artifactId>bc-placeorigin</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
-		
+
 		<!-- WebSocket -->
 		<dependency>
 			<groupId>cn.bc</groupId>
@@ -459,7 +470,7 @@
 			<groupId>com.atomikos</groupId>
 			<artifactId>transactions-jdbc</artifactId>
 		</dependency>
-		
+
 		<!-- for provided -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -489,40 +500,19 @@
 			<version>${jetty.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- for test -->
 
-		<!--
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20080701</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-chart-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-richtext-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-grid-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>org.json</groupId> <artifactId>json</artifactId> 
+			<version>20080701</version> </dependency> <dependency> <groupId>log4j</groupId> 
+			<artifactId>log4j</artifactId> <scope>compile</scope> </dependency> <dependency> 
+			<groupId>com.jgeppert.struts2.jquery</groupId> <artifactId>struts2-jquery-plugin</artifactId> 
+			<version>${struts2.jquery.version}</version> </dependency> <dependency> <groupId>com.jgeppert.struts2.jquery</groupId> 
+			<artifactId>struts2-jquery-chart-plugin</artifactId> <version>${struts2.jquery.version}</version> 
+			</dependency> <dependency> <groupId>com.jgeppert.struts2.jquery</groupId> 
+			<artifactId>struts2-jquery-richtext-plugin</artifactId> <version>${struts2.jquery.version}</version> 
+			</dependency> <dependency> <groupId>com.jgeppert.struts2.jquery</groupId> 
+			<artifactId>struts2-jquery-grid-plugin</artifactId> <version>${struts2.jquery.version}</version> 
+			</dependency> -->
 	</dependencies>
 </project>

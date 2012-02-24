@@ -37,10 +37,10 @@
 		p:driverClassName="${db_driverClassName}" p:url="${db_url}"
 		p:username="${db_username}" p:password="${db_password}" />
 
-	<!-- 基于jndi的数据源
+	<!-- 基于jndi的数据源:jndiName不要使用 java:comp/env/jdbc/${jndi_name} 而是使用 jdbc/${jndi_name} 的形式进行配置
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
-			<value>java:comp/env/jdbc/${jndi_name}</value>
+			<value>jdbc/${jndi_name}</value>
 		</property>
 	</bean> -->
 

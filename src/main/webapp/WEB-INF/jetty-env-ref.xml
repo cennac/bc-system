@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<!-- A jetty-env.xml file is an optional file that you can place in your 
+	webapp's WEB-INF directory to configure JNDI resources specifically for that 
+	webapp. -->
+<!-- the id must equals to web.xml's id -->
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+	<!-- 全局数据源配置：将下面的所有内容复制到$JETTY_HOME/etc/jetty.xml内 -->
+
+	<!-- dragon: Applying JNDI to All Web Apps (http://wiki.eclipse.org/Jetty/Feature/JNDI) -->
+	<Call name="setAttribute">
+	  <Arg>org.eclipse.jetty.webapp.configuration</Arg>
+	  <Arg>
+		  <Array type="java.lang.String">
+			  <Item>org.eclipse.jetty.webapp.WebInfConfiguration</Item>
+			  <Item>org.eclipse.jetty.webapp.WebXmlConfiguration</Item>
+			  <Item>org.eclipse.jetty.webapp.MetaInfConfiguration</Item>
+			  <Item>org.eclipse.jetty.webapp.FragmentConfiguration</Item>
+			  <Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>	<!-- add for JNDI -->
+			  <Item>org.eclipse.jetty.plus.webapp.PlusConfiguration</Item>	<!-- add for JNDI -->
+			  <Item>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Item>
+			  <Item>org.eclipse.jetty.webapp.TagLibConfiguration</Item>
+		  </Array>
+	  </Arg>
+	</Call>
+
+	<!-- 基于c3p0的连接池配置 -->
+	<New id="${db.name}DB" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg><Ref id='bcsystemWAC'/></Arg>
+		<Arg>jdbc/${jndi.name}</Arg>
+		<Arg>
+			<New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<Set name="driverClass">${db.driverClassName}</Set>
+				<Set name="jdbcUrl">${db.url}</Set>
+				<Set name="user">${db.username}</Set>
+				<Set name="password">${db.password}</Set>
+			</New>
+		</Arg>
+	</New>
+
+	<!-- 基于dbcp的连接池配置:测试通过
+	<New id="${db.name}DB" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg><Ref id='${db.name}WAC'/></Arg>
+		<Arg>jdbc/${jndi.name}</Arg>
+		<Arg>
+			<New class="org.apache.commons.dbcp.BasicDataSource">
+				<Set name="driverClassName">${db.driverClassName}</Set>
+				<Set name="url">${db.url}</Set>
+				<Set name="username">${db.username}</Set>
+				<Set name="password">${db.password}</Set>
+			</New>
+		</Arg>
+	</New> -->
+</Configure>
