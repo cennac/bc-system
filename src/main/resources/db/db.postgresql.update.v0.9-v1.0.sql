@@ -126,6 +126,13 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR' 
 	and m.type_ > 1 and m.order_ in ('030206')
 	order by m.order_;
+	
+-- 通用角色
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.order_ in ('030206')
+	order by m.order_;	
+	
 
 -- #### 插入数据 ####
 insert into BS_CAR_LPGMODEL(ID,STATUS_,ORDER_,NAME_,FULL_NAME,MODEL,GP_MODEL,JCF_MODEL,QHQ_MODEL,PSQ_MODEL,FILE_DATE,AUTHOR_ID)
@@ -134,3 +141,25 @@ insert into BS_CAR_LPGMODEL(ID,STATUS_,ORDER_,NAME_,FULL_NAME,MODEL,GP_MODEL,JCF
 insert into BS_CAR_LPGMODEL(ID,STATUS_,ORDER_,NAME_,FULL_NAME,MODEL,GP_MODEL,JCF_MODEL,QHQ_MODEL,PSQ_MODEL,FILE_DATE,AUTHOR_ID)
      select NEXTVAL('CORE_SEQUENCE'),0,'02','科罗特KRT-1','广州科罗特汽车服务有限公司','KRT-1','CYSW314-60-2.2','科罗特CYFJ','科罗特ZTG-1','科罗特CYFZ'
 				,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员');
+				
+				
+--##修改遗失模块的数据表
+--修改经办人ID列：
+ALTER TABLE BS_CERT_LOST RENAME HANDLER_ID TO TRANSACTOR_ID;
+--修改经办人姓名列：
+ALTER TABLE BS_CERT_LOST RENAME HANDLER_NAME TO TRANSACTOR_NAME;
+--添加遗失地点
+ALTER TABLE BS_CERT_LOST_ITEM ADD COLUMN LOST_ADDRESS VARCHAR(4000);
+COMMENT ON COLUMN BS_CERT_LOST_ITEM.LOST_ADDRESS IS '遗失地点';
+
+
+-- ##车辆保单表
+-- 优化视图险种列的显示
+update bs_car_policy as p 
+	set buy_plant=
+		(select string_agg(concat('[',name,':',coverage,']'),'  ')
+				from (select *
+							from bs_buy_plant b
+							where b.pid=p.id 
+							order by b.order_) as t);
+      				
