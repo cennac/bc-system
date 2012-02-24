@@ -153,8 +153,8 @@ ALTER TABLE BS_CERT_LOST_ITEM ADD COLUMN LOST_ADDRESS VARCHAR(4000);
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.LOST_ADDRESS IS '遗失地点';
 
 -- 添加删除证照遗失模块语句
-drop table if exists BS_CERT_LOST_ITEM;
-drop table if exists BS_CERT_LOST;
+-- drop table if exists BS_CERT_LOST_ITEM;
+-- drop table if exists BS_CERT_LOST;
       				
 
 -- ##车辆保单表
