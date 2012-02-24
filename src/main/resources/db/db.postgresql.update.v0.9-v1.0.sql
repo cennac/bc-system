@@ -157,6 +157,16 @@ drop table if exists BS_CERT_LOST_ITEM;
 drop table if exists BS_CERT_LOST;
       				
 
+-- ##车辆保单表
+-- 优化视图险种列的显示
+update bs_car_policy as p 
+	set buy_plant=
+		(select string_agg(concat('[',name,':',coverage,']'),'  ')
+				from (select *
+							from bs_buy_plant b
+							where b.pid=p.id 
+							order by b.order_) as t);
+      				
 
 --##证件名称
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5032', 'cert.name', '证件名称', null);
