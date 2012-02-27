@@ -217,3 +217,9 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
  select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '22', 'yangchengtongzhongduanji', '羊城通终端机', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
  select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '23', 'yuanjulifangweimibiao', '远距离防伪密标', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+
+ -- ##劳动合同表
+
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN REGION_ NUMERIC(1) DEFAULT 0;
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.REGION_ IS '区域：0-未定义，1-本市，2-本省，3-外省';
+      				
