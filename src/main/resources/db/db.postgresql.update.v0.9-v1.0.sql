@@ -217,3 +217,8 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
  select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '22', 'yangchengtongzhongduanji', '羊城通终端机', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
  select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '23', 'yuanjulifangweimibiao', '远距离防伪密标', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+
+-- 车辆查询性能优化添加的索引
+CREATE INDEX BSIDX_CAR_VIN ON BS_CAR (VIN);
+CREATE INDEX BSIDX_CAR_ENGINENO ON BS_CAR (ENGINE_NO);
+CREATE INDEX BSIDX_CAR_INVOICENO2 ON BS_CAR (INVOICE_NO2);
