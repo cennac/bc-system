@@ -223,8 +223,14 @@ CREATE INDEX BSIDX_CAR_VIN ON BS_CAR (VIN);
 CREATE INDEX BSIDX_CAR_ENGINENO ON BS_CAR (ENGINE_NO);
 CREATE INDEX BSIDX_CAR_INVOICENO2 ON BS_CAR (INVOICE_NO2);
 
- -- ##劳动合同表
-
+-- ##劳动合同表
 ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN REGION_ NUMERIC(1) DEFAULT 0;
 COMMENT ON COLUMN BS_CONTRACT_LABOUR.REGION_ IS '区域：0-未定义，1-本市，2-本省，3-外省';
       				
+-- 插入友情链接/广州市出租汽车协会
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070400','出租协会', 'http://www.gztaxixh.com/', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.NAME = '出租协会'
+	order by m.order_;
