@@ -226,6 +226,10 @@ CREATE INDEX BSIDX_CAR_INVOICENO2 ON BS_CAR (INVOICE_NO2);
 -- ##劳动合同表
 ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN REGION_ NUMERIC(1) DEFAULT 0;
 COMMENT ON COLUMN BS_CONTRACT_LABOUR.REGION_ IS '区域：0-未定义，1-本市，2-本省，3-外省';
+
+
+--将未补办的证件的补办日期为[1900]设为null
+UPDATE BS_CERT_LOST_ITEM SET REPLACE_DATE = NULL WHERE to_char(REPLACE_DATE,'YYYY') = '1900';
       				
 -- 插入友情链接/广州市出租汽车协会
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -234,3 +238,29 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
 	and m.type_ > 1 and m.NAME = '出租协会'
 	order by m.order_;
+--修正根据车辆ID查找责任人的存储过程##(加上查询条件合同的为在案的[c.status_=0])
+
+-- 获取指定车辆实时的经济合同责任人信息,只适用于对当前在案车辆的处理
+-- 返回值的格式为：张三,李四
+-- 返回值是按责任人的入职时间正序排序的
+-- 参数：cid - 车辆的id
+CREATE OR REPLACE FUNCTION getChargerInfoByCarId(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	chargerInfo varchar(4000);
+BEGIN
+	select string_agg(concat(name,',',id),';') into chargerInfo
+		from (SELECT m.name as name,m.id as id
+			FROM bs_car_contract cc
+			inner join bs_contract c on c.id=cc.contract_id
+			inner join bs_contract_charger c1 on c1.id=c.id
+			inner join bs_carman_contract cm on cm.contract_id=c.id
+			inner join bs_carman m on m.id=cm.man_id
+			where cc.car_id=cid and c.status_=0
+			order by m.work_date asc) as t;
+	return chargerInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 更新在案车辆的司机、责任人字段信息
+update bs_car c set driver=getdriverinfobycarid(id),charger=getchargerinfobycarid(id) where status_=0;
