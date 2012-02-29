@@ -264,3 +264,13 @@ $$ LANGUAGE plpgsql;
 
 -- 更新在案车辆的司机、责任人字段信息
 update bs_car c set driver=getdriverinfobycarid(id),charger=getchargerinfobycarid(id) where status_=0;
+
+-- 图标修改
+update BC_IDENTITY_RESOURCE set ICONCLASS='i0804' where NAME='车辆查询';
+update BC_DESKTOP_SHORTCUT set ICONCLASS='i0804' where NAME='车辆查询';
+update BC_IDENTITY_RESOURCE set ICONCLASS='i0805' where NAME='车辆保单';
+update BC_IDENTITY_RESOURCE set ICONCLASS='i0806' where NAME='证照遗失';
+update BC_IDENTITY_RESOURCE set ICONCLASS='i0309' where NAME='LPG配置';
+update BC_IDENTITY_RESOURCE set ICONCLASS='i0309' where NAME='保单险种';
+update BC_IDENTITY_RESOURCE set ICONCLASS='i0309' where NAME='车型配置';
+
