@@ -37,6 +37,12 @@
 			<result>/bc/index/desktop.jsp</result>
 		</action> -->
 	</package>
+	<!-- 帮助 -->
+	<package name="help" extends="struts-default" namespace="/">
+		<action name="help" class="helpAction">
+			<result>/help/${key}.html</result>
+		</action>
+	</package>
 	
 	<!-- for test: 图表 -->
 	<package name="chart" extends="bc-default" namespace="/bc/chart">
