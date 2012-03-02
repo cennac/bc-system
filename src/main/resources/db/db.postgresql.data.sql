@@ -379,17 +379,25 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.order_ in ('031400')
 	order by m.order_;
 
--- 插入投诉与建议管理角色数据
+-- 插入客管投诉管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0110', 'BS_ADVICE','投诉与建议管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0110', 'BS_ADVICE_KG','客管投诉管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ADVICE' 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ADVICE_KG' 
 	and m.type_ > 1 and m.order_ in ('031500')
+	order by m.order_;
+
+-- 插入公司投诉管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0111', 'BS_ADVICE_GS','公司投诉管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ADVICE_GS' 
+	and m.type_ > 1 and m.order_ in ('031600')
 	order by m.order_;
 
 -- 插入表扬管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0111', 'BS_PRAISE','表扬管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0112', 'BS_PRAISE','表扬管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_PRAISE' 
 	and m.type_ > 1 and m.order_ in ('031600')
@@ -397,7 +405,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 插入车辆证件管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0112', 'BS_CERT4CAR','车辆证件管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0113', 'BS_CERT4CAR','车辆证件管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT4CAR' 
 	and m.type_ > 1 and m.order_ in ('030202')
@@ -405,7 +413,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 插入司机证件管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0113', 'BS_CERT4DRIVER','司机证件管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0114', 'BS_CERT4DRIVER','司机证件管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT4DRIVER' 
 	and m.type_ > 1 and m.order_ in ('030302')
@@ -413,21 +421,21 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 插入车辆保单管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0114', 'BS_POLICY','车辆保单管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0115', 'BS_POLICY','车辆保单管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_POLICY' 
 	and m.type_ > 1 and m.order_ in ('030203')
 	order by m.order_;
 -- 插入车辆保单险种管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0115', 'BS_INSURANCE_TYPE','车辆保单险种管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0116', 'BS_INSURANCE_TYPE','车辆保单险种管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INSURANCE_TYPE' 
 	and m.type_ > 1 and m.order_ in ('030204')
 	order by m.order_;
 -- 插入证照遗失管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0116', 'BS_CERT_LOST','证照遗失管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0117', 'BS_CERT_LOST','证照遗失管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CERT_LOST' 
 	and m.type_ > 1 and m.order_ in ('031800')
