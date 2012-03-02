@@ -29,7 +29,9 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070300','金盾网', 'http://www.gzjd.gov.cn/', 'i0602' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070400','出租车调度系统', 'http://gis.gci-china.com:5000', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070400','出租协会', 'http://www.gztaxixh.com/', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 3, m.id, '070500','出租车调度系统', 'http://gis.gci-china.com:5000', 'i0603' from BC_IDENTITY_RESOURCE m where m.order_='070000';
 -- 常用链接/搜索引擎
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
     select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '074000','搜索引擎', null, 'i0100' from BC_IDENTITY_RESOURCE m where m.order_='070000';
@@ -123,13 +125,19 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800305','定时任务', '/bc/schedule/job/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800306','日志管理', '/bc/syslogs/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+-- 系统维护/常用功能
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800400','常用功能', null, 'i0004' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+-- 系统维护/常用功能/籍贯管理
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS,PNAME) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800401','籍贯管理', '/bc/placeOrigins/paging', 'i0304','常用功能' from BC_IDENTITY_RESOURCE m where m.order_='800400';
 
 
 -- 营运系统	
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '030000','营运系统', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030001','车辆查询', '/bc-business/infoCenter/main', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030001','车辆查询', '/bc-business/infoCenter/main', 'i0804' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030100','车队信息', '/bc-business/motorcades/list', 'i0803' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
@@ -141,11 +149,13 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030202','车辆证件', '/bc-business/car4cert/paging', 'i0700' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030203','车辆保单', '/bc-business/policys/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030203','车辆保单', '/bc-business/policys/paging', 'i0805' from BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030204','保单险种', '/bc-business/insuranceTypes/list', 'i0000' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030204','保单险种', '/bc-business/insuranceTypes/list', 'i0309' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030205','车型配置', '/bc-business/carModels/paging', 'i0400' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030205','车型配置', '/bc-business/carModels/paging', 'i0309' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS,PNAME)
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030206','LPG配置', '/bc-business/carLPGs/paging', 'i0309','营运系统/车辆管理' from  BC_IDENTITY_RESOURCE m where m.order_='030200';
 
 -- 营运系统/司机管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -197,7 +207,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','表扬', '/bc-business/casePraises/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031800','证照遗失', '/bc-business/certLosts/paging', 'i0000' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031800','证照遗失', '/bc-business/certLosts/paging', 'i0806' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 -- 营运系统/其他-报表
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -281,6 +291,14 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.order_ in ('800304')
 	order by m.order_;
 
+-- 插入籍贯管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0006', 'BC_PLACEORIGIN','籍贯管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_PLACEORIGIN' 
+	and m.type_ > 1 and m.order_ in ('800401')
+	order by m.order_;
+
 -- 插入营运管理角色数据
 -- insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 -- 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0005', 'BS_BUSINESS','营运管理');
@@ -302,7 +320,7 @@ insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME)
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102', 'BS_CAR','车辆管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR' 
-	and m.type_ > 1 and m.order_ in ('030201','030202','031000')
+	and m.type_ > 1 and m.order_ in ('030201','030202','030205','030206')
 	order by m.order_;
 
 -- 插入司机管理角色数据
@@ -310,7 +328,7 @@ insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME)
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0103', 'BS_DRIVER','司机管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_DRIVER' 
-	and m.type_ > 1 and m.order_ in ('030301','030302','030303','031000')
+	and m.type_ > 1 and m.order_ in ('030301','030302','030303')
 	order by m.order_;
 
 -- 插入经济合同管理角色数据
@@ -634,6 +652,8 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('COR
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5033', 'car.taximeter.type', '计价器型号', null);
 -- 投诉的责任选项列表
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5034', 'ad.duty', '投诉的责任选项', null);
+-- 证件名称
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5035', 'cert.name', '证件名称', null);
 
 -- 插入同步的配置参数
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '8000', 'sync', '同步配置', null); 
@@ -1261,6 +1281,54 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'yanzhongwuze', '严重有责', null from BC_OPTION_GROUP g where g.KEY_='ad.duty'; 
 
+-- 证件名称
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baoxianka', '保险卡', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'cheliangtiepai', '车辆铁牌', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'chezaiduijiangji', '车载对讲机', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'chuzubianozhihoutiepai', '出租标志后铁牌', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'chuzubiaozhiqiantiepai', '出租标志前铁牌', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'congyerenyuanzigezheng', '从业人员资格证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'daoluyunshuzheng', '道路运输证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'dingdeng', '顶灯', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'fuwuzigezheng', '服务资格证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'gouzhishuizheng', '购置税证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'jidongchedengjizhengshu', '机动车登记证书', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'jijiaqi', '计价器', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '13', 'jijiaqiaianfeng', '计价器铅锋', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '14', 'jinjulifangweimibiao', '近距离防伪密标', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '15', 'keyunchezuqichejingyingquanshiyoungzheng', '客运出租汽车经营权使用证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '16', 'lianyinghetong', '联营合同', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '17', 'lufei', '路费', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '18', 'qiangjianzheng', '强检证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '19', 'qiaopiao', '桥票', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '20', 'hanglika', '行李卡', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '21', 'hangshizheng', '行驶证', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '22', 'yangchengtongzhongduanji', '羊城通终端机', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
+ select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '23', 'yuanjulifangweimibiao', '远距离防伪密标', null from BC_OPTION_GROUP g where g.KEY_='cert.name';
+
 -- 插入任务调度测试信息
 insert into BC_SD_JOB (ID,STATUS_,NAME,GROUPN,BEAN,METHOD,CRON,ORDER_,IGNORE_ERROR,MEMO_) 
 	values(1,1,'无异常任务测试','bc', 'schedulerTestMock', 'success','0/10 * * * * ? *','9901', 0, '测试信息');
@@ -1434,3 +1502,11 @@ INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order
 			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'标准保费','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99010');
 INSERT INTO bs_insurance_type(id,status_,name,coverage,file_date,author_id,order_)
 			VALUES(NEXTVAL('CORE_SEQUENCE'),0,'保单号','0',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'99011');	
+			
+-- 插入LPG数据
+insert into BS_CAR_LPGMODEL(ID,STATUS_,ORDER_,NAME_,FULL_NAME,MODEL,GP_MODEL,JCF_MODEL,QHQ_MODEL,PSQ_MODEL,FILE_DATE,AUTHOR_ID)
+     select NEXTVAL('CORE_SEQUENCE'),0,'01','兰天达','北京兰天达','MPSI（LPG）-LTD-2','鞍山新澳CYSW314-60-2.2','上海星地CYFJ315-30','意大利BRC,FULAIN','Valtck'
+				,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员');
+insert into BS_CAR_LPGMODEL(ID,STATUS_,ORDER_,NAME_,FULL_NAME,MODEL,GP_MODEL,JCF_MODEL,QHQ_MODEL,PSQ_MODEL,FILE_DATE,AUTHOR_ID)
+     select NEXTVAL('CORE_SEQUENCE'),0,'02','科罗特KRT-1','广州科罗特汽车服务有限公司','KRT-1','CYSW314-60-2.2','科罗特CYFJ','科罗特ZTG-1','科罗特CYFZ'
+				,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员');
