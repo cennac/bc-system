@@ -29,3 +29,6 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON)
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '1002', 'account.gztaxixh.password', 'baocheng123', '广州市出租协会网访问帐号的密码', null 
 	from BC_OPTION_GROUP g where g.KEY_='account'
 	and not exists (select * from BC_OPTION_ITEM i where i.KEY_='account.gztaxixh.password');
+
+--更新最新迁移类型为(交回未注销，注销未有去向，公司到公司)但状态为在案的司机状态为注销
+UPDATE BS_CARMAN SET STATUS_ = 1 WHERE ID IN(SELECT ID FROM BS_CARMAN WHERE MOVE_TYPE IN (1,2,4,8) AND STATUS_=0);
