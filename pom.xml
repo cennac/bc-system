@@ -100,11 +100,11 @@
 			<id>bcsystem</id>
 			<properties>
 				<app.name>bcsystem</app.name>
-				<app.ver>1.0</app.ver>
-				<app.ts>20120223</app.ts>
+				<app.ver>1.1</app.ver>
+				<app.ts>20120307</app.ts>
 				<app.debug>false</app.debug>
-				<app.data.realPath>/file/bcdata</app.data.realPath>
-				<app.ws.url>"ws://192.168.0.253:8090/${app.name}/ws"</app.ws.url>
+				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
+				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
 
 				<db.type>postgresql</db.type>
