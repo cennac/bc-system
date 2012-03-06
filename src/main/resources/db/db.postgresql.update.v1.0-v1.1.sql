@@ -30,5 +30,9 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, DESC_, ICON)
 	from BC_OPTION_GROUP g where g.KEY_='account'
 	and not exists (select * from BC_OPTION_ITEM i where i.KEY_='account.gztaxixh.password');
 
---更新最新迁移类型为(交回未注销，注销未有去向，公司到公司)但状态为在案的司机状态为注销
+-- 更新最新迁移类型为(交回未注销，注销未有去向，公司到公司)但状态为在案的司机状态为注销
 UPDATE BS_CARMAN SET STATUS_ = 1 WHERE ID IN(SELECT ID FROM BS_CARMAN WHERE MOVE_TYPE IN (1,2,4) AND STATUS_=0);
+
+-- 性能优化创建的索引
+create index bsidx_carmancontract_contract on bs_carman_contract (contract_id);
+create index bsidx_carmancontract_man on bs_carman_contract (man_id);
