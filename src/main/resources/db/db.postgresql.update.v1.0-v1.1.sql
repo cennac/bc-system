@@ -44,3 +44,9 @@ COMMENT ON COLUMN bs_car_driver.classes IS '营运班次:如1-正班、2-副班�
 --更改迁移记录表的营运班次注释
 COMMENT ON COLUMN bs_car_driver_history.from_classes IS '营运班次:如1-正班、2-副班、3-主挂、4-顶班';
 COMMENT ON COLUMN bs_car_driver_history.to_classes IS '营运班次:如1-正班、2-副班、3-主挂、4-顶班';
+
+--更改邓鸿煜的主挂营运记录(添加班次为主挂)
+UPDATE BS_CAR_DRIVER SET CLASSES=3 WHERE DRIVER_ID=104091 AND CAR_ID=113001;
+--更改罗如意的主挂营运记录(添加班次为主挂)
+UPDATE BS_CAR_DRIVER SET CLASSES=3 WHERE DRIVER_ID=103287 AND CAR_ID=114195;
+
