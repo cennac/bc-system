@@ -36,3 +36,11 @@ UPDATE BS_CARMAN SET STATUS_ = 1 WHERE ID IN(SELECT ID FROM BS_CARMAN WHERE MOVE
 -- 性能优化创建的索引
 create index bsidx_carmancontract_contract on bs_carman_contract (contract_id);
 create index bsidx_carmancontract_man on bs_carman_contract (man_id);
+
+
+--更改营运班次表的营运班次注释
+COMMENT ON COLUMN bs_car_driver.classes IS '营运班次:如1-正班、2-副班、3-主挂、4-顶班';
+
+--更改迁移记录表的营运班次注释
+COMMENT ON COLUMN bs_car_driver_history.from_classes IS '营运班次:如1-正班、2-副班、3-主挂、4-顶班';
+COMMENT ON COLUMN bs_car_driver_history.to_classes IS '营运班次:如1-正班、2-副班、3-主挂、4-顶班';
