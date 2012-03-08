@@ -130,8 +130,6 @@
 		<class>cn.bc.business.carmodel.domain.CarModel</class>
 		<!-- LPG配置 -->
 		<class>cn.bc.business.carlpg.domain.CarLPG</class>
-		<!-- 票务配置 -->
-		<class>cn.bc.business.invoice.domain.Invoice</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
