@@ -1,4 +1,4 @@
--- 更新在案车辆的交车日期为空
+-- 更新在案车辆的交车日期为空 - 此sql已于2012-03-09 11:00运行
 -- select file_date,operate_date,scrap_date,return_date from bs_car WHERE status_ = 0 order by file_date desc;
 UPDATE bs_car SET return_date=null WHERE status_ = 0;
 -- 更新报废车辆所属车队的信息
