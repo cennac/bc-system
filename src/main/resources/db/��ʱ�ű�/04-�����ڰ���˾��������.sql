@@ -7,4 +7,4 @@ update bs_carman  set type_ = 0 where id in
 			where contract_id in (
 				select id from bs_contract 
 				where type_=2 and status_=0)) 
-		and to_char(file_date,'YYYY-MM-DD') < '2012-03-02')
+		and file_date < to_date('2012-03-02','YYYY-MM-DD'))
