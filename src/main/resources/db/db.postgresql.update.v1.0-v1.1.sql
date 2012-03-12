@@ -56,4 +56,14 @@ UPDATE BS_CAR SET SCRAP_DATE = RETURN_DATE WHERE STATUS_ = 1;
 --删除司机表的驾驶状态(旧数据)
 ALTER TABLE BS_CARMAN DROP COLUMN DRIVING_STATUS;
 
-
+-- 反馈回复的改进
+ALTER TABLE bc_feedback_reply ALTER COLUMN subject DROP NOT NULL;
+ALTER TABLE bc_feedback ADD COLUMN LAST_REPLIER_ID integer;
+ALTER TABLE bc_feedback ADD COLUMN LAST_REPLY_DATE timestamp;
+ALTER TABLE bc_feedback ADD COLUMN REPLY_COUNT integer;
+ALTER TABLE bc_feedback ADD CONSTRAINT BSFK_FEEDBACK_REPLIER FOREIGN KEY (LAST_REPLIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+UPDATE bc_feedback SET REPLY_COUNT = 0; 
+ALTER TABLE bc_feedback ALTER COLUMN reply_count SET NOT NULL;
+UPDATE bc_desktop_shortcut SET url = '/bc/myfeedbacks/paging' where name='我的反馈'; 
+UPDATE bc_identity_resource SET url = '/bc/myfeedbacks/paging' where name='我的反馈'; 
