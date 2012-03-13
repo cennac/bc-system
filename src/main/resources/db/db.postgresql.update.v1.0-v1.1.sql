@@ -67,3 +67,19 @@ UPDATE bc_feedback SET REPLY_COUNT = 0;
 ALTER TABLE bc_feedback ALTER COLUMN reply_count SET NOT NULL;
 UPDATE bc_desktop_shortcut SET url = '/bc/myfeedbacks/paging' where name='我的反馈'; 
 UPDATE bc_identity_resource SET url = '/bc/myfeedbacks/paging' where name='我的反馈'; 
+
+-- 更改事故理赔表负责人的ID为ACTOR_HISTORY的ID(更改系统上线后新建事故理赔的数据) 
+update bs_case_accident b set charger_id= 
+	(select c.id 
+	from bs_case_accident a 
+	inner join bc_identity_actor_history c on c.actor_name=a.charger_name
+	where a.id=b.id)
+where b.receive_date>'2012-03-04';
+
+-- 更改事故理赔表经办人的ID为ACTOR_HISTORY的ID(更改系统上线后新建事故理赔的数据) 
+update bs_case_accident b set receiver_id= 
+	(select r.id 
+	from bs_case_accident a 
+	inner join bc_identity_actor_history r on r.actor_name=a.receiver_name
+	where a.id=b.id)
+where b.receive_date>'2012-03-04';
