@@ -1,4 +1,4 @@
-﻿
+﻿-- 此sql已于2012-03-14 22:32运行
 --获取顶班车辆:格式为车1,id1;车2,id2;
 CREATE OR REPLACE FUNCTION getShiftworkCar(hid IN integer) RETURNS varchar AS $$
 DECLARE
