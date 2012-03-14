@@ -1,4 +1,4 @@
-﻿--##获取司机最新的营运的主车辆ID--
+﻿--## 修改获取司机最新的营运的主车辆ID--[增加c.classes=0]
 CREATE OR REPLACE FUNCTION getDriverMainCarIdByDriverId(did IN integer) RETURNS integer AS $$
 DECLARE
 	--定义变量
