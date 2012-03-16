@@ -1,5 +1,4 @@
-﻿
-
+﻿-- 此sql已于2012-03-13运行
 --更新司机最新的驾驶状态
 UPDATE BS_CARMAN SET CLASSES = getDriverClassesByDriverId(ID);
 --更新司机最新营运班次后，将CLASSES为NULL的设为0(标识空值)

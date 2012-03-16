@@ -1,4 +1,4 @@
-﻿
+﻿-- 此sql已于2012-03-13运行
 --插入迁移记录类型为新入职的信息[该司机在旧系统中没有迁移记录,但在新系统中有营运记录,故后台创建补充该司机的迁移记录]
 CREATE OR REPLACE FUNCTION getNewEntrantInfo(did IN integer) RETURNS varchar AS $$
 DECLARE

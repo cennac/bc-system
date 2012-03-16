@@ -1,4 +1,5 @@
-﻿insert into bs_car_driver_history (id,move_date,move_type,driver_id,to_car_id,from_classes,to_classes,from_unit,to_unit,to_motorcade_id
+﻿-- 此sql已于2012-03-13运行
+insert into bs_car_driver_history (id,move_date,move_type,driver_id,to_car_id,from_classes,to_classes,from_unit,to_unit,to_motorcade_id
 			,file_date,author_id,desc_) values (nextval('core_sequence'),to_date('2007-12-27','YYYY-MM-DD'),5,103185,114108,0,0,'振中','广发',13,to_date('2012-03-13','YYYY-MM-DD'),1146,'旧系统无此迁移记录,该记录为后台创建补充');
 insert into bs_car_driver_history (id,move_date,move_type,driver_id,to_car_id,from_classes,to_classes,from_unit,to_unit,to_motorcade_id
 			,file_date,author_id,desc_) values (nextval('core_sequence'),to_date('2007-12-04','YYYY-MM-DD'),5,103215,113627,0,0,'天湖','宝城',4,to_date('2012-03-13','YYYY-MM-DD'),1146,'旧系统无此迁移记录,该记录为后台创建补充');

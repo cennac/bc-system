@@ -1,4 +1,5 @@
-﻿--## 修改获取司机最新的营运的主车辆ID--[增加c.classes=0]
+﻿-- 此sql已于2012-03-14 22:32运行
+--## 修改获取司机最新的营运的主车辆ID--[增加c.classes=0]
 CREATE OR REPLACE FUNCTION getDriverMainCarIdByDriverId(did IN integer) RETURNS integer AS $$
 DECLARE
 	--定义变量
