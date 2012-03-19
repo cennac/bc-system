@@ -15,4 +15,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-select updateNormalCarScrapDate(id) from bs_car where status_ = 0
+select updateNormalCarScrapDate(id) from bs_car where id in(
+			select c.id from bs_car c 
+				left join bs_car_contract cc on cc.car_id = c.id
+				left join bs_contract bc on bc.id=cc.contract_id
+				where c.status_ = 0 and bc.type_ = 2 and bc.status_ = 0  
+							);
