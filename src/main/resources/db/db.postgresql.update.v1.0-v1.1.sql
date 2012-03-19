@@ -84,11 +84,6 @@ update bs_case_accident b set receiver_id=
 	where a.id=b.id)
 where b.receive_date>'2012-03-04';
 
-
 -- 插入更新司机联系电话管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0118', 'BS_DRIVER_UPDATE_PHONE','更新司机联系电话管理角色');
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_DRIVER_UPDATE_PHONE' 
-	and m.type_ > 1 and m.order_ in ('030301')
-	order by m.order_;
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0118', 'BS_DRIVER_UPDATE_PHONE','司机联系电话管理');
