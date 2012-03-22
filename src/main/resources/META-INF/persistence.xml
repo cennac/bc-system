@@ -38,7 +38,8 @@
 
 		<!-- syslog -->
 		<class>cn.bc.log.domain.Syslog</class>
-		<class>cn.bc.log.domain.Worklog</class>
+		<class>cn.bc.log.domain.OperateLog</class>
+		<class>cn.bc.log.domain.AuditItem</class>
 
 		<!-- docs -->
 		<class>cn.bc.docs.domain.Attach</class>
