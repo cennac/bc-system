@@ -1,4 +1,4 @@
-﻿
+-- 此sql已于2012-03-19 18:00执行
 --更新在案车辆的报废日期为经济合同的结束日期
 CREATE OR REPLACE FUNCTION updateNormalCarScrapDate(cid IN integer) RETURNS varchar AS $$
 DECLARE

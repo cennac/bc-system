@@ -63,6 +63,7 @@
 	<include file="cn/bc/business/carmodel/web/struts2/struts.xml" />
 	<include file="cn/bc/business/carlpg/web/struts2/struts.xml" />
 	<include file="cn/bc/business/spider/web/struts2/struts.xml" />
+	<include file="cn/bc/business/invoice/web/struts2/struts.xml" />
 	<include file="cn/bc/business/mix/web/struts2/struts.xml" />
 
 	<!-- 项目自定义的配置文件 -->
