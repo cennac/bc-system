@@ -318,6 +318,12 @@
 			<artifactId>bc-business-carlpg</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 发票管理 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-invoice</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 
 		<!-- 综合查询 -->
 		<dependency>
