@@ -274,6 +274,7 @@ ALTER TABLE BS_INVOICE_SELL_DETAIL ADD CONSTRAINT BSFK_INVOICESELLDETAIL_SELL FO
       REFERENCES BS_INVOICE_SELL (ID); 
 CREATE INDEX BSIDX_INVOICESELLDETAIL_STARTNO ON BS_INVOICE_SELL_DETAIL (START_NO);
 CREATE INDEX BSIDX_INVOICESELLDETAIL_ENDNO ON BS_INVOICE_SELL_DETAIL (END_NO);
+CREATE INDEX BSIDX_INVOICESELLDETAIL_BUYID ON BS_INVOICE_SELL_DETAIL (BUY_ID);
 
 -- 发票管理入口
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -383,7 +384,7 @@ $BODY$
   LANGUAGE plpgsql;
 
 -- 统计采购单剩余号码段函数
-CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid integer,startno character varying,endno character varying)
+CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid integer,buy_count integer,startno character varying,endno character varying)
 	RETURNS character varying  AS
 $BODY$
 DECLARE
@@ -393,25 +394,38 @@ DECLARE
 		endno_tmp character varying;
 		startno_number_temp1 INTEGER;
 		startno_number_temp2 INTEGER;
+		count_ integer;
+		i integer;
 		-- 剩余号码段
 		remainingNumber VARCHAR(4000);
+		
 		-- 一行的记录	
 		rowinfo RECORD;
 BEGIN
-	-- 变量赋值
+	-- 变量初始化
 	remainingNumber := '';
+	i :=0;
+	-- 通过id统计剩余数量 
+	count_ := getbalancecountbyinvoicebuyid(bid);
+	-- 未销售
+	IF count_=buy_count THEN
+		remainingNumber := '['||startno||'~'||endno||']';
+		RETURN remainingNumber;
+	-- 销售完
+	ELSEIF count_=0 THEN 
+		RETURN remainingNumber;
+	END IF;
 	-- 循环销售第一明细时将采购单的开始号 赋值 临时开始号变量；
 	startno_tmp := trim(startno);
-
-	-- 查询返回以开始号排序的记录，循环每一行的记录
 	FOR rowinfo IN select d.start_no,d.end_no
-										from bs_invoice_buy b
-										left join bs_invoice_sell_detail d on d.buy_id=b.id
-										left join bs_invoice_sell s on s.id=d.sell_id
-										where b.id=bid and s.status_=0
-										ORDER BY d.start_no
+			from bs_invoice_buy b
+			left join bs_invoice_sell_detail d on d.buy_id=b.id
+			left join bs_invoice_sell s on s.id=d.sell_id
+			where b.id=bid and s.status_=0
+			ORDER BY d.start_no
+	-- 循环每一行的记录
 	LOOP
-		-- 返回的记录为空则直接返回
+		-- 记录为空则直接返回
 		IF rowinfo.start_no IS NULL THEN
 			remainingNumber := '['||startno||'~'||endno||']'; 
 			RETURN remainingNumber;
@@ -421,29 +435,31 @@ BEGIN
 		startno_number_temp2 := convert_stringtonumber(startno_tmp);
 		-- 明细中的开始号大于临时变量的开始号
 		IF startno_number_temp1 > startno_number_temp2 THEN
-			-- 若结束号有 0 开始 需要进行补0操作
-			endno_tmp := convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp);
-			remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] '; 
-			-- 临时的开始号转为每条销售明细结束号+1
-			startno_tmp := convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no));
+			-- 若结束号带有0前序需要进行补0操作
+			endno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp));
+			remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'],';
 			endno_tmp:= trim(rowinfo.end_no);
+			-- 临时的开始号转为每条销售明细结束号+1
+			startno_tmp := trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
+			
+			i := i+1;
 		END IF;
 		IF startno_number_temp1=startno_number_temp2	THEN
-			startno_tmp := convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no));
+			startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
 			endno_tmp:= trim(rowinfo.end_no);
+			i := i+1;
 		END IF;
 	END LOOP;
-	IF remainingNumber = '' THEN
+	IF remainingNumber = '' AND i=0 THEN
 			remainingNumber := '['||startno||'~'||endno||']'; 
 			RETURN remainingNumber;
 	END IF;
 	-- 若循环到明细最后，明细的结束号小于采购单的结束号 则范围[最后一条明细的结束号+1，采购单的结束号]
 	IF convert_stringtonumber(endno_tmp)<convert_stringtonumber(trim(endno)) THEN
-				startno_tmp= convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp);
+				startno_tmp= trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
 				endno_tmp=trim(endno);
 				remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] '; 
 	END IF;
-	
 	RETURN remainingNumber;
 END;
 $BODY$
@@ -494,7 +510,7 @@ BEGIN
 	-- 生成匹配的表达式
 	text_expression := text_expression||'0';
 	END LOOP;
-	string_ := to_char(int_,text_expression);
+	string_ := trim(to_char(int_,text_expression));
 	RETURN string_;
 END;
 $BODY$
