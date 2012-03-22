@@ -1,4 +1,4 @@
-﻿-- 司机责任人与黑名单的关联
+-- 司机责任人与黑名单的关联
 CREATE TABLE BS_CARMAN_BLACKLIST (
    MAN_ID               INTEGER           NOT NULL,
    BLACKLIST_ID          INTEGER           NOT NULL,
@@ -23,7 +23,7 @@ ALTER TABLE BS_BLACKLIST ADD COLUMN DRIVERS VARCHAR(4000);
 COMMENT ON COLUMN BS_BLACKLIST.DRIVERS IS '司机信息：[司机1姓名],[司机1班次],[司机1id];[司机2姓名],[司机2班次],[司机2id];...';
 
 --根据司机Id获取司机信息[姓名,班次,id]
-CREATE OR REPLACE FUNCTION getDriverInfoBydriverId(did IN integer) RETURNS varchar AS $$
+CREATE OR REPLACE FUNCTION getDriverInfoByDriverId(did IN integer) RETURNS varchar AS $$
 DECLARE
 	--定义变量
 	driverInfo varchar(4000);
@@ -40,7 +40,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 --更新黑名单的司机信息
-update bs_blacklist set drivers = getDriverInfoBydriverId(driver_id) where driver_id is not null;
+update bs_blacklist set drivers = getDriverInfoByDriverId(driver_id) where driver_id is not null;
 
 --将黑名单表的司机Id列删除
 ALTER TABLE BS_BLACKLIST DROP COLUMN DRIVER_ID;
