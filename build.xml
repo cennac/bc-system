@@ -10,21 +10,21 @@
 	<property name="encoding" value="UTF-8" />
 	<property name="frameworkSql.dir" value="../bc-framework/resources" />
 	<property name="businessSql.dir" value="../bc-business/resources" />
-		
+
 	<target name="help">
 		<echo message="运行 'ant cleanAll' 删除除源代码之外的所有文件和目录" />
 	</target>
 
 	<target name="cleanAll">
-		<delete verbose="true" includeemptydirs="true">  
-			<fileset dir="${basedir}">  
-				<include name="**/.classpath"/>
-				<include name="**/.project"/>
-				<include name="**/*.log"/>
-				<include name="**/*.log.*"/>
-				<include name="**/target/**"/>
-				<include name="**/.settings/**"/>
-			</fileset>  
+		<delete verbose="true" includeemptydirs="true">
+			<fileset dir="${basedir}">
+				<include name="**/.classpath" />
+				<include name="**/.project" />
+				<include name="**/*.log" />
+				<include name="**/*.log.*" />
+				<include name="**/target/**" />
+				<include name="**/.settings/**" />
+			</fileset>
 		</delete>
 	</target>
 
@@ -36,48 +36,51 @@
 		<!-- mysql
 		<concatSql4create db="mysql" />
 		<concatSql4drop db="mysql" /> -->
-		
+
 		<!-- oracle
 		<concatSql4create db="oracle" encoding="GBK"/>
 		<concatSql4drop db="oracle" encoding="GBK"/> -->
-		</target>
+	</target>
 
 	<target name="build">
-		<antcall target="buildSql"/>	
-	
+		<antcall target="buildSql" />
+
 		<!-- 替换一些文件的内容 -->
-		<echo message="app.name=${app.name}"/>
-		<echo message="app.ver=${app.ver}"/>
-		<echo message="app.data.realPath=${app.data.realPath}"/>
+		<echo message="app.name=${app.name}" />
+		<echo message="app.ver=${app.ver}" />
+		<echo message="app.data.realPath=${app.data.realPath}" />
 		<!-- log4j日志配置文件-->
 		<replace dir="./target/${app.name}_${app.ver}/WEB-INF/classes" encoding="utf-8">
-			<include name="log4j.xml"/>
-			<replacefilter token="&lt;param name=&quot;File&quot; value=&quot;bcsystem.log&quot;/&gt;" 
-				value="&lt;param name=&quot;File&quot; value=&quot;${app.name}_${app.ver}.log&quot;/&gt;"/>
+			<include name="log4j.xml" />
+			<replacefilter token="&lt;param name=&quot;File&quot; value=&quot;bcsystem.log&quot;/&gt;" value="&lt;param name=&quot;File&quot; value=&quot;${app.name}_${app.ver}.log&quot;/&gt;" />
 		</replace>
 		<!-- web.xml日志配置文件-->
 		<replace dir="./target/${app.name}_${app.ver}/WEB-INF" encoding="utf-8">
-			<include name="web.xml"/>
-			<replacefilter token="&lt;param-value&gt;/bcdata&lt;/param-value&gt;" 
-				value="&lt;param-value&gt;${app.data.realPath}&lt;/param-value&gt;"/>
+			<include name="web.xml" />
+			<replacefilter token="&lt;param-value&gt;/bcdata&lt;/param-value&gt;" value="&lt;param-value&gt;${app.data.realPath}&lt;/param-value&gt;" />
 		</replace>
-		
+
 		<!-- 删除一些文件 -->
-		<!-- <delete file="./target/${app.name}_${app.ver}/WEB-INF/jetty-env.xml"/> -->
-		<delete dir="./target/${app.name}_${app.ver}/WEB-INF/classes/WEB-INF"/>
-		
+		<delete file="./target/${app.name}_${app.ver}/WEB-INF/lib/c3p0-0.9.1.2.jar" />
+		<delete file="./target/${app.name}_${app.ver}/WEB-INF/lib/postgresql-9.1-901.jdbc4.jar" />
+		<delete dir="./target/${app.name}_${app.ver}/WEB-INF/classes/WEB-INF" />
+		<delete dir="./target/${app.name}_${app.ver}/WEB-INF/classes/db" />
+
+		<!-- 覆盖数据库连接配置文件-->
+		<copyfile dest="./target/${app.name}_${app.ver}/WEB-INF/classes/spring-db.xml" src="./build/spring-db.xml" forceoverwrite="true" />
+
 		<!-- 重新打包成zip文件 -->
 		<tstamp>
-	       <format property="NOW" pattern="yyyyMMddHHmmss" locale="en"/>
-	    </tstamp>
-		<zip destfile="${build.dir}/${app.name}_${app.ver}_${NOW}.zip" basedir="./target/${app.name}_${app.ver}" includes="**/*"/>
+			<format property="NOW" pattern="yyyyMMddHHmmss" locale="en" />
+		</tstamp>
+		<zip destfile="${build.dir}/${app.name}_${app.ver}_${NOW}.zip" basedir="./target/${app.name}_${app.ver}" includes="**/*" />
 	</target>
 
 	<!-- 合并各个模块中定义的sql建表脚本的宏 -->
 	<macrodef name="concatSql4create">
 		<!-- 数据库类型：如mysql,mssql,oracle -->
-		<attribute name="db" default="mysql"/>
-		<attribute name="encoding" default="${encoding}"/>
+		<attribute name="db" default="mysql" />
+		<attribute name="encoding" default="${encoding}" />
 		<sequential>
 			<concat destfile="${resources.dir}/db.@{db}.create.sql" encoding="@{encoding}" fixlastline="${fixlastline}" force="${force}">
 				<!-- 使用多个fileset的目的是控制合并的顺序 -->
@@ -98,12 +101,12 @@
 			</concat>
 		</sequential>
 	</macrodef>
-	
+
 	<!-- 合并各个模块中定义的sql脚本文件的宏：drop -->
 	<macrodef name="concatSql4drop">
 		<!-- 数据库类型：如mysql,mssql,oracle -->
-		<attribute name="db" default="mysql"/>
-		<attribute name="encoding" default="${encoding}"/>
+		<attribute name="db" default="mysql" />
+		<attribute name="encoding" default="${encoding}" />
 		<sequential>
 			<concat destfile="${resources.dir}/db.@{db}.drop.sql" encoding="@{encoding}" fixlastline="${fixlastline}" force="${force}">
 				<!-- 使用多个fileset的目的是控制合并的顺序 -->
