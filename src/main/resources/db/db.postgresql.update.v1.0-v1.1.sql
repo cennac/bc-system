@@ -521,3 +521,9 @@ $BODY$
 ALTER TABLE BS_CERT_LOST_ITEM ADD COLUMN ALARMUNIT VARCHAR(4000);
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.ALARMUNIT IS '报警单位';
 
+-- 销售明细添加状态字段，并将值更新为与销售单相同
+ALTER TABLE bs_invoice_sell_detail ADD COLUMN status_ numeric(1,0);
+COMMENT ON COLUMN bs_invoice_sell_detail.status_ IS '状态:0-正常,1-作废;要保证与所属销售单的状态相等';
+update bs_invoice_sell_detail d set status_=(select s.status_ from bs_invoice_sell s where s.id=d.sell_id);
+ALTER TABLE bs_invoice_sell_detail ALTER COLUMN status_ SET DEFAULT 0;
+ALTER TABLE bs_invoice_sell_detail ALTER COLUMN status_ SET NOT NULL;
