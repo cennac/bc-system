@@ -355,112 +355,83 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
 	and m.type_ > 1 and m.order_ in ('031902')
 	order by m.order_;
-	
--- 统计采购单剩余数量函数
-CREATE OR REPLACE FUNCTION getbalancecountbyinvoicebuyid(bid integer)
-	RETURNS integer AS
-$BODY$
-DECLARE
-	-- 定义变量
-	count_ INTEGER;
-BEGIN
-	select b.count_-sum(d.count_) 
-	into count_
-	from bs_invoice_buy b
-		left join bs_invoice_sell_detail d on d.buy_id=b.id
-		left join bs_invoice_sell s on s.id=d.sell_id 
-		where b.id=bid and s.status_=0
-		group by b.id;
-		-- 若为空时，表示还没销售，所以剩余数量应该等于采购数量
-		IF count_ is null THEN
-			select b.count_ 
-			into count_
-			from bs_invoice_buy b
-				where b.id=bid;
-		END IF;
-		return count_;
-END
-$BODY$
-  LANGUAGE plpgsql;
 
--- 统计采购单剩余号码段函数
-CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid integer,buy_count integer,startno character varying,endno character varying)
-	RETURNS character varying  AS
+-- 统计采购库存号码段函数
+-- 输入参数：bid采购单id,buy_count采购数量,start_no采购单开始号,end_no采购单结束号
+DROP FUNCTION getbalancenumberbyinvoicebuyid(INTEGER,INTEGER,CHARACTER VARYING,CHARACTER VARYING);
+CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid INTEGER,buy_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
+	RETURNS CHARACTER VARYING  AS
 $BODY$
 DECLARE
 		-- 定义变量
-		-- 临时保存开始和结束号的值
-		startno_tmp character varying;
-		endno_tmp character varying;
-		startno_number_temp1 INTEGER;
-		startno_number_temp2 INTEGER;
-		count_ integer;
-		i integer;
-		-- 剩余号码段
-		remainingNumber VARCHAR(4000);
-		
-		-- 一行的记录	
+		-- 临时开始号,每比较一条销售明细临时开始号都会根据情况变化
+		startno_tmp CHARACTER VARYING;
+		-- 临时结束号,每比较一条销售明细临时结束号都会根据情况变化
+		endno_tmp CHARACTER VARYING;
+		-- 数字类型临时变量
+		number_temp1 INTEGER;
+		-- 数字类型临时变量
+		number_temp2 INTEGER;
+		-- 销售数量
+		sell_count INTEGER;
+		-- 记录库存号码段
+		remainingNumber CHARACTER VARYING;
+		-- 变量一行结果的记录	
 		rowinfo RECORD;
 BEGIN
-	-- 变量初始化
-	remainingNumber := '';
-	i :=0;
-	-- 通过id统计剩余数量 
-	count_ := getbalancecountbyinvoicebuyid(bid);
-	-- 未销售
-	IF count_=buy_count THEN
-		remainingNumber := '['||startno||'~'||endno||']';
-		RETURN remainingNumber;
-	-- 销售完
-	ELSEIF count_=0 THEN 
-		RETURN remainingNumber;
-	END IF;
-	-- 循环销售第一明细时将采购单的开始号 赋值 临时开始号变量；
-	startno_tmp := trim(startno);
-	FOR rowinfo IN select d.start_no,d.end_no
-			from bs_invoice_buy b
-			left join bs_invoice_sell_detail d on d.buy_id=b.id
-			left join bs_invoice_sell s on s.id=d.sell_id
-			where b.id=bid and s.status_=0
-			ORDER BY d.start_no
-	-- 循环每一行的记录
-	LOOP
-		-- 记录为空则直接返回
-		IF rowinfo.start_no IS NULL THEN
-			remainingNumber := '['||startno||'~'||endno||']'; 
+	-- 先根据采购单id,查销售数量
+	SELECT SUM(count_) INTO sell_count
+	FROM bs_invoice_sell_detail 
+	WHERE buy_id=bid AND status_=0;
+	-- 当sell_count为空,没有销售,所以库存号码段为采购单的开始号到结束号
+	IF sell_count IS NULL THEN
+		RETURN '['||start_no||'~'||end_no||']';
+	-- 当销售数量大于或等采购数量时,此采购单已经销售完,库存号码返回空
+	ELSEIF sell_count>=buy_count THEN
+		RETURN '';
+	-- 其他情况此采购单有对应的销售单,并且采购数量大于销售数量,有库存号码
+	ELSE
+			-- 初始化库存号码段变量
+			remainingNumber := '';
+			-- 将采购单的开始号赋值给临时开始号变量；
+			startno_tmp := trim(start_no);
+							-- 根据采购单ID查出对应的销售明细结果，并将结果排序
+			FOR rowinfo IN SELECT d.start_no,d.end_no
+											FROM  bs_invoice_sell_detail d
+											WHERE d.buy_id=bid and d.status_=0
+											ORDER BY d.start_no
+			-- 循环开始
+			LOOP
+					-- 第一次循环时将明细开始号和临时开始号转为数字临时变量,后续作两号比较时使用
+					number_temp1 := convert_stringtonumber(rowinfo.start_no);
+					number_temp2 := convert_stringtonumber(startno_tmp);
+					-- 明细开始号大于临时开始号，表明从临时号到明细结束号这一段号码中临时开始号到明细开始号减1为未出售的库存号码段
+					IF number_temp1 > number_temp2 THEN
+						-- 临时开始号到明细开始号减1保存临时结束号,若有0前序需要进行补0操作
+						endno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp));
+						-- 记录这一段未出售的号码段
+						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'],';
+						-- 临时的开始号变为明细结束号+1
+						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
+						-- 临时结束号等于明细结束号。
+						endno_tmp := trim(rowinfo.end_no);
+					END IF;
+					-- 明细开始号等于临时开始号,历史开始号到明细结束号这一段为已出售的
+					IF number_temp1=number_temp2	THEN
+						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
+						endno_tmp:= trim(rowinfo.end_no);
+					END IF;
+			END LOOP;	
+			-- 循环结束,若最后一条明细结束号小于采购单的结束号，则范围[最后一条明细的结束号+1，采购单的结束号]为库存号码段
+			IF convert_stringtonumber(endno_tmp)<convert_stringtonumber(trim(end_no)) THEN
+						startno_tmp= trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
+						endno_tmp=trim(end_no);
+						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] '; 
+			END IF;
+			-- 返回统计好的库存号码段
 			RETURN remainingNumber;
-		END IF;
-		-- 将明细的开始号和临时开始号变量转为数字临时变量
-		startno_number_temp1 := convert_stringtonumber(rowinfo.start_no);
-		startno_number_temp2 := convert_stringtonumber(startno_tmp);
-		-- 明细中的开始号大于临时变量的开始号
-		IF startno_number_temp1 > startno_number_temp2 THEN
-			-- 若结束号带有0前序需要进行补0操作
-			endno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp));
-			remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'],';
-			endno_tmp:= trim(rowinfo.end_no);
-			-- 临时的开始号转为每条销售明细结束号+1
-			startno_tmp := trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
-			
-			i := i+1;
-		END IF;
-		IF startno_number_temp1=startno_number_temp2	THEN
-			startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
-			endno_tmp:= trim(rowinfo.end_no);
-			i := i+1;
-		END IF;
-	END LOOP;
-	IF remainingNumber = '' AND i=0 THEN
-			remainingNumber := '['||startno||'~'||endno||']'; 
-			RETURN remainingNumber;
+
 	END IF;
-	-- 若循环到明细最后，明细的结束号小于采购单的结束号 则范围[最后一条明细的结束号+1，采购单的结束号]
-	IF convert_stringtonumber(endno_tmp)<convert_stringtonumber(trim(endno)) THEN
-				startno_tmp= trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
-				endno_tmp=trim(endno);
-				remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] '; 
-	END IF;
-	RETURN remainingNumber;
 END;
 $BODY$
  LANGUAGE plpgsql;
