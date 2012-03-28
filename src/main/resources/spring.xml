@@ -80,6 +80,7 @@
 	<import resource="classpath:cn/bc/business/mix/spring.xml"/>
 	<import resource="classpath:cn/bc/business/carlpg/spring.xml"/>
 	<import resource="classpath:cn/bc/business/invoice/spring.xml"/>
+	<import resource="classpath:cn/bc/business/ownership/spring.xml"/>
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-system.xml" />
 </beans>
