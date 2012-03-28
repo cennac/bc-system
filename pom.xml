@@ -276,6 +276,12 @@
 			<artifactId>bc-business-certLost</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 车辆经营权 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-ownership</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 		<!-- 营运事件 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
