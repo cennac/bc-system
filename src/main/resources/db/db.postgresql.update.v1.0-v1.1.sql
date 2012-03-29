@@ -487,6 +487,33 @@ END;
 $BODY$
  LANGUAGE plpgsql;
  
+ -- 统计剩余数量函数
+CREATE OR REPLACE FUNCTION getbalancecountbyinvoicebuyid(bid integer)
+	RETURNS integer AS
+$BODY$
+DECLARE
+	-- 定义变量
+	-- 采购数量
+	buy_count INTEGER;
+	-- 销售数量
+	sell_count INTEGER;
+BEGIN
+	select b.count_,sum(d.count_) 
+	into buy_count,sell_count
+	from bs_invoice_buy b
+		left join bs_invoice_sell_detail d on d.buy_id=b.id and d.status_=0
+		where b.id=bid 
+		group by b.id;
+		-- 若为空时，表示还没销售，所以剩余数量应该等于采购数量
+		IF sell_count is null THEN
+			return buy_count;
+		ELSE 
+			return buy_count-sell_count;
+		END IF;
+END
+$BODY$
+  LANGUAGE plpgsql;
+ 
  
  --遗失的证照添加报警单位
 ALTER TABLE BS_CERT_LOST_ITEM ADD COLUMN ALARMUNIT VARCHAR(4000);
@@ -531,3 +558,5 @@ CREATE INDEX BSIDX_CAR_OWNERSHIP ON BS_CAR_OWNERSHIP (ID);
 
 --更新迁移迁移类型注释
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车';
+
+
