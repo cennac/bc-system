@@ -70,8 +70,8 @@
 			<id>bctest</id>
 			<properties>
 				<app.name>bctest</app.name>
-				<app.ver>1.2b3</app.ver>
-				<app.ts>20120326</app.ts>
+				<app.ver>1.2b7</app.ver>
+				<app.ts>2012032801</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
@@ -274,6 +274,12 @@
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-certLost</artifactId>
+			<version>${business.version}</version>
+		</dependency>
+		<!-- 车辆经营权 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-ownership</artifactId>
 			<version>${business.version}</version>
 		</dependency>
 		<!-- 营运事件 -->

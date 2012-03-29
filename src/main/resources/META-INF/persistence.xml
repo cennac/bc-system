@@ -105,6 +105,9 @@
 		<!-- 黑名单 -->
 		<class>cn.bc.business.blacklist.domain.Blacklist</class>
 		
+		<!-- 车辆经营权 -->
+		<class>cn.bc.business.ownership.domain.Ownership</class>
+		
 		<!-- 证照遗失管理 -->
 		<class>cn.bc.business.certLost.domain.CertLost</class>
 		<!-- 遗失的证照 -->
