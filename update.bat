@@ -55,4 +55,4 @@ cd ..
 cd ..
 cd ..
 cd ..
-mvn jetty:run -Djetty.port=8083 -Dapp.debug=true -Pmysql -Ddb.name=bcsystem -Ddb.type=mysql -Ddb.ip=127.0.0.1 -Ddb.username=bcsystem -Ddb.password=bcsystem
+mvn clean package -Pbctest

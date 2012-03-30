@@ -244,7 +244,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4BUY_READ' 
 	and m.type_ > 1 and m.order_ in ('031901')
 	order by m.order_;
---	发票销售
+-- 发票销售
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4SELL_MANAGE' 
 	and m.type_ > 1 and m.order_ in ('031902')
@@ -253,19 +253,19 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4SELL_READ' 
 	and m.type_ > 1 and m.order_ in ('031902')
 	order by m.order_;
---  发票余额表
+-- 发票余额表
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4BALANCE_READ' 
 	and m.type_ > 1 and m.order_ in ('031903')
 	order by m.order_;
 
---  超级管理员
+-- 超级管理员
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
 	and m.type_ > 1 and m.order_ in ('031901','031902','031903')
 	order by m.order_;
 
---	普通用户
+-- 普通用户
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
 	and m.type_ > 1 and m.order_ in ('031902')
@@ -273,7 +273,6 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 统计采购库存号码段函数
 -- 输入参数：bid采购单id,buy_count采购数量,start_no采购单开始号,end_no采购单结束号
-DROP FUNCTION getbalancenumberbyinvoicebuyid(INTEGER,INTEGER,CHARACTER VARYING,CHARACTER VARYING);
 CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid INTEGER,buy_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
 	RETURNS CHARACTER VARYING  AS
 $BODY$
