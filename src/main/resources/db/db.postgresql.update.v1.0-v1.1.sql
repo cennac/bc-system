@@ -513,6 +513,30 @@ BEGIN
 END
 $BODY$
   LANGUAGE plpgsql;
+  
+-- 判断发票销售单结束号减去开始号是否等于数量
+CREATE OR REPLACE FUNCTION checkI4SellDetailCount(sell_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
+	RETURNS INTEGER  AS
+$BODY$
+DECLARE
+		-- 定义变量
+		count_ INTEGER;
+		-- 数字类型临时变量
+		start_temp INTEGER;
+		-- 数字类型临时变量
+		end_temp INTEGER;
+BEGIN
+	start_temp := convert_stringtonumber(start_no);
+	end_temp :=	convert_stringtonumber(end_no);
+	count_ := (end_temp-start_temp+1)/100;
+		IF sell_count = count_ THEN
+			RETURN 0;
+		ELSE
+			RETURN 1;
+		END IF;
+END;
+$BODY$
+ LANGUAGE plpgsql;  
  
  
  --遗失的证照添加报警单位
