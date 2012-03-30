@@ -410,7 +410,7 @@ BEGIN
 						-- 临时开始号到明细开始号减1保存临时结束号,若有0前序需要进行补0操作
 						endno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp));
 						-- 记录这一段未出售的号码段
-						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'],';
+						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] ';
 						-- 临时的开始号变为明细结束号+1
 						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
 						-- 临时结束号等于明细结束号。
