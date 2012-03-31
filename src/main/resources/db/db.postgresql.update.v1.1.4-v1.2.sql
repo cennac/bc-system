@@ -428,7 +428,7 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
--- 判断发票销售单结束号减去开始号是否等于数量
+ -- 判断发票销售开始号、结束号、数量异常函数
 CREATE OR REPLACE FUNCTION checkI4SellDetailCount(sell_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
 	RETURNS INTEGER  AS
 $BODY$
@@ -450,8 +450,11 @@ BEGIN
 		END IF;
 END;
 $BODY$
- LANGUAGE plpgsql;
+ LANGUAGE plpgsql
+ IMMUTABLE;
  
+-- 发票销售开始号、结束号、数量异常函数索引
+CREATE INDEX checkI4SellDetailCount_idx ON bs_invoice_sell_detail(checkI4SellDetailCount(count_,start_no,end_no));
  
  --遗失的证照添加报警单位-- 遗失的证照添加报警单位
 ALTER TABLE BS_CERT_LOST_ITEM ADD COLUMN ALARMUNIT VARCHAR(4000);
