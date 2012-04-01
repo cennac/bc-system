@@ -1,4 +1,5 @@
-﻿insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+﻿-- 此sql已于2012-03-31 18:00执行
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
          select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.179F0'),c.motorcade_id,
          (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
          from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.179F0' and not exists 
