@@ -468,12 +468,17 @@ ALTER TABLE bs_invoice_sell_detail ALTER COLUMN status_ SET DEFAULT 0;
 ALTER TABLE bs_invoice_sell_detail ALTER COLUMN status_ SET NOT NULL;
 
 
+--更新迁移迁移类型注释
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车';
+
 -- 经营权管理
 CREATE TABLE BS_CAR_OWNERSHIP(
-   ID                   INTEGER           	NOT NULL,
+   ID                   INTEGER           	NOT NULL, 
+   CAR_ID               INTEGER           	NOT NULL,
    NATURE       	VARCHAR(255),
    SITUATION       	VARCHAR(255),
    OWNER_		VARCHAR(255),
+   DESC_                VARCHAR(4000),
    FILE_DATE            TIMESTAMP     		NOT NULL,
    AUTHOR_ID            INTEGER           	NOT NULL,
    MODIFIED_DATE        TIMESTAMP,
@@ -481,10 +486,11 @@ CREATE TABLE BS_CAR_OWNERSHIP(
    CONSTRAINT BSPK_CAR_OWNERSHIP PRIMARY KEY (ID)
 );
 COMMENT ON TABLE BS_CAR_OWNERSHIP IS '经营权管理';
-COMMENT ON COLUMN BS_CAR_OWNERSHIP.ID IS '车辆ID';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.CAR_ID IS '车辆ID';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.NATURE IS '经营权性质';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.SITUATION IS '经营权情况';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.OWNER_ IS '车辆产权';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.DESC_ IS '备注';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.AUTHOR_ID IS '创建人ID';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.MODIFIED_DATE IS '最后修改时间';
@@ -493,14 +499,67 @@ ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_AUTHOR FOREIGN KEY (A
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_MODIFIER FOREIGN KEY (MODIFIER_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
-ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_CAR FOREIGN KEY (ID )
+ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_CAR FOREIGN KEY (CAR_ID )
       REFERENCES BS_CAR (ID);
 CREATE INDEX BSIDX_CAR_OWNERSHIP ON BS_CAR_OWNERSHIP (ID);
 
---更新迁移迁移类型注释
-COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车';
 
---车辆经营权表添加备注
-ALTER TABLE BS_CAR_OWNERSHIP ADD COLUMN DESC_ VARCHAR(4000);
-COMMENT ON COLUMN BS_CAR_OWNERSHIP.DESC_ IS '备注';
+--插入车辆产权option-item
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5033', 'ownership.owner', '车辆产权', null);
+--
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'gongsi', '公司', null from BC_OPTION_GROUP g where g.KEY_='ownership.owner'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'qita', '其他', null from BC_OPTION_GROUP g where g.KEY_='ownership.owner'; 	
+
+--插入经营权情况option-item
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5032', 'ownership.situation', '经营权情况', null);
+--
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'G', 'G', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'NS201106', 'NS201106', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 	
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'NS201108', 'NS201108', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'PA201103', 'PA201103', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'PV', 'PV', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'XF', 'XF', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'F2008', 'F2008', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'F2011', 'F2011', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+
+--插入经营权性质option-item
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5031', 'ownership.nature', '经营权性质', null);
+--
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baocheng', '宝城', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'guangfa', '广发', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 	
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'xianfu', '蚬富', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'siren', '私人', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'baochengT', '宝城T', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'guangfaT', '广发T', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'baochengxinyunli', '宝城新运力', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'guangfaxinyunli', '广发新运力', null from BC_OPTION_GROUP g where g.KEY_='ownership.nature'; 
+
+--经营权管理
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031900','经营权管理', '/bc-business/ownerships/paging', 'i0807' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+-- 插入经营权管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0118', 'BS_OWNERSHIP','经营权管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_OWNERSHIP' 
+	and m.type_ > 1 and m.order_ in ('031900')
+	order by m.order_;
 
