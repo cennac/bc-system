@@ -504,3 +504,27 @@ COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到�
 ALTER TABLE BS_CAR_OWNERSHIP ADD COLUMN DESC_ VARCHAR(4000);
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.DESC_ IS '备注';
 
+-- ##发票管理销售统计
+-- 添加资源
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031905','销售统计', '/bc-business/invoice4SellStatss/list', 'i0801' from BC_IDENTITY_RESOURCE m where m.order_='031900';
+-- 添加查询角色
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0127', 'BS_INVOICE4SELLSTATS_READ','发票销售统计查询');
+-- 添加权限
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE_MANAGE' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE_READ' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4SELLSTATS_READ' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
