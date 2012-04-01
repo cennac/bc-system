@@ -1,396 +1,986 @@
-﻿insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0422'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0422' and not exists (select * from bs_car where code='0422' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0173'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0173' and not exists (select * from bs_car where code='0173' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0577'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0577' and not exists (select * from bs_car where code='0577' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0070'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0070' and not exists (select * from bs_car where code='0070' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0425'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0425' and not exists (select * from bs_car where code='0425' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8058'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8058' and not exists (select * from bs_car where code='8058' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0458'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0458' and not exists (select * from bs_car where code='0458' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8059'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8059' and not exists (select * from bs_car where code='8059' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0082'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0082' and not exists (select * from bs_car where code='0082' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0279'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0279' and not exists (select * from bs_car where code='0279' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0265'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0265' and not exists (select * from bs_car where code='0265' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0445'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0445' and not exists (select * from bs_car where code='0445' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0288'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0288' and not exists (select * from bs_car where code='0288' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0403'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0403' and not exists (select * from bs_car where code='0403' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0272'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0272' and not exists (select * from bs_car where code='0272' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0194'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0194' and not exists (select * from bs_car where code='0194' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8061'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8061' and not exists (select * from bs_car where code='8061' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0448'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0448' and not exists (select * from bs_car where code='0448' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0447'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0447' and not exists (select * from bs_car where code='0447' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0284'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0284' and not exists (select * from bs_car where code='0284' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='3051'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='3051' and not exists (select * from bs_car where code='3051' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8076'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8076' and not exists (select * from bs_car where code='8076' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0281'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0281' and not exists (select * from bs_car where code='0281' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0274'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0274' and not exists (select * from bs_car where code='0274' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0263'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0263' and not exists (select * from bs_car where code='0263' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0439'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0439' and not exists (select * from bs_car where code='0439' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0196'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0196' and not exists (select * from bs_car where code='0196' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0455'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0455' and not exists (select * from bs_car where code='0455' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0457'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0457' and not exists (select * from bs_car where code='0457' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8068'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8068' and not exists (select * from bs_car where code='8068' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0255'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0255' and not exists (select * from bs_car where code='0255' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8056'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8056' and not exists (select * from bs_car where code='8056' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8071'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8071' and not exists (select * from bs_car where code='8071' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0261'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0261' and not exists (select * from bs_car where code='0261' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0267'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0267' and not exists (select * from bs_car where code='0267' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0075'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0075' and not exists (select * from bs_car where code='0075' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0375'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0375' and not exists (select * from bs_car where code='0375' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0374'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0374' and not exists (select * from bs_car where code='0374' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0487'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0487' and not exists (select * from bs_car where code='0487' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0401'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0401' and not exists (select * from bs_car where code='0401' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0488'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0488' and not exists (select * from bs_car where code='0488' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0489'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0489' and not exists (select * from bs_car where code='0489' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0059'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0059' and not exists (select * from bs_car where code='0059' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0424'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0424' and not exists (select * from bs_car where code='0424' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0404'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0404' and not exists (select * from bs_car where code='0404' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0454'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0454' and not exists (select * from bs_car where code='0454' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0456'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0456' and not exists (select * from bs_car where code='0456' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0257'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0257' and not exists (select * from bs_car where code='0257' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0460'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0460' and not exists (select * from bs_car where code='0460' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8069'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8069' and not exists (select * from bs_car where code='8069' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0382'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0382' and not exists (select * from bs_car where code='0382' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0258'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0258' and not exists (select * from bs_car where code='0258' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0220'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0220' and not exists (select * from bs_car where code='0220' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0565'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0565' and not exists (select * from bs_car where code='0565' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0182'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0182' and not exists (select * from bs_car where code='0182' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0072'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0072' and not exists (select * from bs_car where code='0072' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8073'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8073' and not exists (select * from bs_car where code='8073' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8079'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8079' and not exists (select * from bs_car where code='8079' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8086'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8086' and not exists (select * from bs_car where code='8086' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0178'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0178' and not exists (select * from bs_car where code='0178' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0394'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0394' and not exists (select * from bs_car where code='0394' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0271'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0271' and not exists (select * from bs_car where code='0271' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0193'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0193' and not exists (select * from bs_car where code='0193' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0188'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0188' and not exists (select * from bs_car where code='0188' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0452'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0452' and not exists (select * from bs_car where code='0452' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0081'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0081' and not exists (select * from bs_car where code='0081' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0276'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0276' and not exists (select * from bs_car where code='0276' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0428'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0428' and not exists (select * from bs_car where code='0428' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0252'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0252' and not exists (select * from bs_car where code='0252' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0443'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0443' and not exists (select * from bs_car where code='0443' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8072'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8072' and not exists (select * from bs_car where code='8072' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0397'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0397' and not exists (select * from bs_car where code='0397' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0402'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0402' and not exists (select * from bs_car where code='0402' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0083'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0083' and not exists (select * from bs_car where code='0083' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0480'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0480' and not exists (select * from bs_car where code='0480' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0372'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0372' and not exists (select * from bs_car where code='0372' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0419'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0419' and not exists (select * from bs_car where code='0419' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0136'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0136' and not exists (select * from bs_car where code='0136' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0429'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0429' and not exists (select * from bs_car where code='0429' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0180'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0180' and not exists (select * from bs_car where code='0180' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0387'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0387' and not exists (select * from bs_car where code='0387' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0119'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0119' and not exists (select * from bs_car where code='0119' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0623'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0623' and not exists (select * from bs_car where code='0623' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0396'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0396' and not exists (select * from bs_car where code='0396' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0381'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0381' and not exists (select * from bs_car where code='0381' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0519'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0519' and not exists (select * from bs_car where code='0519' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0546'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0546' and not exists (select * from bs_car where code='0546' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0504'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0504' and not exists (select * from bs_car where code='0504' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0377'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0377' and not exists (select * from bs_car where code='0377' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0525'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0525' and not exists (select * from bs_car where code='0525' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0578'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0578' and not exists (select * from bs_car where code='0578' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0570'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0570' and not exists (select * from bs_car where code='0570' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0498'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0498' and not exists (select * from bs_car where code='0498' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0558'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0558' and not exists (select * from bs_car where code='0558' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0586'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0586' and not exists (select * from bs_car where code='0586' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0371'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0371' and not exists (select * from bs_car where code='0371' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0555'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0555' and not exists (select * from bs_car where code='0555' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0552'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0552' and not exists (select * from bs_car where code='0552' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0183'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0183' and not exists (select * from bs_car where code='0183' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0576'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0576' and not exists (select * from bs_car where code='0576' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0582'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0582' and not exists (select * from bs_car where code='0582' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='3009'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='3009' and not exists (select * from bs_car where code='3009' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0622'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0622' and not exists (select * from bs_car where code='0622' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0084'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0084' and not exists (select * from bs_car where code='0084' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8066'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8066' and not exists (select * from bs_car where code='8066' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8067'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8067' and not exists (select * from bs_car where code='8067' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8081'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8081' and not exists (select * from bs_car where code='8081' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8082'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8082' and not exists (select * from bs_car where code='8082' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8083'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8083' and not exists (select * from bs_car where code='8083' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8062'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8062' and not exists (select * from bs_car where code='8062' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8063'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8063' and not exists (select * from bs_car where code='8063' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8074'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8074' and not exists (select * from bs_car where code='8074' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8064'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8064' and not exists (select * from bs_car where code='8064' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8078'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8078' and not exists (select * from bs_car where code='8078' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8085'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8085' and not exists (select * from bs_car where code='8085' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8087'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8087' and not exists (select * from bs_car where code='8087' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8088'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8088' and not exists (select * from bs_car where code='8088' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8089'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8089' and not exists (select * from bs_car where code='8089' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0266'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0266' and not exists (select * from bs_car where code='0266' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0189'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0189' and not exists (select * from bs_car where code='0189' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0535'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0535' and not exists (select * from bs_car where code='0535' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0273'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0273' and not exists (select * from bs_car where code='0273' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0089'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0089' and not exists (select * from bs_car where code='0089' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0243'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0243' and not exists (select * from bs_car where code='0243' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0275'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0275' and not exists (select * from bs_car where code='0275' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0530'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0530' and not exists (select * from bs_car where code='0530' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0433'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0433' and not exists (select * from bs_car where code='0433' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0392'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0392' and not exists (select * from bs_car where code='0392' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8057'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8057' and not exists (select * from bs_car where code='8057' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8060'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8060' and not exists (select * from bs_car where code='8060' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0135'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0135' and not exists (select * from bs_car where code='0135' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0427'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0427' and not exists (select * from bs_car where code='0427' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0264'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0264' and not exists (select * from bs_car where code='0264' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0541'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0541' and not exists (select * from bs_car where code='0541' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0534'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0534' and not exists (select * from bs_car where code='0534' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0077'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0077' and not exists (select * from bs_car where code='0077' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8065'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8065' and not exists (select * from bs_car where code='8065' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8077'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8077' and not exists (select * from bs_car where code='8077' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8080'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8080' and not exists (select * from bs_car where code='8080' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0393'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0393' and not exists (select * from bs_car where code='0393' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0270'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0270' and not exists (select * from bs_car where code='0270' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0386'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0386' and not exists (select * from bs_car where code='0386' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0500'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0500' and not exists (select * from bs_car where code='0500' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0190'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0190' and not exists (select * from bs_car where code='0190' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8070'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8070' and not exists (select * from bs_car where code='8070' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0440'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0440' and not exists (select * from bs_car where code='0440' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0278'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0278' and not exists (select * from bs_car where code='0278' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0390'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0390' and not exists (select * from bs_car where code='0390' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0459'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0459' and not exists (select * from bs_car where code='0459' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0588'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0588' and not exists (select * from bs_car where code='0588' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0511'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0511' and not exists (select * from bs_car where code='0511' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0513'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0513' and not exists (select * from bs_car where code='0513' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0282'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0282' and not exists (select * from bs_car where code='0282' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0506'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0506' and not exists (select * from bs_car where code='0506' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0502'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0502' and not exists (select * from bs_car where code='0502' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0560'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0560' and not exists (select * from bs_car where code='0560' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0587'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0587' and not exists (select * from bs_car where code='0587' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0251'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0251' and not exists (select * from bs_car where code='0251' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0521'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0521' and not exists (select * from bs_car where code='0521' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0562'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0562' and not exists (select * from bs_car where code='0562' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0076'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0076' and not exists (select * from bs_car where code='0076' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0380'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0380' and not exists (select * from bs_car where code='0380' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0441'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0441' and not exists (select * from bs_car where code='0441' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0383'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0383' and not exists (select * from bs_car where code='0383' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0262'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0262' and not exists (select * from bs_car where code='0262' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0400'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0400' and not exists (select * from bs_car where code='0400' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0499'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0499' and not exists (select * from bs_car where code='0499' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0379'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0379' and not exists (select * from bs_car where code='0379' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0461'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0461' and not exists (select * from bs_car where code='0461' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0526'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0526' and not exists (select * from bs_car where code='0526' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0187'),c.motorcade_id,(select id from bs_motorcade where name = '二分三队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0187' and not exists (select * from bs_car where code='0187' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8075'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8075' and not exists (select * from bs_car where code='8075' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0501'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0501' and not exists (select * from bs_car where code='0501' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0269'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0269' and not exists (select * from bs_car where code='0269' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0195'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0195' and not exists (select * from bs_car where code='0195' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0192'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0192' and not exists (select * from bs_car where code='0192' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0520'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0520' and not exists (select * from bs_car where code='0520' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0438'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0438' and not exists (select * from bs_car where code='0438' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0280'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0280' and not exists (select * from bs_car where code='0280' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0432'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0432' and not exists (select * from bs_car where code='0432' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0286'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0286' and not exists (select * from bs_car where code='0286' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0516'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0516' and not exists (select * from bs_car where code='0516' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0515'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0515' and not exists (select * from bs_car where code='0515' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0268'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0268' and not exists (select * from bs_car where code='0268' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0287'),c.motorcade_id,(select id from bs_motorcade where name = '二分二队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0287' and not exists (select * from bs_car where code='0287' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0064'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0064' and not exists (select * from bs_car where code='0064' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0453'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0453' and not exists (select * from bs_car where code='0453' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0395'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0395' and not exists (select * from bs_car where code='0395' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0259'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0259' and not exists (select * from bs_car where code='0259' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0260'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0260' and not exists (select * from bs_car where code='0260' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0444'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0444' and not exists (select * from bs_car where code='0444' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0391'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0391' and not exists (select * from bs_car where code='0391' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0446'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0446' and not exists (select * from bs_car where code='0446' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0215'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0215' and not exists (select * from bs_car where code='0215' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0540'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0540' and not exists (select * from bs_car where code='0540' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='8084'),c.motorcade_id,(select id from bs_motorcade where name = '二分四队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='8084' and not exists (select * from bs_car where code='8084' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code='0285'),c.motorcade_id,(select id from bs_motorcade where name = '二分一队'),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='0285' and not exists (select * from bs_car where code='0285' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
-insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
-select nextval('core_sequence'),c.id,c.id,(select concat('',company,'') from bs_car c where c.code=''),c.motorcade_id,(select id from bs_motorcade where name = ''),to_date('2012-03-31','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'',to_date('2012-03-31','YYYY-MM-DD'),1146 from bs_car c where c.code='' and not exists (select * from bs_car where code='' and (select id from bs_motorcade where name = '')=motorcade_id);
+﻿-- 此sql已于2012-03-31 18:00执行
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.179F0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.179F0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.179F0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.310CH'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.310CH' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.310CH' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.330KY'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.330KY' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.330KY' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.350E0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.350E0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.350E0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.354G0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.354G0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.354G0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G3P40'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G3P40' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G3P40' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.357M0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.357M0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.357M0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P40'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P40' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P40' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.362M0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.362M0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.362M0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.446C0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.446C0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.446C0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.446H0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.446H0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.446H0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.449K0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.449K0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.449K0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.44N30'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.44N30' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.44N30' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.470HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.470HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.470HK' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.474C0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.474C0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.474C0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.477H0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.477H0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.477H0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P70'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P70' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P70' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.482K0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.482K0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.482K0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.489K0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.489K0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.489K0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.55Q20'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.55Q20' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.55Q20' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.57M60'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.57M60' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.57M60' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G6P40'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G6P40' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G6P40' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.825B0'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.825B0' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.825B0' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.082F1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.082F1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.082F1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.203L1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.203L1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.203L1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.250K1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.250K1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.250K1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.251K1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.251K1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.251K1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.313M1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.313M1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.313M1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.336M1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.336M1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.336M1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G2P41'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G2P41' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G2P41' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.340E1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.340E1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.340E1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P21'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P21' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P21' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P41'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P41' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P41' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.374M1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.374M1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.374M1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.453H1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.453H1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.453H1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.55Q91'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.55Q91' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.55Q91' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.581NU'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.581NU' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.581NU' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.631GC'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.631GC' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.631GC' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.653M1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.653M1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.653M1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.661HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.661HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.661HK' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.664M1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.664M1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.664M1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.667M1'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.667M1' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.667M1' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G7B41'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G7B41' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G7B41' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.164G2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.164G2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.164G2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.242FB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.242FB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.242FB' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.255L2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.255L2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.255L2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.307M2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.307M2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.307M2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.408N2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.408N2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.408N2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.417K2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.417K2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.417K2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G3P42'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G3P42' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G3P42' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.422NH'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.422NH' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.422NH' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.427N2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.427N2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.427N2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.446N2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.446N2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.446N2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.722GB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.722GB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.722GB' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.882DC'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.882DC' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.882DC' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.921N2'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.921N2' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.921N2' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P72'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P72' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P72' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G7P42'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G7P42' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G7P42' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G9P42'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G9P42' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G9P42' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.003DV'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.003DV' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.003DV' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.013KN'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.013KN' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.013KN' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.104F3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.104F3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.104F3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.146F3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.146F3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.146F3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.150F3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.150F3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.150F3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.244L3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.244L3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.244L3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.309M3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.309M3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.309M3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.355E3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.355E3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.355E3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.411H3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.411H3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.411H3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.441H3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.441H3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.441H3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.442K3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.442K3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.442K3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P43'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P43' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P43' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.473HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.473HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.473HK' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.483HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.483HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.483HK' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.5363B'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.5363B' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.5363B' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.663HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.663HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.663HK' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.813PE'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.813PE' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.813PE' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.81P43'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.81P43' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.81P43' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.837G3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.837G3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.837G3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.847G3'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.847G3' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.847G3' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.883DB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.883DB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.883DB' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.KU053'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.KU053' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.KU053' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.L8T03'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.L8T03' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.L8T03' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.M2J03'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.M2J03' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.M2J03' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.054KD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.054KD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.054KD' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.054NU'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.054NU' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.054NU' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.134GW'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.134GW' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.134GW' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.134JS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.134JS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.134JS' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.194DB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.194DB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.194DB' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.194NH'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.194NH' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.194NH' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.214HC'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.214HC' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.214HC' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.214KY'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.214KY' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.214KY' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.294KD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.294KD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.294KD' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.414CH'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.414CH' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.414CH' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.414JS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.414JS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.414JS' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.464LQ'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.464LQ' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.464LQ' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.464PM'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.464PM' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.464PM' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.474JS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.474JS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.474JS' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.524JS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.524JS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.524JS' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.704AZ'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.704AZ' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.704AZ' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.914KN'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.914KN' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.914KN' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.944HS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.944HS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.944HS' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.E6Z14'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.E6Z14' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.E6Z14' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.K3R94'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.K3R94' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.K3R94' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.L3L44'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.L3L44' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.L3L44' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.B5F74'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.B5F74' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.B5F74' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.B9F34'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.B9F34' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.B9F34' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G1P24'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G1P24' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G1P24' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G3P24'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G3P24' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G3P24' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G3P64'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G3P64' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G3P64' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P04'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P04' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P04' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P54'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P54' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P54' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P74'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P74' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P74' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P84'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P84' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P84' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G7P04'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G7P04' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G7P04' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G7P74'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G7P74' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G7P74' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G9P74'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G9P74' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G9P74' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.K2T14'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.K2T14' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.K2T14' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.K2T64'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.K2T64' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.K2T64' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.104F5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.104F5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.104F5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.105F5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.105F5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.105F5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.105HS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.105HS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.105HS' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.145F5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.145F5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.145F5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.268K5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.268K5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.268K5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.307J5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.307J5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.307J5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.355E5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.355E5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.355E5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.405HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.405HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.405HK' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.466H5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.466H5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.466H5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.475LQ'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.475LQ' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.475LQ' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P25'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P25' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P25' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P45'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P45' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P45' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.56Q45'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.56Q45' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.56Q45' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.829G5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.829G5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.829G5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.844G5'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.844G5' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.844G5' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.855JG'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.855JG' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.855JG' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.935HC'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.935HC' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.935HC' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.JW175'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.JW175' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.JW175' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G4P95'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G4P95' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G4P95' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G6P45'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G6P45' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G6P45' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G7P45'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G7P45' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G7P45' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.026KN'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.026KN' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.026KN' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.083F6'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.083F6' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.083F6' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.096GC'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.096GC' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.096GC' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.106DB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.106DB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.106DB' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.214K6'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.214K6' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.214K6' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G3P46'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G3P46' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G3P46' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.254K6'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.254K6' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.254K6' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.356E6'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.356E6' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.356E6' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.386KD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.386KD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.386KD' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.397M6'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.397M6' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.397M6' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.436PN'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.436PN' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.436PN' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.646FR'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.646FR' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.646FR' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.736FR'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.736FR' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.736FR' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.821B6'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.821B6' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.821B6' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.896DD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.896DD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.896DD' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.107DC'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.107DC' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.107DC' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.207KD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.207KD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.207KD' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.217MD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.217MD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.217MD' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.243K7'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.243K7' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.243K7' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.287GW'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.287GW' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.287GW' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.317KD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.317KD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.317KD' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.397DM'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.397DM' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.397DM' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.407MD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.407MD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.407MD' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.408K7'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.408K7' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.408K7' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.427HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.427HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.427HK' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.443C7'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.443C7' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.443C7' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.477HK'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.477HK' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.477HK' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.567CH'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.567CH' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.567CH' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.577NU'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.577NU' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.577NU' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.634M7'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.634M7' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.634M7' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.887DY'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.887DY' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.887DY' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.967DB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分三队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.967DB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.967DB' and (select id from bs_motorcade where name = '二分三队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G5P47'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G5P47' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G5P47' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.108DB'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.108DB' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.108DB' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.108F8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.108F8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.108F8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.129F8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.129F8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.129F8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.248K8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.248K8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.248K8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.288GW'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.288GW' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.288GW' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.301J8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.301J8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.301J8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.446C8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.446C8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.446C8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.464H8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.464H8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.464H8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.55Q18'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.55Q18' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.55Q18' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.708DY'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.708DY' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.708DY' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.728DY'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.728DY' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.728DY' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.853G8'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.853G8' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.853G8' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.87M88'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分二队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.87M88' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.87M88' and (select id from bs_motorcade where name = '二分二队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.20E29'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.20E29' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.20E29' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.262L9'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.262L9' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.262L9' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.389KD'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.389KD' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.389KD' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.428H9'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.428H9' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.428H9' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.440N9'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.440N9' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.440N9' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.444K9'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.444K9' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.444K9' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.479JS'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.479JS' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.479JS' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.487K9'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.487K9' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.487K9' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.542G9'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.542G9' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.542G9' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.579JG'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.579JG' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.579JG' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.G7P49'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分四队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.G7P49' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.G7P49' and (select id from bs_motorcade where name = '二分四队')=motorcade_id);
+insert into bs_car_driver_history (id,from_car_id,to_car_id,from_unit,from_motorcade_id,to_motorcade_id,move_date,move_type,desc_,from_classes,to_classes,to_unit,file_date,author_id)
+         select nextval('core_sequence'),c.id,c.id,(select company from bs_car c where concat(plate_type,'.',plate_no)='粤A.71P79'),c.motorcade_id,
+         (select id from bs_motorcade where name = '二分一队'),to_date('2012-04-01','YYYY-MM-DD'),6,'此迁移记录由后台批量转换生成',0,0,'宝城',to_date('2012-04-01','YYYY-MM-DD'),1146 
+         from bs_car c where concat(c.plate_type,'.',c.plate_no)='粤A.71P79' and not exists 
+         (select * from bs_car where concat(plate_type,'.',plate_no)='粤A.71P79' and (select id from bs_motorcade where name = '二分一队')=motorcade_id);
