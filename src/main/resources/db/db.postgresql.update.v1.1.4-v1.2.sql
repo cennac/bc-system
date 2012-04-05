@@ -566,7 +566,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 -- ##发票管理销售统计
 -- 添加资源
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031905','销售统计', '/bc-business/invoice4SellStatss/list', 'i0801' from BC_IDENTITY_RESOURCE m where m.order_='031900';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031905','销售统计', '/bc-business/invoice4SellStats/list', 'i0801' from BC_IDENTITY_RESOURCE m where m.order_='031900';
 -- 添加查询角色
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0127', 'BS_INVOICE4SELLSTATS_READ','发票销售统计查询');
