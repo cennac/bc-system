@@ -4,17 +4,18 @@
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>0.9.3</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
+	<version>1.2</version>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
 
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>1.0-SNAPSHOT</framework.version>
+		<framework.version>0.9.3</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>1.0-SNAPSHOT</business.version>
+		<business.version>1.2</business.version>
 
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
@@ -70,8 +71,8 @@
 			<id>bctest</id>
 			<properties>
 				<app.name>bctest</app.name>
-				<app.ver>1.2b7</app.ver>
-				<app.ts>2012032801</app.ts>
+				<app.ver>1.2</app.ver>
+				<app.ts>2012040503</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
@@ -100,8 +101,8 @@
 			<id>bcsystem</id>
 			<properties>
 				<app.name>bcsystem</app.name>
-				<app.ver>1.2b1</app.ver>
-				<app.ts>20120322</app.ts>
+				<app.ver>1.2</app.ver>
+				<app.ts>20120405</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
