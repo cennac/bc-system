@@ -587,3 +587,37 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
 	and m.type_ > 1 and m.order_ in ('031905')
 	order by m.order_;
+	
+-- ##发票管理人员权限分配
+-- 周文飞
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='fei';
+-- 陈梅玲
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='Mling';
+-- 周慧玲
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='zhl';
+-- 黎绮虹
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='yihong';
+-- 庄丽妮
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='lili';
+-- 区富莹
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='ofy';
+-- 杨晓琴
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='yxq';
+-- 潘丽华
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='pig';
