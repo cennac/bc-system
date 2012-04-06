@@ -1,3 +1,4 @@
+-- 此sql已于2012-04-05 19:00执行 (dragon)
 -- 司机责任人与黑名单的关联
 CREATE TABLE BS_CARMAN_BLACKLIST (
    MAN_ID               INTEGER           NOT NULL,
