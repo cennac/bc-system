@@ -563,3 +563,61 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.order_ in ('031900')
 	order by m.order_;
 
+-- ##发票管理销售统计
+-- 添加资源
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031905','销售统计', '/bc-business/invoice4SellStats/list', 'i0801' from BC_IDENTITY_RESOURCE m where m.order_='031900';
+-- 添加查询角色
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0127', 'BS_INVOICE4SELLSTATS_READ','发票销售统计查询');
+-- 添加权限
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE_MANAGE' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE_READ' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4SELLSTATS_READ' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('031905')
+	order by m.order_;
+	
+-- ##发票管理人员权限分配
+-- 周文飞
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='fei';
+-- 陈梅玲
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='Mling';
+-- 周慧玲
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='zhl';
+-- 黎绮虹
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='yihong';
+-- 庄丽妮
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='lili';
+-- 区富莹
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='ofy';
+-- 杨晓琴
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='yxq';
+-- 潘丽华
+insert into bc_identity_role_actor (rid,aid)
+	SELECT r.id,a.id FROM bc_identity_role r,bc_identity_actor a where r.code='BS_INVOICE_MANAGE'
+	and a.type_=4 and a.status_=0 and a.code='pig';
