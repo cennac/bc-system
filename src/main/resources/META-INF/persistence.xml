@@ -127,6 +127,7 @@
 		<class>cn.bc.business.runcase.domain.Case4Accident</class>
 		<class>cn.bc.business.runcase.domain.Case4Advice</class>
 		<class>cn.bc.business.runcase.domain.Case4Praise</class>
+		<class>cn.bc.business.runcase.domain.Case4Lost</class>
 
 		<!-- 工伤 -->
 		<class>cn.bc.business.injury.domain.Injury</class>
