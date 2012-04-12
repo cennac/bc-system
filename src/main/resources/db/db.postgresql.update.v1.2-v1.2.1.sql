@@ -204,3 +204,86 @@ ALTER TABLE BS_CASE_LOST ADD CONSTRAINT BSFK_LOST_CASEBASE FOREIGN KEY (ID)
       REFERENCES BS_CASE_BASE (ID);
 ALTER TABLE BS_CASE_LOST ADD CONSTRAINT BSFK_LOST_TRANSACTOR FOREIGN KEY (TRANSACTOR_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+	  
+	  
+	  
+	 ---操作日志
+ --操作日志入口
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '032000','操作日志', '/bc/operateLogs/paging', 'i0003' 
+	from BC_IDENTITY_RESOURCE m where m.order_='030000';
+
+
+-- 超级管理员
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('032000')
+	order by m.order_;
+
+-- 普通用户
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.order_ in ('032000')
+	order by m.order_;
+	
+--插入所属模块option-item
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5034', 'operateLog.ptype', '所属模块', null);
+--
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'CarMan', '司机信息', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'Car', '车辆信息', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 	
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'Motorcade', '车队信息', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'CertCyzg', '从业资格证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'CertDriving', '机动车驾驶证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'CertFwzg', '服务资格证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'CertIdentity', '居民身份证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'CertJspx', '驾驶培训证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'CertRoadtransport', '道路运输证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'CertVehicelicense', '机动车行驶证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+--	
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'CarByDriverHistory', '迁移记录', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', 'Contract4Charger', '经济合同', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '13', 'Contract4Labour', '劳动合同', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '14', 'Blacklist', '黑名单', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '15', 'CaseAccident', '事故理赔', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '16', 'CaseAdvice', '投诉与建议', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '17', 'CaseBusiness', '营运违章', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '18', 'CasePraise', '表扬', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '19', 'CaseTraffic', '交通违章', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '20', 'CertLost', '证照遗失', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+---
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '21', 'Ownership', '经营权管理', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '22', 'Policy', '车辆保单', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '23', 'InsuranceType', '车辆保单险种', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '24', 'invoice4Buy', '发票采购管理', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '25', 'invoice4Sell', '发票销售管理', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '26', 'carModel', '车型配置', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '27', 'carLPG', 'LPG配置', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+	 
+	 
