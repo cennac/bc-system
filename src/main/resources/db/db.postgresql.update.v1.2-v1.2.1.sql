@@ -10,14 +10,14 @@ DROP TABLE IF EXISTS BS_CASE_LOST;
 
 -- 插入报失管理资源
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031700','报失', '/bc-business/caseLosts/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031710','报失', '/bc-business/caseLosts/paging', 'i0709' from BC_IDENTITY_RESOURCE m where m.order_='030000';
 
 -- 插入报失管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0112', 'BS_LOST','报失管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_LOST' 
-	and m.type_ > 1 and m.order_ in ('031700')
+	and m.type_ > 1 and m.order_ in ('031710')
 	order by m.order_;
 
 -- 插入报失管理岗
@@ -31,57 +31,57 @@ select update_actor_pcodepname(0);
 -- 陈绮琪
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'qiqi' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 唐露霞
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'tlx' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 胡丽沂
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
-    select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'hlz' 
-    and am.code = 'chaojiguanligang'; 
+    select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'yiyi' 
+    and am.code = 'baoshiguanligang'; 
 
 -- 刘嘉茵
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'ljy' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 叶彩兰
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'karen' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 梁嘉欣
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'carrie' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 林葆瑜
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'lby' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 邓泳君
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'dyj' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 胡丽珍
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'hlz' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 覃海英
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'yin' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 禤铠婷
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where af.code = 'xkt' 
-    and am.code = 'chaojiguanligang'; 
+    and am.code = 'baoshiguanligang'; 
 
 -- 让报失管理岗拥有报失角色
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
