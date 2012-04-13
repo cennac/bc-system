@@ -230,11 +230,11 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5034', 'operateLog.ptype', '所属模块', null);
 --
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'CarMan', '司机信息', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'CarMan', '司机', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'Car', '车辆信息', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 	
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'Car', '车辆', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 	
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'Motorcade', '车队信息', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'Motorcade', '车队', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'CertCyzg', '从业资格证', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
