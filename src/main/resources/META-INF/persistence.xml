@@ -69,6 +69,8 @@
 		
 		<!-- 籍贯 -->
 		<class>cn.bc.placeorigin.domain.PlaceOrigin</class>
+		<!-- 模板管理-->
+		<class>cn.bc.template.domain.Template</class>
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->
