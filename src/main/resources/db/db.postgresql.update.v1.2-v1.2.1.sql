@@ -105,11 +105,11 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '4', '后挡风玻璃', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '1', '非常重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '0', '非常重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '2', '重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '1', '重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '3', '一般', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '2', '一般', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '-1', '', null from BC_OPTION_GROUP g where g.KEY_='lost.result'; 
