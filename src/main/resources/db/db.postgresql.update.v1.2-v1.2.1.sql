@@ -96,20 +96,20 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('COR
 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '1', '前排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '0', '前排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '2', '后排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '1', '后排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '3', '尾箱', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '2', '尾箱', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '4', '后挡风玻璃', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '3', '后挡风玻璃', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '1', '非常重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '0', '非常重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '2', '重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '1', '重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '3', '一般', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '2', '一般', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '-1', '', null from BC_OPTION_GROUP g where g.KEY_='lost.result'; 
@@ -285,6 +285,14 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '26', 'carModel', '车型配置', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '27', 'carLPG', 'LPG配置', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+	
+-- 插入操作日志管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0118', 'BC_OPERATELOG','操作日志管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_OPERATELOG' 
+	and m.type_ > 1 and m.order_ in ('032000')
+	order by m.order_;
 	 
 -- 模板管理表
 CREATE TABLE BC_TEMPLATE(
@@ -324,6 +332,11 @@ ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCUK_TEMPLATE_CODE UNIQUE (CODE);
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800308','模板管理', '/bc/templates/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
+-- 权限
+--BC_TEMPLATE 模板管理 对模板所有信息进行无限制的修改。
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0128', 'BC_TEMPLATE','模板管理');	
+	
 -- 模板管理权限配置
 -- 模板管理员
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
