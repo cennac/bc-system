@@ -285,5 +285,13 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '26', 'carModel', '车型配置', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '27', 'carLPG', 'LPG配置', null from BC_OPTION_GROUP g where g.KEY_='operateLog.ptype'; 
+	
+-- 插入操作日志管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0118', 'BC_OPERATELOG','操作日志管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_OPERATELOG' 
+	and m.type_ > 1 and m.order_ in ('032000')
+	order by m.order_;
 	 
 	 
