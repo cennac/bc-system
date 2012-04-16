@@ -96,13 +96,13 @@ insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('COR
 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '1', '前排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '0', '前排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '2', '后排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion';
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '1', '后排座位', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion';
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '3', '尾箱', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '2', '尾箱', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '4', '后挡风玻璃', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '3', '后挡风玻璃', null from BC_OPTION_GROUP g where g.KEY_='lost.site.postion'; 
 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '0', '非常重要', null from BC_OPTION_GROUP g where g.KEY_='lost.level'; 
