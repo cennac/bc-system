@@ -1,4 +1,4 @@
-﻿
+-- 忘记写执行记录补 2012-04-16 18:48 dragon
 --更新张权光[228487A]不是顶班营运班次的记录的状态为注销
 update bs_car_driver set status_ = 1 where id = 118211;
 

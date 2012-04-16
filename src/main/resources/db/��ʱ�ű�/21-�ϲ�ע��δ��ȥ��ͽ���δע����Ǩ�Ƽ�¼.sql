@@ -1,4 +1,5 @@
-﻿--找出交回未注销和注销未有去向内容相同的交回未注销数据[2:注销未有去向 4:交回未注销]
+-- 此sql已于2012-04-16 18:43执行 (dragon)
+--找出交回未注销和注销未有去向内容相同的交回未注销数据[2:注销未有去向 4:交回未注销]
 select m.name,h.* from bs_car_driver_history h
 	left join bs_carman m on m.id=h.driver_id
 	where h.move_type =4
