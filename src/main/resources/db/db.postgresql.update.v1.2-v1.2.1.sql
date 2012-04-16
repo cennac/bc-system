@@ -332,6 +332,11 @@ ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCUK_TEMPLATE_CODE UNIQUE (CODE);
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800308','模板管理', '/bc/templates/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
+-- 权限
+--BC_TEMPLATE 模板管理 对模板所有信息进行无限制的修改。
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0128', 'BC_TEMPLATE','模板管理');	
+	
 -- 模板管理权限配置
 -- 模板管理员
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
