@@ -3,3 +3,6 @@
 -- 数据库类型: postgresql
 -- 升级版本: 从 1.2.2 升级到 1.2.x
 -- ###########################################################################
+--合同基表添加实际结束日
+ALTER TABLE BS_CONTRACT ADD COLUMN STOP_DATE TIMESTAMP;
+COMMENT ON COLUMN BS_CONTRACT.STOP_DATE IS '合同实际结束日';
