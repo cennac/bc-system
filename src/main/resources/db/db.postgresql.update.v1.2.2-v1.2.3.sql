@@ -103,4 +103,28 @@ ALTER TABLE BS_FEE_TEMPLATE ADD CONSTRAINT BSFK_FEE_TEMPLATE_MODIFIER FOREIGN KE
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 ALTER TABLE BS_FEE_TEMPLATE ADD CONSTRAINT BSFK_FEE_TEMPLATE_PID FOREIGN KEY (PID)
       REFERENCES BS_FEE_TEMPLATE (ID);
+	  
+	  
+	  
+	  
+	  
+--获取金盾网的违章地址与金盾的相关信息的Id
+CREATE OR REPLACE FUNCTION findJinDunByJiaoWei(syncCode IN varchar,plateNo IN varchar,happenDate IN timestamp) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	jinDunInfo varchar(4000);
+BEGIN
+	select concat(jd.address,';',jd.id) into jinDunInfo
+			from BS_SYNC_JINDUN_JTWF jd
+			inner join BC_SYNC_BASE sb on sb.id=jd.id
+			where sb.sync_code=syncCode or (jd.car_plate_no=plateNo and to_char(jd.happen_date,'YYYY-MM-DD HH:MI')=to_char(happenDate,'YYYY-MM-DD HH:MI'));
+	return jinDunInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--将操作日志的入口迁移到系统维护
+update bc_identity_resource set belong=1037,order_= '800309' where name = '操作日志';
+
+
 
