@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>0.9.6</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
 	<packaging>war</packaging>
@@ -12,9 +12,9 @@
 
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>1.0-SNAPSHOT</framework.version>
+		<framework.version>0.9.6</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>1.0-SNAPSHOT</business.version>
+		<business.version>1.2.3</business.version>
 
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
