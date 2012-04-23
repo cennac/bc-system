@@ -126,5 +126,41 @@ $$ LANGUAGE plpgsql;
 --将操作日志的入口迁移到系统维护
 update bc_identity_resource set belong=1037,order_= '800309' where name = '操作日志';
 
+----将经济合同上线的注销时间改为实际合同结束时间[未加实际结束日功能前上线后的数据]
+CREATE OR REPLACE FUNCTION updateStopDate4ChargerContract(cid IN integer) RETURNS varchar AS $$
+DECLARE
+
+BEGIN
+	update bs_contract set stop_date=(
+		select c2.sign_date from bs_contract c2 
+			inner join bs_car_contract bcc2 on bcc2.contract_id=c2.id
+			where c2.sign_date>=to_date('2012-03-02','YYYY-MM-DD')
+			and bcc2.car_id=cid
+			order by c2.sign_date asc limit 1
+		) where id =(
+		select c1.id from bs_contract c1
+			inner join bs_contract_charger ch1 on ch1.id=c1.id
+			inner join bs_car_contract bcc1 on bcc1.contract_id=c1.id
+			where c1.status_=1
+			and c1.sign_date<to_date('2012-03-02','YYYY-MM-DD')
+			and bcc1.car_id=cid
+			order by c1.sign_date desc
+			limit 1);
+
+			
+	return null;
+END;
+$$ LANGUAGE plpgsql;
+
+
+select updateStopDate4ChargerContract(id) from bs_car where id in(
+	select bcc.car_id from bs_contract c  
+		inner join bs_contract_charger ch on ch.id=c.id
+		inner join bs_car_contract bcc on bcc.contract_id=c.id
+		where type_=2 and (ch.sign_type ='续约' or ch.sign_type='过户' or ch.sign_type='重发包') 
+		and sign_date > to_date('2012-03-02','YYYY-MM-DD'));
+
+drop FUNCTION updateStopDate4ChargerContract( integer);
+
 
 
