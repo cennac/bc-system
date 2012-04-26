@@ -330,6 +330,12 @@
 			<artifactId>bc-business-invoice</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 费用模板管理 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-fee-template</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 		<!-- 承包费管理 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
