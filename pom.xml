@@ -70,8 +70,8 @@
 			<id>bctest</id>
 			<properties>
 				<app.name>bctest</app.name>
-				<app.ver>1.2b7</app.ver>
-				<app.ts>2012032801</app.ts>
+				<app.ver>1.2.3</app.ver>
+				<app.ts>20120423</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
@@ -100,8 +100,8 @@
 			<id>bcsystem</id>
 			<properties>
 				<app.name>bcsystem</app.name>
-				<app.ver>1.2b1</app.ver>
-				<app.ts>20120322</app.ts>
+				<app.ver>1.2.3</app.ver>
+				<app.ts>20120423</app.ts>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
@@ -336,6 +336,12 @@
 			<artifactId>bc-business-fee-template</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 承包费管理 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-fee</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 
 		<!-- 综合查询 -->
 		<dependency>
@@ -474,6 +480,10 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>

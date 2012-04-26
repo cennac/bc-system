@@ -16,6 +16,14 @@ drop table if exists BS_ARRANGE_MEMBER;
 drop table if exists BS_ARRANGE;
 drop table if exists BS_MEMBER;
 
+-- 发票管理
+drop table if exists BS_INVOICE_SELL_DETAIL;
+drop table if exists BS_INVOICE_SELL;
+drop table if exists BS_INVOICE_BUY;
+-- 承包费管理
+drop table if exists BS_FEE_DETAIL;
+drop table if exists BS_FEE;
+
 -- 证照遗失管理
 drop table if exists BS_CERT_LOST_ITEM;
 drop table if exists BS_CERT_LOST;
@@ -30,6 +38,9 @@ drop table if exists BS_SYNC_JIAOWEI_YYWZ;
 drop table if exists BS_SYNC_JIAOWEI_ADVICE;
 
 -- 黑名单
+--黑名单关系表
+drop table if exists BS_CARMAN_BLACKLIST;
+--黑名单表
 drop table if exists BS_BLACKLIST;
 
 -- 合同
@@ -60,6 +71,9 @@ drop table if exists BS_CAR_POLICY;
 
 -- 迁移记录
 drop table if exists BS_CAR_DRIVER_HISTORY;
+
+-- 车辆经营权
+drop table if exists BS_CAR_OWNERSHIP;
 
 -- 司机营运车辆
 drop table if exists BS_CAR_DRIVER;
@@ -124,8 +138,9 @@ DROP TABLE IF EXISTS BC_DOCS_ATTACH;
 
 -- 系统日志
 DROP TABLE IF EXISTS BC_LOG_SYSTEM;
--- 工作日志
--- DROP TABLE IF EXISTS BC_LOG_WORK;
+-- 操作日志
+DROP TABLE IF EXISTS BC_LOG_AUDIT_ITEM;
+DROP TABLE IF EXISTS BC_LOG_OPERATE;
 
 -- 工作事务
 DROP TABLE IF EXISTS BC_WORK_TODO;
