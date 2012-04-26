@@ -16,6 +16,10 @@ drop table if exists BS_ARRANGE_MEMBER;
 drop table if exists BS_ARRANGE;
 drop table if exists BS_MEMBER;
 
+-- 承包费管理
+drop table if exists BS_FEE_DETAIL;
+drop table if exists BS_FEE;
+
 -- 证照遗失管理
 drop table if exists BS_CERT_LOST_ITEM;
 drop table if exists BS_CERT_LOST;

@@ -141,6 +141,9 @@
 		<class>cn.bc.business.invoice.domain.Invoice4Buy</class>
 		<class>cn.bc.business.invoice.domain.Invoice4Sell</class>
 		<class>cn.bc.business.invoice.domain.Invoice4SellDetail</class>
+		<!-- 承包费 -->
+		<class>cn.bc.business.fee.domain.Fee</class>
+		<class>cn.bc.business.fee.domain.FeeDetail</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
