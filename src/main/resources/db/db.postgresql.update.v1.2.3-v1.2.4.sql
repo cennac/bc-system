@@ -279,3 +279,62 @@ BEGIN
 END;
 $BODY$
 LANGUAGE plpgsql;
+
+
+
+---车辆，司机，合同模块添加草稿状态后需要执行的sql
+-- 插入车辆录入管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102', 'BS_CAR_ENTERING','车辆录入管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR_ENTERING' 
+	and m.type_ > 1 and m.order_ in ('030201','030202','030205','030206')
+	order by m.order_;
+	
+	
+	
+	
+-- 插入司机录入管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0103', 'BS_DRIVER_ENTERING','司机录入管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_DRIVER_ENTERING' 
+	and m.type_ > 1 and m.order_ in ('030301','030302','030303')
+	order by m.order_;
+	
+	
+	
+-- 插入经济合同录入管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104', 'BS_CONTRACT4CHARGER_ENTERING','经济合同录入
+
+管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where 
+
+r.code='BS_CONTRACT4CHARGER_ENTERING' 
+	and m.type_ > 1 and m.order_ in ('030402')
+	order by m.order_;
+
+
+
+
+-- 插入劳动合同录入管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105', 'BS_CONTRACT4LABOUR_ENTERING','劳动合同录入
+
+管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where 
+
+r.code='BS_CONTRACT4LABOUR_ENTERING' 
+	and m.type_ > 1 and m.order_ in ('030401')
+	order by m.order_;
+
+
+--修改司机，车辆，合同的状态注释
+COMMENT ON COLUMN BS_CAR.STATUS_ IS '状态：-1:草稿,0-在案,1-注销,2-报废';
+COMMENT ON COLUMN BS_CARMAN.STATUS_ IS '状态：-1:草稿,0-启用中,1-已禁用,2-已删除';
+COMMENT ON COLUMN BS_CONTRACT.STATUS_ IS'状态：-1:草稿,0-在案,1-注销,2-离职';
+
+
