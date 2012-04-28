@@ -69,6 +69,7 @@
 	<include file="cn/bc/business/ownership/web/struts2/struts.xml" />
 	<include file="cn/bc/business/fee/template/web/struts2/struts.xml" />
 	<include file="cn/bc/business/fee/web/struts2/struts.xml" />
+	<include file="cn/bc/business/socialSecurityRule/web/struts2/struts.xml" />
 
 	<!-- 项目自定义的配置文件 -->
 	<include file="struts-system.xml" />
