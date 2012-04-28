@@ -19,6 +19,20 @@ insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON)
 
 
 
-
+-- 获取指定车辆最新的经济合同残值归属
+-- 参数：cid - 车辆的id
+CREATE OR REPLACE FUNCTION getContract4ChargerScrapTo(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	scrapToInfo varchar(4000);
+BEGIN
+	select ch.scrapto into scrapToInfo
+		from bs_contract_charger ch 
+			inner join bs_contract bc on bc.id=ch.id
+			inner join bs_car_contract carc on ch.id = carc.contract_id
+			where carc.car_id=cid  order by bc.file_date desc limit 1 ;
+	return scrapToInfo;
+END;
+$$ LANGUAGE plpgsql;
 
 
