@@ -14,7 +14,7 @@
 		<!-- 平台的版本号 -->
 		<framework.version>0.9.6</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>1.2.3.1</business.version>
+		<business.version>1.2.3</business.version>
 
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
@@ -244,7 +244,7 @@
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-contract</artifactId>
-			<version>${business.version}</version>
+			<version>1.2.3.1</version>
 		</dependency>
 		<!-- 司机责任人 -->
 		<dependency>
@@ -256,7 +256,7 @@
 		<dependency>
 			<groupId>cn.bc.business</groupId>
 			<artifactId>bc-business-car</artifactId>
-			<version>${business.version}</version>
+			<version>1.2.3.1</version>
 		</dependency>
 		<!-- 车队 -->
 		<dependency>
