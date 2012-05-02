@@ -5,7 +5,7 @@
 -- ###########################################################################
  
  --经济合同添加残值归属
-ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN SCRAPTO VARCHAR(4000);
+ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN SCRAPTO VARCHAR(255);
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.SCRAPTO IS '残值归属';
 
 
