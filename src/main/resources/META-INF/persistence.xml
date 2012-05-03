@@ -45,6 +45,11 @@
 		<class>cn.bc.docs.domain.Attach</class>
 		<class>cn.bc.docs.domain.AttachHistory</class>
 
+		<!-- report -->
+		<class>cn.bc.report.domain.ReportTemplate</class>
+		<class>cn.bc.report.domain.ReportTask</class>
+		<class>cn.bc.report.domain.ReportHistory</class>
+
 		<!-- bulletin -->
 		<class>cn.bc.bulletin.domain.Bulletin</class>
 

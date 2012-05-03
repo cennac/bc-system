@@ -46,6 +46,7 @@
 	<!-- bc平台 -->
 	<import resource="classpath:cn/bc/identity/spring.xml" />
 	<import resource="classpath:cn/bc/desktop/spring.xml"/>
+	<import resource="classpath:cn/bc/report/spring.xml"/>
 	<import resource="classpath:cn/bc/message/spring.xml"/>
 	<import resource="classpath:cn/bc/work/spring.xml"/>
 	<import resource="classpath:cn/bc/log/spring.xml"/>
