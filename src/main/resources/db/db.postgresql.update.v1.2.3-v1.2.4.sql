@@ -837,3 +837,15 @@ INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BAS
 -- 删除户口类型为番禺、花都选项
 delete from BC_OPTION_ITEM where key_='huadu' and value_='花都';
 delete from BC_OPTION_ITEM where key_='panyu' and value_='番禺';
+
+
+
+
+-- 是否能读写经济合同残值归属管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0106', 'BS_CONTRACT4CHARGER_SCRAPTO','经济合同残值归属管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4CHARGER_SCRAPTO' 
+	and m.type_ > 1 and m.order_ in ('030402')
+	order by m.order_;
+
