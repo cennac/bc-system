@@ -345,11 +345,11 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 -- 权限
 --BS_SOCIAL_SECURITY_RULE_MANAGE 社保收费规则管理 对模块进行无限制的修改。
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0129', 'BS_SOCIAL_SECURITY_RULE_MANAGE','社保收费规则管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0130', 'BS_SOCIAL_SECURITY_RULE_MANAGE','社保收费规则管理');
 
 --BC_FEE_TEMPLATE_READ 社保收费规则查询 对模块信息只可以查询阅读不可以执行任何修改操作。
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0130', 'BS_SOCIAL_SECURITY_RULE_READ','社保收费规则查询');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0131', 'BS_SOCIAL_SECURITY_RULE_READ','社保收费规则查询');
 
 -- 超级管理员
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
