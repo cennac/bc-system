@@ -852,7 +852,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 -- ##报表模板
 -- 报表模板管理入口
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800309','报表模板', '/bc/reportTemplates/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800310','报表模板', '/bc/reportTemplates/list', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800000';
 
 -- 权限
 --BC_REPORT_TEMPLATE 报表模板管理 对模板所有信息进行无限制的修改。
@@ -863,13 +863,13 @@ insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME)
 -- 表报模板管理员
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_REPORT_TEMPLATE' 
-	and m.type_ > 1 and m.order_ in ('800309')
+	and m.type_ > 1 and m.order_ in ('800310')
 	order by m.order_;
 
 --  超级管理员
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
-	and m.type_ > 1 and m.order_ in ('800309')
+	and m.type_ > 1 and m.order_ in ('800310')
 	order by m.order_;
 
 -- 报表模板表
