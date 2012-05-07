@@ -12,9 +12,9 @@
 
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>0.9.6</framework.version>
+		<framework.version>1.0-SNAPSHOT</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>1.2.3</business.version>
+		<business.version>1.0-SNAPSHOT</business.version>
 
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
