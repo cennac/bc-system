@@ -919,3 +919,30 @@ ALTER TABLE BC_REPORT_TEMPLATE_ACTOR ADD CONSTRAINT BCFK_REPORT_TEMPLATE_ACTOR_R
       REFERENCES BC_REPORT_TEMPLATE (ID);
 ALTER TABLE BC_REPORT_TEMPLATE_ACTOR ADD CONSTRAINT BCFK_REPORT_TEMPLATE_ACTOR_ACTOR FOREIGN KEY (AID)
       REFERENCES BC_IDENTITY_ACTOR (ID);
+	  
+-- 插入模板：每日登录帐号数统计模板
+INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5001',1,'统计模板/用户登录','每日登录帐号数统计的Excel模板','accountLoginStat4Day.excel','1'
+    ,'common/accountLoginStat4Day.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5002',3,'统计模板/用户登录','每日登录帐号数统计的报表条件','accountLoginStat4Day.conditions','1'
+    ,'common/accountLoginStat4Day.conditions.txt',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+
+-- 插入报表模板：每日登录帐号数统计
+INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'5001','登录统计','每日登录帐号数统计','accountLoginStat4Day'
+   ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
+   ,'{"columns": ['||
+	'{"type": "id","id": "id", "width": 40, "el":"id"}'||
+	',{"id": "logday", "label": "登录日", "width": 100, "el":"logday"}'||
+	',{"id": "count", "label": "登录帐号数", "width": 100, "el":"count"}'||
+	',{"id": "names", "label": "登录账号", "el":"names"}'||
+']'||
+',"sql": "select 0, logday, count(*) as count, string_agg(name,'','') from (select distinct h.actor_id as id,h.actor_name as name,to_char(l.file_date, ''YYYY-MM-DD'') as logday '||
+'from bc_log_system l inner join bc_identity_actor_history h on h.id=l.author_id '||
+'where l.type_ in (0,3) $if{condition != null}and ${condition}$end) ds group by logday order by logday desc"'||
+',"condition": "tpl:accountLoginStat4Day.conditions"'||
+',"search": "h.actor_name"'||
+',"export": "tpl:accountLoginStat4Day.excel"'||
+',"width": 600'||
+',"height": 400}');
