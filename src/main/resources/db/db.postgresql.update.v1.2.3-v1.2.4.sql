@@ -981,25 +981,25 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
    ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
    ,'{columns: ['||
 	'{type: "id",id: "cl.id", width: 40, el:"id"}'||
-	',{id: "car.company", label: "公司", width: 40, el:"company"}'||
-	',{id: "u.name", label: "分公司", width: 70, el:"unit"}'||
-	',{id: "m.name", label: "车队", width: 70, el:"motocade"}'||
-	',{id: "car.plate_type", label: "车辆", width: 80, el:"plate"}'||
-	',{id: "car.code", label: "自编号", width: 55, el:"code"}'||
-	',{id: "shenfen", label: "身份", width: 40, el:"shenfen"}'||
-	',{id: "man.name", label: "姓名", width: 60, el:"name"}'||
-	',{id: "cl.insurcode", label: "社保号", width: 80, el:"insurcode"}'||
-	',{id: "man.cert_identity", label: "身份证", width: 160, el:"cert_identity"}'||
-	',{id: "cl.house_type", label: "户口性质", width: 80, el:"house_type"}'||
-	',{id: "c.sign_date", label: "签定日期", width: 90, el:"c.sign_date"}'||
-	',{id: "c.start_date", label: "合同期(开始)", width: 90, el:"c.start_date"}'||
-	',{id: "c.end_date", label: "合同期(结束)", width: 90, el:"c.end_date"}'||
-	',{id: "cl.joindate", label: "参保日期", width: 90, el:"cl.joindate"}'||
-	',{id: "cl.insurance_type", label: "社保险种", width: 190, el:"cl.insurance_type"}'||
-	',{id: "man.phone", label: "联系电话", width: 100, el:"man.phone"}'||
-	',{id: "desc", label: "备注", width: 100, el:"desc"}'||
-	',{id: "car.bs_type", label: "营运性质", width: 80, el:"car.bs_type"}'||
-	',{id: "car.register_date", label: "车辆登记日期", width: 90, el:"car.register_date"}'||
+	',{id: "car.company", label: "公司", width: 40}'||
+	',{id: "u.name", label: "分公司", width: 70}'||
+	',{id: "m.name", label: "车队", width: 70}'||
+	',{id: "car.plate_type", label: "车辆", width: 80}'||
+	',{id: "car.code", label: "自编号", width: 55}'||
+	',{id: "shenfen", label: "身份", width: 40}'||
+	',{id: "man.name", label: "姓名", width: 60}'||
+	',{id: "cl.insurcode", label: "社保号", width: 80}'||
+	',{id: "man.cert_identity", label: "身份证", width: 160}'||
+	',{id: "cl.house_type", label: "户口性质", width: 80}'||
+	',{id: "c.sign_date", label: "签定日期", width: 90}'||
+	',{id: "c.start_date", label: "合同期(开始)", width: 90}'||
+	',{id: "c.end_date", label: "合同期(结束)", width: 90}'||
+	',{id: "cl.joindate", label: "参保日期", width: 90}'||
+	',{id: "cl.insurance_type", label: "社保险种", width: 190}'||
+	',{id: "man.phone", label: "联系电话", width: 100}'||
+	',{id: "desc", label: "备注", width: 100}'||
+	',{id: "car.bs_type", label: "营运性质", width: 80}'||
+	',{id: "car.register_date", label: "车辆登记日期", width: 90}'||
 	',{id: "c.file_date", label: "创建日期", width: 90}'||
 ']'||
 ',sql: "tpl:contract4Labour.list.sql"'||
