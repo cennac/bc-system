@@ -76,7 +76,7 @@
 	  <priority value="WARN" />
 	</category>
 	<category name="cn.bc.orm.hibernate.jpa.HibernateJpaNativeQuery">
-	  <priority value="WARN" />
+	  <priority value="DEBUG" />
 	</category>
 	<category name="cn.bc.web.struts2.AbstractGridPageAction">
 	  <priority value="WARN" />
