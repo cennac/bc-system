@@ -854,6 +854,41 @@ ALTER TABLE BC_PLACEORIGIN ADD CONSTRAINT BCFK_PLACEORIGIN_AUTHORID FOREIGN KEY 
 ALTER TABLE BC_PLACEORIGIN ADD CONSTRAINT BCFK_PLACEORIGIN_MODIFIER FOREIGN KEY (MODIFIER_ID)
 		REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);	
 
+-- 模板管理
+CREATE TABLE BC_TEMPLATE(
+	ID INTEGER NOT NULL,
+	ORDER_ VARCHAR(255),
+	TYPE_	 INTEGER NOT NULL,
+	CODE	VARCHAR(255) NOT NULL ,
+	SUBJECT VARCHAR(255),
+	PATH VARCHAR(255),
+	CONTENT VARCHAR(4000),
+	INNER_ boolean NOT NULL DEFAULT false,
+	DESC_ VARCHAR(4000),
+	FILE_DATE TIMESTAMP NOT NULL,
+	AUTHOR_ID INTEGER NOT NULL,
+	MODIFIER_ID INTEGER ,
+	MODIFIED_DATE TIMESTAMP,
+	CONSTRAINT BCPK_TEMPLATE PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_TEMPLATE IS '模板管理';
+COMMENT ON COLUMN BC_TEMPLATE.ORDER_ IS '排序号';
+COMMENT ON COLUMN BC_TEMPLATE.TYPE_ IS '类型：1-Excel模板、2-Word模板、3-纯文本模板、4-其它附件、5-自定义文本';
+COMMENT ON COLUMN BC_TEMPLATE.CODE IS '编码：全局唯一';
+COMMENT ON COLUMN BC_TEMPLATE.SUBJECT IS '标题';
+COMMENT ON COLUMN BC_TEMPLATE.PATH IS '物理文件保存的相对路径';
+COMMENT ON COLUMN BC_TEMPLATE.CONTENT IS '模板内容：文本和Html类型显示模板内容';
+COMMENT ON COLUMN BC_TEMPLATE.INNER_ IS '内置：true-是、false-否，默认否';
+COMMENT ON COLUMN BC_TEMPLATE.DESC_ IS '描述';
+COMMENT ON COLUMN BC_TEMPLATE.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BC_TEMPLATE.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BC_TEMPLATE.MODIFIER_ID IS '最后修改人ID';
+COMMENT ON COLUMN BC_TEMPLATE.MODIFIED_DATE IS '最后修改时间';
+ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCFK_TEMPLATE_AUTHORID FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCFK_TEMPLATE_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCUK_TEMPLATE_CODE UNIQUE (CODE);
 -- ##bc平台的 postgresql 自定义函数和存储过程##
 
 -- 模拟oracle dual功能的在hibernate hql中使用的视图
@@ -1694,6 +1729,7 @@ CREATE TABLE BS_CONTRACT (
    SIGN_DATE            TIMESTAMP,
    START_DATE           TIMESTAMP                 NOT NULL,
    END_DATE             TIMESTAMP                 NOT NULL,
+   STOP_DATE 			TIMESTAMP,
    CONTENT              VARCHAR(4000),
    EXT_STR1             VARCHAR(255),
    EXT_STR2             VARCHAR(4000),
@@ -1724,6 +1760,7 @@ COMMENT ON COLUMN BS_CONTRACT.TRANSACTOR_NAME IS '经办人姓名';
 COMMENT ON COLUMN BS_CONTRACT.SIGN_DATE IS '签订日期';
 COMMENT ON COLUMN BS_CONTRACT.START_DATE IS '生效日期';
 COMMENT ON COLUMN BS_CONTRACT.END_DATE IS '到期日期';
+COMMENT ON COLUMN BS_CONTRACT.STOP_DATE IS '合同实际结束日';
 COMMENT ON COLUMN BS_CONTRACT.CONTENT IS '合同内容';
 COMMENT ON COLUMN BS_CONTRACT.EXT_STR1 IS '车牌';
 COMMENT ON COLUMN BS_CONTRACT.EXT_STR2 IS '司机责任人姓名';
@@ -1828,6 +1865,7 @@ CREATE TABLE BS_CONTRACT_CHARGER (
    BS_TYPE				VARCHAR(255),
    PAYMENT_DATE			VARCHAR(255),
    CONTRACT_VERSION_NO 	VARCHAR(255),
+   SCRAPTO 				VARCHAR(255),
    OLD_CONTENT          VARCHAR(4000),
    CONSTRAINT BSPK_CONTRACT_CHARGER PRIMARY KEY (ID)
 );
@@ -1838,6 +1876,7 @@ COMMENT ON COLUMN BS_CONTRACT_CHARGER.TAKEBACK_ORIGIN IS '已经收回原件:0-�
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.INCLUDE_COST IS '包含检审费用:0-不包含,1-包含';
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.BS_TYPE IS '合同性质';
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.CONTRACT_VERSION_NO IS '合同版本号';
+COMMENT ON COLUMN BS_CONTRACT_CHARGER.SCRAPTO IS '残值归属';
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.OLD_CONTENT IS '旧合同内容';
 ALTER TABLE BS_CONTRACT_CHARGER ADD CONSTRAINT BSFK_CONTRACT4CHARGER_CONTRACT FOREIGN KEY (ID)
       REFERENCES BS_CONTRACT (ID);
@@ -1943,7 +1982,7 @@ COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_CAR_ID IS '新车辆ID(或主挂车)'
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_MOTORCADE_ID IS '新车队ID';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_CLASSES IS '新营运班次:如1-正班、2-副班、3-主挂、4-顶班';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_DATE IS '迁移日期(或顶班合同的开始日期)';
-COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型';
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.FROM_UNIT IS '原单位';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.TO_UNIT IS '现单位';
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.HAND_PAPERS_DATE IS '交证日期';
@@ -2041,6 +2080,8 @@ CREATE TABLE BS_BLACKLIST (
    UNLOCK_REASON        VARCHAR(4000),
    LEVEL_               VARCHAR(255),
    CODE                 VARCHAR(255),
+   APPOINT_DATE 		TIMESTAMP,
+   CONVERSION_TYPE 		VARCHAR(255);
    FILE_DATE            TIMESTAMP                 NOT NULL,
    AUTHOR_ID            INTEGER           NOT NULL,
    MODIFIED_DATE        TIMESTAMP,
@@ -2063,6 +2104,8 @@ COMMENT ON COLUMN BS_BLACKLIST.LOCK_REASON IS '锁定原因';
 COMMENT ON COLUMN BS_BLACKLIST.UNLOCK_REASON IS '解锁原因';
 COMMENT ON COLUMN BS_BLACKLIST.LEVEL_ IS '等级';
 COMMENT ON COLUMN BS_BLACKLIST.CODE IS '编号';
+COMMENT ON COLUMN BS_BLACKLIST.APPOINT_DATE IS '指定日期';
+COMMENT ON COLUMN BS_BLACKLIST.CONVERSION_TYPE IS '指定日期后替换为限制项目';
 COMMENT ON COLUMN BS_BLACKLIST.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_BLACKLIST.AUTHOR_ID IS '创建人ID';
 COMMENT ON COLUMN BS_BLACKLIST.MODIFIED_DATE IS '最后修改时间';
@@ -3087,6 +3130,7 @@ CREATE TABLE BS_CERT_LOST_ITEM(
    CERT_NO		        VARCHAR(255),
    NEW_CERT_NO		    VARCHAR(255),
    IS_REMAINS           BOOLEAN            DEFAULT FALSE,
+   ALARMUNIT 			VARCHAR(4000),
    DESC_                VARCHAR(4000),
    CONSTRAINT BSPK_PAPER_LOST_ITEM PRIMARY KEY (ID)
 );
@@ -3100,6 +3144,7 @@ COMMENT ON COLUMN BS_CERT_LOST_ITEM.LOST_ADDRESS IS '遗失地点';
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.CERT_NO IS '证件号码';
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.NEW_CERT_NO IS '新证件号码';
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.IS_REMAINS IS '是否有残骸';
+COMMENT ON COLUMN BS_CERT_LOST_ITEM.ALARMUNIT IS '报警单位';
 COMMENT ON COLUMN BS_CERT_LOST_ITEM.DESC_ IS '备注';
 ALTER TABLE BS_CERT_LOST_ITEM ADD CONSTRAINT BSFK_LOSTITEM_BASE FOREIGN KEY (PID)
       REFERENCES BS_CERT_LOST (ID);							
@@ -3142,6 +3187,291 @@ ALTER TABLE BS_CAR_LPGMODEL ADD CONSTRAINT BSFK_CAR_LPGMODEL_AUTHORID FOREIGN KE
 ALTER TABLE BS_CAR_LPGMODEL ADD CONSTRAINT BSFK_CAR_LPGMODEL_MODIFIER FOREIGN KEY (MODIFIER_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 CREATE INDEX BSIDX_CAR_LPGMODEL_STATUS ON BS_CAR_LPGMODEL (STATUS_);
+
+
+-- 发票管理
+-- 发票采购单
+CREATE TABLE BS_INVOICE_BUY (
+   ID                   INTEGER           	NOT NULL,
+   STATUS_              NUMERIC(1)			NOT NULL,
+   COMPANY              VARCHAR(255)		NOT NULL,
+   CODE                 VARCHAR(255)		NOT NULL,
+   TYPE_                NUMERIC(1)			NOT NULL,
+   START_NO             VARCHAR(255)		NOT NULL,
+   END_NO               VARCHAR(255)		NOT NULL,
+   COUNT_               INTEGER           	NOT NULL,
+   EACH_COUNT			INTEGER				NOT NULL,
+   UNIT_                INTEGER            	NOT NULL,
+   BUY_PRICE            NUMERIC(10,2)		NOT NULL,
+   SELL_PRICE           NUMERIC(10,2)		NOT NULL,
+   BUYER_ID             INTEGER,
+   BUY_DATE             TIMESTAMP			NOT NULL,
+   FILE_DATE            TIMESTAMP			NOT NULL,
+   AUTHOR_ID            INTEGER           	NOT NULL,
+   MODIFIED_DATE        TIMESTAMP,
+   MODIFIER_ID          INTEGER,
+   DESC_                VARCHAR(4000),
+   CONSTRAINT BSPK_INVOICE_BUY PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BS_INVOICE_BUY IS '发票采购单';
+COMMENT ON COLUMN BS_INVOICE_BUY.STATUS_ IS '状态:0-正常,1-作废';
+COMMENT ON COLUMN BS_INVOICE_BUY.COMPANY IS '公司';
+COMMENT ON COLUMN BS_INVOICE_BUY.CODE IS '发票代码';
+COMMENT ON COLUMN BS_INVOICE_BUY.TYPE_ IS '发票类型:1-打印票,2-手撕票';
+COMMENT ON COLUMN BS_INVOICE_BUY.START_NO IS '开始号';
+COMMENT ON COLUMN BS_INVOICE_BUY.END_NO IS '结束号';
+COMMENT ON COLUMN BS_INVOICE_BUY.COUNT_ IS '采购数量';
+COMMENT ON COLUMN BS_INVOICE_BUY.EACH_COUNT IS '每(卷/本)数量';
+COMMENT ON COLUMN BS_INVOICE_BUY.UNIT_ IS '单位:1-卷,2-本;每卷100张';
+COMMENT ON COLUMN BS_INVOICE_BUY.BUY_PRICE IS '采购单价';
+COMMENT ON COLUMN BS_INVOICE_BUY.SELL_PRICE IS '销售单价';
+COMMENT ON COLUMN BS_INVOICE_BUY.BUYER_ID IS '采购人ID';
+COMMENT ON COLUMN BS_INVOICE_BUY.BUY_DATE IS '采购日期';
+COMMENT ON COLUMN BS_INVOICE_BUY.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BS_INVOICE_BUY.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BS_INVOICE_BUY.MODIFIED_DATE IS '最后修改时间';
+COMMENT ON COLUMN BS_INVOICE_BUY.MODIFIER_ID IS '最后修改人ID';
+COMMENT ON COLUMN BS_INVOICE_BUY.DESC_ IS '备注';
+ALTER TABLE BS_INVOICE_BUY ADD CONSTRAINT BSFK_INVOICEBUY_BUYER FOREIGN KEY (BUYER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_INVOICE_BUY ADD CONSTRAINT BSFK_INVOICEBUY_AUTHOR FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_INVOICE_BUY ADD CONSTRAINT BSFK_INVOICEBUY_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+CREATE INDEX BSIDX_INVOICEBUY_COMPANY ON BS_INVOICE_BUY (COMPANY);
+CREATE INDEX BSIDX_INVOICEBUY_STARTNO ON BS_INVOICE_BUY (START_NO);
+CREATE INDEX BSIDX_INVOICEBUY_ENDNO ON BS_INVOICE_BUY (END_NO);
+
+-- 发票销售单
+CREATE TABLE BS_INVOICE_SELL (
+   ID                   INTEGER          	NOT NULL,
+   STATUS_              NUMERIC(1)      	NOT NULL,
+   BUYER_ID             INTEGER,
+   BUYER_NAME           VARCHAR(255),
+   CAR_ID               INTEGER          	NOT NULL,
+   CAR_PLATE            VARCHAR(255)		NOT NULL,
+   MOTORCADE_ID        	INTEGER           	NOT NULL,
+   COMPANY              VARCHAR(255)		NOT NULL,
+   SELL_DATE            TIMESTAMP      		NOT NULL,
+   CASHIER_ID           INTEGER           	NOT NULL,
+   PAY_TYPE             NUMERIC(1)      	NOT NULL,
+   BANK_CODE            VARCHAR(255),
+   DESC_                VARCHAR(4000),
+   FILE_DATE            TIMESTAMP      		NOT NULL,
+   AUTHOR_ID           	INTEGER          	NOT NULL,
+   MODIFIED_DATE        TIMESTAMP,
+   MODIFIER_ID          INTEGER,
+   CONSTRAINT BSPK_INVOICE_SELL PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BS_INVOICE_SELL IS '发票销售单';
+COMMENT ON COLUMN BS_INVOICE_SELL.STATUS_ IS '状态:0-正常,1-作废';
+COMMENT ON COLUMN BS_INVOICE_SELL.BUYER_ID IS '购买人ID';
+COMMENT ON COLUMN BS_INVOICE_SELL.BUYER_NAME IS '购买人姓名';
+COMMENT ON COLUMN BS_INVOICE_SELL.CAR_ID IS '车辆ID';
+COMMENT ON COLUMN BS_INVOICE_SELL.CAR_PLATE IS '车牌';
+COMMENT ON COLUMN BS_INVOICE_SELL.MOTORCADE_ID IS '车队ID';
+COMMENT ON COLUMN BS_INVOICE_SELL.COMPANY IS '公司';
+COMMENT ON COLUMN BS_INVOICE_SELL.SELL_DATE IS '销售日期';
+COMMENT ON COLUMN BS_INVOICE_SELL.CASHIER_ID IS '收银员ID';
+COMMENT ON COLUMN BS_INVOICE_SELL.PAY_TYPE IS '收款方式';
+COMMENT ON COLUMN BS_INVOICE_SELL.BANK_CODE IS '银行流水号';
+COMMENT ON COLUMN BS_INVOICE_SELL.DESC_ IS '备注';
+COMMENT ON COLUMN BS_INVOICE_SELL.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BS_INVOICE_SELL.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BS_INVOICE_SELL.MODIFIED_DATE IS '最后修改时间';
+COMMENT ON COLUMN BS_INVOICE_SELL.MODIFIER_ID IS '最后修改人ID';
+ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_BUYER FOREIGN KEY (BUYER_ID)
+      REFERENCES BS_CARMAN (ID);
+ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_CAR FOREIGN KEY (CAR_ID)
+      REFERENCES BS_CAR (ID);
+ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_MOTORCADE FOREIGN KEY (MOTORCADE_ID)
+      REFERENCES BS_MOTORCADE (ID);
+ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_CASHIER FOREIGN KEY (CASHIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_AUTHOR FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+CREATE INDEX BSIDX_INVOICESELL_COMPANY ON BS_INVOICE_SELL (COMPANY);
+CREATE INDEX BSIDX_INVOICESELL_BUYER ON BS_INVOICE_SELL (BUYER_ID);
+CREATE INDEX BSIDX_INVOICESELL_CAR ON BS_INVOICE_SELL (CAR_ID);
+CREATE INDEX BSIDX_INVOICESELL_MOTORCADE ON BS_INVOICE_SELL (MOTORCADE_ID);
+
+-- 发票销售明细
+CREATE TABLE BS_INVOICE_SELL_DETAIL (
+   ID                   INTEGER          	NOT NULL,
+   STATUS_ 				numeric(1,0) DEFAULT 0 NOT NULL,
+   SELL_ID              INTEGER          	NOT NULL,
+   BUY_ID               INTEGER          	NOT NULL,
+   COUNT_               INTEGER          	NOT NULL,
+   PRICE                NUMERIC(10,2)    	NOT NULL,
+   START_NO             VARCHAR(255) 		NOT NULL,
+   END_NO               VARCHAR(255)  		NOT NULL,
+   CONSTRAINT BSPK_INVOICE_SELL_DETAIL PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BS_INVOICE_SELL_DETAIL IS '发票销售明细';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.STATUS_ IS '状态:0-正常,1-作废;要保证与所属销售单的状态相等';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.SELL_ID IS '所属销售单ID';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.BUY_ID IS '对应采购单ID';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.COUNT_ IS '销售数量';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.PRICE IS '销售单价';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.START_NO IS '开始号';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.END_NO IS '结束号';
+ALTER TABLE BS_INVOICE_SELL_DETAIL ADD CONSTRAINT BSFK_INVOICESELLDETAIL_BUY FOREIGN KEY (BUY_ID)
+      REFERENCES BS_INVOICE_BUY (ID);
+ALTER TABLE BS_INVOICE_SELL_DETAIL ADD CONSTRAINT BSFK_INVOICESELLDETAIL_SELL FOREIGN KEY (SELL_ID)
+      REFERENCES BS_INVOICE_SELL (ID); 
+CREATE INDEX BSIDX_INVOICESELLDETAIL_STARTNO ON BS_INVOICE_SELL_DETAIL (START_NO);
+CREATE INDEX BSIDX_INVOICESELLDETAIL_ENDNO ON BS_INVOICE_SELL_DETAIL (END_NO);
+CREATE INDEX BSIDX_INVOICESELLDETAIL_BUYID ON BS_INVOICE_SELL_DETAIL (BUY_ID);
+-- 发票销售开始号、结束号、数量异常函数索引
+CREATE INDEX BSIDX_INVOICESELLDETAIL_CHECKI ON bs_invoice_sell_detail(checkI4SellDetailCount(count_,start_no,end_no));
+
+-- 经营权管理
+CREATE TABLE BS_CAR_OWNERSHIP(
+   ID                   INTEGER           	NOT NULL, 
+   CAR_ID               INTEGER           	NOT NULL,
+   NATURE       	VARCHAR(255),
+   SITUATION       	VARCHAR(255),
+   OWNER_		VARCHAR(255),
+   DESC_                VARCHAR(4000),
+   FILE_DATE            TIMESTAMP     		NOT NULL,
+   AUTHOR_ID            INTEGER           	NOT NULL,
+   MODIFIED_DATE        TIMESTAMP,
+   MODIFIER_ID          INTEGER,
+   CONSTRAINT BSPK_CAR_OWNERSHIP PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BS_CAR_OWNERSHIP IS '经营权管理';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.CAR_ID IS '车辆ID';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.NATURE IS '经营权性质';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.SITUATION IS '经营权情况';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.OWNER_ IS '车辆产权';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.DESC_ IS '备注';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.MODIFIED_DATE IS '最后修改时间';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.MODIFIER_ID IS '最后修改人ID';
+ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_AUTHOR FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_CAR_OWNERSHIP ADD CONSTRAINT BSFK_OWNERSHIP_CAR FOREIGN KEY (CAR_ID )
+      REFERENCES BS_CAR (ID);
+CREATE INDEX BSIDX_CAR_OWNERSHIP ON BS_CAR_OWNERSHIP (ID);
+
+-- 报失
+CREATE TABLE BS_CASE_LOST (
+   ID                   INTEGER           NOT NULL,
+   RECEIVE_DATE         TIMESTAMP,
+   OWNER_NAME           VARCHAR(255), 
+   OWNER_SEX            NUMERIC(1),
+   OWNER_TEL		VARCHAR(255),
+   OWNER_UNIT		VARCHAR(255),
+   PATH                 VARCHAR(255),
+   PASSENGER_COUNT      NUMERIC(1),
+   DRIVER_SEX           NUMERIC(1),
+   DRIVER_FEATURE       VARCHAR(255),
+   TICKET               VARCHAR(255),
+   MACHINE_PRICE        NUMERIC(10),
+   CHARGE               NUMERIC(10),
+   DESC2		VARCHAR(4000),
+   MONEY		NUMERIC(10,2),
+   ITEMS		VARCHAR(255),
+   SITE_POSTION		INTEGER,
+   LEVEL		INTEGER,
+   IS_TOOK              BOOLEAN            DEFAULT FALSE,
+   TOOK_DATE		TIMESTAMP,
+   TAKER_NAME		VARCHAR(255),
+   TAKER_AGE    INTEGER,
+   TAKER_UNIT		VARCHAR(255),
+   TAKER_TEL		VARCHAR(255),
+   TAKER_SEX            NUMERIC(1),
+   TAKER_IDENTITY       VARCHAR(255),
+   RESULT_		INTEGER,
+   RETRUN_DATE		TIMESTAMP,
+   REPLY_DATE		TIMESTAMP,
+   HANDLE_RESULT      	INTEGER,
+   TRANSACTOR_ID        INTEGER,
+   TRANSACTOR_NAME      VARCHAR(255),
+   CONSTRAINT BSPK_CASE_LOST PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BS_CASE_LOST IS '报失';
+COMMENT ON COLUMN BS_CASE_LOST.RECEIVE_DATE IS '接报失时间';
+COMMENT ON COLUMN BS_CASE_LOST.OWNER_NAME IS '报失人';
+COMMENT ON COLUMN BS_CASE_LOST.OWNER_SEX IS '报失人性别:0-未设,1-男,2-女';
+COMMENT ON COLUMN BS_CASE_LOST.OWNER_TEL IS '报失人号码';
+COMMENT ON COLUMN BS_CASE_LOST.OWNER_UNIT IS '报失人单位';
+COMMENT ON COLUMN BS_CASE_LOST.PATH IS '乘车路线';
+COMMENT ON COLUMN BS_CASE_LOST.PASSENGER_COUNT IS '乘车人数';
+COMMENT ON COLUMN BS_CASE_LOST.DRIVER_SEX IS '司机性别:0-未设,1-男,2-女';
+COMMENT ON COLUMN BS_CASE_LOST.DRIVER_FEATURE IS '司机特征';
+COMMENT ON COLUMN BS_CASE_LOST.TICKET IS '车票号码';
+COMMENT ON COLUMN BS_CASE_LOST.MACHINE_PRICE IS '计费器显示价格';
+COMMENT ON COLUMN BS_CASE_LOST.CHARGE IS '实际收费';
+COMMENT ON COLUMN BS_CASE_LOST.DESC2 IS '领取备注';
+COMMENT ON COLUMN BS_CASE_LOST.MONEY IS '估算价值';
+COMMENT ON COLUMN BS_CASE_LOST.ITEMS IS '报失物品';
+COMMENT ON COLUMN BS_CASE_LOST.SITE_POSTION IS '遗失位置';
+COMMENT ON COLUMN BS_CASE_LOST.LEVEL IS '级别';
+COMMENT ON COLUMN BS_CASE_LOST.IS_TOOK IS '是否领取 true:为已领,false:未领';
+COMMENT ON COLUMN BS_CASE_LOST.TOOK_DATE IS '领取时间';
+COMMENT ON COLUMN BS_CASE_LOST.TAKER_NAME IS '领取人';
+COMMENT ON COLUMN BS_CASE_LOST.TAKER_AGE IS '领取人年龄';
+COMMENT ON COLUMN BS_CASE_LOST.TAKER_UNIT IS '领取人单位';
+COMMENT ON COLUMN BS_CASE_LOST.TAKER_TEL IS '领取人电话';
+COMMENT ON COLUMN BS_CASE_LOST.TAKER_SEX IS '领取人性别';
+COMMENT ON COLUMN BS_CASE_LOST.TAKER_IDENTITY IS '领取人身份证';
+COMMENT ON COLUMN BS_CASE_LOST.RESULT_ IS '失物去向 -1 : 空 0:交回公司 1:交给乘客 2:找不到失物 3:待查';
+COMMENT ON COLUMN BS_CASE_LOST.RETRUN_DATE IS '交还时间';
+COMMENT ON COLUMN BS_CASE_LOST.REPLY_DATE IS '回复时间';
+COMMENT ON COLUMN BS_CASE_LOST.HANDLE_RESULT IS '处理结果 1:司机主动交回 2:公司致电司机确认有 3:公司致电司机确认无但交车队或报警处理有 4:确认无';
+COMMENT ON COLUMN BS_CASE_LOST.TRANSACTOR_ID IS '经办人ID';
+COMMENT ON COLUMN BS_CASE_LOST.TRANSACTOR_NAME IS '经办人姓名';
+ALTER TABLE BS_CASE_LOST ADD CONSTRAINT BSFK_LOST_CASEBASE FOREIGN KEY (ID)
+      REFERENCES BS_CASE_BASE (ID);
+ALTER TABLE BS_CASE_LOST ADD CONSTRAINT BSFK_LOST_TRANSACTOR FOREIGN KEY (TRANSACTOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+
+--费用模板表
+CREATE TABLE BS_FEE_TEMPLATE(
+	ID	INTEGER	NOT NULL,
+	STATUS_	INT	NOT NULL,
+	MODULE_ VARCHAR(255),
+	TYPE_	INT,
+	PID INTEGER,
+	ORDER_ VARCHAR(255),
+	NAME VARCHAR(255) NOT NULL,
+	PRICE NUMERIC(10,2),
+	COUNT_ INTEGER,
+	PAY_TYPE	INTEGER,
+	DESC_ VARCHAR(255),
+	FILE_DATE	TIMESTAMP	NOT NULL,
+	AUTHOR_ID	INTEGER	NOT NULL,
+	MODIFIED_DATE	TIMESTAMP,
+	MODIFIER_ID	INTEGER,
+	CONSTRAINT BSPK_FEE_TEMPLATE PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BS_FEE_TEMPLATE IS '费用模板';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.STATUS_ IS '状态：0-正常，1-禁用';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.MODULE_ IS '所属模块';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.TYPE_ IS '类型：1-费用，0-模板';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.PID IS '所属模板';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.ORDER_ IS '排序号';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.NAME IS '名称';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.PRICE IS '金额';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.COUNT_ IS '数量';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.PAY_TYPE IS '收费方式: 1-每月，2-每季，3-每年，4-一次性';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.DESC_ IS '备注';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.MODIFIED_DATE IS '最后修改时间';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.MODIFIER_ID IS '最后修改人ID';
+ALTER TABLE BS_FEE_TEMPLATE ADD CONSTRAINT BSFK_FEE_TEMPLATE_AUTHOR FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_FEE_TEMPLATE ADD CONSTRAINT BSFK_FEE_TEMPLATE_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BS_FEE_TEMPLATE ADD CONSTRAINT BSFK_FEE_TEMPLATE_PID FOREIGN KEY (PID)
+      REFERENCES BS_FEE_TEMPLATE (ID);
 
 -- ##营运子系统的 postgresql 自定义函数和存储过程##
 
@@ -3364,4 +3694,213 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- 统计采购库存号码段函数
+-- 输入参数：bid采购单id,buy_count采购数量,start_no采购单开始号,end_no采购单结束号
+CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid INTEGER,buy_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
+	RETURNS CHARACTER VARYING  AS
+$BODY$
+DECLARE
+		-- 定义变量
+		-- 临时开始号,每比较一条销售明细临时开始号都会根据情况变化
+		startno_tmp CHARACTER VARYING;
+		-- 临时结束号,每比较一条销售明细临时结束号都会根据情况变化
+		endno_tmp CHARACTER VARYING;
+		-- 数字类型临时变量
+		number_temp1 INTEGER;
+		-- 数字类型临时变量
+		number_temp2 INTEGER;
+		-- 销售数量
+		sell_count INTEGER;
+		-- 记录库存号码段
+		remainingNumber CHARACTER VARYING;
+		-- 变量一行结果的记录	
+		rowinfo RECORD;
+BEGIN
+	-- 先根据采购单id,查销售数量
+	SELECT SUM(count_) INTO sell_count
+	FROM bs_invoice_sell_detail 
+	WHERE buy_id=bid AND status_=0;
+	-- 当sell_count为空,没有销售,所以库存号码段为采购单的开始号到结束号
+	IF sell_count IS NULL THEN
+		RETURN '['||start_no||'~'||end_no||']';
+	-- 当销售数量大于或等采购数量时,此采购单已经销售完,库存号码返回空
+	ELSEIF sell_count>=buy_count THEN
+		RETURN '';
+	-- 其他情况此采购单有对应的销售单,并且采购数量大于销售数量,有库存号码
+	ELSE
+			-- 初始化库存号码段变量
+			remainingNumber := '';
+			-- 将采购单的开始号赋值给临时开始号变量；
+			startno_tmp := trim(start_no);
+							-- 根据采购单ID查出对应的销售明细结果，并将结果排序
+			FOR rowinfo IN SELECT d.start_no,d.end_no
+											FROM  bs_invoice_sell_detail d
+											WHERE d.buy_id=bid and d.status_=0
+											ORDER BY d.start_no
+			-- 循环开始
+			LOOP
+					-- 第一次循环时将明细开始号和临时开始号转为数字临时变量,后续作两号比较时使用
+					number_temp1 := convert_stringtonumber(rowinfo.start_no);
+					number_temp2 := convert_stringtonumber(startno_tmp);
+					-- 明细开始号大于临时开始号，表明从临时号到明细结束号这一段号码中临时开始号到明细开始号减1为未出售的库存号码段
+					IF number_temp1 > number_temp2 THEN
+						-- 临时开始号到明细开始号减1保存临时结束号,若有0前序需要进行补0操作
+						endno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp));
+						-- 记录这一段未出售的号码段
+						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] ';
+						-- 临时的开始号变为明细结束号+1
+						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
+						-- 临时结束号等于明细结束号。
+						endno_tmp := trim(rowinfo.end_no);
+					END IF;
+					-- 明细开始号等于临时开始号,历史开始号到明细结束号这一段为已出售的
+					IF number_temp1=number_temp2	THEN
+						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
+						endno_tmp:= trim(rowinfo.end_no);
+					END IF;
+			END LOOP;	
+			-- 循环结束,若最后一条明细结束号小于采购单的结束号，则范围[最后一条明细的结束号+1，采购单的结束号]为库存号码段
+			IF convert_stringtonumber(endno_tmp)<convert_stringtonumber(trim(end_no)) THEN
+						startno_tmp= trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
+						endno_tmp=trim(end_no);
+						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] '; 
+			END IF;
+			-- 返回统计好的库存号码段
+			RETURN remainingNumber;
 
+	END IF;
+END;
+$BODY$
+LANGUAGE plpgsql;
+ 
+-- 字符串转数字函数
+CREATE OR REPLACE FUNCTION convert_stringtonumber(string_ character varying)
+	RETURNS integer  AS
+$BODY$
+DECLARE
+		-- 定义变量
+		number_ integer;
+		text_expression character varying;
+		length_ integer;
+		i integer;
+BEGIN
+	-- 检测字符串的长度
+	length_ := char_length(trim(string_));
+	text_expression := '';
+	FOR i IN 1..length_
+	LOOP
+	-- 生成匹配的表达式
+	text_expression := text_expression||'9';
+	END LOOP;
+	number_ := to_number(string_,text_expression);
+	return number_;
+END;
+$BODY$
+ LANGUAGE plpgsql;
+
+-- 数字转字符串函数
+CREATE OR REPLACE FUNCTION convert_numbertostring(int_ integer,text_ character varying)
+	RETURNS character varying  AS
+$BODY$
+DECLARE
+		-- 定义变量
+		string_ character varying;
+		text_expression character varying;
+		length_ integer;
+		i integer;
+BEGIN
+	-- 检测字符串的长度
+	length_ := char_length(trim(text_));
+	text_expression := '';
+	FOR i IN 1..length_
+	LOOP 
+	-- 生成匹配的表达式
+	text_expression := text_expression||'0';
+	END LOOP;
+	string_ := trim(to_char(int_,text_expression));
+	RETURN string_;
+END;
+$BODY$
+LANGUAGE plpgsql;
+ 
+-- 统计剩余数量函数
+CREATE OR REPLACE FUNCTION getbalancecountbyinvoicebuyid(bid integer)
+	RETURNS integer AS
+$BODY$
+DECLARE
+	-- 定义变量
+	-- 采购数量
+	buy_count INTEGER;
+	-- 销售数量
+	sell_count INTEGER;
+BEGIN
+	select b.count_,sum(d.count_) 
+	into buy_count,sell_count
+	from bs_invoice_buy b
+		left join bs_invoice_sell_detail d on d.buy_id=b.id and d.status_=0
+		where b.id=bid 
+		group by b.id;
+		-- 若为空时，表示还没销售，所以剩余数量应该等于采购数量
+		IF sell_count is null THEN
+			return buy_count;
+		ELSE 
+			return buy_count-sell_count;
+		END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+ -- 判断发票销售开始号、结束号、数量异常函数
+CREATE OR REPLACE FUNCTION checkI4SellDetailCount(sell_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
+	RETURNS INTEGER  AS
+$BODY$
+DECLARE
+		-- 定义变量
+		count_ INTEGER;
+		-- 数字类型临时变量
+		start_temp INTEGER;
+		-- 数字类型临时变量
+		end_temp INTEGER;
+BEGIN
+	start_temp := convert_stringtonumber(start_no);
+	end_temp :=	convert_stringtonumber(end_no);
+	count_ := (end_temp-start_temp+1)/100;
+		IF sell_count = count_ THEN
+			RETURN 0;
+		ELSE
+			RETURN 1;
+		END IF;
+END;
+$BODY$
+ LANGUAGE plpgsql
+ IMMUTABLE;
+ 	  
+--获取金盾网的违章地址与金盾的相关信息的Id
+CREATE OR REPLACE FUNCTION findJinDunByJiaoWei(syncCode IN varchar,plateNo IN varchar,happenDate IN timestamp) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	jinDunInfo varchar(4000);
+BEGIN
+	select concat(jd.address,';',jd.id) into jinDunInfo
+			from BS_SYNC_JINDUN_JTWF jd
+			inner join BC_SYNC_BASE sb on sb.id=jd.id
+			where sb.sync_code=syncCode or (jd.car_plate_no=plateNo and to_char(jd.happen_date,'YYYY-MM-DD HH:MI')=to_char(happenDate,'YYYY-MM-DD HH:MI'));
+	return jinDunInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 获取指定车辆最新的经济合同残值归属
+-- 参数：cid - 车辆的id
+CREATE OR REPLACE FUNCTION getContract4ChargerScrapTo(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	scrapToInfo varchar(4000);
+BEGIN
+	select ch.scrapto into scrapToInfo
+		from bs_contract_charger ch 
+			inner join bs_contract bc on bc.id=ch.id
+			inner join bs_car_contract carc on ch.id = carc.contract_id
+			where carc.car_id=cid  order by bc.file_date desc limit 1 ;
+	return scrapToInfo;
+END;
+$$ LANGUAGE plpgsql;
