@@ -176,6 +176,8 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030401','劳动合同', '/bc-business/contract4Labours/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030402','经济合同', '/bc-business/contract4Chargers/paging', 'i0701' from BC_IDENTITY_RESOURCE m where m.order_='030400';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030403','费用模板', '/bc-business/feeTemplates/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='030400';
 
 -- 营运系统/考勤管理
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -578,10 +580,22 @@ insert into bc_identity_role_actor (rid,aid)
 	
 -- 插入经营权管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0127', 'BS_OWNERSHIP','经营权管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0128', 'BS_OWNERSHIP','经营权管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_OWNERSHIP' 
 	and m.type_ > 1 and m.order_ in ('032000')
+	order by m.order_;
+	
+-- 插入费用模板管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0129', 'BS_FEE_TEMPLATE_MANAGE','费用模板管理');
+-- 插入费用模板查询角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0130', 'BC_FEE_TEMPLATE_READ','费用模板查询');
+-- 费用模板管理员
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_FEE_TEMPLATE_MANAGE' 
+	and m.type_ > 1 and m.order_ in ('030403')
 	order by m.order_;
 
 -- 插入职务数据
