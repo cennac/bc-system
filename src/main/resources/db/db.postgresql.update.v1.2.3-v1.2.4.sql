@@ -4,6 +4,12 @@
 -- 升级版本: 从 1.2.3.1 升级到 1.2.4
 -- ###########################################################################
 
+-- ##定时任务字段类型修正##
+ALTER TABLE bc_sd_job DROP COLUMN ignore_error;
+ALTER TABLE bc_sd_job ADD COLUMN ignore_error boolean NOT NULL DEFAULT false;
+ALTER TABLE bc_sd_job ALTER COLUMN ignore_error TYPE boolean;
+COMMENT ON COLUMN bc_sd_job.ignore_error IS '发现异常是否忽略后继续调度';
+
 -- ##模板管理扩展优化##
 -- 增加状态
 ALTER TABLE bc_template ADD COLUMN status_ INT NOT NULL DEFAULT 0;
