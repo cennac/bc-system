@@ -122,6 +122,7 @@
 		
 		<!-- 合同  -->
 		<class>cn.bc.business.contract.domain.Contract</class>
+		<class>cn.bc.business.contract.domain.ContractFeeDetail</class>
 		<class>cn.bc.business.contract.domain.Contract4Charger</class>
 		<class>cn.bc.business.contract.domain.Contract4Labour</class>
 		<class>cn.bc.business.contract.domain.ContractCarRelation</class>
