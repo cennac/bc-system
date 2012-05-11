@@ -16,13 +16,17 @@ drop table if exists BS_ARRANGE_MEMBER;
 drop table if exists BS_ARRANGE;
 drop table if exists BS_MEMBER;
 
+-- 承包费
+drop table if exists BS_FEE_DETAIL;
+drop table if exists BS_FEE;
+
+-- 费用模板表
+drop table if exists BS_FEE_TEMPLATE;
+
 -- 发票管理
 drop table if exists BS_INVOICE_SELL_DETAIL;
 drop table if exists BS_INVOICE_SELL;
 drop table if exists BS_INVOICE_BUY;
--- 承包费管理
-drop table if exists BS_FEE_DETAIL;
-drop table if exists BS_FEE;
 
 -- 证照遗失管理
 drop table if exists BS_CERT_LOST_ITEM;
@@ -52,6 +56,7 @@ drop table if exists BS_CONTRACT_CHARGER;
 drop table if exists BS_CONTRACT;
 
 -- 营运事件
+DROP TABLE IF EXISTS BS_CASE_LOST;
 DROP TABLE IF EXISTS BS_CASE_ADVICE;
 DROP TABLE IF EXISTS BS_CASE_PRAISE;
 DROP TABLE IF EXISTS BS_CASE_ACCIDENT;
@@ -69,14 +74,14 @@ drop table if exists BS_BUY_PLANT;
 -- 车辆保单
 drop table if exists BS_CAR_POLICY;
 
+-- 司机营运车辆
+drop table if exists BS_CAR_DRIVER;
+
 -- 迁移记录
 drop table if exists BS_CAR_DRIVER_HISTORY;
 
 -- 车辆经营权
 drop table if exists BS_CAR_OWNERSHIP;
-
--- 司机营运车辆
-drop table if exists BS_CAR_DRIVER;
 
 -- 司机责任人与证件的关联
 drop table if exists BS_CARMAN_CERT;
@@ -122,8 +127,21 @@ DROP TABLE IF EXISTS BC_EXAMPLE;
 -- 同步记录基表
 DROP TABLE IF EXISTS BC_SYNC_BASE;
 
+-- 社保
+DROP TABLE IF EXISTS BS_SOCIALSECURITYRULE_DETAIL;
+DROP TABLE IF EXISTS BS_SOCIALSECURITYRULE;
+
 -- 籍贯
 DROP TABLE IF EXISTS BC_PLACEORIGIN;
+
+-- 报表模板
+DROP TABLE IF EXISTS BC_REPORT_HISTORY;
+DROP TABLE IF EXISTS BC_REPORT_TASK;
+DROP TABLE IF EXISTS BC_REPORT_TEMPLATE_ACTOR;
+DROP TABLE IF EXISTS BC_REPORT_TEMPLATE;
+
+-- 模板管理
+DROP TABLE IF EXISTS BC_TEMPLATE;
 
 -- 用户反馈
 DROP TABLE IF EXISTS BC_FEEDBACK_REPLY;
