@@ -1026,6 +1026,22 @@ COMMENT ON COLUMN BC_REPORT_HISTORY.AUTHOR_ID IS '创建人ID';
 ALTER TABLE BC_REPORT_HISTORY ADD CONSTRAINT BCFK_REPORT_HISTORY_AUTHORID FOREIGN KEY (AUTHOR_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 	  
+-- 我的报表入口
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '011001','我的报表',null, 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011002','报表模板','/bc/myReportTemplates/list', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='011001';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011003','历史报表','/bc/myReportHistorys/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='011001';
+-- 我的报表权限被指
+-- 通用管理角色
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.order_ in ('011002','011003')
+	order by m.order_;
+-- 修改报表任务开始时间可以为空
+ALTER TABLE BC_REPORT_TASK ALTER COLUMN START_DATE DROP NOT NULL;
+	  
 -- 插入模板：每日登录帐号数统计模板
 delete from bc_template where code='accountLoginStat4Day.excel';
 INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, path, file_date, author_id)
