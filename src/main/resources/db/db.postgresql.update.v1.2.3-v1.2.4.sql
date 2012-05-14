@@ -1028,19 +1028,24 @@ ALTER TABLE BC_REPORT_HISTORY ADD CONSTRAINT BCFK_REPORT_HISTORY_AUTHORID FOREIG
 	  
 -- 我的报表入口
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '011001','我的报表',null, 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='010000';
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011002','报表模板','/bc/myReportTemplates/list', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='011001';
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011003','历史报表','/bc/myReportHistorys/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='011001';
--- 我的报表权限被指
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011001','我的报表','/bc/myReportTemplates/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+-- 我的报表权限
 -- 通用管理角色
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
-	and m.type_ > 1 and m.order_ in ('011002','011003')
+	and m.type_ > 1 and m.order_ in ('011001')
 	order by m.order_;
 -- 修改报表任务开始时间可以为空
 ALTER TABLE BC_REPORT_TASK ALTER COLUMN START_DATE DROP NOT NULL;
+-- 修改报表任务发现异常是否忽略后继续调度
+ALTER TABLE BC_REPORT_TASK ADD COLUMN IGNORE_ERROR BOOLEAN NOT NULL DEFAULT FALSE;
+COMMENT ON COLUMN BC_REPORT_TASK.IGNORE_ERROR IS '发现异常是否忽略后继续调度';
+-- 将历史报表的任务ID 拆分为来源类型和来源ID
+ALTER TABLE BC_REPORT_HISTORY DROP COLUMN TASK_ID;
+ALTER TABLE BC_REPORT_HISTORY ADD COLUMN SOURCE_TYPE VARCHAR(255);
+COMMENT ON COLUMN BC_REPORT_HISTORY.SOURCE_TYPE IS '来源类型';
+ALTER TABLE BC_REPORT_HISTORY ADD COLUMN SOURCE_ID INTEGER;
+COMMENT ON COLUMN BC_REPORT_HISTORY.SOURCE_ID IS '来源ID';
 	  
 -- 插入模板：每日登录帐号数统计模板
 delete from bc_template where code='accountLoginStat4Day.excel';
