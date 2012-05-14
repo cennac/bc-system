@@ -1062,20 +1062,23 @@ delete from bc_report_template where code='accountLoginStat4Day';
 INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
    VALUES (NEXTVAL('CORE_SEQUENCE'),0,'5001','平台/登录统计','每日登录帐号数统计','accountLoginStat4Day'
    ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
-   ,'{"columns": ['||
-	'{"type": "id","id": "id", "width": 40, "el":"id"}'||
-	',{"id": "logday", "label": "登录日", "width": 100, "el":"logday"}'||
-	',{"id": "count", "label": "登录帐号数", "width": 100, "el":"count"}'||
-	',{"id": "names", "label": "登录账号", "el":"names"}'||
-']'||
-',"sql": "select 0, logday, count(*) as count, string_agg(name,'','') from (select distinct h.actor_id as id,h.actor_name as name,to_char(l.file_date, ''YYYY-MM-DD'') as logday '||
-'from bc_log_system l inner join bc_identity_actor_history h on h.id=l.author_id '||
-'where l.type_ in (0,3) $if{condition != null}and ${condition}$end) ds group by logday order by logday desc"'||
-',"condition": "tpl:accountLoginStat4Day.conditions"'||
-',"search": "h.actor_name"'||
-',"export": "tpl:accountLoginStat4Day.excel"'||
-',"width": 600'||
-',"height": 400}');
+,'{'||chr(13)||'columns: ['||chr(13)||
+'    {type: "id",id: "id", width: 40, el:"id"},'||chr(13)||
+'    {id: "logday", label: "登录日", width: 100, el:"logday"},'||chr(13)||
+'    {id: "count", label: "登录帐号数", width: 100, el:"count"},'||chr(13)||
+'    {id: "names", label: "登录账号", el:"names"}'||chr(13)||
+'],'||chr(13)||
+'sql: "select 0, logday, count(*) as count, string_agg(name,'','')'||chr(13)||
+'    from (select distinct h.actor_id as id,h.actor_name as name,to_char(l.file_date, ''YYYY-MM-DD'') as logday'||chr(13)||
+'        from bc_log_system l inner join bc_identity_actor_history h on h.id=l.author_id'||chr(13)||
+'        where l.type_ in (0,3) $if{condition != null}and ${condition}$end'||chr(13)||
+'    ) ds group by logday order by logday desc",'||chr(13)||
+'condition: "tpl:accountLoginStat4Day.conditions",'||chr(13)||
+'search: "h.actor_name",'||chr(13)||
+'export: "tpl:accountLoginStat4Day.excel",'||chr(13)||
+'width: 600,'||chr(13)||
+'height: 400'||chr(13)||
+'}');
 
 	  
 -- 插入模板：司机劳动合同及社保信息汇总表
@@ -1087,18 +1090,18 @@ delete from bc_template where code='contract4Labour.list.sql';
 INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, file_date, author_id,content)
     VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',5,'营运系统/劳动合同','司机劳动合同及社保信息汇总表SQL模板','contract4Labour.list.sql','1'
     ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
-    ,'select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,0'||
-'	,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.sign_date,''YYYY-MM-DD'') sign_date,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||
-'	,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,0,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date,to_char(c.file_date,''YYYY-MM-DD'') cfile_date'||
-'	from BS_CONTRACT_LABOUR cl'||
-'	inner join BS_CONTRACT c on c.id = cl.id'||
-'	inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||
-'	inner join BS_CARMAN man on man.id = manc.man_id'||
-'	inner join BS_CAR_CONTRACT carc on carc.contract_id = c.id'||
-'	inner join BS_CAR car on car.id = carc.car_id'||
-'	inner join bs_motorcade m on m.id = car.motorcade_id'||
-'	inner join bc_identity_actor u on u.id=m.unit_id'||
-'	where c.status_ = 0 $if{condition != null}and ${condition}$end'||
+,'select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,0'||chr(13)||
+'	,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.sign_date,''YYYY-MM-DD'') sign_date,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||chr(13)||
+'	,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,0,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date,to_char(c.file_date,''YYYY-MM-DD'') cfile_date'||chr(13)||
+'	from BS_CONTRACT_LABOUR cl'||chr(13)||
+'	inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
+'	inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
+'	inner join BS_CARMAN man on man.id = manc.man_id'||chr(13)||
+'	inner join BS_CAR_CONTRACT carc on carc.contract_id = c.id'||chr(13)||
+'	inner join BS_CAR car on car.id = carc.car_id'||chr(13)||
+'	inner join bs_motorcade m on m.id = car.motorcade_id'||chr(13)||
+'	inner join bc_identity_actor u on u.id=m.unit_id'||chr(13)||
+'	where c.status_ = 0 $if{condition != null}and ${condition}$end'||chr(13)||
 '	order by car.company asc,u.order_ asc,m.code asc,c.file_date desc');
 
 -- 插入报表模板：司机劳动合同及社保信息汇总表
@@ -1106,36 +1109,37 @@ delete from bc_report_template where code='contract4Labour.list';
 INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
    VALUES (NEXTVAL('CORE_SEQUENCE'),0,'2001','营运系统/劳动合同','司机劳动合同及社保信息汇总表','contract4Labour.list'
    ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
-   ,'{columns: ['||
-	'{type: "id",id: "cl.id", width: 40, el:"id"}'||
-	',{id: "car.company", label: "公司", width: 40}'||
-	',{id: "u.name", label: "分公司", width: 70}'||
-	',{id: "m.name", label: "车队", width: 70}'||
-	',{id: "car.plate_type", label: "车辆", width: 80}'||
-	',{id: "car.code", label: "自编号", width: 55}'||
-	',{id: "shenfen", label: "身份", width: 40}'||
-	',{id: "man.name", label: "姓名", width: 60}'||
-	',{id: "cl.insurcode", label: "社保号", width: 80}'||
-	',{id: "man.cert_identity", label: "身份证", width: 160}'||
-	',{id: "cl.house_type", label: "户口性质", width: 80}'||
-	',{id: "c.sign_date", label: "签定日期", width: 90}'||
-	',{id: "c.start_date", label: "合同期(开始)", width: 90}'||
-	',{id: "c.end_date", label: "合同期(结束)", width: 90}'||
-	',{id: "cl.joindate", label: "参保日期", width: 90}'||
-	',{id: "cl.insurance_type", label: "社保险种", width: 190}'||
-	',{id: "man.phone", label: "联系电话", width: 100}'||
-	',{id: "desc", label: "备注", width: 100}'||
-	',{id: "car.bs_type", label: "营运性质", width: 80}'||
-	',{id: "car.register_date", label: "车辆登记日期", width: 90}'||
-	',{id: "c.file_date", label: "创建日期", width: 90}'||
-']'||
-',sql: "tpl:contract4Labour.list.sql"'||
-',condition: "action:bc-business/contract4Labours/conditions"'||
-',search: "car.company,u.name,m.name,car.plate_no,man.name"'||
-',export: "tpl:contract4Labour.list.excel"'||
-',width: 900'||
-',height: 490
-,paging:true}');
+,'{'||chr(13)||'columns: ['||chr(13)||
+'    {type: "id",id: "cl.id", width: 40, el:"id"},'||chr(13)||
+'    {id: "car.company", label: "公司", width: 40},'||chr(13)||
+'    {id: "u.name", label: "分公司", width: 70},'||chr(13)||
+'    {id: "m.name", label: "车队", width: 70},'||chr(13)||
+'    {id: "car.plate_type", label: "车辆", width: 80},'||chr(13)||
+'    {id: "car.code", label: "自编号", width: 55},'||chr(13)||
+'    {id: "shenfen", label: "身份", width: 40},'||chr(13)||
+'    {id: "man.name", label: "姓名", width: 60},'||chr(13)||
+'    {id: "cl.insurcode", label: "社保号", width: 80},'||chr(13)||
+'    {id: "man.cert_identity", label: "身份证", width: 160},'||chr(13)||
+'    {id: "cl.house_type", label: "户口性质", width: 80},'||chr(13)||
+'    {id: "c.sign_date", label: "签定日期", width: 90},'||chr(13)||
+'    {id: "c.start_date", label: "合同期(开始)", width: 90},'||chr(13)||
+'    {id: "c.end_date", label: "合同期(结束)", width: 90},'||chr(13)||
+'    {id: "cl.joindate", label: "参保日期", width: 90},'||chr(13)||
+'    {id: "cl.insurance_type", label: "社保险种", width: 190},'||chr(13)||
+'    {id: "man.phone", label: "联系电话", width: 100},'||chr(13)||
+'    {id: "desc", label: "备注", width: 100},'||chr(13)||
+'    {id: "car.bs_type", label: "营运性质", width: 80},'||chr(13)||
+'    {id: "car.register_date", label: "车辆登记日期", width: 90},'||chr(13)||
+'    {id: "c.file_date", label: "创建日期", width: 90}'||chr(13)||
+'],'||chr(13)||
+'sql: "tpl:contract4Labour.list.sql",'||chr(13)||
+'condition: "action:bc-business/contract4Labours/conditions",'||chr(13)||
+'search: "car.company,u.name,m.name,car.plate_no,man.name",'||chr(13)||
+'export: "tpl:contract4Labour.list.excel",'||chr(13)||
+'width: 900,'||chr(13)||
+'height: 490,'||chr(13)||
+'paging: true'||chr(13)||
+'}');
 
 -- 费用模板初始化数据
 insert into BS_FEE_TEMPLATE (id,status_,module_,type_,order_,name,desc_,file_date,author_id)
