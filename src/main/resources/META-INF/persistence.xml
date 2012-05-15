@@ -76,6 +76,7 @@
 		<class>cn.bc.placeorigin.domain.PlaceOrigin</class>
 		<!-- 模板管理-->
 		<class>cn.bc.template.domain.Template</class>
+		<class>cn.bc.template.domain.TemplateType</class>
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->
