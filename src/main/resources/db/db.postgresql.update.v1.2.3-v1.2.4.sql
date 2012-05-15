@@ -1046,15 +1046,98 @@ ALTER TABLE BC_REPORT_HISTORY ADD COLUMN SOURCE_TYPE VARCHAR(255);
 COMMENT ON COLUMN BC_REPORT_HISTORY.SOURCE_TYPE IS '来源类型';
 ALTER TABLE BC_REPORT_HISTORY ADD COLUMN SOURCE_ID INTEGER;
 COMMENT ON COLUMN BC_REPORT_HISTORY.SOURCE_ID IS '来源ID';
+
+	  
+-- 模板类型表
+CREATE TABLE BC_TEMPLATE_TYPE(
+	ID INTEGER NOT NULL,
+	STATUS_ INT NOT NULL DEFAULT 0,
+	ORDER_ VARCHAR(255),
+	CODE	VARCHAR(255) NOT NULL ,
+	NAME VARCHAR(255),
+	IS_PATH BOOLEAN NOT NULL DEFAULT FALSE,
+	IS_PURE_TEXT BOOLEAN NOT NULL DEFAULT FALSE,
+	EXT VARCHAR(255),
+	DESC_ VARCHAR(4000),
+	FILE_DATE TIMESTAMP NOT NULL,
+	AUTHOR_ID INTEGER NOT NULL,
+	MODIFIER_ID INTEGER ,
+	MODIFIED_DATE TIMESTAMP,
+	CONSTRAINT BCPK_TEMPLATE_TYPE PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_TEMPLATE_TYPE IS '模板类型';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.STATUS_ IS '状态：0-正常，1-禁用';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.ORDER_ IS '排序号';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.CODE IS '编码：全局唯一';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.NAME IS '模板类型名称';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.IS_PATH IS '关联附件';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.IS_PURE_TEXT IS '纯文本';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.EXT IS '附件扩展名';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.DESC_ IS '备注';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.MODIFIER_ID IS '最后修改人ID';
+COMMENT ON COLUMN BC_TEMPLATE_TYPE.MODIFIED_DATE IS '最后修改时间';
+ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCFK_TEMPLATE_TYPE_AUTHORID FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCFK_TEMPLATE_TYPE_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCUK_TEMPLATE_TYPE_CODE UNIQUE (CODE);
+
+-- 模板管理表类型字段修改为外键关联模板类型表
+ALTER TABLE BC_TEMPLATE DROP COLUMN TYPE_;
+ALTER TABLE BC_TEMPLATE ADD COLUMN TYPE_ID INTEGER NOT NULL;
+ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCFK_TEMPLATE_TYPE_ID FOREIGN KEY (TYPE_ID)
+      REFERENCES BC_TEMPLATE_TYPE (ID);
+
+-- 模板类型数据初始化
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (1,0,'1000','custom','自定义文本',true,false,null,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (2,0,'1101','word-docx','Word 2007+ 文档',false,true,'docx',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (3,0,'1102','word-doc','Word 97-2003 文档',false,true,'doc',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (4,0,'1103','word-2003xml','Word 2003 XML 文档',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (5,0,'1104','word-2007xml','Word 2007+ XML 文档',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (6,0,'1201','xls','Excel 97-2003 工作薄',false,true,'xls',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (7,0,'1202','xlsx','Excel 2007+ 工作薄',false,true,'xlsx',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (8,0,'1203','excel-2003xml','Excel 2003 XML',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (9,0,'1204','excel-2007xml','Excel 2007+ XML',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (10,0,'1301','pptx','PowerPoint 2007+ 演示文稿',false,true,'pptx',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (11,0,'1302','ppt','PowerPoint 97-2003 演示文稿',false,true,'ppt',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (12,0,'1400','rtf','RTF文档',true,true,'rtf',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (13,0,'1500','txt','TXT纯文本',true,true,'txt',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (14,0,'1600','xml','XML文档',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (15,0,'1700','sql','SQL数据库脚本',true,true,'sql',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (16,0,'1800','cvs','CVS(逗号分隔)',true,true,'cvs',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (17,0,'1901','odt','OpenDocument文档',false,true,'odt',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (18,0,'1902','ods','OpenDocument电子表格',false,true,'ods',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+			VALUES (19,0,'9999','other','其它附件',false,true,null,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 	  
 -- 插入模板：每日登录帐号数统计模板
 delete from bc_template where code='accountLoginStat4Day.excel';
-INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5001',1,'平台/登录统计','每日登录帐号数统计的Excel模板','accountLoginStat4Day.excel','1'
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5001',(select id from bc_template_type where code='xls'),'平台/登录统计','每日登录帐号数统计的Excel模板','accountLoginStat4Day.excel','1'
     ,'common/accountLoginStat4Day.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 delete from bc_template where code='accountLoginStat4Day.conditions';
-INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5002',3,'平台/登录统计','每日登录帐号数统计的报表条件','accountLoginStat4Day.conditions','1'
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5002',(select id from bc_template_type where code='txt'),'平台/登录统计','每日登录帐号数统计的报表条件','accountLoginStat4Day.conditions','1'
     ,'common/accountLoginStat4Day.conditions.txt',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 
 -- 插入报表模板：每日登录帐号数统计
@@ -1083,12 +1166,12 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 	  
 -- 插入模板：司机劳动合同及社保信息汇总表
 delete from bc_template where code='contract4Labour.list.excel';
-INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',1,'营运系统/劳动合同','司机劳动合同及社保信息汇总表Excel模板','contract4Labour.list.excel','1'
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',(select id from bc_template_type where code='xls'),'营运系统/劳动合同','司机劳动合同及社保信息汇总表Excel模板','contract4Labour.list.excel','1'
     ,'common/contract4Labour.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 delete from bc_template where code='contract4Labour.list.sql';
-INSERT INTO bc_template(id, status_,inner_, order_, type_,category, subject, code, version_, file_date, author_id,content)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',5,'营运系统/劳动合同','司机劳动合同及社保信息汇总表SQL模板','contract4Labour.list.sql','1'
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, file_date, author_id,content)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',(select id from bc_template_type where code='sql'),'营运系统/劳动合同','司机劳动合同及社保信息汇总表SQL模板','contract4Labour.list.sql','1'
     ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
 ,'select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,0'||chr(13)||
 '	,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.sign_date,''YYYY-MM-DD'') sign_date,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||chr(13)||
@@ -1218,87 +1301,3 @@ COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.PAY_TYPE IS '收费结束日期';
 COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.DESC_ IS '备注';
 ALTER TABLE BS_CONTRACT_FEE_DETAIL ADD CONSTRAINT BSFK_FEEDETAIL_CONTRACT4CHARGER FOREIGN KEY (PID)
       REFERENCES BS_CONTRACT (ID);
-
-	  
--- 模板类型表
-CREATE TABLE BC_TEMPLATE_TYPE(
-	ID INTEGER NOT NULL,
-	STATUS_ INT NOT NULL DEFAULT 0,
-	ORDER_ VARCHAR(255),
-	CODE	VARCHAR(255) NOT NULL ,
-	NAME VARCHAR(255),
-	IS_PATH BOOLEAN NOT NULL DEFAULT FALSE,
-	IS_PURE_TEXT BOOLEAN NOT NULL DEFAULT FALSE,
-	EXT VARCHAR(255),
-	DESC_ VARCHAR(4000),
-	FILE_DATE TIMESTAMP NOT NULL,
-	AUTHOR_ID INTEGER NOT NULL,
-	MODIFIER_ID INTEGER ,
-	MODIFIED_DATE TIMESTAMP,
-	CONSTRAINT BCPK_TEMPLATE_TYPE PRIMARY KEY (ID)
-);
-COMMENT ON TABLE BC_TEMPLATE_TYPE IS '模板类型';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.STATUS_ IS '状态：0-正常，1-禁用';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.ORDER_ IS '排序号';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.CODE IS '编码：全局唯一';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.NAME IS '模板类型名称';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.IS_PATH IS '关联附件';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.IS_PURE_TEXT IS '纯文本';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.EXT IS '附件扩展名';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.DESC_ IS '备注';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.FILE_DATE IS '创建时间';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.AUTHOR_ID IS '创建人ID';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.MODIFIER_ID IS '最后修改人ID';
-COMMENT ON COLUMN BC_TEMPLATE_TYPE.MODIFIED_DATE IS '最后修改时间';
-ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCFK_TEMPLATE_TYPE_AUTHORID FOREIGN KEY (AUTHOR_ID)
-      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
-ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCFK_TEMPLATE_TYPE_MODIFIER FOREIGN KEY (MODIFIER_ID)
-      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
-ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCUK_TEMPLATE_TYPE_CODE UNIQUE (CODE);
-
--- 模板管理表类型字段修改为外键关联模板类型表
-ALTER TABLE BC_TEMPLATE DROP COLUMN TYPE_;
-ALTER TABLE BC_TEMPLATE ADD COLUMN TYPE_ID INTEGER NOT NULL;
-ALTER TABLE BC_TEMPLATE ADD CONSTRAINT BCFK_TEMPLATE_TYPE_ID FOREIGN KEY (TYPE_ID)
-      REFERENCES BC_TEMPLATE_TYPE (ID);
-
--- 模板类型数据初始化
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1000','custom','自定义文本',true,false,null,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1101','word-docx','Word 2007+ 文档',false,true,'docx',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1102','word-doc','Word 97-2003 文档',false,true,'doc',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1103','word-2003xml','Word 2003 XML 文档',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1104','word-2007xml','Word 2007+ XML 文档',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1201','xls','Excel 97-2003 工作薄',false,true,'xls',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1202','xlsx','Excel 2007+ 工作薄',false,true,'xlsx',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1203','excel-2003xml','Excel 2003 XML',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1204','excel-2007xml','Excel 2007+ XML',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1301','pptx','PowerPoint 2007+ 演示文稿',false,true,'pptx',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1302','ppt','PowerPoint 97-2003 演示文稿',false,true,'ppt',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1400','rtf','RTF文档',true,true,'rtf',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1500','txt','TXT纯文本',true,true,'txt',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1600','xml','XML文档',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1700','sql','SQL数据库脚本',true,true,'sql',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1800','cvs','CVS(逗号分隔)',true,true,'cvs',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1901','odt','OpenDocument文档',false,true,'odt',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1902','ods','OpenDocument电子表格',false,true,'ods',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-			VALUES (NEXTVAL('CORE_SEQUENCE'),0,'9999','other','其它附件',false,true,null,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-
