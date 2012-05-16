@@ -1301,3 +1301,36 @@ COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.PAY_TYPE IS '收费结束日期';
 COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.DESC_ IS '备注';
 ALTER TABLE BS_CONTRACT_FEE_DETAIL ADD CONSTRAINT BSFK_FEEDETAIL_CONTRACT4CHARGER FOREIGN KEY (PID)
       REFERENCES BS_CONTRACT (ID);
+
+-- 报表模板使用人列函数
+CREATE OR REPLACE FUNCTION getreporttemplateuser(rtid INTEGER)
+	RETURNS CHARACTER VARYING  AS
+$BODY$
+DECLARE
+		-- 使用者字符串
+		users CHARACTER VARYING;
+		-- 记录使用者字符串长度
+		_length INTEGER;
+		-- 一行结果的记录	
+		rowinfo RECORD;
+BEGIN
+		-- 初始化变量
+		users:='';
+		_length:=0;
+		FOR rowinfo IN SELECT b.name
+						FROM bc_report_template a
+						INNER JOIN bc_report_template_actor r on r.tid=a.id
+						INNER JOIN bc_identity_actor b on r.aid=b.id
+						WHERE a.id=rtid
+		-- 循环开始
+		LOOP
+			users:=users||rowinfo.name||',';
+		END LOOP;
+		_length:=length(users);
+		IF _length>0 THEN
+		users:=substring(users from 1 for _length-1);
+		END IF;
+		RETURN users;
+END;
+$BODY$
+ LANGUAGE plpgsql;
