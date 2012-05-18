@@ -1133,12 +1133,12 @@ INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,E
 -- 插入模板：每日登录帐号数统计模板
 delete from bc_template where code='accountLoginStat4Day.excel';
 INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5001',(select id from bc_template_type where code='xls'),'平台/登录统计','每日登录帐号数统计的Excel模板','accountLoginStat4Day.excel','1'
-    ,'common/accountLoginStat4Day.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5001',(select id from bc_template_type where code='xls'),'平台/登录统计','每日登录帐号数统计','accountLoginStat4Day.excel','1'
+    ,'bc/accountLoginStat4Day.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 delete from bc_template where code='accountLoginStat4Day.conditions';
 INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5002',(select id from bc_template_type where code='txt'),'平台/登录统计','每日登录帐号数统计的报表条件','accountLoginStat4Day.conditions','1'
-    ,'common/accountLoginStat4Day.conditions.txt',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'5002',(select id from bc_template_type where code='txt'),'平台/登录统计','每日登录帐号数统计_报表条件','accountLoginStat4Day.conditions','1'
+    ,'bc/accountLoginStat4Day.conditions.txt',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 
 -- 插入报表模板：每日登录帐号数统计
 delete from bc_report_template where code='accountLoginStat4Day';
@@ -1164,33 +1164,17 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 '}');
 
 	  
--- 插入模板：司机劳动合同及社保信息汇总表
+-- 插入模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_template where code='contract4Labour.list.excel';
 INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',(select id from bc_template_type where code='xls'),'营运系统/劳动合同','司机劳动合同及社保信息汇总表Excel模板','contract4Labour.list.excel','1'
-    ,'common/contract4Labour.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',(select id from bc_template_type where code='xls'),'营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list.excel','1'
+    ,'bs/contract4Labour.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 delete from bc_template where code='contract4Labour.list.sql';
-INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, file_date, author_id,content)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',(select id from bc_template_type where code='sql'),'营运系统/劳动合同','司机劳动合同及社保信息汇总表SQL模板','contract4Labour.list.sql','1'
-    ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
-,'select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,0'||chr(13)||
-'	,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.sign_date,''YYYY-MM-DD'') sign_date,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||chr(13)||
-'	,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,0,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date,to_char(c.file_date,''YYYY-MM-DD'') cfile_date'||chr(13)||
-'	from BS_CONTRACT_LABOUR cl'||chr(13)||
-'	inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
-'	inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
-'	inner join BS_CARMAN man on man.id = manc.man_id'||chr(13)||
-'	inner join BS_CAR_CONTRACT carc on carc.contract_id = c.id'||chr(13)||
-'	inner join BS_CAR car on car.id = carc.car_id'||chr(13)||
-'	inner join bs_motorcade m on m.id = car.motorcade_id'||chr(13)||
-'	inner join bc_identity_actor u on u.id=m.unit_id'||chr(13)||
-'	where c.status_ = 0 $if{condition != null}and ${condition}$end'||chr(13)||
-'	order by car.company asc,u.order_ asc,m.code asc,c.file_date desc');
 
--- 插入报表模板：司机劳动合同及社保信息汇总表
+-- 插入报表模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_report_template where code='contract4Labour.list';
 INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
-   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'2001','营运系统/劳动合同','司机劳动合同及社保信息汇总表','contract4Labour.list'
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'2001','营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list'
    ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
 ,'{'||chr(13)||'columns: ['||chr(13)||
 '    {type: "id",id: "cl.id", width: 40, el:"id"},'||chr(13)||
@@ -1215,7 +1199,19 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 '    {id: "car.register_date", label: "车辆登记日期", width: 90},'||chr(13)||
 '    {id: "c.file_date", label: "创建日期", width: 90}'||chr(13)||
 '],'||chr(13)||
-'sql: "tpl:contract4Labour.list.sql",'||chr(13)||
+'sql: "select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,0'||chr(13)||
+'    ,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.sign_date,''YYYY-MM-DD'') sign_date,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||chr(13)||
+'    ,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,0,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date,to_char(c.file_date,''YYYY-MM-DD'') cfile_date'||chr(13)||
+'    from BS_CONTRACT_LABOUR cl'||chr(13)||
+'    inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
+'    inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
+'    inner join BS_CARMAN man on man.id = manc.man_id'||chr(13)||
+'    inner join BS_CAR_CONTRACT carc on carc.contract_id = c.id'||chr(13)||
+'    inner join BS_CAR car on car.id = carc.car_id'||chr(13)||
+'    inner join bs_motorcade m on m.id = car.motorcade_id'||chr(13)||
+'    inner join bc_identity_actor u on u.id=m.unit_id'||chr(13)||
+'    where c.status_ = 0 $if{condition != null}and ${condition}$end'||chr(13)||
+'    order by car.company asc,u.order_ asc,m.code asc,c.file_date desc",'||chr(13)||
 'condition: "action:bc-business/contract4Labours/conditions",'||chr(13)||
 'search: "car.company,u.name,m.name,car.plate_no,man.name",'||chr(13)||
 'export: "tpl:contract4Labour.list.excel",'||chr(13)||
