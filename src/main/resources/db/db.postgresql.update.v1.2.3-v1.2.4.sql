@@ -1167,14 +1167,14 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 -- 插入模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_template where code='contract4Labour.list.excel';
 INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'2001',(select id from bc_template_type where code='xls'),'营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list.excel','1'
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1601',(select id from bc_template_type where code='xls'),'营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list.excel','1'
     ,'bs/contract4Labour.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 delete from bc_template where code='contract4Labour.list.sql';
 
 -- 插入报表模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_report_template where code='contract4Labour.list';
 INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
-   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'2001','营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list'
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1601','营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list'
    ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
 ,'{'||chr(13)||'columns: ['||chr(13)||
 '    {type: "id",id: "cl.id", width: 40, el:"id"},'||chr(13)||
