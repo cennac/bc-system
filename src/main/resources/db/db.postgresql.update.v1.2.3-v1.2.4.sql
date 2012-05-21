@@ -1337,3 +1337,11 @@ COMMENT ON COLUMN BC_TEMPLATE.SIZE_ IS '文件的大小(单位为字节) 默认0
 -- 模板增加是否允许格式化
 ALTER TABLE BC_TEMPLATE ADD COLUMN FORMATTED BOOLEAN DEFAULT FALSE;
 COMMENT ON COLUMN BC_TEMPLATE.FORMATTED IS '格式化：是 否 默认否';
+
+-- 插入经济合同承包费附件模板
+insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),0,'1001','营运系统/经济合同附件','CBHTA0401','CBHTA0401-01',true,false,'contract4Charger.CBHTA04.docx',49152,'承包合同CBHTA04（2011年11月后出车，月末交费）',
+				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),0,'1002','营运系统/经济合同附件','CBHTA04','CBHTA04-01',true,false,'contract4Charger.CBHTA0401.docx',49152,'承包合同CBHTA0401（7850）',
+				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
