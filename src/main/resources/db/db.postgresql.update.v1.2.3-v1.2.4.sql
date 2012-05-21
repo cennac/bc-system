@@ -9,6 +9,10 @@ ALTER TABLE bc_sd_job DROP COLUMN ignore_error;
 ALTER TABLE bc_sd_job ADD COLUMN ignore_error boolean NOT NULL DEFAULT false;
 ALTER TABLE bc_sd_job ALTER COLUMN ignore_error TYPE boolean;
 COMMENT ON COLUMN bc_sd_job.ignore_error IS '发现异常是否忽略后继续调度';
+ALTER TABLE bc_sd_log DROP COLUMN success;
+ALTER TABLE bc_sd_log ADD COLUMN success boolean NOT NULL DEFAULT false;
+ALTER TABLE bc_sd_log ALTER COLUMN success TYPE boolean;
+COMMENT ON COLUMN bc_sd_log.success IS '任务是否处理成功:false-失败,true-成功';
 
 -- ##模板管理扩展优化##
 -- 增加状态
