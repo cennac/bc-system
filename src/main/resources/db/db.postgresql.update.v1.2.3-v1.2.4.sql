@@ -1371,6 +1371,14 @@ COMMENT ON COLUMN BC_TEMPLATE.SIZE_ IS '文件的大小(单位为字节) 默认0
 ALTER TABLE BC_TEMPLATE ADD COLUMN FORMATTED BOOLEAN DEFAULT FALSE;
 COMMENT ON COLUMN BC_TEMPLATE.FORMATTED IS '格式化：是 否 默认否';
 
+-- 历史报表的file_date拆分为start_date和end_date
+ALTER TABLE bc_report_history RENAME file_date TO start_date;
+COMMENT ON COLUMN bc_report_history.start_date IS '执行报表的开始时间';
+ALTER TABLE bc_report_history ADD COLUMN end_date TIMESTAMP;
+COMMENT ON COLUMN bc_report_history.start_date IS '执行报表的结束时间';
+update bc_report_history set end_date = to_date('2012-01-01','YYYY-MM-DD');
+ALTER TABLE bc_report_history ALTER COLUMN end_date SET NOT NULL;
+
 -- 插入经济合同承包费附件模板
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
 values (NEXTVAL('CORE_SEQUENCE'),0,'1001','营运系统/经济合同附件','BC-CBHT','BC-CBHT-A04-20111101',true,false,'/bs/contract4Charger.CBHTA0420111101.docx',49152,'承包合同','适用于承包车',
