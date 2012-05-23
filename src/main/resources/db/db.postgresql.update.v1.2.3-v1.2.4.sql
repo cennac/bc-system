@@ -1344,26 +1344,26 @@ COMMENT ON COLUMN BC_TEMPLATE.FORMATTED IS '格式化：是 否 默认否';
 
 -- 插入经济合同承包费附件模板
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1001','营运系统/经济合同附件','BC-CBHT','BC-CBHT-A04-20111101',true,false,'contract4Charger.CBHT.docx',49152,'承包合同','适用于承包车',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1001','营运系统/经济合同附件','BC-CBHT','BC-CBHT-A04-20111101',true,false,'/bs/contract4Charger.CBHTA0420111101.docx',49152,'承包合同','适用于承包车',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1002','营运系统/经济合同附件','BC-CBHT-A0401-20111101','BC-CBHT-A0401-20111101',true,false,'contract4Charger.CBHTA0401.docx',49152,'承包合同','7850收费版',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1002','营运系统/经济合同附件','BC-CBHT-A0401-20111101','BC-CBHT-A0401-20111101',true,false,'/bs/contract4Charger.CBHTA040120111101.docx',49152,'承包合同','7850收费版',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1003','营运系统/经济合同附件','BC-MDHT','BC-MDHT-A01-201111102',true,false,'contract4Charger.MDHT.docx',45056,'买断车01合同','原买断车01变更合同时',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1003','营运系统/经济合同附件','BC-MDHT','BC-MDHT-A01-201111102',true,false,'/bs/contract4Charger.MDHTA0120111102.docx',45056,'买断车01合同','原买断车01变更合同时',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1004','营运系统/经济合同附件','BC-XMDHT','BC-XMDHT-A01-20111101',true,false,'contract4Charger.XMDHT.docx',45056,'买断车02合同','原买断02车变更合同时',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1004','营运系统/经济合同附件','BC-XMDHT','BC-XMDHT-A01-20111101',true,false,'/bs/contract4Charger.XMDHTA0120111101.docx',45056,'买断车02合同','原买断02车变更合同时',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1005','营运系统/经济合同附件','BC-DXHT01','BC-DXHT01-A01-201111101',true,false,'contract4Charger.DXHT01.docx',44032,'大新车02合同','原大新01车变更合同时',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1005','营运系统/经济合同附件','BC-DXHT01','BC-DXHT01-A01-201111101',true,false,'/bs/contract4Charger.DXHT01A0120111101.docx',44032,'大新车01合同','原大新01车变更合同时',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1006','营运系统/经济合同附件','BC-DXHT02','BC-DXHT01-A02-201111101',true,false,'contract4Charger.DXHT02.docx',44032,'大新车02合同','原大新02车变更合同时',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1006','营运系统/经济合同附件','BC-DXHT02','BC-DXHT02-A01-201111101',true,false,'/bs/contract4Charger.DXHT02A0120111101.docx',44032,'大新车02合同','原大新02车变更合同时',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1007','营运系统/经济合同附件','BC-QLHT','BC-QLHT-A01-201111101',true,false,'contract4Charger.QLHT.docx',43008,'侨林车合同','原侨林车变更合同时',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1007','营运系统/经济合同附件','BC-QLHT','BC-QLHT-A01-201111101',true,false,'/bs/contract4Charger.QLHTA0120111101.docx',43008,'侨林车合同','原侨林车变更合同时',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'1008','营运系统/经济合同附件','BC-XYLHT','BC-XYLHT-A00-20120111',true,false,'contract4Charger.XYLHT.docx',49152,'2011年新运力承包合同','2011年新运力车',
+values (NEXTVAL('CORE_SEQUENCE'),0,'1008','营运系统/经济合同附件','BC-XYLHT','BC-XYLHT-A00-20120111',true,false,'/bs/contract4Charger.XYLHTA0020120111.docx',49152,'2011年新运力承包合同','2011年新运力车',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
