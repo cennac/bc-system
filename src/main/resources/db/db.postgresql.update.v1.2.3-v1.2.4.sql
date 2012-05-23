@@ -1224,6 +1224,10 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 'paging: true'||chr(13)||
 '}');
 
+--费用模块表添加特殊配置
+ALTER TABLE BS_FEE_TEMPLATE ADD COLUMN SPEC VARCHAR(255);
+COMMENT ON COLUMN BS_FEE_TEMPLATE.SPEC IS '特殊配置';
+
 -- 费用模板增加编码字段
 ALTER TABLE BS_FEE_TEMPLATE ADD COLUMN CODE VARCHAR(255) NOT NULL;
 COMMENT ON COLUMN BS_FEE_TEMPLATE.CODE IS '编码：全局唯一';
@@ -1298,11 +1302,6 @@ values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.level2Main
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,file_date,author_id)
 values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.openDoorFund', 1,10106,'残疾人基金', 50, 2, 1, '',
 		now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));		
-		
-		
---费用模块表添加特殊配置
-ALTER TABLE BS_FEE_TEMPLATE ADD COLUMN SPEC VARCHAR(255);
-COMMENT ON COLUMN BS_FEE_TEMPLATE.SPEC IS '特殊配置';
 
 
 -- 收费明细
