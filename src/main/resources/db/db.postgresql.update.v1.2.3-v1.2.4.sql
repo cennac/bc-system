@@ -1294,7 +1294,10 @@ values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.liBaoFei',
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,file_date,author_id)
 values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.level2MaintenanceFee', 1,10105,'每季二级维护费', 80, 1, 2, '',
 		now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-		
+
+insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,file_date,author_id)
+values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.openDoorFund', 1,10106,'残疾人基金', 50, 2, 1, '',
+		now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));		
 		
 		
 --费用模块表添加特殊配置
