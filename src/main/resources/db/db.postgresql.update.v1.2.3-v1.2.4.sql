@@ -1252,7 +1252,7 @@ values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.HTBZJ', 1,
 
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,pid,file_date,author_id)
 values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','contract4Charger.MYCBK', 1,1004,'每月承包款', 8850, 1, 1, '',
-		'{"key1":10000,"key2":5000,"desc":"key1为不足一个月应交的承包款;key2为每月承包款递减的金额"}',
+		'{"key1":6850,"key2":500,"desc":"key1为不足一个月应交的承包款;key2为每月承包款递减的金额"}',
 		(select id from BS_FEE_TEMPLATE where name='经济合同收费明细'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
