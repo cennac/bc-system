@@ -291,7 +291,6 @@ $BODY$
 LANGUAGE plpgsql;
 
 
-
 ---车辆，司机，合同模块添加草稿状态后需要执行的sql
 -- 插入车辆录入管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
@@ -300,8 +299,6 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR_ENTERING' 
 	and m.type_ > 1 and m.order_ in ('030201','030202','030205','030206')
 	order by m.order_;
-	
-	
 	
 	
 -- 插入司机录入管理角色数据
@@ -313,31 +310,20 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	order by m.order_;
 	
 	
-	
 -- 插入经济合同录入管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104', 'BS_CONTRACT4CHARGER_ENTERING','经济合同录入
-
-管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104', 'BS_CONTRACT4CHARGER_ENTERING','经济合同录入管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where 
-
-r.code='BS_CONTRACT4CHARGER_ENTERING' 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4CHARGER_ENTERING' 
 	and m.type_ > 1 and m.order_ in ('030402')
 	order by m.order_;
 
 
-
-
 -- 插入劳动合同录入管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105', 'BS_CONTRACT4LABOUR_ENTERING','劳动合同录入
-
-管理');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105', 'BS_CONTRACT4LABOUR_ENTERING','劳动合同录入管理');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where 
-
-r.code='BS_CONTRACT4LABOUR_ENTERING' 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4LABOUR_ENTERING' 
 	and m.type_ > 1 and m.order_ in ('030401')
 	order by m.order_;
 
