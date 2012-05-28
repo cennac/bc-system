@@ -1154,13 +1154,6 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 '}');
 
 	  
--- 插入模板：司机劳动合同总表(对财务对社保的数据)
-delete from bc_template where code='contract4Labour.list.excel';
-INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
-    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1601',(select id from bc_template_type where code='xls'),'营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list.excel','1'
-    ,'bs/contract4Labour.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
-delete from bc_template where code='contract4Labour.list.sql';
-
 -- 插入报表模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_report_template where code='contract4Labour.list';
 INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
@@ -1173,7 +1166,7 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 '    {id: "m.name", label: "车队", width: 70},'||chr(13)||
 '    {id: "car.plate_type", label: "车辆", width: 80},'||chr(13)||
 '    {id: "car.code", label: "自编号", width: 55},'||chr(13)||
-'    {id: "shenfen", label: "身份", width: 40},'||chr(13)||
+'    {id: "shenfen", label: "身份", width: 65},'||chr(13)||
 '    {id: "man.name", label: "姓名", width: 60},'||chr(13)||
 '    {id: "cl.insurcode", label: "社保号", width: 80},'||chr(13)||
 '    {id: "man.cert_identity", label: "身份证", width: 160},'||chr(13)||
@@ -1189,9 +1182,12 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 '    {id: "car.register_date", label: "车辆登记日期", width: 90},'||chr(13)||
 '    {id: "c.file_date", label: "创建日期", width: 90}'||chr(13)||
 '],'||chr(13)||
-'sql: "select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,0'||chr(13)||
+'sql: "select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,'||chr(13)||
+'    (case when(select 1 from BS_CONTRACT con'||chr(13)||
+'    inner join BS_CARMAN_CONTRACT mc on con.id = mc.contract_id'||chr(13)||
+'    where con.type_ = 2 and con.status_ = 0 and mc.man_id = man.id limit 1) = 1 then ''司机责任人'' else ''司机'' end)'||chr(13)||
 '    ,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.sign_date,''YYYY-MM-DD'') sign_date,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||chr(13)||
-'    ,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,0,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date,to_char(c.file_date,''YYYY-MM-DD'') cfile_date'||chr(13)||
+'    ,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,cl.remark,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date,to_char(c.file_date,''YYYY-MM-DD'') cfile_date'||chr(13)||
 '    from BS_CONTRACT_LABOUR cl'||chr(13)||
 '    inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
 '    inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
@@ -1209,6 +1205,7 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 'height: 490,'||chr(13)||
 'paging: true'||chr(13)||
 '}');
+
 
 --费用模块表添加特殊配置
 ALTER TABLE BS_FEE_TEMPLATE ADD COLUMN SPEC VARCHAR(255);
