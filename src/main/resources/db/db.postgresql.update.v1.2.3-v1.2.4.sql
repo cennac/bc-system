@@ -1153,6 +1153,32 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 'height: 400'||chr(13)||
 '}');
 
+-- 插入报表模板：每月登录帐号数统计(图表)
+delete from bc_report_template where code='accountLoginStat4Month';
+INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'5002','平台/登录统计','每月登录帐号数统计(图表)','accountLoginStat4Month'
+   ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
+,'{'||chr(13)||'columns: ['||chr(13)||
+'    {id: "logday", label: "登录月", width: 100, el:"logday"},'||chr(13)||
+'    {id: "count", label: "登录帐号数", width: 100, el:"count"},'||chr(13)||
+'],'||chr(13)||
+'sql: "select logday, count(*) as count, string_agg(name,'','')'||chr(13)||
+'    from (select distinct h.actor_id as id,h.actor_name as name,to_char(l.file_date, ''YYYY-MM'') as logday'||chr(13)||
+'        from bc_log_system l inner join bc_identity_actor_history h on h.id=l.author_id'||chr(13)||
+'        where l.type_ in (0,3) $if{condition != null}and ${condition}$end'||chr(13)||
+'    ) ds group by logday order by logday desc",'||chr(13)||
+'width: 600,'||chr(13)||
+'height: 400,'||chr(13)||
+'type:"chart",'||chr(13)||
+'chartOption:{'||chr(13)||
+'    chart:{defaultSeriesType:"areaspline"},'||chr(13)||
+'    title:{text:"每月登录帐号数统计"},'||chr(13)||
+'    xAxis: {labels: {rotation: -45,align: "right"}},'||chr(13)||
+'    yAxis: {title: {text: "登录帐号数(个/每月)"}},'||chr(13)||
+'    series: [{name:"帐号数"}]'||chr(13)||
+'}'||chr(13)||
+'}');
+
 	  
 -- 插入报表模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_report_template where code='contract4Labour.list';
