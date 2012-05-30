@@ -829,6 +829,151 @@ INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BAS
 	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='外地农村' and start_year=2008 and start_month=7),'医疗',8,2,2009;
 INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
 	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='外地农村' and start_year=2008 and start_month=7),'重疾',0.26,0,3380;
+	
+-- 插入2011年其它户口性质类型社保收费规则
+--番禺城镇
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'番禺城镇'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺城镇' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺城镇' and start_year=2011 and start_month=7),'失业',2,1,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺城镇' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺城镇' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺城镇' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺城镇' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--番禺农村
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'番禺农村'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺农村' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺农村' and start_year=2011 and start_month=7),'失业',2,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺农村' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺农村' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺农村' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='番禺农村' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--花都城镇
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'花都城镇'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都城镇' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都城镇' and start_year=2011 and start_month=7),'失业',2,1,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都城镇' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都城镇' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都城镇' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都城镇' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--花都农村
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'花都农村'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都农村' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都农村' and start_year=2011 and start_month=7),'失业',2,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都农村' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都农村' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都农村' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='花都农村' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--增城城镇
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'增城城镇'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城城镇' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城城镇' and start_year=2011 and start_month=7),'失业',2,1,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城城镇' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城城镇' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城城镇' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城城镇' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--增城农村
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'增城农村'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城农村' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城农村' and start_year=2011 and start_month=7),'失业',2,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城农村' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城农村' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城农村' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='增城农村' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--从化城镇
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'从化城镇'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化城镇' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化城镇' and start_year=2011 and start_month=7),'失业',2,1,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化城镇' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化城镇' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化城镇' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化城镇' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
+
+--从化农村
+INSERT INTO BS_SOCIALSECURITYRULE (id,area_id,area_name,start_year,start_month,house_type,author_id,file_date)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bc_placeorigin where code='440100')
+				,(select full_name from bc_placeorigin where code='440100'),2011,7,'从化农村'
+				,(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),now();
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化农村' and start_year=2011 and start_month=7),'养老',12,8,2018;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化农村' and start_year=2011 and start_month=7),'失业',2,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化农村' and start_year=2011 and start_month=7),'工伤',0.5,0,1300;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化农村' and start_year=2011 and start_month=7),'生育',0.85,0,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化农村' and start_year=2011 and start_month=7),'医疗',8,2,2725;
+INSERT INTO BS_SOCIALSECURITYRULE_DETAIL(ID,PID,NAME,UNIT_RATE,PERSONAL_RATE,BASE_NUMBER)
+	select NEXTVAL('CORE_SEQUENCE'),(select id from bs_socialsecurityrule where house_type='从化农村' and start_year=2011 and start_month=7),'重疾',0.26,0,4541;
 
 -- 删除户口类型为番禺、花都选项
 delete from BC_OPTION_ITEM where key_='huadu' and value_='花都';
@@ -1119,6 +1264,8 @@ INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,E
 			VALUES (18,0,'1902','ods','OpenDocument电子表格',false,true,'ods',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
 			VALUES (19,0,'9999','other','其它附件',false,true,null,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+			
+			
 	  
 -- 插入模板：每日登录帐号数统计模板
 delete from bc_template where code='accountLoginStat4Day.excel';
@@ -1421,13 +1568,6 @@ insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNE
 values (NEXTVAL('CORE_SEQUENCE'),0,'1009','营运系统/经济合同附件','BC-XYLHT',' BC-GKHT-A01-20120416',true,false,'/bs/contract4Charger.GKHTA0120120416.docx',37888,'挂靠合同','',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
--- 插入经济合同附件承包合同样式
-insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'0001','营运系统/经济合同附件','BC-CBHT-test','BC-CBHT-A04-20111101-test',true,false,'/bs/contract4Charger.CBHTA0420111101-test.docx',49152,'承包合同模板样式1','适用于承包车',
-				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'0002','营运系统/经济合同附件','BC-CBHT-test2','BC-CBHT-A04-20111101-test2',true,false,'/bs/contract4Charger.CBHTA0420111101-test2.docx',49152,'承包合同模板样式2','适用于承包车',
-				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 				
 --经济合同模块表添加提前终止方，协议期限
 --提前终止方
