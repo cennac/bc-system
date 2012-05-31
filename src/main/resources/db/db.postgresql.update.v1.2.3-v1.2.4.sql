@@ -1568,6 +1568,13 @@ insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNE
 values (NEXTVAL('CORE_SEQUENCE'),0,'1009','营运系统/经济合同附件','BC-XYLHT',' BC-GKHT-A01-20120416',true,false,'/bs/contract4Charger.GKHTA0120120416.docx',37888,'挂靠合同','',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
+--插入劳动合同附件模板				
+insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),0,'002001','营运系统/劳动合同附件','BC-LDHT01','BC-LDHT01-A00-20110805',true,false,'/bs/contract4Labour.LDHT01A0020110805.docx',24576,'司机劳动合同','',
+				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),0,'002002','营运系统/劳动合同附件','BC-LDHT02','BC-LDHT02-A00-20120205',true,false,'/bs/contract4Labour.LDHT02A0020120205.docx',22528,'司机劳动合同(新运力)','2011年新运力车',
+				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));				
 				
 --经济合同模块表添加提前终止方，协议期限
 --提前终止方
