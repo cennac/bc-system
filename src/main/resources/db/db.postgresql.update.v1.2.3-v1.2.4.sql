@@ -1325,7 +1325,12 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 '    series: [{name:"帐号数"}]'||chr(13)||
 '}'||chr(13)||
 '}');
-
+	  
+-- 插入模板：司机劳动合同总表(对财务对社保的数据)
+delete from bc_template where code='contract4Labour.list.excel';
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1601',(select id from bc_template_type where code='xls'),'营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list.excel','1'
+    ,'bs/contract4Labour.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
 	  
 -- 插入报表模板：司机劳动合同总表(对财务对社保的数据)
 delete from bc_report_template where code='contract4Labour.list';
