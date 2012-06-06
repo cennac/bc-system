@@ -1749,7 +1749,7 @@ insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNE
 values (NEXTVAL('CORE_SEQUENCE'),0,'001201','营运系统/经济合同附件','BC-SFTZ','BC-SFTZ-01',true,false,'/bs/contract4Charger.SFTZ01.xls',20480,'收费通知通用模板','',
 				(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员')); 
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'001201','营运系统/经济合同附件','BC-GKHTSFTZ','BC-GKHTSFTZ-01',true,false,'/bs/contract4Charger.GKHTSFTZ01.xls',18432,'挂靠合同收费通知模板','',
+values (NEXTVAL('CORE_SEQUENCE'),0,'001202','营运系统/经济合同附件','BC-GKHTSFTZ','BC-GKHTSFTZ-01',true,false,'/bs/contract4Charger.GKHTSFTZ01.xls',18432,'挂靠合同收费通知模板','',
 				(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员')); 				
 
 				
@@ -1791,5 +1791,9 @@ COMMENT ON COLUMN BS_CONTRACT_CHARGER.AGREEMENT_START_DATE  IS '协议期限(开
 ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN AGREEMENT_END_DATE TIMESTAMP;
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.AGREEMENT_END_DATE  IS '协议期限(结束日期)';
 
-
+-- 模板管理员权限配置
+-- 谢晓俭
+insert into BC_IDENTITY_ROLE_ACTOR(RID,AID) 
+    select am.id,af.id from  BC_IDENTITY_ROLE am,BC_IDENTITY_ACTOR af where af.code = 'jane' 
+    and am.code = 'BC_TEMPLATE'; 
 				
