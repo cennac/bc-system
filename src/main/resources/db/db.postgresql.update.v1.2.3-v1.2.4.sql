@@ -1749,7 +1749,7 @@ insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNE
 values (NEXTVAL('CORE_SEQUENCE'),0,'001201','营运系统/经济合同附件','BC-SFTZ','BC-SFTZ-01',true,false,'/bs/contract4Charger.SFTZ01.xls',20480,'收费通知通用模板','',
 				(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员')); 
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),0,'001201','营运系统/经济合同附件','BC-GKHTSFTZ','BC-GKHTSFTZ-01',true,false,'/bs/contract4Charger.GKHTSFTZ01.xls',18432,'挂靠合同收费通知模板','',
+values (NEXTVAL('CORE_SEQUENCE'),0,'001202','营运系统/经济合同附件','BC-GKHTSFTZ','BC-GKHTSFTZ-01',true,false,'/bs/contract4Charger.GKHTSFTZ01.xls',18432,'挂靠合同收费通知模板','',
 				(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员')); 				
 
 				
@@ -1791,10 +1791,140 @@ COMMENT ON COLUMN BS_CONTRACT_CHARGER.AGREEMENT_START_DATE  IS '协议期限(开
 ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN AGREEMENT_END_DATE TIMESTAMP;
 COMMENT ON COLUMN BS_CONTRACT_CHARGER.AGREEMENT_END_DATE  IS '协议期限(结束日期)';
 
-
+-- 模板管理员权限配置
+-- 谢晓俭
+insert into BC_IDENTITY_ROLE_ACTOR(RID,AID) 
+    select am.id,af.id from  BC_IDENTITY_ROLE am,BC_IDENTITY_ACTOR af where af.code = 'jane' 
+    and am.code = 'BC_TEMPLATE'; 
 --收费明细表添加特殊配置
 ALTER TABLE BS_CONTRACT_FEE_DETAIL ADD COLUMN SPEC VARCHAR(255);
 COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.SPEC IS '特殊配置';
 
+			
+-- ##劳动合同表新增字段## --
+-- 户口所在地
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN DOMICILE_PLACE VARCHAR(255);
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.DOMICILE_PLACE IS '户口所在地';
+-- 文化程度
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN CULTURAL_DEGREE VARCHAR(255);
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.CULTURAL_DEGREE IS '文化程度';
+-- 婚姻状况
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN MARITAL_STATUS VARCHAR(255);
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.MARITAL_STATUS IS '婚姻状况';
 
-				
+
+-- ##OptionItem更新以及新增## --
+-- 户口性质
+update BC_OPTION_ITEM set key_ = '10.本市城镇' where VALUE_ = '本地城镇';
+update BC_OPTION_ITEM set key_ = '11.本地农村' where VALUE_ = '本地农村';
+update BC_OPTION_ITEM set key_ = '20.外地城镇' where VALUE_ = '外地城镇';
+update BC_OPTION_ITEM set key_ = '21.外地农村' where VALUE_ = '外地农村';
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '50.番禺城镇', '番禺城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', '51.番禺农村', '番禺农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', '60.花都城镇', '花都城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', '61.花都农村', '花都农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', '70.增城城镇', '增城城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', '71.增城农村', '增城农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', '80.从化城镇', '从化城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', '81.从化农村', '从化农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+
+-- 劳动合同文化程度
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5045', 'contract4Labour.cultural.degree', '文化程度', null);
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '80.小学', '小学', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '70.初中', '初中', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '40.中专中技', '中专中技', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '61.高中', '高中', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '31.大专', '大专', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', '21.大学', '大学', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', '99.其他', '其他', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+
+-- 劳动合同婚姻状况
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5046', 'contract4Labour.marital.status', '婚姻状况', null);
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '1.未婚', '未婚', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '2.在婚', '在婚', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '3.丧偶', '丧偶', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '4.离婚', '离婚', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '9.其他', '其他', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status'; 
+
+
+-- 插入模板：劳动局用工备案表
+delete from bc_template where code='driver.list.new.xls';
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1302',(select id from bc_template_type where code='xls'),'营运系统/统计报表','劳动局用工备案表','driver.list.new','1'
+    ,'bs/driver.list.new.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+
+-- 插入报表模板：劳动局用工备案表
+delete from bc_report_template where code='driver.list.new';
+INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1302','营运系统/统计报表','劳动局用工备案表','driver.list.new'
+   ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
+,'{'||chr(13)||'columns: ['||chr(13)||
+'    {type: "id",id: "cl.id", width: 40, el:"id"},'||chr(13)||
+'    {id: "cl.insurcode", label: "个人社保号", width: 80},'||chr(13)||
+'    {id: "cl.cert_identity", label: "身份号码", width: 150},'||chr(13)||
+'    {id: "man.name", label: "姓名", width: 50},'||chr(13)||
+'    {id: "houseType", label: "户口性质", width: 80},'||chr(13)||
+'    {id: "domicilePlace", label: "户口所在地", width: 150},'||chr(13)||
+'    {id: "mingzu", label: "民族", width: 60},'||chr(13)||
+'    {id: "zhengzhimianmao", label: "政治面貌", width: 80},'||chr(13)||
+'    {id: "maritalStatus", label: "婚姻状况", width: 80},'||chr(13)||
+'    {id: "culturalDegree", label: "文化程度", width: 80},'||chr(13)||
+'    {id: "zhicheng", label: "职称", width: 130},'||chr(13)||
+'    {id: "jishudengji", label: "技术等级", width: 80},'||chr(13)||
+'    {id: "gongzuogangwei", label: "工作岗位", width: 130},'||chr(13)||
+'    {id: "jiuyeqianshenfen", label: "就业前身份", width: 90},'||chr(13)||
+'    {id: "shiyedengjihaoma", label: "本市人员失业登记号码", width: 150},'||chr(13)||
+'    {id: "jiuyexingshi", label: "就业形式", width: 130},'||chr(13)||
+'    {id: "beianleibie", label: "备案类别", width: 70},'||chr(13)||
+'    {id: "hetongleixing", label: "合同类型", width: 90},'||chr(13)||
+'    {id: "c.start_date", label: "合同开始日期", width: 90},'||chr(13)||
+'    {id: "c.end_date", label: "合同结束日期", width: 90},'||chr(13)||
+'    {id: "hukoudizhi", label: "户口地址", width: 150},'||chr(13)||
+'    {id: "man.address1", label: "现联系(暂住地址)", width: 250},'||chr(13)||
+' 	 {id: "youzhengbianma", label: "邮政编码", width: 70},'||chr(13)||
+'    {id: "man.phone", label: "个人联系电话", width: 100},'||chr(13)||
+'    {id: "desc", label: "备注", width: 100},'||chr(13)||
+'],'||chr(13)||
+'sql: "select cl.id cid,cl.insurcode,cl.cert_identity certIdentity,man.name manName,(case when 1=1 then (select key_ from bc_option_item where value_= cl.house_type and cl.house_type != '''') end) houseType'||chr(13)||
+'    ,(case when 1=1 then (select key_ from bc_option_item where value_= cl.domicile_place and cl.domicile_place != '''') end) domicilePlace,(case when 1=1 then ''01.汉族'' end) mingzu'||chr(13)||
+'    ,(case when 1=1 then ''13.群众'' end) zhengzhimianmao,(case when 1=1 then (select key_ from bc_option_item where value_= cl.marital_status and cl.marital_status != '''') end) maritalStatus'||chr(13)||
+'    ,(case when 1=1 then (select key_ from bc_option_item where value_= cl.cultural_degree and cl.cultural_degree != '''') end) culturalDegree,(case when 1=1 then ''29.未评技术职称'' end) zhicheng'||chr(13)||
+'    ,(case when 1=1 then ''6.无'' end) jishudengji,(case when 1=1 then ''6240193.小车司机'' end) gongzuogangwei,(case when 1=1 then ''10.其他'' end) jiuyeqianshenfen,(case when 1=1 then '''' end) shiyedengjihaoma'||chr(13)||
+'    ,(case when 1=1 then ''03.进入用人单位'' end) jiuyexingshi,(case when 1=1 then ''1.新签'' end) beianleibie,(case when 1=1 then ''01.有固定期'' end) hetongleixing'||chr(13)||
+'    ,to_char(c.start_date,''YYYYMMDD'') start_date,to_char(c.end_date,''YYYYMMDD'') end_date,(case when 1=1 then '''' end) hukoudizhi,man.address1 address1,(case when 1=1 then ''510370'' end) youzhengbianma,man.phone,cl.remark'||chr(13)||
+'    from BS_CONTRACT_LABOUR cl'||chr(13)||
+'    inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
+'    inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
+'    inner join BS_CARMAN man on man.id = manc.man_id'||chr(13)||
+'    where c.status_ = 0 $if{condition != null}and ${condition}$end'||chr(13)||
+'    order by c.file_date desc",'||chr(13)||
+'condition: "action:bc-business/contract4Labours/conditions2",'||chr(13)||
+'search: "cl.insurcode,man.name",'||chr(13)||
+'export: "tpl:driver.list.new.excel",'||chr(13)||
+'width: 900,'||chr(13)||
+'height: 490,'||chr(13)||
+'paging: true'||chr(13)||
+'}');
