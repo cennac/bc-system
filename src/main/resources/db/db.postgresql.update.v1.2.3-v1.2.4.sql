@@ -1387,7 +1387,8 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 
 --费用模块表添加特殊配置
 ALTER TABLE BS_FEE_TEMPLATE ADD COLUMN SPEC VARCHAR(255);
-COMMENT ON COLUMN BS_FEE_TEMPLATE.SPEC IS '特殊配置';
+COMMENT ON COLUMN BS_FEE_TEMPLATE.SPEC IS '特殊配置:isByDriver:是否按司机填写数量;isDeadline:是否加入合同期限;isSplit:
+是否拆分[按新承包合同的每月基准承包款的拆分规则拆分];lackPrice:不足一个月应交的承包款;cutPrice:每月承包款递减的金额';
 
 -- 费用模板增加编码字段
 ALTER TABLE BS_FEE_TEMPLATE ADD COLUMN CODE VARCHAR(255) NOT NULL;
@@ -1761,7 +1762,16 @@ insert into BC_IDENTITY_ROLE_ACTOR(RID,AID)
     and am.code = 'BC_TEMPLATE'; 
 --收费明细表添加特殊配置
 ALTER TABLE BS_CONTRACT_FEE_DETAIL ADD COLUMN SPEC VARCHAR(255);
-COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.SPEC IS '特殊配置';
+COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.SPEC IS '特殊配置:isByDriver:是否按司机填写数量;isDeadline:是否加入合同期限;isSplit:
+是否拆分[按新承包合同的每月基准承包款的拆分规则拆分];lackPrice:不足一个月应交的承包款;cutPrice:每月承包款递减的金额';
+
+-- 迁移记录管理角色数据
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0134', 'BS_CAR_BY_DRIVER_HISTORY','迁移记录管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR_BY_DRIVER_HISTORY' 
+	and m.type_ > 1 and m.order_ in ('030600')
+	order by m.order_;
 
 			
 -- ##劳动合同表新增字段## --
