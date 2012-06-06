@@ -1395,6 +1395,7 @@ COMMENT ON COLUMN BS_FEE_TEMPLATE.CODE IS '编码：全局唯一';
 ALTER TABLE BS_FEE_TEMPLATE ADD CONSTRAINT BSUK_FEE_TEMPLATE_CODE UNIQUE (CODE);
 
 
+
 -- 费用模板数据初始化
 -- 新承包
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,desc_,file_date,author_id)
@@ -1449,9 +1450,10 @@ insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,cou
 		(select id from BS_FEE_TEMPLATE where name='旧承包合同模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.JCBHT.YJCBK', 1,'002004','预交基准承包款', 11775, 2, 4, '',
-		'',(select id from BS_FEE_TEMPLATE where name='旧承包合同模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
+		'{"isDeadline":true,"desc":"isDeadline为是否加入合同期限"}',(select id from BS_FEE_TEMPLATE where name='旧承包合同模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.JCBHT.MYCBK', 1,'002005','每月基准承包款', 7850, 1, 1, '',
+		'{"isDeadline":true,"desc":"isDeadline为是否加入合同期限"}',
 		(select id from BS_FEE_TEMPLATE where name='旧承包合同模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.JCBHT.GRSDS', 1,'002006','个人所得税', 10, 1, 1, '',
@@ -1484,8 +1486,9 @@ insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,cou
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.XYLHT.HTBZJ', 1,'003003','合同保证金', 10000, 1, 4, '',
 		(select id from BS_FEE_TEMPLATE where name='2012年新运力承包合同模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
+insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.XYLHT.MYCBK', 1,'003004','每月承包款', 5800, 1, 1, '',
+		'{"isDeadline":true,"desc":"isDeadline为是否加入合同期限"}',
 		(select id from BS_FEE_TEMPLATE where name='2012年新运力承包合同模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.XYLHT.YJCBK', 1,'003005','预交承包款', 11600, 1, 4, '',
@@ -1519,8 +1522,9 @@ insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,cou
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.XMDHT.HTBZJ', 1,'004003','合同保证金', 10000, 1, 4, '',
 		(select id from BS_FEE_TEMPLATE where name='买断车02续买断模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
+insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.XMDHT.MYCBK', 1,'004004','每月承包款', 2710, 1, 1, '',
+		'{"isDeadline":true,"desc":"isDeadline为是否加入合同期限"}',
 		(select id from BS_FEE_TEMPLATE where name='买断车02续买断模板'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,pid,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.XMDHT.GRSDS', 1,'004005','个人所得税', 72, 1, 1, '',
@@ -1595,8 +1599,10 @@ insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,cou
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.ORDER.HTBZJ', 1,999003,'合同保证金', 10000, 1, 4, '',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.ORDER.YJCBK', 1,999004,'预交承包款', 10000, 1, 4,'',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
-insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,file_date,author_id)
-	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.ORDER.MYCBK', 1,999005,'每月承包款', 10000, 1, 1, '',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,file_date,author_id)
+	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.ORDER.MYCBK', 1,999005,'每月承包款', 10000, 1, 1, '',
+	'{"isDeadline":true,"desc":"isDeadline为是否加入合同期限"}',
+	now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 insert into BS_FEE_TEMPLATE (id,status_,module_,code,type_,order_,name,price,count_,pay_type,desc_,spec,file_date,author_id)
 	values (NEXTVAL('CORE_SEQUENCE'), 0, '经济合同','CC.ORDER.GRSDS', 1,999006,'个人所得税', 10, 1, 1, '',
 	'{"isByDriver":true,"desc":"isByDriver为是否按司机填写数量"}',now(),
