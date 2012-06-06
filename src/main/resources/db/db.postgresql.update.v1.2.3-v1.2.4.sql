@@ -1796,5 +1796,72 @@ COMMENT ON COLUMN BS_CONTRACT_CHARGER.AGREEMENT_END_DATE  IS '协议期限(结�
 ALTER TABLE BS_CONTRACT_FEE_DETAIL ADD COLUMN SPEC VARCHAR(255);
 COMMENT ON COLUMN BS_CONTRACT_FEE_DETAIL.SPEC IS '特殊配置';
 
+			
+-- ##劳动合同表新增字段## --
+-- 户口所在地
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN DOMICILE_PLACE VARCHAR(255);
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.DOMICILE_PLACE IS '户口所在地';
+-- 文化程度
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN CULTURAL_DEGREE VARCHAR(255);
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.CULTURAL_DEGREE IS '文化程度';
+-- 婚姻状况
+ALTER TABLE BS_CONTRACT_LABOUR ADD COLUMN MARITAL_STATUS VARCHAR(255);
+COMMENT ON COLUMN BS_CONTRACT_LABOUR.MARITAL_STATUS IS '婚姻状况';
 
-				
+
+-- ##OptionItem更新以及新增## --
+-- 户口性质
+update BC_OPTION_ITEM set key_ = '10.本市城镇' where VALUE_ = '本地城镇';
+update BC_OPTION_ITEM set key_ = '11.本地农村' where VALUE_ = '本地农村';
+update BC_OPTION_ITEM set key_ = '20.外地城镇' where VALUE_ = '外地城镇';
+update BC_OPTION_ITEM set key_ = '21.外地农村' where VALUE_ = '外地农村';
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '50.番禺城镇', '番禺城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', '51.番禺农村', '番禺农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', '60.花都城镇', '花都城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', '61.花都农村', '花都农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', '70.增城城镇', '增城城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', '71.增城农村', '增城农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', '80.从化城镇', '从化城镇', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '12', '81.从化农村', '从化农村', null from BC_OPTION_GROUP g where g.KEY_='carMan.houseType'; 
+
+-- 劳动合同文化程度
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5045', 'contract4Labour.cultural.degree', '文化程度', null);
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '80.小学', '小学', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '70.初中', '初中', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '40.中专中技', '中专中技', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '61.高中', '高中', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '31.大专', '大专', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', '21.大学', '大学', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', '99.其他', '其他', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.cultural.degree'; 
+
+-- 劳动合同婚姻状况
+insert into BC_OPTION_GROUP (ID,ORDER_, KEY_, VALUE_, ICON) values (NEXTVAL('CORE_SEQUENCE'), '5046', 'contract4Labour.marital.status', '婚姻状况', null);
+
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', '1.未婚', '未婚', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', '2.在婚', '在婚', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', '3.丧偶', '丧偶', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status';
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', '4.离婚', '离婚', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status'; 
+insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', '9.其他', '其他', null from BC_OPTION_GROUP g where g.KEY_='contract4Labour.marital.status'; 
+
