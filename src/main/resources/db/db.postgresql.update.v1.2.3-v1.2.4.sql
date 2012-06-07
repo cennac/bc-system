@@ -1816,7 +1816,7 @@ COMMENT ON COLUMN BS_CONTRACT_LABOUR.MARITAL_STATUS IS '婚姻状况';
 -- ##OptionItem更新以及新增## --
 -- 户口性质
 update BC_OPTION_ITEM set key_ = '10.本市城镇' where VALUE_ = '本地城镇';
-update BC_OPTION_ITEM set key_ = '11.本地农村' where VALUE_ = '本地农村';
+update BC_OPTION_ITEM set key_ = '11.本市农村' where VALUE_ = '本地农村';
 update BC_OPTION_ITEM set key_ = '20.外地城镇' where VALUE_ = '外地城镇';
 update BC_OPTION_ITEM set key_ = '21.外地农村' where VALUE_ = '外地农村';
 
