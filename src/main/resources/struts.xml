@@ -46,6 +46,7 @@
 	<include file="cn/bc/placeorigin/web/struts2/struts.xml" />
 	<include file="cn/bc/feedback/web/struts2/struts.xml" />
 	<include file="cn/bc/template/web/struts2/struts.xml" />
+	<include file="cn/bc/investigate/web/struts2/struts.xml" />
 
 	<!-- bc营运管理子系统的配置文件 -->
 	<include file="cn/bc/business/web/struts2/struts.xml" />
