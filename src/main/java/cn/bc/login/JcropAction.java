@@ -81,7 +81,7 @@ public class JcropAction extends ActionSupport implements SessionAware {
 		// 读取图片文件
 		FileInputStream is = new FileInputStream(srcPath);
 		Iterator<ImageReader> it = ImageIO
-				.getImageReadersByFormatName(srcAttach.getExtension());
+				.getImageReadersByFormatName(srcAttach.getFormat());
 		ImageReader reader = it.next();
 		ImageInputStream iis = ImageIO.createImageInputStream(is);
 		reader.setInput(iis, true);
@@ -101,7 +101,7 @@ public class JcropAction extends ActionSupport implements SessionAware {
 		String fileName = srcAttach.getPtype()
 				+ ".crop_"
 				+ new SimpleDateFormat("yyyyMMddHHmmssSSSS").format(now
-						.getTime()) + "." + srcAttach.getExtension();// 不含路径的文件名
+						.getTime()) + "." + srcAttach.getFormat();// 不含路径的文件名
 		relativeFilePath = subFolder + "/" + fileName;
 		realFileDir = WebUtils.rootPath + "/" + getText("app.data.subPath")
 				+ "/" + subFolder;
@@ -116,14 +116,14 @@ public class JcropAction extends ActionSupport implements SessionAware {
 
 		// 保存剪切好的新图片
 		File newFile = new File(realFilePath);
-		ImageIO.write(bi, srcAttach.getExtension(), newFile);
+		ImageIO.write(bi, srcAttach.getFormat(), newFile);
 
 		// 记录一个附件记录
 		Attach attach = new Attach();
 		attach.setAuthor(context.getUserHistory());
 		attach.setPtype(srcAttach.getPtype() + ".crop");
 		attach.setPuid(srcAttach.getPuid());
-		attach.setExtension(srcAttach.getExtension());
+		attach.setFormat(srcAttach.getFormat());
 		attach.setFileDate(now);
 		attach.setPath(relativeFilePath);
 		attach.setSize(new FileInputStream(newFile).available());// 新图片的大小
