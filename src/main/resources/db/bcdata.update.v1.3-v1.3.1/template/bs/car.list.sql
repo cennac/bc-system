@@ -1,10 +1,10 @@
-select car.id,to_char(car.register_date,'YYYY/MM/DD') registerDate
-	,(select to_char(c1.end_date,'YYYY/MM/DD') from bs_contract c1
+select car.id,to_char(car.register_date,'YYYY-MM-DD') registerDate
+	,(select to_char(c1.end_date,'YYYY-MM-DD') from bs_contract c1
 	  left join bs_car_contract carc1 on c1.id = carc1.contract_id
 	  where carc1.car_id = car.id and c1.type_=2 order by c1.sign_date desc limit 1) contractEndDate
-	,(select to_char(cp.commerial_end_date,'YYYY/MM/DD') from bs_car_policy cp
+	,(select to_char(cp.commerial_end_date,'YYYY-MM-DD') from bs_car_policy cp
 	  where cp.car_id = car.id order by cp.commerial_start_date desc limit 1) commerialEndDate
-	,(select to_char(cp.greenslip_end_date,'YYYY/MM/DD') from bs_car_policy cp
+	,(select to_char(cp.greenslip_end_date,'YYYY-MM-DD') from bs_car_policy cp
 	  where cp.car_id = car.id order by cp.greenslip_start_date desc limit 1) greenslipEndDate
 	,car.bs_type,car.code,(car.plate_type || '·' || car.plate_no) carPlate
 	,substring(car.plate_no from length(car.plate_no) for length(car.plate_no)) carPlateLastNo,car.origin_no

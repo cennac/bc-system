@@ -126,6 +126,12 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 'paging: true'||chr(13)||
 '}');
 
+-- 权限分配(何懿颖,黄剑媚,甘智,何婉莉)
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'car.list'),100460);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'car.list'),100444);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'car.list'),100028);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'car.list'),100452);
+
 ----------------   ##  车辆资料报表脚本结束 ##   ----------------
 
 
@@ -198,4 +204,148 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 'paging: true'||chr(13)||
 '}');
 
+-- 权限分配(何懿颖,黄剑媚,甘智,何婉莉)
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list'),100460);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list'),100444);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list'),100028);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list'),100452);
+
 ----------------   ##  驾驶员资料报表脚本结束 ##   ----------------
+
+
+
+----------------   ##  司机劳动合同总表报表脚本开始 ##   ----------------
+
+
+
+-- 插入报表模板：司机劳动合同总表(对财务对社保的数据)
+-- 删除关联司机了劳动合同模板的外键数据(权限控制)
+delete from bc_report_template_actor where tid = 6301; 
+
+delete from bc_report_template where code='contract4Labour.list';
+INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1601','营运系统/统计报表','司机劳动合同总表(对财务对社保的数据)','contract4Labour.list'
+   ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
+,'{'||chr(13)||'columns: ['||chr(13)||
+'    {type: "id",id: "cl.id", width: 40, el:"id"},'||chr(13)||
+'    {id: "car.company", label: "公司", width: 40},'||chr(13)||
+'    {id: "u.name", label: "分公司", width: 70},'||chr(13)||
+'    {id: "m.name", label: "车队", width: 70},'||chr(13)||
+'    {id: "car.plate_type", label: "车辆", width: 80},'||chr(13)||
+'    {id: "car.code", label: "自编号", width: 55},'||chr(13)||
+'    {id: "shenfen", label: "身份", width: 65},'||chr(13)||
+'    {id: "man.name", label: "姓名", width: 60},'||chr(13)||
+'    {id: "cl.insurcode", label: "社保号", width: 80},'||chr(13)||
+'    {id: "man.cert_identity", label: "身份证", width: 160},'||chr(13)||
+'    {id: "cl.house_type", label: "户口性质", width: 80},'||chr(13)||
+'    {id: "c.start_date", label: "合同期(开始)", width: 90},'||chr(13)||
+'    {id: "c.end_date", label: "合同期(结束)", width: 90},'||chr(13)||
+'    {id: "cl.joindate", label: "参保日期", width: 90},'||chr(13)||
+'    {id: "cl.insurance_type", label: "参保险种", width: 190},'||chr(13)||
+'    {id: "man.phone", label: "联系电话", width: 100},'||chr(13)||
+'    {id: "desc", label: "备注", width: 100},'||chr(13)||
+'    {id: "car.bs_type", label: "营运性质", width: 80},'||chr(13)||
+'    {id: "car.register_date", label: "车辆登记日期", width: 90},'||chr(13)||
+'],'||chr(13)||
+'sql: "select cl.id cid,car.company,u.name unitName,m.name mName,car.plate_type||''.''||car.plate_no as plate,car.code carCode,'||chr(13)||
+'    (case when(select 1 from BS_CONTRACT con'||chr(13)||
+'    inner join BS_CARMAN_CONTRACT mc on con.id = mc.contract_id'||chr(13)||
+'    where con.type_ = 2 and con.status_ = 0 and mc.man_id = man.id limit 1) = 1 then ''司机责任人'' else ''司机'' end)'||chr(13)||
+'    ,man.name manName,cl.insurcode,man.cert_identity,cl.house_type,to_char(c.start_date,''YYYY-MM-DD'') start_date,to_char(c.end_date,''YYYY-MM-DD'') end_date'||chr(13)||
+'    ,to_char(cl.joindate,''YYYY-MM-DD'') joindate,cl.insurance_type,man.phone,cl.remark,car.bs_type,to_char(car.register_date,''YYYY-MM-DD'') register_date'||chr(13)||
+'    from BS_CONTRACT_LABOUR cl'||chr(13)||
+'    inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
+'    inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
+'    inner join BS_CARMAN man on man.id = manc.man_id'||chr(13)||
+'    inner join BS_CAR_CONTRACT carc on carc.contract_id = c.id'||chr(13)||
+'    inner join BS_CAR car on car.id = carc.car_id'||chr(13)||
+'    inner join bs_motorcade m on m.id = car.motorcade_id'||chr(13)||
+'    inner join bc_identity_actor u on u.id=m.unit_id'||chr(13)||
+'    where c.status_ = 0 $if{condition != null}and ${condition}$end'||chr(13)||
+'    order by car.company asc,u.order_ asc,m.code asc,c.file_date desc",'||chr(13)||
+'condition: "action:bc-business/contract4Labours/conditions",'||chr(13)||
+'search: "car.company,u.name,m.name,car.plate_no,man.name",'||chr(13)||
+'export: "tpl:contract4Labour.list.excel",'||chr(13)||
+'width: 900,'||chr(13)||
+'height: 490,'||chr(13)||
+'paging: true'||chr(13)||
+'}');
+
+-- 权限分配(黄瑞琼,陈旭明,陆伟卿)
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'contract4Labour.list'),100292);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'contract4Labour.list'),100344);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'contract4Labour.list'),100480);
+
+----------------   ##  司机劳动合同总表报表脚本结束 ##   ----------------
+
+
+
+----------------   ##  劳动用工备案表报表脚本开始 ##   ----------------
+-- 删除关联劳动用工备案表模板的外键数据(权限控制)
+delete from bc_report_template_actor where tid = 6411; 
+
+-- 插入模板：劳动局用工备案表
+delete from bc_template where code='driver.list.new.excel';
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id,uid_)
+    VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1302',(select id from bc_template_type where code='xls'),'营运系统/统计报表','劳动局用工备案表','driver.list.new.excel','1'
+    ,'bs/driver.list.new.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146,'Template.mt.'|| NEXTVAL('CORE_SEQUENCE'));
+
+-- 插入报表模板：劳动局用工备案表
+delete from bc_report_template where code='driver.list.new';
+INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_date, author_id, config)
+   VALUES (NEXTVAL('CORE_SEQUENCE'),0,'1302','营运系统/统计报表','劳动局用工备案表','driver.list.new'
+   ,to_date('2012-01-01', 'yyyy-mm-dd'),1146
+,'{'||chr(13)||'columns: ['||chr(13)||
+'    {type: "id",id: "cl.id", width: 40, el:"id"},'||chr(13)||
+'    {id: "cl.insurcode", label: "个人社保号", width: 80},'||chr(13)||
+'    {id: "man.cert_identity", label: "身份号码", width: 150},'||chr(13)||
+'    {id: "man.name", label: "姓名", width: 50},'||chr(13)||
+'    {id: "houseType", label: "户口性质", width: 80},'||chr(13)||
+'    {id: "domicilePlace", label: "户口所在地", width: 150},'||chr(13)||
+'    {id: "mingzu", label: "民族", width: 60},'||chr(13)||
+'    {id: "zhengzhimianmao", label: "政治面貌", width: 80},'||chr(13)||
+'    {id: "maritalStatus", label: "婚姻状况", width: 80},'||chr(13)||
+'    {id: "culturalDegree", label: "文化程度", width: 80},'||chr(13)||
+'    {id: "zhicheng", label: "职称", width: 130},'||chr(13)||
+'    {id: "jishudengji", label: "技术等级", width: 80},'||chr(13)||
+'    {id: "gongzuogangwei", label: "工作岗位", width: 130},'||chr(13)||
+'    {id: "jiuyeqianshenfen", label: "就业前身份", width: 90},'||chr(13)||
+'    {id: "shiyedengjihaoma", label: "本市人员失业登记号码", width: 150},'||chr(13)||
+'    {id: "jiuyexingshi", label: "就业形式", width: 130},'||chr(13)||
+'    {id: "beianleibie", label: "备案类别", width: 70},'||chr(13)||
+'    {id: "hetongleixing", label: "合同类型", width: 90},'||chr(13)||
+'    {id: "c.start_date", label: "合同开始日期", width: 90},'||chr(13)||
+'    {id: "c.end_date", label: "合同结束日期", width: 90},'||chr(13)||
+'    {id: "hukoudizhi", label: "户口地址", width: 150},'||chr(13)||
+'    {id: "man.address1", label: "现联系(暂住地址)", width: 250},'||chr(13)||
+' 	 {id: "youzhengbianma", label: "邮政编码", width: 70},'||chr(13)||
+'    {id: "man.phone", label: "个人联系电话", width: 100},'||chr(13)||
+'    {id: "desc", label: "备注", width: 100},'||chr(13)||
+'],'||chr(13)||
+'sql: "select cl.id cid,cl.insurcode,man.cert_identity certIdentity,man.name manName,(case when 1=1 then (select key_ from bc_option_item where value_= cl.house_type and cl.house_type != '''') end) houseType'||chr(13)||
+'    ,(case when 1=1 then (select key_ from bc_option_item where value_= cl.domicile_place and cl.domicile_place != '''') end) domicilePlace,(case when 1=1 then ''01.汉族'' end) mingzu'||chr(13)||
+'    ,(case when 1=1 then ''13.群众'' end) zhengzhimianmao,(case when 1=1 then (select key_ from bc_option_item where value_= cl.marital_status and cl.marital_status != '''') end) maritalStatus'||chr(13)||
+'    ,(case when 1=1 then (select key_ from bc_option_item where value_= cl.cultural_degree and cl.cultural_degree != '''') end) culturalDegree,(case when 1=1 then ''29.未评技术职称'' end) zhicheng'||chr(13)||
+'    ,(case when 1=1 then ''6.无'' end) jishudengji,(case when 1=1 then ''6240193.小车司机'' end) gongzuogangwei,(case when 1=1 then ''10.其他'' end) jiuyeqianshenfen,(case when 1=1 then '''' end) shiyedengjihaoma'||chr(13)||
+'    ,(case when 1=1 then ''03.进入用人单位'' end) jiuyexingshi,(case when 1=1 then ''1.新签'' end) beianleibie,(case when 1=1 then ''01.有固定期'' end) hetongleixing'||chr(13)||
+'    ,to_char(c.start_date,''YYYYMMDD'') start_date,to_char(c.end_date,''YYYYMMDD'') end_date,(case when 1=1 then '''' end) hukoudizhi,man.address1 address1,(case when 1=1 then ''510370'' end) youzhengbianma,man.phone,cl.remark'||chr(13)||
+'    from BS_CONTRACT_LABOUR cl'||chr(13)||
+'    inner join BS_CONTRACT c on c.id = cl.id'||chr(13)||
+'    inner join BS_CARMAN_CONTRACT manc on manc.contract_id = c.id'||chr(13)||
+'    inner join BS_CARMAN man on man.id = manc.man_id'||chr(13)||
+'    where c.status_ = 0 $if{condition != null}and ${condition}$end'||chr(13)||
+'    order by c.file_date desc",'||chr(13)||
+'condition: "action:bc-business/contract4Labours/conditions2",'||chr(13)||
+'search: "cl.insurcode,man.name",'||chr(13)||
+'export: "tpl:driver.list.new.excel",'||chr(13)||
+'width: 900,'||chr(13)||
+'height: 490,'||chr(13)||
+'paging: true'||chr(13)||
+'}');
+
+-- 权限分配(黄瑞琼,陈旭明,陆伟卿)
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list.new'),100292);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list.new'),100344);
+INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list.new'),100480);
+
+----------------   ##  劳动用工备案表报表脚本结束 ##   ----------------
