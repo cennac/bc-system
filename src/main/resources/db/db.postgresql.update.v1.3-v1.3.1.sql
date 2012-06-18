@@ -65,15 +65,15 @@ UPDATE BC_TEMPLATE SET PATH='bs/contract4Labour.R08A0020120302.docx' WHERE CODE=
 
 -- 插入模板：车辆资料表EXCEL模板
 delete from bc_template where code='car.list.excel';
-INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id,uid_)
     VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1101',(select id from bc_template_type where code='xls'),'营运系统/统计报表','车辆资料','car.list.excel','1'
-    ,'bs/car.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    ,'bs/car.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146,'Template.mt.'||NEXTVAL('CORE_SEQUENCE'));
 
 -- 插入模板：车辆资料表SQL脚本
 delete from bc_template where code='car.list.sql';
-INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id,uid_)
     VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1102',(select id from bc_template_type where code='sql'),'营运系统/统计报表','车辆资料SQL脚本','car.list.sql','1'
-    ,'bs/car.list.sql',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    ,'bs/car.list.sql',to_date('2012-01-01', 'yyyy-mm-dd'),1146,'Template.mt.'|| NEXTVAL('CORE_SEQUENCE'));
 
 -- 插入报表模板：车辆资料表
 delete from bc_report_template where code='car.list';
@@ -134,15 +134,15 @@ INSERT INTO bc_report_template(id, status_, order_, category, name, code, file_d
 
 -- 插入模板：驾驶员资料表EXCEL模板
 delete from bc_template where code='driver.list.excel';
-INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id,uid_)
     VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1302',(select id from bc_template_type where code='xls'),'营运系统/统计报表','驾驶员资料','driver.list.excel','1'
-    ,'bs/driver.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    ,'bs/driver.list.xls',to_date('2012-01-01', 'yyyy-mm-dd'),1146,'Template.mt.'|| NEXTVAL('CORE_SEQUENCE'));
 
 -- 插入模板：驾驶员资料表SQL脚本
 delete from bc_template where code='driver.list.sql';
-INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id)
+INSERT INTO bc_template(id, status_,inner_, order_, TYPE_ID,category, subject, code, version_, path, file_date, author_id,uid_)
     VALUES (NEXTVAL('CORE_SEQUENCE'),0,true,'1301',(select id from bc_template_type where code='sql'),'营运系统/统计报表','驾驶员资料SQL脚本','driver.list.sql','1'
-    ,'bs/driver.list.sql',to_date('2012-01-01', 'yyyy-mm-dd'),1146);
+    ,'bs/driver.list.sql',to_date('2012-01-01', 'yyyy-mm-dd'),1146,'Template.mt.'|| NEXTVAL('CORE_SEQUENCE'));
 
 
 -- 插入报表模板：驾驶员资料表
