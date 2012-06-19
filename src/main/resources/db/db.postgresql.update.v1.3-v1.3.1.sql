@@ -450,6 +450,5 @@ $BODY$
   
 -- 删除旧的统计采购单剩余数量函数和统计剩余号码函数
 DROP FUNCTION getbalancecountbyinvoicebuyid(integer);
-DROP INDEX getbalancenumberbyinvoicebuyid_idx;
 DROP FUNCTION getbalancenumberbyinvoicebuyid(INTEGER,INTEGER,CHARACTER VARYING,CHARACTER VARYING);
 ----------------   ##  发票管理脚本结束 ##   ----------------
