@@ -42,15 +42,15 @@ update BC_TEMPLATE set uid_='Template.mt.'||id;
 ALTER TABLE BC_TEMPLATE ALTER COLUMN uid_ SET NOT NULL;
 
 -- 模板更新已初始化的文件路径
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.CBHTA0420111101.docx',ORDER_='001001' WHERE CODE='BC-CBHT';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.CBHTA040120111101.docx',ORDER_='001002' WHERE CODE='BC-CBHT-A0401-20111101';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.MDHTA0120111102.docx',ORDER_='001003' WHERE CODE='BC-MDHT';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.XMDHTA0120111101.docx',ORDER_='001004' WHERE CODE='BC-XMDHT';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.DXHT01A0120111101.docx',ORDER_='001005' WHERE CODE='BC-DXHT01';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.DXHT02A0120111101.docx',ORDER_='001006' WHERE CODE='BC-DXHT02';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.QLHTA0120111101.docx',ORDER_='001007' WHERE CODE='BC-QLHT';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.XYLHTA0020120111.docx',ORDER_='001008' WHERE CODE='BC-XYLHT';
-UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.GKHTA0120120416.docx',ORDER_='001009' WHERE CODE='BC-GKHT';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.CBHTA0420111101.docx' WHERE CODE='BC-CBHT';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.CBHTA040120111101.docx' WHERE CODE='BC-CBHT-A0401-20111101';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.MDHTA0120111102.docx' WHERE CODE='BC-MDHT';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.XMDHTA0120111101.docx' WHERE CODE='BC-XMDHT';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.DXHT01A0120111101.docx' WHERE CODE='BC-DXHT01';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.DXHT02A0120111101.docx' WHERE CODE='BC-DXHT02';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.QLHTA0120111101.docx' WHERE CODE='BC-QLHT';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.XYLHTA0020120111.docx' WHERE CODE='BC-XYLHT';
+UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.GKHTA0120120416.docx' CODE='BC-GKHT';
 UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.SFTZ01.xls' WHERE CODE='BC-SFTZ';
 UPDATE BC_TEMPLATE SET PATH='bs/contract4Charger.GKHTSFTZ01.xls' WHERE CODE='BC-GKHTSFTZ';
 UPDATE BC_TEMPLATE SET PATH='bs/contract4Labour.LDHT01A0020110805.docx' WHERE CODE='BC-LDHT01';
@@ -349,3 +349,107 @@ INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_rep
 INSERT INTO bc_report_template_actor (tid,aid) VALUES ((select rt.id from bc_report_template rt where rt.code= 'driver.list.new'),100480);
 
 ----------------   ##  劳动用工备案表报表脚本结束 ##   ----------------
+
+----------------   ##  发票管理脚本开始 ##   ----------------
+-- 发票采购增加批号
+ALTER TABLE BS_INVOICE_BUY ADD COLUMN PATCH_NO VARCHAR(255);
+COMMENT ON COLUMN BS_INVOICE_BUY.PATCH_NO IS '批号';
+
+-- 发票采购增加工程单号
+ALTER TABLE BS_INVOICE_BUY ADD COLUMN PROJECT_NO VARCHAR(255);
+COMMENT ON COLUMN BS_INVOICE_BUY.PROJECT_NO IS '工程单号';
+
+-- 发票销售表增加类型字段
+ALTER TABLE BS_INVOICE_SELL ADD COLUMN TYPE_ INT;
+COMMENT ON COLUMN BS_INVOICE_SELL.TYPE_ IS '类型：1-已销，2-退票';
+
+-- 更新现有发票销售表中类型都为已销
+UPDATE BS_INVOICE_SELL SET TYPE_=1;
+
+-- 发票销售明细表增加类型字段
+ALTER TABLE BS_INVOICE_SELL_DETAIL ADD COLUMN TYPE_ INT;
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.TYPE_ IS '类型：1-已销，2-退票';
+
+-- 更新现有发票销售明细表中类型都为已销
+UPDATE BS_INVOICE_SELL_DETAIL SET TYPE_=1;
+
+
+-- 删除通用角色发票销售资源入口
+DELETE FROM BC_IDENTITY_ROLE_RESOURCE 
+WHERE RID=(select r.id from BC_IDENTITY_ROLE r where r.code='BC_COMMON') 
+and SID=(select m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.order_ in ('031902')
+	order by m.order_);
+
+-- 增加发票查询资源入口
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '031910','发票查询', '/bc-business/invoice4Sells/paging?readType=3', 'i0800' from BC_IDENTITY_RESOURCE m where m.order_='030000';
+
+-- 通用角色配置发票查询资源入口
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ = 1 and m.order_ in ('031910')
+	order by m.order_;
+
+-- 增加发票退票资源入口
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '031906','发票退票', '/bc-business/invoice4Refunds/paging?', 'i0800' from BC_IDENTITY_RESOURCE m where m.order_='031900';
+
+-- 超级管理员配置发票退票资源
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('031906')
+	order by m.order_;
+
+-- 发票管理员配置发票退票资源
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE_MANAGE' 
+	and m.type_ > 1 and m.order_ in ('031906')
+	order by m.order_;
+
+-- 发票销售管理员配置发票退票资源
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_INVOICE4SELL_MANAGE' 
+	and m.type_ > 1 and m.order_ in ('031906')
+	order by m.order_;
+	
+-- 统计采购单剩余数量函数
+CREATE OR REPLACE FUNCTION get_balancecount_invoice_buyid(bid integer)
+	RETURNS integer AS
+$BODY$
+DECLARE
+	-- 定义变量
+	-- 采购数量
+	buy_count INTEGER;
+	-- 销售数量
+	sell_count INTEGER;
+	-- 退票数量
+	refund_count INTEGER;
+BEGIN
+  --采购数量
+	select count_ into buy_count from bs_invoice_buy where id=bid;
+	--销售数量
+	select sum(count_) into sell_count
+	from bs_invoice_sell_detail where buy_id=bid and status_=0 and type_=1;
+	--退票数量
+	select sum(count_) into refund_count
+	from bs_invoice_sell_detail where buy_id=bid and status_=0 and type_=2;
+
+		-- 若为空时
+	IF sell_count is null THEN
+		sell_count := 0;
+	END IF;
+	IF refund_count is null THEN
+		refund_count := 0;
+	END IF;
+
+	RETURN buy_count-sell_count+refund_count;
+END
+$BODY$
+  LANGUAGE plpgsql;
+  
+-- 删除旧的统计采购单剩余数量函数和统计剩余号码函数
+DROP FUNCTION getbalancecountbyinvoicebuyid(integer);
+DROP INDEX getbalancenumberbyinvoicebuyid_idx;
+DROP FUNCTION getbalancenumberbyinvoicebuyid(INTEGER,INTEGER,CHARACTER VARYING,CHARACTER VARYING);
+----------------   ##  发票管理脚本结束 ##   ----------------
