@@ -452,3 +452,34 @@ $BODY$
 DROP FUNCTION getbalancecountbyinvoicebuyid(integer);
 DROP FUNCTION getbalancenumberbyinvoicebuyid(INTEGER,INTEGER,CHARACTER VARYING,CHARACTER VARYING);
 ----------------   ##  发票管理脚本结束 ##   ----------------
+
+
+----------------   ##  事故理赔脚本开始 ##   ----------------
+
+-- 司机受款说明  payDesc
+ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN PAY_DESC VARCHAR(255);
+COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DESC IS '司机受款说明';
+
+-- 司机二次受款说明 payDescTwo
+ALTER TABLE BS_CASE_ACCIDENT ADD COLUMN PAY_DESC_TWO VARCHAR(255);
+COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DESC_TWO IS '司机二次受款说明';
+
+-- 权限:事故理赔司机受款管理 BS_ACCIDENT_PAY_MANAGE
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0136', 'BS_ACCIDENT_PAY_MANAGE','事故理赔司机受款管理');
+
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ACCIDENT_PAY_MANAGE' 
+	and m.type_ > 1 and m.order_ in ('031200')
+	order by m.order_;
+
+-- 权限:事故理赔司机受款查询 BS_ACCIDENT_PAY_READ
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0137', 'BS_ACCIDENT_PAY_READ','事故理赔司机受款查询');
+
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_ACCIDENT_PAY_READ' 
+	and m.type_ > 1 and m.order_ in ('031200')
+	order by m.order_;
+	
+----------------   ##  事故理赔脚本结束 ##   ----------------
