@@ -1,15 +1,61 @@
 -- ###########################################################################
--- å®åŸç»¼åˆåº”ç”¨ç³»ç»Ÿçš„å‡çº§è„šæœ¬
--- æ•°æ®åº“ç±»å‹: postgresql
--- å‡çº§ç‰ˆæœ¬: ä» 1.3.2 å‡çº§åˆ° 1.3.3
+-- ±¦³Ç×ÛºÏÓ¦ÓÃÏµÍ³µÄÉı¼¶½Å±¾
+-- Êı¾İ¿âÀàĞÍ: postgresql
+-- Éı¼¶°æ±¾: ´Ó 1.3.2 Éı¼¶µ½ 1.3.3
 -- ###########################################################################
 
--- æ’å…¥ ç»¼åˆä¸šåŠ¡ç»„ å²—ä½
+-- ²åÈë ×ÛºÏÒµÎñ×é ¸ÚÎ»
 insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_,PCODE,PNAME) 
 	select NEXTVAL('CORE_SEQUENCE'),'group.init.'||NEXTVAL('CORE_SEQUENCE'), 0, false, 3
-	, 'zongHeYeWuZu','ç»¼åˆä¸šåŠ¡ç»„', '1001','[1]baochengzongbu','å®åŸæ€»éƒ¨'
+	, 'zongHeYeWuZu','×ÛºÏÒµÎñ×é', '1001','[1]baochengzongbu','±¦³Ç×Ü²¿'
 	from bc_dual where not exists (select 0 from BC_IDENTITY_ACTOR where code='zongHeYeWuZu');
 insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID) 
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='zongHeYeWuZu' 
 	and af.code in ('may','hewl','wing')
 	and not exists (select 0 from BC_IDENTITY_ACTOR_RELATION r where r.type_=0 and r.MASTER_ID=am.id and r.FOLLOWER_ID=af.id);
+-- ###########################################################################
+--	Á÷³Ì¹ÜÀí
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800320','Á÷³Ì¹ÜÀí', null, 'i0004' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+
+--	Á÷³Ì¼à¿Ø
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800321','Á÷³Ì¼à¿Ø', '/bc-workflow/flowMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+
+--	ÈÎÎñ¼à¿Ø
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','ÈÎÎñ¼à¿Ø', '/bc-workflow/taskMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+
+--	´ı°ì¼à¿Ø
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','´ı°ì¼à¿Ø', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+
+--	ÎÒµÄ´ı°ì
+UPDATE  bc_identity_resource SET name='ÎÒµÄ´ı°ì',url='/bc-workflow/todo/personals/list' WHERE order_='010100';
+
+--	ÎÒµÄ¾­°ì
+UPDATE  bc_identity_resource SET name='ÎÒµÄ¾­°ì',url='/bc-workflow/myDones/list' WHERE order_='010200';
+
+--	Á÷³Ì¹ÜÀí½ÇÉ«
+--BC_WORKFLOW Á÷³Ì¹ÜÀí ¶ÔËùÓĞÁ÷³ÌĞÅÏ¢½øĞĞÎŞÏŞÖÆµÄĞŞ¸Ä¡£
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0138', 'BC_WORKFLOW','Á÷³Ì¹ÜÀí');
+
+-- Á÷³Ì¹ÜÀíÈ¨ÏŞÅäÖÃ
+-- Á÷³Ì¹ÜÀí
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_DONE_TASKMONITOR' 
+	and m.type_ > 1 and m.order_ in ('800321','800322','800323')
+	order by m.order_;
+
+--  ³¬¼¶¹ÜÀíÔ±
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('800321','800322','800323')
+	order by m.order_;
+
+-- ÆÕÍ¨ÓÃ»§¼ÓÈëÎÒµÄ´ı°ì¡¢ÎÒµÄ¾­°ì
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('010100','010200')
+	order by m.order_;
