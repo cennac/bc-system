@@ -5,8 +5,8 @@ src/main/webapp/bc
 src/main/webapp/bc-test
 src/main/webapp/bc-framework
 src/main/webapp/bc-business
-src/main/webapp/bc-business-workflow-webapp
-src/main/webapp/bc-workflow-webapp
+src/main/webapp/bc-business-workflow
+src/main/webapp/bc-workflow
 
 .metadata
 .settings
