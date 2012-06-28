@@ -86,6 +86,10 @@
 	<import resource="classpath:cn/bc/business/fee/template/spring.xml"/>
 	<import resource="classpath:cn/bc/business/fee/spring.xml"/>
 	<import resource="classpath:cn/bc/business/socialSecurityRule/spring.xml"/>
+	
+	<!-- bcworkflow工作流程  -->
+	<import resource="classpath:cn/bc/workflow/todo/spring.xml"/>
+	
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-system.xml" />
 </beans>
