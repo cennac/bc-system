@@ -63,6 +63,10 @@
 	<import resource="classpath:cn/bc/websocket/spring.xml"/>
 	<import resource="classpath:cn/bc/placeorigin/spring.xml"/>
 	<import resource="classpath:cn/bc/template/spring.xml"/>
+	
+	<!-- bc平台:Workflow -->
+	<import resource="classpath:cn/bc/workflow/spring.xml" />
+	<import resource="classpath:cn/bc/workflow/todo/spring.xml"/>
 
 	<!-- bc营运管理子系统 -->
 	<import resource="classpath:cn/bc/business/cert/spring.xml"/>
@@ -89,9 +93,6 @@
 	<import resource="classpath:cn/bc/business/fee/template/spring.xml"/>
 	<import resource="classpath:cn/bc/business/fee/spring.xml"/>
 	<import resource="classpath:cn/bc/business/socialSecurityRule/spring.xml"/>
-	
-	<!-- bcworkflow工作流程  -->
-	<import resource="classpath:cn/bc/workflow/todo/spring.xml"/>
 	
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-system.xml" />
