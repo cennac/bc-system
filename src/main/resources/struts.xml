@@ -73,7 +73,8 @@
 
     <!-- bc工作流程配置文件 -->
 	<include file="cn/bc/workflow/todo/web/struts2/struts.xml" />
-	<include file="cn/bc/workflow/done/web/struts2/struts.xml" />
+	<include file="cn/bc/workflow/historicprocessinstance/web/struts2/struts.xml" />
+	<include file="cn/bc/workflow/historictaskinstance/web/struts2/struts.xml" />
 
 	<!-- 项目自定义的配置文件 -->
 	<include file="struts-system.xml" />
