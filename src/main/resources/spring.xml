@@ -37,6 +37,9 @@
 	<!-- 项目的数据库连接及事务管理配置 -->
 	<import resource="classpath:spring-db.xml" />
 	
+	<!-- activiti配置  -->
+	<import resource="classpath:spring-activiti.xml" />
+	
 	<!-- web通用 -->
 	<import resource="classpath:cn/bc/web/spring.xml" />
 
