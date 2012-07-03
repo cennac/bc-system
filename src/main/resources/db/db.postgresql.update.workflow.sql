@@ -46,6 +46,10 @@ UPDATE  bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/l
 --BC_WORKFLOW 流程管理 对所有流程信息进行无限制的修改。
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0138', 'BC_WORKFLOW','流程管理');
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0139', 'BC_WORKFLOW_DELEGATE','委托任务');
+insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0140', 'BC_WORKFLOW_ASSIGN','分派任务');
 
 -- 流程管理权限配置
 -- 流程管理
