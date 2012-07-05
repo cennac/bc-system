@@ -4,6 +4,41 @@
 -- 升级版本: 从 1.3.3 升级到 1.3.4
 -- ###########################################################################
 
+-- ACTOR历史表增加编码字段
+ALTER TABLE bc_identity_actor_history ADD COLUMN ACTOR_CODE varchar(255);
+update bc_identity_actor_history h set ACTOR_CODE=(select code from bc_identity_actor a where a.id=h.actor_id);
+ALTER TABLE bc_identity_actor_history ALTER COLUMN ACTOR_CODE SET NOT NULL;
+
+-- 流转日志
+CREATE TABLE BC_WF_EXCUTION_LOG (
+    ID INTEGER NOT NULL,
+    TYPE_ varchar(255) NOT NULL,
+    LISTENTER varchar(255) NOT NULL,
+    EID varchar(255) NOT NULL,
+    PID varchar(255) NOT NULL,
+    TID varchar(255),
+    BK varchar(255),
+    DESC_ varchar(255),
+    AUTHOR_ID integer NOT NULL,
+    AUTHOR_CODE varchar(255),
+    AUTHOR_NAME varchar(255) NOT NULL,
+    FILE_DATE TIMESTAMP NOT NULL,
+    CONSTRAINT BCWFPK_EXCUTION_LOG PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_WF_EXCUTION_LOG IS '流转日志';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.TYPE_ IS '日志类型：参考ExcutionLog.TYPE_XXX常数的定义';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.LISTENTER IS '监听器类型';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.EID IS '执行ID';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.PID IS '流程实例ID';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.TID IS '任务ID';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.BK IS '业务标识';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.DESC_ IS '备注';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.AUTHOR_ID IS '创建人ID(ActorHistory)';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.AUTHOR_CODE IS '创建人帐号';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.AUTHOR_NAME IS '创建人姓名';
+COMMENT ON COLUMN BC_WF_EXCUTION_LOG.FILE_DATE IS '创建时间';
+CREATE INDEX BCWFIDX_EXCUTION_LOG_TASK ON BC_WF_EXCUTION_LOG (TYPE_,TID);
+
 -- 插入流程模板类型的定义
 INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
 	VALUES (20,0,'2001','activiti-bpmn2-xml','Activiti BPMN 2.0 XML流程图文件',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
