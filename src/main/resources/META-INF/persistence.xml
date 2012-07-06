@@ -159,6 +159,9 @@
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
 
+		<!-- 工作流程 -->
+		<class>cn.bc.workflow.deploy.domain.Deploy</class>
+
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	</persistence-unit>
