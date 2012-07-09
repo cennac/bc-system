@@ -67,6 +67,7 @@
 	<!-- bc平台:Workflow -->
 	<import resource="classpath:cn/bc/workflow/spring.xml" />
 	<import resource="classpath:cn/bc/workflow/todo/spring.xml"/>
+	<import resource="classpath:cn/bc/workflow/flowattach/spring.xml"/>
 
 	<!-- bc营运管理子系统 -->
 	<import resource="classpath:cn/bc/business/cert/spring.xml"/>
