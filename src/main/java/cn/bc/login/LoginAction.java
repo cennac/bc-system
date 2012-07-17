@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -62,7 +63,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	private LoginService loginService;
 	private Map<String, Object> session;
 	private ApplicationEventPublisher eventPublisher;
-	public boolean relogin;//是否是重登陆
+	public boolean relogin;// 是否是重登陆
 
 	public void setApplicationEventPublisher(
 			ApplicationEventPublisher applicationEventPublisher) {
@@ -204,6 +205,9 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					context.setAttr(SystemContext.KEY_ROLEIDS,
 							roleIds.toArray(new Long[0]));
 
+					// 记录session的标识参数
+					this.recordSession(context, request);
+
 					// debug
 					if (logger.isDebugEnabled()) {
 						logger.debug("roles="
@@ -232,6 +236,40 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		if (logger.isInfoEnabled())
 			logger.info("doLogin耗时：" + DateUtils.getWasteTime(startTime));
 		return SUCCESS;
+	}
+
+	private void recordSession(SystemContext context, HttpServletRequest request) {
+		Map<String, String> sessionMarks = new LinkedHashMap<String, String>();
+		String v = request.getHeader("Cookie");
+		if (v != null)
+			sessionMarks.put("Cookie", v);
+
+		v = request.getHeader("Host");
+		if (v != null)
+			sessionMarks.put("Host", v);
+		
+		// 系统访问路径
+		sessionMarks.put(
+				"contextPath",
+				request.getScheme()
+				+ "://"
+				+ request.getServerName()
+				+ (request.getServerPort() > 0 ? ":"
+						+ request.getServerPort() : "")
+						+ request.getContextPath());
+
+		v = request.getHeader("Referer");
+		if (v != null)
+			sessionMarks.put("Referer", v);
+
+		v = request.getHeader("User-Agent");
+		if (v != null)
+			sessionMarks.put("User-Agent", v);
+
+		context.setAttr("sessionMarks", sessionMarks);
+
+		if (logger.isInfoEnabled())
+			logger.info("sessionMarks=" + sessionMarks);
 	}
 
 	private Actor mapActor(Map<String, String> upper) {
