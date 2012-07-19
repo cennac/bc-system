@@ -78,6 +78,7 @@
 		<!-- 模板管理-->
 		<class>cn.bc.template.domain.Template</class>
 		<class>cn.bc.template.domain.TemplateType</class>
+		<class>cn.bc.template.domain.TemplateParam</class>
 		
 		<!-- 流转引擎-->
 		<class>cn.bc.workflow.domain.ExcutionLog</class>
