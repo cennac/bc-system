@@ -72,6 +72,14 @@
 		<class>cn.bc.business.sync.domain.JiaoWeiADVICE</class>
 		<class>cn.bc.business.spider.domain.JinDunJTWF</class>
 		
+		<!-- investigate -->
+		<class>cn.bc.investigate.domain.Answer</class>
+		<class>cn.bc.investigate.domain.Question</class>
+		<class>cn.bc.investigate.domain.Questionary</class>
+		<class>cn.bc.investigate.domain.QuestionItem</class>
+		<class>cn.bc.investigate.domain.Respond</class>
+		<class>cn.bc.investigate.domain.Grade</class>
+		
 		<!-- 籍贯 -->
 		<class>cn.bc.placeorigin.domain.PlaceOrigin</class>
 
