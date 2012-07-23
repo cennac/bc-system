@@ -562,7 +562,7 @@ CREATE TABLE BC_DOCS_ATTACH (
     PUID varchar(36) NOT NULL,
     SIZE_ integer NOT NULL,
     COUNT_ integer default 0 NOT NULL,
-    EXT varchar(10),
+    format varchar(10),
     APPPATH boolean NOT NULL default false,
     SUBJECT varchar(500) NOT NULL,
     ICON varchar(255),
@@ -579,7 +579,7 @@ COMMENT ON COLUMN BC_DOCS_ATTACH.PTYPE IS '所关联文档的类型';
 COMMENT ON COLUMN BC_DOCS_ATTACH.PUID IS '所关联文档的UID';
 COMMENT ON COLUMN BC_DOCS_ATTACH.SIZE_ IS '文件的大小(单位为字节)';
 COMMENT ON COLUMN BC_DOCS_ATTACH.COUNT_ IS '文件的下载次数';
-COMMENT ON COLUMN BC_DOCS_ATTACH.EXT IS '文件扩展名：如png、doc、mp3等';
+COMMENT ON COLUMN BC_DOCS_ATTACH.format IS '附件类型:如pdf、doc、mp3等';
 COMMENT ON COLUMN BC_DOCS_ATTACH.APPPATH IS '指定path的值是相对于应用部署目录下路径还是相对于全局配置的app.data目录下的路径';
 COMMENT ON COLUMN BC_DOCS_ATTACH.ICON IS '扩展字段';
 COMMENT ON COLUMN BC_DOCS_ATTACH.SUBJECT IS '文件名称(不带路径的部分)';
@@ -599,21 +599,21 @@ CREATE INDEX BCIDX_ATTACH_PTYPE ON BC_DOCS_ATTACH (PTYPE);
 -- 附件处理痕迹
 CREATE TABLE BC_DOCS_ATTACH_HISTORY (
     ID INTEGER NOT NULL,
-    AID integer NOT NULL,
     TYPE_ integer NOT NULL,
     SUBJECT varchar(500) NOT NULL,
     FORMAT varchar(10),
     FILE_DATE timestamp NOT NULL,
     AUTHOR_ID integer NOT NULL,
-    MODIFIER_ID integer,
-    MODIFIED_DATE timestamp,
+    ptype varchar(36) NOT NULL,
+    puid varchar(36) NOT NULL,
+    path varchar(500) NOT NULL,
+    apppath boolean default false NOT NULL,
     C_IP varchar(100),
     C_INFO varchar(1000),
     MEMO varchar(2000),
     CONSTRAINT BCPK_ATTACH_HISTORY PRIMARY KEY (ID)
 );
 COMMENT ON TABLE BC_DOCS_ATTACH_HISTORY IS '附件处理痕迹';
-COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.AID IS '附件ID';
 COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.TYPE_ IS '处理类型：0-下载,1-在线查看,2-格式转换';
 COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.SUBJECT IS '简单说明';
 COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.FORMAT IS '下载的文件格式或转换后的文件格式：如pdf、doc、mp3等';
@@ -622,8 +622,11 @@ COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.C_INFO IS '浏览器信息：User-Agent
 COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.MEMO IS '备注';
 COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.FILE_DATE IS '处理时间';
 COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.AUTHOR_ID IS '创建人ID';
-COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.MODIFIER_ID IS '最后修改人ID';
-COMMENT ON COLUMN BC_DOCS_ATTACH_HISTORY.MODIFIED_DATE IS '最后修改时间';
+COMMENT ON COLUMN bc_docs_attach_history.path IS '物理文件保存的相对路径(相对于全局配置的附件根目录下的子路径，如"2011/bulletin/xxxx.doc")';
+COMMENT ON COLUMN bc_docs_attach_history.apppath IS '指定path的值是相对于应用部署目录下路径还是相对于全局配置的app.data目录下的路径';
+COMMENT ON COLUMN bc_docs_attach_history.format IS '附件类型:如pdf、doc、mp3等';
+COMMENT ON COLUMN bc_docs_attach_history.ptype IS '文档类型';
+COMMENT ON COLUMN bc_docs_attach_history.puid IS '文档标识';
 ALTER TABLE BC_DOCS_ATTACH_HISTORY ADD CONSTRAINT BCFK_ATTACHHISTORY_AUTHOR FOREIGN KEY (AUTHOR_ID) 
 	REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 ALTER TABLE BC_DOCS_ATTACH_HISTORY ADD CONSTRAINT BCFK_ATTACHHISTORY_MODIFIER FOREIGN KEY (MODIFIER_ID) 
@@ -893,6 +896,7 @@ ALTER TABLE BC_TEMPLATE_TYPE ADD CONSTRAINT BCUK_TEMPLATE_TYPE_CODE UNIQUE (CODE
 -- 模板管理
 CREATE TABLE BC_TEMPLATE(
 	ID 				INTEGER NOT NULL,
+	uid_ 			VARCHAR(36) NOT NULL,
 	ORDER_ 			VARCHAR(255),
 	STATUS_ 		INTEGER NOT NULL DEFAULT 0,
 	TYPE_ID 		INTEGER NOT NULL,
@@ -914,6 +918,7 @@ CREATE TABLE BC_TEMPLATE(
 );
 COMMENT ON TABLE BC_TEMPLATE IS '模板管理';
 COMMENT ON COLUMN BC_TEMPLATE.ORDER_ IS '排序号';
+COMMENT ON COLUMN BC_TEMPLATE.uid_ IS 'UID';
 COMMENT ON COLUMN BC_TEMPLATE.STATUS_ IS '状态：0-正常,1-禁用';
 COMMENT ON COLUMN BC_TEMPLATE.TYPE_ID IS '模板类型ID';
 COMMENT ON COLUMN BC_TEMPLATE.CATEGORY IS '所属分类';
@@ -1054,6 +1059,172 @@ COMMENT ON COLUMN BC_REPORT_HISTORY.AUTHOR_ID IS '创建人ID';
 ALTER TABLE BC_REPORT_HISTORY ADD CONSTRAINT BCFK_REPORT_HISTORY_AUTHORID FOREIGN KEY (AUTHOR_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 
+-- 问卷
+CREATE TABLE BC_IVG_QUESTIONARY (
+	ID INTEGER NOT NULL,
+	TYPE_ INTEGER NOT NULL DEFAULT 0,
+	STATUS_ INTEGER NOT NULL DEFAULT 0,
+	SUBJECT VARCHAR(255),
+	START_DATE TIMESTAMP NOT NULL,
+	END_DATE TIMESTAMP,
+	PERMITTED BOOLEAN NOT NULL DEFAULT FALSE,
+	ISSUE_DATE TIMESTAMP,
+	ISSUER_ID INTEGER,
+	PIGEONHOLE_DATE TIMESTAMP,
+	PIGEONHOLER_ID INTEGER,
+	FILE_DATE TIMESTAMP NOT NULL,
+	AUTHOR_ID INTEGER NOT NULL,
+	MODIFIER_ID INTEGER ,
+	MODIFIED_DATE TIMESTAMP,
+	CONSTRAINT BCPK_IVG_QUESTIONARY PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_IVG_QUESTIONARY IS '问卷';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.TYPE_ IS '类型 : 0-网上调查,1-网上考试';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.STATUS_ IS '状态：-1-草稿,0-已发布,1-已归档';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.SUBJECT IS '标题';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.START_DATE IS '开始日期';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.END_DATE IS '结束日期';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.PERMITTED IS '提交前允许查看统计';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.ISSUE_DATE IS '发布时间';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.ISSUER_ID IS '发布人ID';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.PIGEONHOLE_DATE IS '归档时间';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.PIGEONHOLER_ID IS '归档人ID';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.FILE_DATE IS '创建时间';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.AUTHOR_ID IS '创建人ID';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.MODIFIER_ID IS '最后修改人ID';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY.MODIFIED_DATE IS '最后修改时间';
+ALTER TABLE BC_IVG_QUESTIONARY ADD CONSTRAINT BCFK_IVG_QUESTIONARY_AUTHORID FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_IVG_QUESTIONARY ADD CONSTRAINT BCFK_IVG_QUESTIONARY_MODIFIER FOREIGN KEY (MODIFIER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_IVG_QUESTIONARY ADD CONSTRAINT BCFK_IVG_QUESTIONARY_ISSUER FOREIGN KEY (ISSUER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+ALTER TABLE BC_IVG_QUESTIONARY ADD CONSTRAINT BCFK_IVG_QUESTIONARY_PIGEONHOLER FOREIGN KEY (PIGEONHOLER_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+
+-- 问卷所限制的参与人
+CREATE TABLE BC_IVG_QUESTIONARY_ACTOR (
+    QID integer NOT NULL,
+    AID integer NOT NULL,
+    CONSTRAINT BCPK_IVG_QUESTIONARY_ACTOR PRIMARY KEY (QID,AID)
+);
+COMMENT ON TABLE BC_IVG_QUESTIONARY_ACTOR IS '问卷所限制的参与人';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY_ACTOR.QID IS '问卷ID';
+COMMENT ON COLUMN BC_IVG_QUESTIONARY_ACTOR.AID IS '参与人ID';
+ALTER TABLE BC_IVG_QUESTIONARY_ACTOR ADD CONSTRAINT BCFK_IVG_QA_QUESTIONARY FOREIGN KEY (QID) REFERENCES BC_IVG_QUESTIONARY (ID);
+ALTER TABLE BC_IVG_QUESTIONARY_ACTOR ADD CONSTRAINT BCFK_IVG_QA_ACTOR FOREIGN KEY (AID) REFERENCES BC_IDENTITY_ACTOR (ID);
+
+-- 问题
+CREATE TABLE BC_IVG_QUESTION (
+	ID INTEGER NOT NULL,
+	PID INTEGER NOT NULL,
+	TYPE_ INTEGER NOT NULL DEFAULT 0,
+	REQUIRED BOOLEAN NOT NULL DEFAULT TRUE,
+	SUBJECT VARCHAR(255),
+	ORDER_ INTEGER NOT NULL DEFAULT 0,
+	SCORE INT DEFAULT 0 NOT NULL,
+	SEPERATE_SCORE BOOLEAN DEFAULT true,
+	CONFIG VARCHAR(1000),
+	GRADE BOOLEAN NOT NULL DEFAULT FALSE,
+	CONSTRAINT BCPK_IVG_QUESTION PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_IVG_QUESTION IS '问题';
+COMMENT ON COLUMN BC_IVG_QUESTION.PID IS '所属问卷ID';
+COMMENT ON COLUMN BC_IVG_QUESTION.TYPE_ IS '类型 : 0-单选题,1-多选题,2-填空题,3-问答题';
+COMMENT ON COLUMN BC_IVG_QUESTION.REQUIRED IS '必选题，默认为是';
+COMMENT ON COLUMN BC_IVG_QUESTION.SUBJECT IS '标题';
+COMMENT ON COLUMN BC_IVG_QUESTION.ORDER_ IS '排序号';
+COMMENT ON COLUMN BC_IVG_QUESTION.CONFIG IS '配置:使用json格式，如控制选项水平、垂直布局，控制问答题输入框的默认大小等，格式为：{layout_orientation:"horizontal|vertical",row:5}';
+COMMENT ON COLUMN BC_IVG_QUESTION.SCORE IS '分数';
+COMMENT ON COLUMN BC_IVG_QUESTION.SEPERATE_SCORE IS '各个选项独立给分:(仅适用于网上考试的多选题)注意答错任一项将为0分';
+COMMENT ON COLUMN BC_IVG_QUESTION.GRADE IS '是否需要评分';
+ALTER TABLE BC_IVG_QUESTION ADD CONSTRAINT BCFK_IVG_QUESTION_PID FOREIGN KEY (PID)
+      REFERENCES BC_IVG_QUESTIONARY (ID);
+
+-- 问题项
+CREATE TABLE BC_IVG_QUESTION_ITEM (
+	ID INTEGER NOT NULL,
+	PID INTEGER NOT NULL,
+	SUBJECT VARCHAR(255),
+	ORDER_ INTEGER NOT NULL DEFAULT 0,
+	STANDARD BOOLEAN DEFAULT false NOT NULL,
+	SCORE INT DEFAULT 0 NOT NULL,
+	CONFIG VARCHAR(1000),
+	CONSTRAINT BCPK_IVG_QUESTION_ITEM PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_IVG_QUESTION_ITEM IS '问题项';
+COMMENT ON COLUMN BC_IVG_QUESTION_ITEM.PID IS '所属问题ID';
+COMMENT ON COLUMN BC_IVG_QUESTION_ITEM.SUBJECT IS '单选多选题显示的选项文字,如果为问答题则为默认填写的内容';
+COMMENT ON COLUMN BC_IVG_QUESTION_ITEM.ORDER_ IS '排序号';
+COMMENT ON COLUMN BC_IVG_QUESTION_ITEM.STANDARD IS '标准答案';
+COMMENT ON COLUMN BC_IVG_QUESTION_ITEM.SCORE IS '分数 : 选择此答案的得分';
+COMMENT ON COLUMN BC_IVG_QUESTION_ITEM.CONFIG IS '特殊配置 : 用于填空题的标准答案配置，使用json数组格式[{},...]，每个json元素格式为{key:"占位符",value:"标准答案",score:分数}';
+ALTER TABLE BC_IVG_QUESTION_ITEM ADD CONSTRAINT BCFK_IVG_QUESTION_ITEM_PID FOREIGN KEY (PID)
+      REFERENCES BC_IVG_QUESTION (ID);
+
+-- 作答记录
+CREATE TABLE BC_IVG_RESPOND (
+	ID INTEGER NOT NULL,
+	PID INTEGER NOT NULL,
+	FILE_DATE TIMESTAMP NOT NULL,
+	AUTHOR_ID INTEGER NOT NULL,
+	SCORE INT DEFAULT 0 NOT NULL,
+	GRADE BOOLEAN NOT NULL DEFAULT FALSE,
+	CONSTRAINT BCPK_IVG_RESPOND PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_IVG_RESPOND IS '作答记录';
+COMMENT ON COLUMN BC_IVG_RESPOND.PID IS '所属问卷ID';
+COMMENT ON COLUMN BC_IVG_RESPOND.FILE_DATE IS '作答时间';
+COMMENT ON COLUMN BC_IVG_RESPOND.AUTHOR_ID IS '作答人';
+COMMENT ON COLUMN BC_IVG_RESPOND.SCORE IS '总得分';
+COMMENT ON COLUMN BC_IVG_RESPOND.GRADE IS '是否需要评分';
+ALTER TABLE BC_IVG_RESPOND ADD CONSTRAINT BCFK_IVG_RESPOND_PID FOREIGN KEY (PID)
+      REFERENCES BC_IVG_QUESTIONARY (ID);
+ALTER TABLE BC_IVG_RESPOND ADD CONSTRAINT BCFK_IVG_RESPOND_AUTHORID FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
+
+-- 问题项的答案
+CREATE TABLE BC_IVG_ANSWER (
+	ID INTEGER NOT NULL,
+	QID INTEGER NOT NULL,
+	RID INTEGER NOT NULL,
+	CONTENT VARCHAR(255),
+	SCORE INT DEFAULT 0 NOT NULL,
+	GRADE BOOLEAN NOT NULL DEFAULT FALSE,
+	CONSTRAINT BCPK_IVG_ANSWER PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_IVG_ANSWER IS '答案';
+COMMENT ON COLUMN BC_IVG_ANSWER.QID IS '问题项ID';
+COMMENT ON COLUMN BC_IVG_ANSWER.RID IS '作答记录ID';
+COMMENT ON COLUMN BC_IVG_ANSWER.SCORE IS '给分';
+COMMENT ON COLUMN BC_IVG_ANSWER.CONTENT IS '问答题填写的内容';
+COMMENT ON COLUMN BC_IVG_ANSWER.GRADE IS '是否需要评分';
+ALTER TABLE BC_IVG_ANSWER ADD CONSTRAINT BCFK_IVG_ANSWER_QID FOREIGN KEY (QID)
+      REFERENCES BC_IVG_QUESTION_ITEM (ID);
+ALTER TABLE BC_IVG_ANSWER ADD CONSTRAINT BCFK_IVG_ANSWER_RID FOREIGN KEY (RID)
+      REFERENCES BC_IVG_RESPOND (ID);
+
+-- 对答案的评分记录
+CREATE TABLE BC_IVG_GRADE (
+	ID INT NOT NULL,
+	ANSWER_ID INT NOT NULL,
+	SCORE INT DEFAULT 0 NOT NULL,
+	FILE_DATE TIMESTAMP NOT NULL,
+	AUTHOR_ID INT NOT NULL,
+	DESC_ VARCHAR(1000),
+	PRIMARY KEY (ID)
+);
+COMMENT ON TABLE BC_IVG_GRADE IS '评分记录';
+COMMENT ON COLUMN BC_IVG_GRADE.ID IS 'ID';
+COMMENT ON COLUMN BC_IVG_GRADE.ANSWER_ID IS '答案ID';
+COMMENT ON COLUMN BC_IVG_GRADE.SCORE IS '给分';
+COMMENT ON COLUMN BC_IVG_GRADE.FILE_DATE IS '评分时间';
+COMMENT ON COLUMN BC_IVG_GRADE.AUTHOR_ID IS '评分人ID';
+COMMENT ON COLUMN BC_IVG_GRADE.DESC_ IS '备注';
+ALTER TABLE BC_IVG_GRADE ADD CONSTRAINT BCFK_IVG_GRADE_AID FOREIGN KEY (ANSWER_ID)
+      REFERENCES BC_IVG_ANSWER (ID);
+ALTER TABLE BC_IVG_GRADE ADD CONSTRAINT BCFK_IVG_GRADE_AUTHORID FOREIGN KEY (AUTHOR_ID)
+      REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 -- ##bc平台的 postgresql 自定义函数和存储过程##
 
 -- 模拟oracle dual功能的在hibernate hql中使用的视图
@@ -1155,6 +1326,464 @@ BEGIN
 END;
 $BODY$
 LANGUAGE plpgsql;
+
+create table ACT_ID_GROUP (
+    ID_ varchar(64),
+    REV_ integer,
+    NAME_ varchar(255),
+    TYPE_ varchar(255),
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_ID_GROUP IS '用户组';
+COMMENT ON COLUMN ACT_ID_GROUP.ID_ IS '标识';
+COMMENT ON COLUMN ACT_ID_GROUP.REV_ IS '版本';
+COMMENT ON COLUMN ACT_ID_GROUP.NAME_ IS '名称';
+COMMENT ON COLUMN ACT_ID_GROUP.TYPE_ IS '类型';
+
+create table ACT_ID_MEMBERSHIP (
+    USER_ID_ varchar(64),
+    GROUP_ID_ varchar(64),
+    primary key (USER_ID_, GROUP_ID_)
+);
+COMMENT ON TABLE ACT_ID_MEMBERSHIP IS '用户和用户组关联关系';
+COMMENT ON COLUMN ACT_ID_MEMBERSHIP.USER_ID_ IS '用户ID';
+COMMENT ON COLUMN ACT_ID_MEMBERSHIP.GROUP_ID_ IS '用户组ID';
+
+create table ACT_ID_USER (
+    ID_ varchar(64),
+    REV_ integer,
+    FIRST_ varchar(255),
+    LAST_ varchar(255),
+    EMAIL_ varchar(255),
+    PWD_ varchar(255),
+    PICTURE_ID_ varchar(64),
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_ID_USER IS '用户';
+COMMENT ON COLUMN ACT_ID_USER.ID_ IS '用户ID,也是登录帐号名';
+COMMENT ON COLUMN ACT_ID_USER.REV_ IS '版本号';
+COMMENT ON COLUMN ACT_ID_USER.FIRST_ IS '名称';
+COMMENT ON COLUMN ACT_ID_USER.LAST_ IS '姓氏';
+COMMENT ON COLUMN ACT_ID_USER.EMAIL_ IS '邮箱';
+COMMENT ON COLUMN ACT_ID_USER.PWD_ IS '登录密码';
+COMMENT ON COLUMN ACT_ID_USER.PICTURE_ID_ IS '';
+
+create table ACT_ID_INFO (
+    ID_ varchar(64),
+    REV_ integer,
+    USER_ID_ varchar(64),
+    TYPE_ varchar(64),
+    KEY_ varchar(255),
+    VALUE_ varchar(255),
+    PASSWORD_ bytea,
+    PARENT_ID_ varchar(255),
+    primary key (ID_)
+);
+
+create index ACT_IDX_MEMB_GROUP on ACT_ID_MEMBERSHIP(GROUP_ID_);
+alter table ACT_ID_MEMBERSHIP 
+    add constraint ACT_FK_MEMB_GROUP
+    foreign key (GROUP_ID_) 
+    references ACT_ID_GROUP (ID_);
+
+create index ACT_IDX_MEMB_USER on ACT_ID_MEMBERSHIP(USER_ID_);
+alter table ACT_ID_MEMBERSHIP 
+    add constraint ACT_FK_MEMB_USER
+    foreign key (USER_ID_) 
+    references ACT_ID_USER (ID_);
+
+-- http://homeland520.blog.163.com/blog/static/81958868201112564938465/
+create table ACT_GE_PROPERTY (
+    NAME_ varchar(64),
+    VALUE_ varchar(300),
+    REV_ integer,
+    primary key (NAME_)
+);
+COMMENT ON TABLE ACT_GE_PROPERTY IS '属性数据表,存储整个流程引擎级别的数据';
+COMMENT ON COLUMN ACT_GE_PROPERTY.NAME_ IS '属性名称,如activiti的数据脚本名schema.version';
+COMMENT ON COLUMN ACT_GE_PROPERTY.VALUE_ IS '属性值,如activiti的版本号5.9';
+COMMENT ON COLUMN ACT_GE_PROPERTY.REV_ IS '修订号';
+
+insert into ACT_GE_PROPERTY
+values ('schema.version', '5.9', 1);
+
+insert into ACT_GE_PROPERTY
+values ('schema.history', 'create(5.9)', 1);
+
+insert into ACT_GE_PROPERTY
+values ('next.dbid', '1000', 1);
+
+create table ACT_GE_BYTEARRAY (
+    ID_ varchar(64),
+    REV_ integer,
+    NAME_ varchar(255),
+    DEPLOYMENT_ID_ varchar(64),
+    BYTES_ bytea,
+    GENERATED_ boolean,
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_GE_BYTEARRAY IS '用来保存部署文件的大文本数据';
+COMMENT ON COLUMN ACT_GE_BYTEARRAY.ID_ IS '资源文件编号,自增长';
+COMMENT ON COLUMN ACT_GE_BYTEARRAY.REV_ IS '版本号';
+COMMENT ON COLUMN ACT_GE_BYTEARRAY.NAME_ IS '资源文件名称';
+COMMENT ON COLUMN ACT_GE_BYTEARRAY.DEPLOYMENT_ID_ IS '来自于父表ACT_RE_DEPLOYMENT中的主键';
+COMMENT ON COLUMN ACT_GE_BYTEARRAY.BYTES_ IS '存储文本字节流';
+COMMENT ON COLUMN ACT_GE_BYTEARRAY.GENERATED_ IS '';
+
+create table ACT_RE_DEPLOYMENT (
+    ID_ varchar(64),
+    NAME_ varchar(255),
+    DEPLOY_TIME_ timestamp,
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_RE_DEPLOYMENT IS '用来存储部署时需要被持久化保存下来的信息';
+COMMENT ON COLUMN ACT_RE_DEPLOYMENT.ID_ IS '部署编号,自增长';
+COMMENT ON COLUMN ACT_RE_DEPLOYMENT.NAME_ IS '部署的包名称';
+COMMENT ON COLUMN ACT_RE_DEPLOYMENT.DEPLOY_TIME_ IS '部署时间';
+
+create table ACT_RU_EXECUTION (
+    ID_ varchar(64),
+    REV_ integer,
+    PROC_INST_ID_ varchar(64),
+    BUSINESS_KEY_ varchar(255),
+    PARENT_ID_ varchar(64),
+    PROC_DEF_ID_ varchar(64),
+    SUPER_EXEC_ varchar(64),
+    ACT_ID_ varchar(255),
+    IS_ACTIVE_ boolean,
+    IS_CONCURRENT_ boolean,
+    IS_SCOPE_ boolean,
+    IS_EVENT_SCOPE_ boolean,
+    SUSPENSION_STATE_ integer,
+    primary key (ID_),
+    unique (PROC_DEF_ID_, BUSINESS_KEY_)
+);
+COMMENT ON TABLE ACT_RU_EXECUTION IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.ID_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.REV_ IS '版本号';
+COMMENT ON COLUMN ACT_RU_EXECUTION.PROC_INST_ID_ IS '流程实例编号';
+COMMENT ON COLUMN ACT_RU_EXECUTION.BUSINESS_KEY_ IS '业务编号';
+COMMENT ON COLUMN ACT_RU_EXECUTION.PARENT_ID_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.PROC_DEF_ID_ IS '流程ID';
+COMMENT ON COLUMN ACT_RU_EXECUTION.SUPER_EXEC_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.ACT_ID_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.IS_ACTIVE_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.IS_CONCURRENT_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.IS_SCOPE_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.IS_EVENT_SCOPE_ IS '';
+COMMENT ON COLUMN ACT_RU_EXECUTION.SUSPENSION_STATE_ IS '';
+
+create table ACT_RU_JOB (
+    ID_ varchar(64) NOT NULL,
+	  REV_ integer,
+    TYPE_ varchar(255) NOT NULL,
+    LOCK_EXP_TIME_ timestamp,
+    LOCK_OWNER_ varchar(255),
+    EXCLUSIVE_ boolean,
+    EXECUTION_ID_ varchar(64),
+    PROCESS_INSTANCE_ID_ varchar(64),
+    RETRIES_ integer,
+    EXCEPTION_STACK_ID_ varchar(64),
+    EXCEPTION_MSG_ varchar(4000),
+    DUEDATE_ timestamp,
+    REPEAT_ varchar(255),
+    HANDLER_TYPE_ varchar(255),
+    HANDLER_CFG_ varchar(4000),
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_RU_JOB IS '运行时定时任务数据表';
+
+-- 注意：此表与ACT_RE_DEPLOYMENT是多对一的关系，即一个部署的bar包里可能包含多个流程定义文件，
+-- 每个流程定义文件都会有一条记录在ACT_RE_PROCDEF表内，每条流程定义的数据，都会对应ACT_GE_BYTEARRAY表
+-- 内的一个资源文件和PNG图片文件。
+-- 与ACT_GE_BYTEARRAY的关联是通过程序用ACT_GE_BYTEARRAY.NAME_与ACT_RE_PROCDEF.RESOURCE_NAME_完成的，
+-- 在数据库表结构内没有体现。
+create table ACT_RE_PROCDEF (
+    ID_ varchar(64),
+    REV_ integer,
+    CATEGORY_ varchar(255),
+    NAME_ varchar(255),
+    KEY_ varchar(255),
+    VERSION_ integer,
+    DEPLOYMENT_ID_ varchar(64),
+    RESOURCE_NAME_ varchar(4000),
+    DGRM_RESOURCE_NAME_ varchar(4000),
+    HAS_START_FORM_KEY_ boolean,
+    SUSPENSION_STATE_ integer,
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_RE_PROCDEF IS '业务流程定义数据表';
+COMMENT ON COLUMN ACT_RE_PROCDEF.ID_ IS '流程ID,由“流程编号:流程版本号:自增长ID”组成';
+COMMENT ON COLUMN ACT_RE_PROCDEF.REV_ IS '';
+COMMENT ON COLUMN ACT_RE_PROCDEF.CATEGORY_ IS '流程命令空间(该编号是流程文件targetNamespace的属性值)';
+COMMENT ON COLUMN ACT_RE_PROCDEF.NAME_ IS '流程名称(该编号就是流程文件process元素的name属性值)';
+COMMENT ON COLUMN ACT_RE_PROCDEF.KEY_ IS '流程编号(该编号就是流程文件process元素的id属性值)';
+COMMENT ON COLUMN ACT_RE_PROCDEF.VERSION_ IS '流程版本号(由程序控制,新增即为1,修改后依次加1)';
+COMMENT ON COLUMN ACT_RE_PROCDEF.DEPLOYMENT_ID_ IS '部署编号';
+COMMENT ON COLUMN ACT_RE_PROCDEF.RESOURCE_NAME_ IS '资源文件名称';
+COMMENT ON COLUMN ACT_RE_PROCDEF.DGRM_RESOURCE_NAME_ IS '图片资源文件名称';
+COMMENT ON COLUMN ACT_RE_PROCDEF.HAS_START_FORM_KEY_ IS '是否有Start Form Key';
+COMMENT ON COLUMN ACT_RE_PROCDEF.SUSPENSION_STATE_ IS '';
+
+create table ACT_RU_TASK (
+    ID_ varchar(64),
+    REV_ integer,
+    EXECUTION_ID_ varchar(64),
+    PROC_INST_ID_ varchar(64),
+    PROC_DEF_ID_ varchar(64),
+    NAME_ varchar(255),
+    PARENT_TASK_ID_ varchar(64),
+    DESCRIPTION_ varchar(4000),
+    TASK_DEF_KEY_ varchar(255),
+    OWNER_ varchar(64),
+    ASSIGNEE_ varchar(64),
+    DELEGATION_ varchar(64),
+    PRIORITY_ integer,
+    CREATE_TIME_ timestamp,
+    DUE_DATE_ timestamp,
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_RU_TASK IS '运行时任务数据表';
+
+create table ACT_RU_IDENTITYLINK (
+    ID_ varchar(64),
+    REV_ integer,
+    GROUP_ID_ varchar(64),
+    TYPE_ varchar(255),
+    USER_ID_ varchar(64),
+    TASK_ID_ varchar(64),
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_RU_IDENTITYLINK IS '任务参与者数据表,存储当前节点参与者的信息';
+
+create table ACT_RU_VARIABLE (
+    ID_ varchar(64) not null,
+    REV_ integer,
+    TYPE_ varchar(255) not null,
+    NAME_ varchar(255) not null,
+    EXECUTION_ID_ varchar(64),
+	  PROC_INST_ID_ varchar(64),
+    TASK_ID_ varchar(64),
+    BYTEARRAY_ID_ varchar(64),
+    DOUBLE_ double precision,
+    LONG_ bigint,
+    TEXT_ varchar(4000),
+    TEXT2_ varchar(4000),
+    primary key (ID_)
+);
+COMMENT ON TABLE ACT_RU_VARIABLE IS '运行时流程变量数据表';
+
+create table ACT_RU_EVENT_SUBSCR (
+    ID_ varchar(64) not null,
+    REV_ integer,
+    EVENT_TYPE_ varchar(255) not null,
+    EVENT_NAME_ varchar(255),
+    EXECUTION_ID_ varchar(64),
+    PROC_INST_ID_ varchar(64),
+    ACTIVITY_ID_ varchar(64),
+    CONFIGURATION_ varchar(255),
+    CREATED_ timestamp not null,
+    primary key (ID_)
+);
+
+create index ACT_IDX_EXEC_BUSKEY on ACT_RU_EXECUTION(BUSINESS_KEY_);
+create index ACT_IDX_TASK_CREATE on ACT_RU_TASK(CREATE_TIME_);
+create index ACT_IDX_IDENT_LNK_USER on ACT_RU_IDENTITYLINK(USER_ID_);
+create index ACT_IDX_IDENT_LNK_GROUP on ACT_RU_IDENTITYLINK(GROUP_ID_);
+create index ACT_IDX_EVENT_SUBSCR_CONFIG_ on ACT_RU_EVENT_SUBSCR(CONFIGURATION_);
+
+create index ACT_IDX_BYTEAR_DEPL on ACT_GE_BYTEARRAY(DEPLOYMENT_ID_);
+alter table ACT_GE_BYTEARRAY
+    add constraint ACT_FK_BYTEARR_DEPL
+    foreign key (DEPLOYMENT_ID_) 
+    references ACT_RE_DEPLOYMENT (ID_);
+
+create index ACT_IDX_EXE_PROCINST on ACT_RU_EXECUTION(PROC_INST_ID_);
+alter table ACT_RU_EXECUTION
+    add constraint ACT_FK_EXE_PROCINST 
+    foreign key (PROC_INST_ID_) 
+    references ACT_RU_EXECUTION (ID_);
+
+create index ACT_IDX_EXE_PARENT on ACT_RU_EXECUTION(PARENT_ID_);
+alter table ACT_RU_EXECUTION
+    add constraint ACT_FK_EXE_PARENT
+    foreign key (PARENT_ID_) 
+    references ACT_RU_EXECUTION (ID_);
+    
+create index ACT_IDX_EXE_SUPER on ACT_RU_EXECUTION(SUPER_EXEC_);
+alter table ACT_RU_EXECUTION
+    add constraint ACT_FK_EXE_SUPER
+    foreign key (SUPER_EXEC_) 
+    references ACT_RU_EXECUTION (ID_);
+
+create index ACT_IDX_TSKASS_TASK on ACT_RU_IDENTITYLINK(TASK_ID_);
+alter table ACT_RU_IDENTITYLINK
+    add constraint ACT_FK_TSKASS_TASK
+    foreign key (TASK_ID_) 
+    references ACT_RU_TASK (ID_);
+    
+create index ACT_IDX_TASK_EXEC on ACT_RU_TASK(EXECUTION_ID_);
+alter table ACT_RU_TASK
+    add constraint ACT_FK_TASK_EXE
+    foreign key (EXECUTION_ID_)
+    references ACT_RU_EXECUTION (ID_);
+    
+create index ACT_IDX_TASK_PROCINST on ACT_RU_TASK(PROC_INST_ID_);
+alter table ACT_RU_TASK
+    add constraint ACT_FK_TASK_PROCINST
+    foreign key (PROC_INST_ID_)
+    references ACT_RU_EXECUTION (ID_);
+    
+create index ACT_IDX_TASK_PROCDEF on ACT_RU_TASK(PROC_DEF_ID_);
+alter table ACT_RU_TASK
+  add constraint ACT_FK_TASK_PROCDEF
+  foreign key (PROC_DEF_ID_)
+  references ACT_RE_PROCDEF (ID_);
+  
+create index ACT_IDX_VAR_EXE on ACT_RU_VARIABLE(EXECUTION_ID_);
+alter table ACT_RU_VARIABLE 
+    add constraint ACT_FK_VAR_EXE
+    foreign key (EXECUTION_ID_) 
+    references ACT_RU_EXECUTION (ID_);
+
+create index ACT_IDX_VAR_PROCINST on ACT_RU_VARIABLE(PROC_INST_ID_);
+alter table ACT_RU_VARIABLE
+    add constraint ACT_FK_VAR_PROCINST
+    foreign key (PROC_INST_ID_)
+    references ACT_RU_EXECUTION(ID_);
+
+create index ACT_IDX_VAR_BYTEARRAY on ACT_RU_VARIABLE(BYTEARRAY_ID_);
+alter table ACT_RU_VARIABLE 
+    add constraint ACT_FK_VAR_BYTEARRAY 
+    foreign key (BYTEARRAY_ID_) 
+    references ACT_GE_BYTEARRAY (ID_);
+
+create index ACT_IDX_JOB_EXCEPTION on ACT_RU_JOB(EXCEPTION_STACK_ID_);
+alter table ACT_RU_JOB 
+    add constraint ACT_FK_JOB_EXCEPTION
+    foreign key (EXCEPTION_STACK_ID_) 
+    references ACT_GE_BYTEARRAY (ID_);
+
+create index ACT_IDX_EVENT_SUBSCR on ACT_RU_EVENT_SUBSCR(EXECUTION_ID_);
+alter table ACT_RU_EVENT_SUBSCR
+    add constraint ACT_FK_EVENT_EXEC
+    foreign key (EXECUTION_ID_)
+    references ACT_RU_EXECUTION(ID_);
+	
+-- ADD BY DRAGON
+create index ACT_FK_VAR_TASK on ACT_RU_VARIABLE(TASK_ID_);
+create index ACT_FK_PROCDEF_DEPLOYMENT on ACT_RE_PROCDEF(DEPLOYMENT_ID_);
+create index ACT_FK_TASK_PARENT on ACT_RU_TASK(PARENT_TASK_ID_);
+
+create table ACT_HI_PROCINST (
+    ID_ varchar(64) not null,
+    PROC_INST_ID_ varchar(64) not null,
+    BUSINESS_KEY_ varchar(255),
+    PROC_DEF_ID_ varchar(64) not null,
+    START_TIME_ timestamp not null,
+    END_TIME_ timestamp,
+    DURATION_ bigint,
+    START_USER_ID_ varchar(255),
+    START_ACT_ID_ varchar(255),
+    END_ACT_ID_ varchar(255),
+    SUPER_PROCESS_INSTANCE_ID_ varchar(64),
+    DELETE_REASON_ varchar(4000),
+    primary key (ID_),
+    unique (PROC_INST_ID_),
+    unique (PROC_DEF_ID_, BUSINESS_KEY_)
+);
+
+create table ACT_HI_ACTINST (
+    ID_ varchar(64) not null,
+    PROC_DEF_ID_ varchar(64) not null,
+    PROC_INST_ID_ varchar(64) not null,
+    EXECUTION_ID_ varchar(64) not null,
+    ACT_ID_ varchar(255) not null,
+    ACT_NAME_ varchar(255),
+    ACT_TYPE_ varchar(255) not null,
+    ASSIGNEE_ varchar(64),
+    START_TIME_ timestamp not null,
+    END_TIME_ timestamp,
+    DURATION_ bigint,
+    primary key (ID_)
+);
+
+create table ACT_HI_TASKINST (
+    ID_ varchar(64) not null,
+    PROC_DEF_ID_ varchar(64),
+    TASK_DEF_KEY_ varchar(255),
+    PROC_INST_ID_ varchar(64),
+    EXECUTION_ID_ varchar(64),
+    NAME_ varchar(255),
+    PARENT_TASK_ID_ varchar(64),
+    DESCRIPTION_ varchar(4000),
+    OWNER_ varchar(64),
+    ASSIGNEE_ varchar(64),
+    START_TIME_ timestamp not null,
+    END_TIME_ timestamp,
+    DURATION_ bigint,
+    DELETE_REASON_ varchar(4000),
+    PRIORITY_ integer,
+    DUE_DATE_ timestamp,
+    primary key (ID_)
+);
+
+create table ACT_HI_DETAIL (
+    ID_ varchar(64) not null,
+    TYPE_ varchar(255) not null,
+    PROC_INST_ID_ varchar(64) not null,
+    EXECUTION_ID_ varchar(64) not null,
+    TASK_ID_ varchar(64),
+    ACT_INST_ID_ varchar(64),
+    NAME_ varchar(255) not null,
+    VAR_TYPE_ varchar(64),
+    REV_ integer,
+    TIME_ timestamp not null,
+    BYTEARRAY_ID_ varchar(64),
+    DOUBLE_ double precision,
+    LONG_ bigint,
+    TEXT_ varchar(4000),
+    TEXT2_ varchar(4000),
+    primary key (ID_)
+);
+
+create table ACT_HI_COMMENT (
+    ID_ varchar(64) not null,
+    TYPE_ varchar(255),
+    TIME_ timestamp not null,
+    USER_ID_ varchar(255),
+    TASK_ID_ varchar(64),
+    PROC_INST_ID_ varchar(64),
+    ACTION_ varchar(255),
+    MESSAGE_ varchar(4000),
+    FULL_MSG_ bytea,
+    primary key (ID_)
+);
+
+create table ACT_HI_ATTACHMENT (
+    ID_ varchar(64) not null,
+    REV_ integer,
+    USER_ID_ varchar(255),
+    NAME_ varchar(255),
+    DESCRIPTION_ varchar(4000),
+    TYPE_ varchar(255),
+    TASK_ID_ varchar(64),
+    PROC_INST_ID_ varchar(64),
+    URL_ varchar(4000),
+    CONTENT_ID_ varchar(64),
+    primary key (ID_)
+);
+
+
+create index ACT_IDX_HI_PRO_INST_END on ACT_HI_PROCINST(END_TIME_);
+create index ACT_IDX_HI_PRO_I_BUSKEY on ACT_HI_PROCINST(BUSINESS_KEY_);
+create index ACT_IDX_HI_ACT_INST_START on ACT_HI_ACTINST(START_TIME_);
+create index ACT_IDX_HI_ACT_INST_END on ACT_HI_ACTINST(END_TIME_);
+create index ACT_IDX_HI_DETAIL_PROC_INST on ACT_HI_DETAIL(PROC_INST_ID_);
+create index ACT_IDX_HI_DETAIL_ACT_INST on ACT_HI_DETAIL(ACT_INST_ID_);
+create index ACT_IDX_HI_DETAIL_TIME on ACT_HI_DETAIL(TIME_);
+create index ACT_IDX_HI_DETAIL_NAME on ACT_HI_DETAIL(NAME_);
+-- ##BC平台workflow的 postgresql 建表脚本##
 
 -- bc营运管理子系统的建表脚本,所有表名须附带前缀"BS_"
 -- 运行此脚本之前需先运行平台的建表脚本framework.db.postgresql.create.sql
@@ -2591,6 +3220,7 @@ CREATE TABLE BS_CASE_ACCIDENT (
    MEDICAL_FEE 			NUMERIC(10,2),
    PAY_DRIVERID 		INTEGER,
    PAY_DRIVER 			VARCHAR(255),
+   PAY_DESC 			VARCHAR(255),
    IS_DELIVER_SECOND 	BOOLEAN DEFAULT FALSE,
    IS_DELIVER_TWO 		BOOLEAN DEFAULT FALSE,
    DELIVER_DATE_TWO 	TIMESTAMP,
@@ -2603,7 +3233,10 @@ CREATE TABLE BS_CASE_ACCIDENT (
    PAY_DRIVER_TWO 		VARCHAR(255),
    PAY_DATE_TWO 		TIMESTAMP,
    PAY_MONEY_TWO 		NUMERIC(10,2),
+   PAY_DESC_TWO 		VARCHAR(255),
    THIRD_LOSS_INFO 		VARCHAR(255),
+   DELAY_DATE 			TIMESTAMP,
+   DELAY_DESC 			VARCHAR(255),
    CONSTRAINT BSPK_CASE_ACCIDENT PRIMARY KEY (ID)
 );
 COMMENT ON TABLE BS_CASE_ACCIDENT IS '事故理赔';
@@ -2629,6 +3262,7 @@ COMMENT ON COLUMN BS_CASE_ACCIDENT.IS_PAY IS '是否司机受款：1-是';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DATE IS '司机受款日期';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_MONEY IS '司机受款金额';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_CODE IS '司机受款收据号';
+COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DESC IS '司机受款说明';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.IS_CLAIM IS '是否保险公司赔付：1-是';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.CLAIM_DATE IS '保险公司赔付日期';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.CLAIM_MONEY IS '保险公司赔付金额';
@@ -2669,7 +3303,10 @@ COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DRIVERID_TWO IS '第二次送保里的受
 COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DRIVER_TWO IS '第二次送保里的受款司机';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DATE_TWO IS '第二次送保里的司机受款日期';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_MONEY_TWO IS '第二次送保里的司机受款金额';
+COMMENT ON COLUMN BS_CASE_ACCIDENT.PAY_DESC_TWO IS '司机二次受款说明';
 COMMENT ON COLUMN BS_CASE_ACCIDENT.THIRD_LOSS_INFO IS '第三者损失情况';
+COMMENT ON COLUMN BS_CASE_ACCIDENT.DELAY_DATE IS '事故延期至日期 ';
+COMMENT ON COLUMN BS_CASE_ACCIDENT.DELAY_DESC IS '事故延期说明';
 ALTER TABLE BS_CASE_ACCIDENT ADD CONSTRAINT BSFK_ACCIDENT_CASEBASE FOREIGN KEY (ID)
       REFERENCES BS_CASE_BASE (ID);
 ALTER TABLE BS_CASE_ACCIDENT ADD CONSTRAINT BSFK_ACCIDENT_CHARGER FOREIGN KEY (CHARGER_ID)
@@ -3417,6 +4054,8 @@ CREATE TABLE BS_INVOICE_BUY (
    SELL_PRICE           NUMERIC(10,2)		NOT NULL,
    BUYER_ID             INTEGER,
    BUY_DATE             TIMESTAMP			NOT NULL,
+   PATCH_NO             VARCHAR(255),
+   PROJECT_NO           VARCHAR(255),
    FILE_DATE            TIMESTAMP			NOT NULL,
    AUTHOR_ID            INTEGER           	NOT NULL,
    MODIFIED_DATE        TIMESTAMP,
@@ -3438,6 +4077,8 @@ COMMENT ON COLUMN BS_INVOICE_BUY.BUY_PRICE IS '采购单价';
 COMMENT ON COLUMN BS_INVOICE_BUY.SELL_PRICE IS '销售单价';
 COMMENT ON COLUMN BS_INVOICE_BUY.BUYER_ID IS '采购人ID';
 COMMENT ON COLUMN BS_INVOICE_BUY.BUY_DATE IS '采购日期';
+COMMENT ON COLUMN BS_INVOICE_BUY.PATCH_NO IS '批号';
+COMMENT ON COLUMN BS_INVOICE_BUY.PROJECT_NO IS '工程单号';
 COMMENT ON COLUMN BS_INVOICE_BUY.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_INVOICE_BUY.AUTHOR_ID IS '创建人ID';
 COMMENT ON COLUMN BS_INVOICE_BUY.MODIFIED_DATE IS '最后修改时间';
@@ -3457,6 +4098,7 @@ CREATE INDEX BSIDX_INVOICEBUY_ENDNO ON BS_INVOICE_BUY (END_NO);
 CREATE TABLE BS_INVOICE_SELL (
    ID                   INTEGER          	NOT NULL,
    STATUS_              NUMERIC(1)      	NOT NULL,
+   TYPE_              	NUMERIC(1)      	NOT NULL,
    BUYER_ID             INTEGER,
    BUYER_NAME           VARCHAR(255),
    CAR_ID               INTEGER          	NOT NULL,
@@ -3476,6 +4118,7 @@ CREATE TABLE BS_INVOICE_SELL (
 );
 COMMENT ON TABLE BS_INVOICE_SELL IS '发票销售单';
 COMMENT ON COLUMN BS_INVOICE_SELL.STATUS_ IS '状态:0-正常,1-作废';
+COMMENT ON COLUMN BS_INVOICE_SELL.TYPE_ IS '类型：1-已销，2-退票';
 COMMENT ON COLUMN BS_INVOICE_SELL.BUYER_ID IS '购买人ID';
 COMMENT ON COLUMN BS_INVOICE_SELL.BUYER_NAME IS '购买人姓名';
 COMMENT ON COLUMN BS_INVOICE_SELL.CAR_ID IS '车辆ID';
@@ -3512,6 +4155,7 @@ CREATE INDEX BSIDX_INVOICESELL_MOTORCADE ON BS_INVOICE_SELL (MOTORCADE_ID);
 CREATE TABLE BS_INVOICE_SELL_DETAIL (
    ID                   INTEGER          	NOT NULL,
    STATUS_ 				numeric(1,0) DEFAULT 0 NOT NULL,
+   TYPE_              	NUMERIC(1)      	NOT NULL,
    SELL_ID              INTEGER          	NOT NULL,
    BUY_ID               INTEGER          	NOT NULL,
    COUNT_               INTEGER          	NOT NULL,
@@ -3522,6 +4166,7 @@ CREATE TABLE BS_INVOICE_SELL_DETAIL (
 );
 COMMENT ON TABLE BS_INVOICE_SELL_DETAIL IS '发票销售明细';
 COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.STATUS_ IS '状态:0-正常,1-作废;要保证与所属销售单的状态相等';
+COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.TYPE_ IS '类型：1-已销，2-退票';
 COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.SELL_ID IS '所属销售单ID';
 COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.BUY_ID IS '对应采购单ID';
 COMMENT ON COLUMN BS_INVOICE_SELL_DETAIL.COUNT_ IS '销售数量';
@@ -4093,85 +4738,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- 统计采购库存号码段函数
--- 输入参数：bid采购单id,buy_count采购数量,start_no采购单开始号,end_no采购单结束号
-CREATE OR REPLACE FUNCTION getbalancenumberbyinvoicebuyid(bid INTEGER,buy_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)
-	RETURNS CHARACTER VARYING  AS
-$BODY$
-DECLARE
-		-- 定义变量
-		-- 临时开始号,每比较一条销售明细临时开始号都会根据情况变化
-		startno_tmp CHARACTER VARYING;
-		-- 临时结束号,每比较一条销售明细临时结束号都会根据情况变化
-		endno_tmp CHARACTER VARYING;
-		-- 数字类型临时变量
-		number_temp1 INTEGER;
-		-- 数字类型临时变量
-		number_temp2 INTEGER;
-		-- 销售数量
-		sell_count INTEGER;
-		-- 记录库存号码段
-		remainingNumber CHARACTER VARYING;
-		-- 变量一行结果的记录	
-		rowinfo RECORD;
-BEGIN
-	-- 先根据采购单id,查销售数量
-	SELECT SUM(count_) INTO sell_count
-	FROM bs_invoice_sell_detail 
-	WHERE buy_id=bid AND status_=0;
-	-- 当sell_count为空,没有销售,所以库存号码段为采购单的开始号到结束号
-	IF sell_count IS NULL THEN
-		RETURN '['||start_no||'~'||end_no||']';
-	-- 当销售数量大于或等采购数量时,此采购单已经销售完,库存号码返回空
-	ELSEIF sell_count>=buy_count THEN
-		RETURN '';
-	-- 其他情况此采购单有对应的销售单,并且采购数量大于销售数量,有库存号码
-	ELSE
-			-- 初始化库存号码段变量
-			remainingNumber := '';
-			-- 将采购单的开始号赋值给临时开始号变量；
-			startno_tmp := trim(start_no);
-							-- 根据采购单ID查出对应的销售明细结果，并将结果排序
-			FOR rowinfo IN SELECT d.start_no,d.end_no
-											FROM  bs_invoice_sell_detail d
-											WHERE d.buy_id=bid and d.status_=0
-											ORDER BY d.start_no
-			-- 循环开始
-			LOOP
-					-- 第一次循环时将明细开始号和临时开始号转为数字临时变量,后续作两号比较时使用
-					number_temp1 := convert_stringtonumber(rowinfo.start_no);
-					number_temp2 := convert_stringtonumber(startno_tmp);
-					-- 明细开始号大于临时开始号，表明从临时号到明细结束号这一段号码中临时开始号到明细开始号减1为未出售的库存号码段
-					IF number_temp1 > number_temp2 THEN
-						-- 临时开始号到明细开始号减1保存临时结束号,若有0前序需要进行补0操作
-						endno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.start_no))-1,startno_tmp));
-						-- 记录这一段未出售的号码段
-						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] ';
-						-- 临时的开始号变为明细结束号+1
-						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
-						-- 临时结束号等于明细结束号。
-						endno_tmp := trim(rowinfo.end_no);
-					END IF;
-					-- 明细开始号等于临时开始号,历史开始号到明细结束号这一段为已出售的
-					IF number_temp1=number_temp2	THEN
-						startno_tmp := trim(convert_numbertostring(convert_stringtonumber(trim(rowinfo.end_no))+1,trim(rowinfo.end_no)));
-						endno_tmp:= trim(rowinfo.end_no);
-					END IF;
-			END LOOP;	
-			-- 循环结束,若最后一条明细结束号小于采购单的结束号，则范围[最后一条明细的结束号+1，采购单的结束号]为库存号码段
-			IF convert_stringtonumber(endno_tmp)<convert_stringtonumber(trim(end_no)) THEN
-						startno_tmp= trim(convert_numbertostring(convert_stringtonumber(endno_tmp)+1,endno_tmp));
-						endno_tmp=trim(end_no);
-						remainingNumber := remainingNumber||'['||startno_tmp||'~'||endno_tmp||'] '; 
-			END IF;
-			-- 返回统计好的库存号码段
-			RETURN remainingNumber;
-
-	END IF;
-END;
-$BODY$
-LANGUAGE plpgsql;
- 
 -- 字符串转数字函数
 CREATE OR REPLACE FUNCTION convert_stringtonumber(string_ character varying)
 	RETURNS integer  AS
@@ -4221,9 +4787,9 @@ BEGIN
 END;
 $BODY$
 LANGUAGE plpgsql;
- 
--- 统计剩余数量函数
-CREATE OR REPLACE FUNCTION getbalancecountbyinvoicebuyid(bid integer)
+	
+-- 统计采购单剩余数量函数
+CREATE OR REPLACE FUNCTION get_balancecount_invoice_buyid(bid integer)
 	RETURNS integer AS
 $BODY$
 DECLARE
@@ -4232,22 +4798,31 @@ DECLARE
 	buy_count INTEGER;
 	-- 销售数量
 	sell_count INTEGER;
+	-- 退票数量
+	refund_count INTEGER;
 BEGIN
-	select b.count_,sum(d.count_) 
-	into buy_count,sell_count
-	from bs_invoice_buy b
-		left join bs_invoice_sell_detail d on d.buy_id=b.id and d.status_=0
-		where b.id=bid 
-		group by b.id;
-		-- 若为空时，表示还没销售，所以剩余数量应该等于采购数量
-		IF sell_count is null THEN
-			return buy_count;
-		ELSE 
-			return buy_count-sell_count;
-		END IF;
+  --采购数量
+	select count_ into buy_count from bs_invoice_buy where id=bid;
+	--销售数量
+	select sum(count_) into sell_count
+	from bs_invoice_sell_detail where buy_id=bid and status_=0 and type_=1;
+	--退票数量
+	select sum(count_) into refund_count
+	from bs_invoice_sell_detail where buy_id=bid and status_=0 and type_=2;
+
+		-- 若为空时
+	IF sell_count is null THEN
+		sell_count := 0;
+	END IF;
+	IF refund_count is null THEN
+		refund_count := 0;
+	END IF;
+
+	RETURN buy_count-sell_count+refund_count;
 END
 $BODY$
 LANGUAGE plpgsql;
+
 
  -- 判断发票销售开始号、结束号、数量异常函数
 CREATE OR REPLACE FUNCTION checkI4SellDetailCount(sell_count INTEGER,start_no CHARACTER VARYING,end_no CHARACTER VARYING)

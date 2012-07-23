@@ -117,6 +117,35 @@ drop table if exists BS_CHARGER;
 -- 车队信息
 drop table if exists BS_MOTORCADE;
 
+-- ##BC平台workflow的 postgresql 删表脚本##
+DROP TABLE IF EXISTS bc_wf_attach;
+DROP TABLE IF EXISTS bc_wf_deploy;
+DROP TABLE IF EXISTS bc_wf_excution_log;
+-- history
+drop table if exists ACT_HI_PROCINST;
+drop table if exists ACT_HI_ACTINST;
+drop table if exists ACT_HI_TASKINST;
+drop table if exists ACT_HI_DETAIL;
+drop table if exists ACT_HI_COMMENT;
+drop table if exists ACT_HI_ATTACHMENT;
+
+-- engine
+drop table if exists ACT_RU_JOB;
+drop table if exists ACT_RU_VARIABLE;
+drop table if exists ACT_RU_EVENT_SUBSCR;
+drop table if exists ACT_RU_IDENTITYLINK;
+drop table if exists ACT_RU_TASK;
+drop table if exists ACT_RU_EXECUTION;
+drop table if exists ACT_RE_PROCDEF;
+drop table if exists ACT_GE_BYTEARRAY;
+drop table if exists ACT_RE_DEPLOYMENT;
+drop table if exists ACT_GE_PROPERTY;
+
+-- identity
+drop table if exists ACT_ID_INFO;
+drop table if exists ACT_ID_MEMBERSHIP;
+drop table if exists ACT_ID_GROUP;
+drop table if exists ACT_ID_USER;
 -- ##BC平台的 postgresql 删表脚本##
 
 -- 用于生成hibernate id的序列
@@ -125,6 +154,15 @@ DROP SEQUENCE IF EXISTS hibernate_sequence;
 
 -- 测试用的表
 DROP TABLE IF EXISTS BC_EXAMPLE;
+
+-- 调查问卷
+DROP TABLE IF EXISTS BC_IVG_GRADE;
+DROP TABLE IF EXISTS BC_IVG_ANSWER;
+DROP TABLE IF EXISTS BC_IVG_RESPOND;
+DROP TABLE IF EXISTS BC_IVG_QUESTION_ITEM;
+DROP TABLE IF EXISTS BC_IVG_QUESTION;
+DROP TABLE IF EXISTS BC_IVG_QUESTIONARY_ACTOR;
+DROP TABLE IF EXISTS BC_IVG_QUESTIONARY;
 
 -- 同步记录基表
 DROP TABLE IF EXISTS BC_SYNC_BASE;
@@ -143,6 +181,8 @@ DROP TABLE IF EXISTS BC_REPORT_TEMPLATE_ACTOR;
 DROP TABLE IF EXISTS BC_REPORT_TEMPLATE;
 
 -- 模板管理
+DROP TABLE IF EXISTS BC_TEMPLATE_TEMPLATE_PARAM;
+DROP TABLE IF EXISTS BC_TEMPLATE_PARAM;
 DROP TABLE IF EXISTS BC_TEMPLATE;
 DROP TABLE IF EXISTS BC_TEMPLATE_TYPE;
 
