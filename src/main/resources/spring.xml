@@ -63,6 +63,7 @@
 	<import resource="classpath:cn/bc/websocket/spring.xml"/>
 	<import resource="classpath:cn/bc/placeorigin/spring.xml"/>
 	<import resource="classpath:cn/bc/template/spring.xml"/>
+	<import resource="classpath:cn/bc/investigate/spring.xml"/>
 	
 	<!-- bc平台:Workflow -->
 	<import resource="classpath:cn/bc/workflow/spring.xml" />
