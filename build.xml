@@ -9,6 +9,7 @@
 	<property name="fixlastline" value="true" />
 	<property name="encoding" value="UTF-8" />
 	<property name="frameworkSql.dir" value="../bc-framework/resources" />
+	<property name="workflowSql.dir" value="../bc-workflow/resources" />
 	<property name="businessSql.dir" value="../bc-business/resources" />
 
 	<target name="help">
@@ -91,6 +92,20 @@
 				<fileset dir="${frameworkSql.dir}">
 					<include name="framework.db.@{db}.create.fn.sql" />
 				</fileset>
+				<!-- 平台流转引擎的 -->
+				<fileset dir="${workflowSql.dir}">
+					<include name="activiti.@{db}.create.identity.sql" />
+				</fileset>
+				<fileset dir="${workflowSql.dir}">
+					<include name="activiti.@{db}.create.engine.sql" />
+				</fileset>
+				<fileset dir="${workflowSql.dir}">
+					<include name="activiti.@{db}.create.history.sql" />
+				</fileset>
+				<fileset dir="${workflowSql.dir}">
+					<include name="workflow.db.@{db}.create.sql" />
+				</fileset>
+
 				<!-- 本子系统的 -->
 				<fileset dir="${businessSql.dir}">
 					<include name="business.db.@{db}.create.sql" />
@@ -116,6 +131,13 @@
 				<!-- 本子系统的 -->
 				<fileset dir="${businessSql.dir}">
 					<include name="business.db.@{db}.drop.sql" />
+				</fileset>
+				<!-- 平台流转引擎的 -->
+				<fileset dir="${workflowSql.dir}">
+					<include name="workflow.db.@{db}.drop.sql" />
+				</fileset>
+				<fileset dir="${workflowSql.dir}">
+					<include name="activiti.@{db}.drop.sql" />
 				</fileset>
 				<!-- 平台的 -->
 				<fileset dir="${frameworkSql.dir}">
