@@ -397,3 +397,58 @@ ALTER TABLE BC_TEMPLATE_TEMPLATE_PARAM ADD CONSTRAINT BCFK_TEMPLATE_PARAM_TEMPLA
 --BC_WORKFLOW_START 发起流程 可进行流程发起工作
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0139', 'BC_WORKFLOW_START','发起流程');
+
+
+
+-- 流程部署使用人
+-- 删表语句
+drop table if exists BC_WF_DEPLOY_ACTOR;
+CREATE TABLE BC_WF_DEPLOY_ACTOR(
+		DID INTEGER NOT NULL,
+		AID INTEGER NOT NULL,
+	CONSTRAINT BCPK_WF_DEPLOY_ACTOR PRIMARY KEY (DID,AID)
+);
+COMMENT ON TABLE BC_WF_DEPLOY_ACTOR IS '流程部署使用人';
+COMMENT ON COLUMN BC_WF_DEPLOY_ACTOR.DID IS '流程部署id';
+COMMENT ON COLUMN BC_WF_DEPLOY_ACTOR.AID IS '使用人id';
+ALTER TABLE BC_WF_DEPLOY_ACTOR ADD CONSTRAINT BCFK_BC_WF_DEPLOY_ACTOR_DEPLOY FOREIGN KEY (DID)
+      REFERENCES BC_WF_DEPLOY (ID);
+ALTER TABLE BC_WF_DEPLOY_ACTOR ADD CONSTRAINT BCFK_BC_WF_DEPLOY_ACTOR_ACTOR FOREIGN KEY (AID)
+      REFERENCES BC_IDENTITY_ACTOR (ID);
+
+
+
+
+-- 流程部署使用人列函数
+CREATE OR REPLACE FUNCTION getdeployuser(deployid INTEGER)
+	RETURNS CHARACTER VARYING  AS
+$BODY$
+DECLARE
+		-- 使用者字符串
+		users CHARACTER VARYING;
+		-- 记录使用者字符串长度
+		_length INTEGER;
+		-- 一行结果的记录	
+		rowinfo RECORD;
+BEGIN
+		-- 初始化变量
+		users:='';
+		_length:=0;
+		FOR rowinfo IN SELECT ia.name
+						FROM bc_wf_deploy d
+						INNER JOIN bc_wf_deploy_actor da on da.did=d.id
+						INNER JOIN bc_identity_actor ia on da.aid=ia.id
+						WHERE d.id=deployid
+		-- 循环开始
+		LOOP
+			users:=users||rowinfo.name||',';
+		END LOOP;
+		_length:=length(users);
+		IF _length>0 THEN
+		users:=substring(users from 1 for _length-1);
+		END IF;
+		RETURN users;
+END;
+$BODY$
+LANGUAGE plpgsql;
+
