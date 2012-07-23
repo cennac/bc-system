@@ -497,6 +497,11 @@
 			<artifactId>bc-business-workflow-jiaoche</artifactId>
 			<version>${business.workflow.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.bc.business.workflow</groupId>
+			<artifactId>bc-business-workflow-confirmretiredcars</artifactId>
+			<version>${business.workflow.version}</version>
+		</dependency>
 
 
 		<!-- 第三方依赖包 -->
