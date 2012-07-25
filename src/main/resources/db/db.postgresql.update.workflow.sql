@@ -220,7 +220,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 
 -- 普通用户加入我的待办、我的经办
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
 	and m.type_ > 1 and m.order_ in ('010100','010200')
 	order by m.order_;
 
