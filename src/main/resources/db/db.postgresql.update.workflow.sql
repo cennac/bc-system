@@ -452,3 +452,8 @@ END;
 $BODY$
 LANGUAGE plpgsql;
 
+
+
+-- 让顶层单位拥有发起流程角色
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BC_WORKFLOW_START';
