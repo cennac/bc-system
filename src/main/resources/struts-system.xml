@@ -15,6 +15,9 @@
 		<action name="login" class="loginAction">
 			<result>/bc/login/login.jsp</result>
 		</action>
+		<action name="mock" class="loginAction" method="mock">
+			<result>/bc/login/mock.jsp</result>
+		</action>
 		<action name="logout" class="loginAction" method="doLogout">
 			<result type="redirect">/login</result>
 		</action>

@@ -38,6 +38,7 @@ import cn.bc.identity.domain.AuthData;
 import cn.bc.identity.event.LoginEvent;
 import cn.bc.identity.event.LogoutEvent;
 import cn.bc.identity.web.SystemContext;
+import cn.bc.identity.web.SystemContextHolder;
 import cn.bc.identity.web.SystemContextImpl;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -54,6 +55,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		ApplicationEventPublisherAware {
 	private static final long serialVersionUID = 1L;
 	private static Log logger = LogFactory.getLog(LoginAction.class);
+	public boolean mock;// 是否是模拟登录
 	public String name;// 帐号
 	public String password;// 密码
 	public String msg;// 登录信息
@@ -83,6 +85,10 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		return SUCCESS;
 	}
 
+	public String mock() throws Exception {
+		return SUCCESS;
+	}
+
 	public String doRelogin() throws Exception {
 		return SUCCESS;
 	}
@@ -105,17 +111,28 @@ public class LoginAction extends ActionSupport implements SessionAware,
 				success = false;
 			} else {
 				// 密码验证
-				if (this.password.length() != 32) {// 明文密码先进行md5加密
+				if (this.password != null && this.password.length() != 32) {// 明文密码先进行md5加密
 					md5 = DigestUtils.md5DigestAsHex(this.password
 							.getBytes("UTF-8"));
 				} else {// 已加密的密码
-					md5 = this.password;
+					md5 = this.password != null ? this.password : "";
 				}
 
-				if (!md5.equals(authData.getPassword())) {
+				if (!md5.equals(authData.getPassword()) && !mock) {
 					msg = "密码错误！";
 					success = false;
 				} else {
+					if (mock) {// 记录模拟登录日志
+						SystemContext c = SystemContextHolder.get();
+						if (c == null || c.getUser() == null
+								|| !"admin".equals(c.getUser().getCode())) {
+							msg = "必须先用管理员帐号登录系统！";
+							success = false;
+							return SUCCESS;
+						}
+						logger.fatal("admin模拟帐号'" + name + "'的登录");
+					}
+
 					HttpServletRequest request = ServletActionContext
 							.getRequest();
 					if (logger.isInfoEnabled()) {
@@ -247,15 +264,15 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		v = request.getHeader("Host");
 		if (v != null)
 			sessionMarks.put("Host", v);
-		
+
 		// 系统访问路径
 		sessionMarks.put(
 				"contextPath",
 				request.getScheme()
-				+ "://"
-				+ request.getServerName()
-				+ (request.getServerPort() > 0 ? ":"
-						+ request.getServerPort() : "")
+						+ "://"
+						+ request.getServerName()
+						+ (request.getServerPort() > 0 ? ":"
+								+ request.getServerPort() : "")
 						+ request.getContextPath());
 
 		v = request.getHeader("Referer");
