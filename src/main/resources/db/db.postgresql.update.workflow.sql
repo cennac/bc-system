@@ -454,8 +454,21 @@ END;
 $BODY$
 LANGUAGE plpgsql;
 
-
-
 -- 让顶层单位拥有发起流程角色
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BC_WORKFLOW_START';
+
+-- 获取流程实例名称为subject的流程变量的值
+--	id: 流程实例ID
+CREATE OR REPLACE FUNCTION getProcessInstanceSubject(id IN CHARACTER VARYING) RETURNS CHARACTER VARYING AS $$
+DECLARE
+	--定义变量
+	subject varchar(4000);
+BEGIN
+	select text_ from act_hi_detail 
+		where name_='subject' and proc_inst_id_ = id and task_id_ is null 
+		order by proc_inst_id_ desc,time_ desc limit 1
+        into subject;
+	return subject;
+END;
+$$ LANGUAGE plpgsql;
