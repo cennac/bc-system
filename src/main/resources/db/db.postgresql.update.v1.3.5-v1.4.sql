@@ -1,11 +1,9 @@
--- 调查问卷的数据库脚本
-DROP TABLE IF EXISTS BC_IVG_GRADE;
-DROP TABLE IF EXISTS BC_IVG_ANSWER;
-DROP TABLE IF EXISTS BC_IVG_RESPOND;
-DROP TABLE IF EXISTS BC_IVG_QUESTION_ITEM;
-DROP TABLE IF EXISTS BC_IVG_QUESTION;
-DROP TABLE IF EXISTS BC_IVG_QUESTIONARY_ACTOR;
-DROP TABLE IF EXISTS BC_IVG_QUESTIONARY;
+-- ###########################################################################
+-- 宝城综合应用系统的升级脚本
+-- 数据库类型: postgresql
+-- 升级版本: 从 1.3.5 升级到 1.4
+-- ###########################################################################
+
 
 
 --向模板管理表中插入一条顶班车辆补充协议的模板
