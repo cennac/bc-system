@@ -1,7 +1,15 @@
-ÖØ½¨Êı¾İ¿âÊ±°´ÈçÏÂË³ĞòÖ´ĞĞ½Å±¾£º
-1£©db.postgresql.create.sql							-- Êı¾İ¿â½¨±í½Å±¾
-2£©db.postgresql.data.sql							-- Êı¾İ¿âÄ¬ÈÏµÄ³õÊ¼»¯Êı¾İ
-3£©db.postgresql.data.init.placeorigin.sql			-- ¼®¹á³õÊ¼»¯Êı¾İ
-4£©db.postgresql.data.init.socialSecurityRule.sql 	-- Éç±£¹æÔò³õÊ¼»¯Êı¾İ
+é‡å»ºæ•°æ®åº“æ—¶æŒ‰å¦‚ä¸‹é¡ºåºæ‰§è¡Œè„šæœ¬ï¼š
+1ï¼‰db.postgresql.create.sql							-- æ•°æ®åº“å»ºè¡¨è„šæœ¬
+2ï¼‰db.postgresql.data.sql							-- æ•°æ®åº“é»˜è®¤çš„åˆå§‹åŒ–æ•°æ®
+3ï¼‰db.postgresql.data.init.placeorigin.sql			-- ç±è´¯åˆå§‹åŒ–æ•°æ®
+4ï¼‰db.postgresql.data.init.socialSecurityRule.sql 	-- ç¤¾ä¿è§„åˆ™åˆå§‹åŒ–æ•°æ®
 
-ÈçÒªÉ¾³ıËùÓĞÊı¾İ¿â±í£¬Ö´ĞĞ½Å±¾£ºdb.postgresql.drop.sql
+å¦‚è¦åˆ é™¤æ‰€æœ‰æ•°æ®åº“è¡¨ï¼Œæ‰§è¡Œè„šæœ¬ï¼šdb.postgresql.drop.sql
+-----------------------------------------------------------
+v1.3.5å‡çº§åˆ°v1.4ç‰ˆè¯´æ˜ï¼š
+æŒ‰é¡ºåºæ‰§è¡Œå¦‚ä¸‹è„šæœ¬
+bc-workflow/resources/activiti.postgresql.create.engine.sql
+bc-workflow/resources/activiti.postgresql.create.history.sql
+bc-system/.../db.postgresql.update.workflow.sql
+bc-system/.../db.postgresql.update.v1.3.5-v1.4.sql
+-----------------------------------------------------------
