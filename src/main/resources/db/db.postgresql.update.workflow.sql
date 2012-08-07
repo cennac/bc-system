@@ -1,7 +1,7 @@
 -- ###########################################################################
 -- 宝城综合应用系统的升级脚本
 -- 数据库类型: postgresql
--- 升级版本: 从 1.3.5 升级到 1.3.6
+-- 升级版本: 从 1.3.5 升级到 1.4 (WorkFlow)
 -- ###########################################################################
 
 -- ACTOR历史表增加编码字段
@@ -9,10 +9,85 @@ ALTER TABLE bc_identity_actor_history ADD COLUMN ACTOR_CODE varchar(255);
 update bc_identity_actor_history h set ACTOR_CODE=(select code from bc_identity_actor a where a.id=h.actor_id);
 ALTER TABLE bc_identity_actor_history ALTER COLUMN ACTOR_CODE SET NOT NULL;
 
+-- 我的待办
+UPDATE bc_identity_resource SET name='我的待办',url='/bc-workflow/todo/personals/list' WHERE order_='010100';
+-- 我的经办
+UPDATE bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/list' WHERE order_='010200';
+
+-- #### 流程相关资源和角色权限控制 ####
+-- 资源:流程管理
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800320','流程管理', null, 'i0004' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+-- 资源:流程管理-流程部署
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800321','流程部署', '/bc-workflow/deploys/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+-- 资源:流程管理-流程监控
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+-- 资源:流程管理-任务监控
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/taskMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+-- 资源:流程管理-待办监控
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800324','待办监控', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+
+-- 角色:流程管理
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0139', 'BC_WORKFLOW','流程管理');
+-- 角色:流程部署管理
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0140', 'BC_WORKFLOW_DEPLOY','流程部署管理');
+-- 角色:流程部署级联删除
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0141', 'BC_WORKFLOW_DEPLOY_CASCADE','流程部署级联删除');
+-- 角色:流程实例级联删除
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0142', 'BC_WORKFLOW_INSTANCE_DELETE','流程实例级联删除');
+-- 角色:发起流程
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0143', 'BC_WORKFLOW_START','发起流程');
+-- 角色:委托任务
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0144', 'BC_WORKFLOW_DELEGATE','委托任务');
+-- 角色:分派任务
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0145', 'BC_WORKFLOW_ASSIGN','分派任务');
+-- 角色:添加公共意见、附件
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0146', 'BC_WORKFLOW_ADDGLOBALATTACH','添加流程的公共意见和附件');
+
+-- 角色与资源关系配置
+-- 普通用户加入我的待办、我的经办
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.order_ in ('010100','010200')
+	order by m.order_;
+-- 超级管理员
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
+	and m.type_ > 1 and m.order_ in ('800321','800322','800323','800324')
+	order by m.order_;
+-- 流程管理
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_WORKFLOW' 
+	and m.type_ > 1 and m.order_ in ('800321','800322','800323','800324')
+	order by m.order_;
+-- 流程部署管理
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_WORKFLOW_DEPLOY' 
+	and m.type_ > 1 and m.order_ in ('800321')
+	order by m.order_;
+-- 让顶层单位拥有发起流程角色
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BC_WORKFLOW_START';
+-- 让超级管理员拥有流程相关管理角色
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('admin') and r.code in ('BC_WORKFLOW');
+
 -- 流转日志
 -- 删表语句
 drop table if exists BC_WF_EXCUTION_LOG;
-
+-- 建表语句
 CREATE TABLE BC_WF_EXCUTION_LOG (
     ID INTEGER NOT NULL,
     TYPE_ varchar(255) NOT NULL,
@@ -176,80 +251,6 @@ insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID)
 	and af.code in ('zjh','foy')
 	and not exists (select 0 from BC_IDENTITY_ACTOR_RELATION r where r.type_=0 and r.MASTER_ID=am.id and r.FOLLOWER_ID=af.id);
 
---	流程管理
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800320','流程管理', null, 'i0004' from BC_IDENTITY_RESOURCE m where m.order_='800000';
-
---	流程监控
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800321','流程监控', '/bc-workflow/flowMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
-
---	任务监控
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','任务监控', '/bc-workflow/taskMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
-
---	待办监控
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','待办监控', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
-
---	我的待办
-UPDATE  bc_identity_resource SET name='我的待办',url='/bc-workflow/todo/personals/list' WHERE order_='010100';
-
---	我的经办
-UPDATE  bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/list' WHERE order_='010200';
-
---	流程管理角色
---BC_WORKFLOW 流程管理 对所有流程信息进行无限制的修改。
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0138', 'BC_WORKFLOW','流程管理');
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0139', 'BC_WORKFLOW_DELEGATE','委托任务');
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0140', 'BC_WORKFLOW_ASSIGN','分派任务');
-
--- 流程管理权限配置
--- 流程管理
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_WORKFLOW' 
-	and m.type_ > 1 and m.order_ in ('800321','800322','800323')
-	order by m.order_;
-
---  超级管理员
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
-	and m.type_ > 1 and m.order_ in ('800321','800322','800323')
-	order by m.order_;
-
--- 普通用户加入我的待办、我的经办
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
-	and m.type_ > 1 and m.order_ in ('010100','010200')
-	order by m.order_;
-
-
--- #######  流程部署管理 开始
-
--- 流程部署管理角色
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0141', 'BC_WORKFLOW_DEPLOY','流程部署管理');
-
--- 流程部署资源配置
-insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800324','流程部署', '/bc-workflow/deploys/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
-
--- 流程部署权限配置
--- 流程部署管理员
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_WORKFLOW_DEPLOY' 
-	and m.type_ > 1 and m.order_ in ('800324')
-	order by m.order_;
-
---  超级管理员
-insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
-	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_ADMIN' 
-	and m.type_ > 1 and m.order_ in ('800324')
-	order by m.order_;
-
 -- 流程部署管理表
 -- 删表语句
 drop table if exists BC_WF_DEPLOY;
@@ -347,14 +348,6 @@ ALTER TABLE BC_WF_ATTACH ADD CONSTRAINT BCFK_WF_ATTACH_AUTHOR FOREIGN KEY (AUTHO
 ALTER TABLE BC_WF_ATTACH ADD CONSTRAINT BCFK_WF_ATTACH_MODIFIER FOREIGN KEY (MODIFIER_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
 
-
--- 流程部署级联删除角色
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0141', 'BC_WORKFLOW_DEPLOY_CASCADE','流程部署级联删除');
--- 流程实例级联删除角色
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0142', 'BC_WORKFLOW_INSTANCE_DELETE','流程实例级联删除');
-	
 -- 模板参数
 CREATE TABLE BC_TEMPLATE_PARAM(
 	ID INTEGER NOT NULL,
@@ -397,13 +390,6 @@ ALTER TABLE BC_TEMPLATE_TEMPLATE_PARAM ADD CONSTRAINT BCFK_TEMPLATE_TEMPLATE_PAR
       REFERENCES BC_TEMPLATE (ID);
 ALTER TABLE BC_TEMPLATE_TEMPLATE_PARAM ADD CONSTRAINT BCFK_TEMPLATE_PARAM_TEMPLATE FOREIGN KEY (PID)
       REFERENCES BC_TEMPLATE_PARAM(ID);
-	  
---	发起流程角色
---BC_WORKFLOW_START 发起流程 可进行流程发起工作
-insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0139', 'BC_WORKFLOW_START','发起流程');
-
-
 
 -- 流程部署使用人
 -- 删表语句
@@ -420,9 +406,6 @@ ALTER TABLE BC_WF_DEPLOY_ACTOR ADD CONSTRAINT BCFK_BC_WF_DEPLOY_ACTOR_DEPLOY FOR
       REFERENCES BC_WF_DEPLOY (ID);
 ALTER TABLE BC_WF_DEPLOY_ACTOR ADD CONSTRAINT BCFK_BC_WF_DEPLOY_ACTOR_ACTOR FOREIGN KEY (AID)
       REFERENCES BC_IDENTITY_ACTOR (ID);
-
-
-
 
 -- 流程部署使用人列函数
 CREATE OR REPLACE FUNCTION getdeployuser(deployid INTEGER)
@@ -456,10 +439,6 @@ BEGIN
 END;
 $BODY$
 LANGUAGE plpgsql;
-
--- 让顶层单位拥有发起流程角色
-insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
-	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BC_WORKFLOW_START';
 
 -- 获取流程实例名称为subject的流程变量的值
 --	id: 流程实例ID
@@ -694,4 +673,3 @@ insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID)
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='caiwubuXBY' 
 	and af.code in ('ofy')
 	and not exists (select 0 from BC_IDENTITY_ACTOR_RELATION r where r.type_=0 and r.MASTER_ID=am.id and r.FOLLOWER_ID=af.id);
-
