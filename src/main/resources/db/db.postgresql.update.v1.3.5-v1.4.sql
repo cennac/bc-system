@@ -4,13 +4,10 @@
 -- 升级版本: 从 1.3.5 升级到 1.4
 -- ###########################################################################
 
-
-
 --向模板管理表中插入一条顶班车辆补充协议的模板
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID,uid_) 
 	values (NEXTVAL('CORE_SEQUENCE'),0,'2012002','营运系统/经济合同附件','BC-FJ07','BC-FJ07-A03-20120327',true,false,'/bs/contract4Charger.FJ07A0320120327.docx',49152,'补充协议FJ07A03（替班司机）20120405新版','适用于承包车',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'),'BC-FJ07'||cast(NEXTVAL('CORE_SEQUENCE') as text));
-
 				
 --经济合同表添加车辆包修
 ALTER TABLE BS_CONTRACT_CHARGER ADD COLUMN CAR_MAINTAIN VARCHAR(255);
@@ -40,13 +37,4 @@ BEGIN
 			where carc.car_id=cid  order by bc.file_date desc limit 1 ;
 	return carmaintain;
 END;
-$$ LANGUAGE plpgsql;	
-
-
-
-
-
-
-
-
-
+$$ LANGUAGE plpgsql;
