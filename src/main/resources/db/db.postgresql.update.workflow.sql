@@ -26,7 +26,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-任务监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/taskMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/historicTaskInstances/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-待办监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800324','待办监控', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
