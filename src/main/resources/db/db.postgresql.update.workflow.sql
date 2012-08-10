@@ -693,3 +693,24 @@ insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID)
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='caiwubuXBY' 
 	and af.code in ('ofy')
 	and not exists (select 0 from BC_IDENTITY_ACTOR_RELATION r where r.type_=0 and r.MASTER_ID=am.id and r.FOLLOWER_ID=af.id);
+
+-- 更新部分车队负责人
+-- 二分三队 张嘉
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='张嘉'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='eagle')
+where code='000203';
+
+-- 二分四队 余兆俊
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='余兆俊'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='jon')
+where code='000204';
+
+-- 三分一队 余可夫
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='余可夫'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='yukefu')
+where code='000301';
+
+-- 三分三队 周少龙
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='周少龙'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='zsl')
+where code='000303';
