@@ -12,7 +12,7 @@ ALTER TABLE bc_identity_actor_history ALTER COLUMN ACTOR_CODE SET NOT NULL;
 -- 我的待办
 UPDATE bc_identity_resource SET name='我的待办',url='/bc-workflow/todo/personals/list' WHERE order_='010100';
 -- 我的经办
-UPDATE bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/list' WHERE order_='010200';
+UPDATE bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/paging' WHERE order_='010200';
 
 -- #### 流程相关资源和角色权限控制 ####
 -- 资源:流程管理
@@ -23,10 +23,10 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800321','流程部署', '/bc-workflow/deploys/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-流程监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-任务监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/historicTaskInstances/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/historicTaskInstances/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-待办监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800324','待办监控', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
