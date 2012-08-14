@@ -14,7 +14,7 @@ select car.id,to_char(car.register_date,'YYYY-MM-DD') registerDate
 		where cd.car_id = car.id and cd.status_ = 0) masterPhone
 	,car.factory_type,car.factory_model,car.fuel_type,(select count(*) from bs_carman man
 		inner join bs_car_driver cd on man.id = cd.driver_id 
-		where cd.car_id = car.id and cd.status_ = 0)certCount
+		where cd.car_id = car.id and cd.status_ = 0 and cd.classes != 4)certCount
 	,(select string_agg(concat(man.name,' ',man.cert_fwzg),' ') from bs_carman man
 		inner join bs_car_driver cd on man.id = cd.driver_id 
 		where cd.car_id = car.id and cd.status_ = 0) driver
