@@ -714,3 +714,19 @@ where code='000301';
 UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='周少龙'
 		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='zsl')
 where code='000303';
+
+-- 添加交车处理流程模板参数
+insert into bc_template_param(id,status_,order_,name,config,file_date,author_id)
+	select NEXTVAL('CORE_SEQUENCE'), 0,'000001','获取流程全局参数','[{type:"spel",sql:"@workflowService.getProcessHistoryParams(#pid)"}]'
+,now(),id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员';
+ 
+-- 添加交车处理流程模板
+insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),'Template.mt.'||NEXTVAL('CORE_SEQUENCE'),0,'004001','车辆交车处理流程','BC-WORKFLOW-CARRETIRED','BC-WORKFLOW-CARRETIRED-20120611',true,false
+,'bc-workflow/carretired20120611.xls',52152,'车辆退出营运验收审批表',''
+,(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+
+-- 添加交车处理流程模板与获取流程全局参数关系
+insert into bc_template_template_param(tid,pid)
+	select t.id,p.id from bc_template t,bc_template_param p 
+	where t.code='BC-WORKFLOW-CARRETIRED' and p.name='获取流程全局参数';
