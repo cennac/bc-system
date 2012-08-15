@@ -38,3 +38,10 @@ BEGIN
 	return carmaintain;
 END;
 $$ LANGUAGE plpgsql;
+
+-- 费用模板每月承包款的特殊配置增加每月承包款
+UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XCBHT.MYCBK';
+UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.JCBHT.MYCBK';
+UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XYLHT.MYCBK';
+UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.XMDHT.MYCBK';
+UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.ORDER.MYCBK';
