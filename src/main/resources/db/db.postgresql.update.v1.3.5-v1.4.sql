@@ -45,3 +45,13 @@ UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code=
 UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XYLHT.MYCBK';
 UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.XMDHT.MYCBK';
 UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.ORDER.MYCBK';
+
+--迁移记录表添加状态字段
+ALTER TABLE BS_CAR_DRIVER_HISTORY ADD COLUMN STATUS_ INT  NOT NULL DEFAULT 0;
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.STATUS_ IS '状态：-1:草稿，0:正常';
+
+
+--添加新的迁移类型(未交证注销)
+COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车;9-未交证注销';
+
+
