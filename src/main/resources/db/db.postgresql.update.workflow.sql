@@ -12,7 +12,7 @@ ALTER TABLE bc_identity_actor_history ALTER COLUMN ACTOR_CODE SET NOT NULL;
 -- 我的待办
 UPDATE bc_identity_resource SET name='我的待办',url='/bc-workflow/todo/personals/list' WHERE order_='010100';
 -- 我的经办
-UPDATE bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/list' WHERE order_='010200';
+UPDATE bc_identity_resource SET name='我的经办',url='/bc-workflow/myDones/paging' WHERE order_='010200';
 
 -- #### 流程相关资源和角色权限控制 ####
 -- 资源:流程管理
@@ -23,10 +23,10 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800321','流程部署', '/bc-workflow/deploys/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-流程监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-任务监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/taskMonitors/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/historicTaskInstances/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 资源:流程管理-待办监控
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800324','待办监控', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
@@ -693,3 +693,40 @@ insert into BC_IDENTITY_ACTOR_RELATION (TYPE_,MASTER_ID,FOLLOWER_ID)
     select 0,am.id,af.id from BC_IDENTITY_ACTOR am,BC_IDENTITY_ACTOR af where am.code='caiwubuXBY' 
 	and af.code in ('ofy')
 	and not exists (select 0 from BC_IDENTITY_ACTOR_RELATION r where r.type_=0 and r.MASTER_ID=am.id and r.FOLLOWER_ID=af.id);
+
+-- 更新部分车队负责人
+-- 二分三队 张嘉
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='张嘉'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='eagle')
+where code='000203';
+
+-- 二分四队 余兆俊
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='余兆俊'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='jon')
+where code='000204';
+
+-- 三分一队 余可夫
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='余可夫'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='yukefu')
+where code='000301';
+
+-- 三分三队 周少龙
+UPDATE BS_MOTORCADE SET PRINCIPAL_NAME='周少龙'
+		,PRINCIPAL_ID=(SELECT id FROM bc_identity_actor where code='zsl')
+where code='000303';
+
+-- 添加交车处理流程模板参数
+insert into bc_template_param(id,status_,order_,name,config,file_date,author_id)
+	select NEXTVAL('CORE_SEQUENCE'), 0,'000001','获取流程全局参数','[{type:"spel",sql:"@workflowService.getProcessHistoryParams(#pid)"}]'
+,now(),id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员';
+ 
+-- 添加交车处理流程模板
+insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),'Template.mt.'||NEXTVAL('CORE_SEQUENCE'),0,'004001','车辆交车处理流程','BC-WORKFLOW-CARRETIRED','BC-WORKFLOW-CARRETIRED-20120611',true,false
+,'bc-workflow/carretired20120611.xls',52152,'车辆退出营运验收审批表',''
+,(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+
+-- 添加交车处理流程模板与获取流程全局参数关系
+insert into bc_template_template_param(tid,pid)
+	select t.id,p.id from bc_template t,bc_template_param p 
+	where t.code='BC-WORKFLOW-CARRETIRED' and p.name='获取流程全局参数';
