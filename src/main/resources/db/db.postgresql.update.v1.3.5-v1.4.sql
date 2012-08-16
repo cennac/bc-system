@@ -47,6 +47,12 @@ COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.STATUS_ IS '状态：-1:草稿，0:正�
 --添加新的迁移类型(未交证注销)
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车;9-未交证注销';
 
+--黑名单表添加相关部门
+ALTER TABLE BS_BLACKLIST ADD COLUMN RELATED_DEPARTMENNTS_ID INTEGER;
+COMMENT ON COLUMN BS_BLACKLIST.RELATED_DEPARTMENNTS_ID IS '相关部门Id';
+ALTER TABLE BS_BLACKLIST ADD CONSTRAINT BSFK_BLACKLIST_RELATEDDEPARTMENNTSID FOREIGN KEY (RELATED_DEPARTMENNTS_ID)
+      REFERENCES BC_IDENTITY_ACTOR (ID);
+
 -- 费用模板修改每月承包款的特殊配置
 UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XCBHT.MYCBK';
 UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.JCBHT.MYCBK';
@@ -73,7 +79,6 @@ UPDATE bs_fee_template set spec='{"isByGarage":true,"isWXF":true}' where code='C
 
 -- 模板修正挂靠合同的编码和版本号
 UPDATE BC_TEMPLATE SET CODE='BC-GKHT',VERSION_='BC-GKHT-A01-20120416' WHERE VERSION_=' BC-GKHT-A01-20120416';
-
 -- 模板修改分类信息
 UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001001' WHERE CODE='BC-CBHT';
 UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001002' WHERE CODE='BC-CBHT-A0401-20111101';
