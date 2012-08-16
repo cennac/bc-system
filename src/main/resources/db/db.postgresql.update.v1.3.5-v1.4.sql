@@ -91,3 +91,15 @@ UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_=
 UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001009' WHERE CODE='BC-GKHT';
 UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/收费通知' WHERE CODE='BC-SFTZ';
 UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/收费通知' WHERE CODE='BC-GKHTSFTZ';
+
+-- 添加经济合同补充协议模板
+insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),'Template.mt.'||NEXTVAL('CORE_SEQUENCE'),0,'001301','营运系统/劳动合同附件/补充协议','BC-FJ07-A03','BC-FJ07-A03-20120327',true,false
+,'bs/contract4Charger.CBHTA0420111101.docx',36152,'补充协议FJ07A03（替班司机）','20120405新版（843HK）'
+,(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+
+-- 添加经济合同终止协议模板
+insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),'Template.mt.'||NEXTVAL('CORE_SEQUENCE'),0,'001401','营运系统/劳动合同附件/终止协议','BC-HTZZ07-A01','BC-HTZZ07-A01-20110923',true,false
+,'bs/contract4Charger.HTZZO7A0120110923.docx',19152,'ZJ07（司机提出过户司机支付违约金）',''
+,(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
