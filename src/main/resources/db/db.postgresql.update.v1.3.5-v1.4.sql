@@ -39,13 +39,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- 费用模板每月承包款的特殊配置增加每月承包款
-UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XCBHT.MYCBK';
-UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.JCBHT.MYCBK';
-UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XYLHT.MYCBK';
-UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.XMDHT.MYCBK';
-UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.ORDER.MYCBK';
-
 --迁移记录表添加状态字段
 ALTER TABLE BS_CAR_DRIVER_HISTORY ADD COLUMN STATUS_ INT  NOT NULL DEFAULT 0;
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.STATUS_ IS '状态：-1:草稿，0:正常';
@@ -54,4 +47,42 @@ COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.STATUS_ IS '状态：-1:草稿，0:正�
 --添加新的迁移类型(未交证注销)
 COMMENT ON COLUMN BS_CAR_DRIVER_HISTORY.MOVE_TYPE IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-顶班;8-交回后转车;9-未交证注销';
 
+-- 费用模板修改每月承包款的特殊配置
+UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XCBHT.MYCBK';
+UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.JCBHT.MYCBK';
+UPDATE bs_fee_template set spec='{"lackPrice":6850,"cutPrice":500,"isSplit":true,"isMYCBK":true}' where code='CC.XYLHT.MYCBK';
+UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.XMDHT.MYCBK';
+UPDATE bs_fee_template set spec='{"isDeadline":true,"isMYCBK":true}' where code='CC.ORDER.MYCBK';
 
+-- 费用模板增加预交承包款的特殊配置
+UPDATE bs_fee_template set spec='{"isYJCBK":true}' where code='CC.XCBHT.YJCBK';
+UPDATE bs_fee_template set spec='{"isYJCBK":true}' where code='CC.JCBHT.YJCBK';
+UPDATE bs_fee_template set spec='{"isYJCBK":true}' where code='CC.XYLHT.YJCBK';
+UPDATE bs_fee_template set spec='{"isYJCBK":true}' where code='CC.ORDER.YJCBK';
+
+-- 修正旧承包合同模板的维修费编码
+UPDATE bs_fee_template set code='CC.JCBHT.WXF' where code='cc.JCBHT.WXF';
+-- 修正旧承包合同模板的椅套清洁费编码
+UPDATE bs_fee_template set code='CC.JCBHT.QJF' where code='cc.JCBHT.QJF';
+
+-- 费用模板增加预交承包款的特殊配置
+UPDATE bs_fee_template set spec='{"isByGarage":true,"isWXF":true}' where code='CC.XCBHT.WXF';
+UPDATE bs_fee_template set spec='{"isByGarage":true,"isWXF":true}' where code='CC.JCBHT.WXF';
+UPDATE bs_fee_template set spec='{"isByGarage":true,"isWXF":true}' where code='CC.XMDHT.WXF';
+UPDATE bs_fee_template set spec='{"isByGarage":true,"isWXF":true}' where code='CC.ORDER.WXF';
+
+-- 模板修正挂靠合同的编码和版本号
+UPDATE BC_TEMPLATE SET CODE='BC-GKHT',VERSION_='BC-GKHT-A01-20120416' WHERE VERSION_=' BC-GKHT-A01-20120416';
+
+-- 模板修改分类信息
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001001' WHERE CODE='BC-CBHT';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001002' WHERE CODE='BC-CBHT-A0401-20111101';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001003' WHERE CODE='BC-MDHT';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001004' WHERE CODE='BC-XMDHT';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001005' WHERE CODE='BC-DXHT01';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001006' WHERE CODE='BC-DXHT02';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001007' WHERE CODE='BC-QLHT';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001008' WHERE CODE='BC-XYLHT';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/合同',ORDER_='001009' WHERE CODE='BC-GKHT';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/收费通知' WHERE CODE='BC-SFTZ';
+UPDATE BC_TEMPLATE SET CATEGORY='营运系统/劳动合同附件/收费通知' WHERE CODE='BC-GKHTSFTZ';
