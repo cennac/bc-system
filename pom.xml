@@ -24,6 +24,7 @@
 		<app.ver>${project.version}</app.ver>
 		<app.ts>20120223</app.ts>
 		<app.debug>false</app.debug>
+		<app.produce>false</app.produce>
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
 		<app.ws.url>(location.protocol == "https" ? "wss://" : "ws://") + location.host + bc.root + "/ws"</app.ws.url>
@@ -48,6 +49,7 @@
 				<app.ver>1.0b4</app.ver>
 				<app.ts>2012030201</app.ts>
 				<app.debug>false</app.debug>
+				<app.produce>false</app.produce>
 				<app.data.realPath>/file/bcdata4dev</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8095/bcdev/ws"</app.ws.url>
 				<jetty.path>${app.name}</jetty.path>
@@ -76,6 +78,7 @@
 				<app.name>bctest</app.name>
 				<app.ver>1.2.3</app.ver>
 				<app.ts>20120423</app.ts>
+				<app.produce>true</app.produce>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
@@ -106,6 +109,7 @@
 				<app.name>bcsystem</app.name>
 				<app.ver>1.2.3</app.ver>
 				<app.ts>20120423</app.ts>
+				<app.produce>false</app.produce>
 				<app.debug>false</app.debug>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
