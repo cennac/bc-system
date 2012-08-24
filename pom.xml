@@ -28,6 +28,8 @@
 		<app.data.realPath>/bcdata</app.data.realPath>
 		<app.data.subPath>uploads</app.data.subPath>
 		<app.ws.url>(location.protocol == "https" ? "wss://" : "ws://") + location.host + bc.root + "/ws"</app.ws.url>
+		<app.remoting.use.word>true</app.remoting.use.word>
+		<app.remoting.url.word>rmi://localhost:1199/word</app.remoting.url.word>
 
 		<!-- 数据库连接配置 -->
 		<db.sequence.default>HIBERNATE_SEQUENCE</db.sequence.default>
@@ -82,6 +84,7 @@
 				<app.debug>false</app.debug>
 				<app.data.realPath>/file/bcdata4test</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.222:8090/${app.name}/ws"</app.ws.url>
+				<app.remoting.url.word>rmi://192.168.0.223:1199/word</app.remoting.url.word>
 				<jetty.path>${app.name}</jetty.path>
 
 				<jndi.name>bcsystem</jndi.name>
@@ -113,6 +116,7 @@
 				<app.debug>false</app.debug>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
+				<app.remoting.url.word>rmi://192.168.0.6:1199/word</app.remoting.url.word>
 				<jetty.path>${app.name}</jetty.path>
 
 				<db.type>postgresql</db.type>
@@ -487,6 +491,13 @@
 		<dependency>
 			<groupId>cn.bc</groupId>
 			<artifactId>bc-chat</artifactId>
+			<version>${framework.version}</version>
+		</dependency>
+		
+		<!-- 远程服务 -->
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-remoting-common</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
 		

@@ -40,6 +40,9 @@
 	<!-- activiti配置  -->
 	<import resource="classpath:spring-activiti.xml" />
 	
+	<!-- 远程服务配置 -->
+	<import resource="classpath:spring-remoting.xml" />
+	
 	<!-- web通用 -->
 	<import resource="classpath:cn/bc/web/spring.xml" />
 
