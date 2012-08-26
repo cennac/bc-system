@@ -16,7 +16,7 @@
 		<!-- 营运子系统的版本号 -->
 		<business.version>1.0-SNAPSHOT</business.version>
 		<!-- 平台工作流程的版本号 -->
-		<workflow.version>0.2-SNAPSHOT</workflow.version>
+		<workflow.version>1.0-SNAPSHOT</workflow.version>
 		<!-- 营运子系统工作流程的版本号 -->
 		<business.workflow.version>1.0-SNAPSHOT</business.workflow.version>
 
