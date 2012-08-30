@@ -4,9 +4,9 @@
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  1, null, '010000','我的事务', null, 'i0403');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010100','待办工作', '/bc/todoWork/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010100','我的待办', '/bc-workflow/todo/personals/list', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010200','已办工作', '/bc/doneWork/paging', 'i0002' from BC_IDENTITY_RESOURCE m where m.order_='010000';
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '010200','我的经办', '/bc-workflow/myDones/paging', 'i0002' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '011000','我的反馈', '/bc/myfeedbacks/paging', 'i0303' from BC_IDENTITY_RESOURCE m where m.order_='010000';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
@@ -142,6 +142,17 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800312','报表任务', '/bc/reportTasks/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800310';
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800313','历史报表', '/bc/reportHistorys/paging', 'i0309' from BC_IDENTITY_RESOURCE m where m.order_='800310';
+-- 系统维护/流程管理
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+    select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800320','流程管理', null, 'i0004' from BC_IDENTITY_RESOURCE m where m.order_='800000';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800321','流程部署', '/bc-workflow/deploys/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800322','流程监控', '/bc-workflow/flowMonitors/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800323','任务监控', '/bc-workflow/historicTaskInstances/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '800324','待办监控', '/bc-workflow/todo/manages/paging', 'i0001' from BC_IDENTITY_RESOURCE m where m.order_='800320';
 -- 系统维护/常用功能
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
     select NEXTVAL('CORE_SEQUENCE'), 0, false, 1, m.id, '800400','常用功能', null, 'i0004' from BC_IDENTITY_RESOURCE m where m.order_='800000';
@@ -366,6 +377,39 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_REPORT'
 	and m.type_ > 1 and m.order_ in ('800311','800312','800313')
 	order by m.order_;
+
+-- 插入流程管理角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0139', 'BC_WORKFLOW','流程管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_WORKFLOW' 
+	and m.type_ > 1 and m.order_ in ('800321','800322','800323','800324')
+	order by m.order_;
+-- 插入流程部署管理角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0140', 'BC_WORKFLOW_DEPLOY','流程部署管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_WORKFLOW_DEPLOY' 
+	and m.type_ > 1 and m.order_ in ('800321')
+	order by m.order_;
+-- 插入流程部署级联删除角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0141', 'BC_WORKFLOW_DEPLOY_CASCADE','流程部署级联删除');
+-- 插入流程实例级联删除角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0142', 'BC_WORKFLOW_INSTANCE_DELETE','流程实例级联删除');
+-- 插入发起流程角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0143', 'BC_WORKFLOW_START','发起流程');
+-- 插入委托任务角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0144', 'BC_WORKFLOW_DELEGATE','委托任务');
+-- 插入分派任务角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0145', 'BC_WORKFLOW_ASSIGN','分派任务');
+-- 插入添加公共意见、附件角色
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0146', 'BC_WORKFLOW_ADDGLOBALATTACH','添加流程的公共意见和附件');
 
 -- 插入籍贯管理角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
@@ -739,6 +783,9 @@ insert into BC_IDENTITY_DUTY (ID, CODE, NAME) values(NEXTVAL('CORE_SEQUENCE'), '
 -- 插入顶层单位数据:排序号的格式：a单位、b部门、c岗位、d人员
 insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(1,'unit.dc.2', 0, false, 1, 'baochengzongbu','宝城总部', 'a1', 'baochengzongbu',NULL,NULL);
 insert into BC_IDENTITY_ACTOR (ID,UID_,STATUS_,INNER_,TYPE_,CODE, NAME, ORDER_, PY,PCODE,PNAME) values(2,'unit.dc.3', 0, false, 1, 'baochengdaxin','宝城大新', 'a2', 'baochengdaxin',NULL,NULL);
+-- 让顶层单位拥有发起流程角色
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BC_WORKFLOW_START';
 -- 插入数据转换记录避免重复转换
 insert into DC_RECORD (TYPE_, FROM_ID, TO_ID, FROM_TABLE, TO_TABLE, CREATE_DATE)
     values ('unit', 2, 1, 'within_config_file_third_kind', 'BC_IDENTITY_ACTOR', to_date('19-08-2011 12:49:23', 'dd-mm-yyyy hh24:mi:ss'));
@@ -2100,6 +2147,11 @@ INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,E
 			VALUES (18,0,'1902','ods','OpenDocument电子表格',false,true,'ods',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
 			VALUES (19,0,'9999','other','其它附件',false,true,null,now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+-- 插入流程模板类型的定义
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+	VALUES (20,0,'2001','activiti-bpmn2-xml','Activiti BPMN 2.0 XML流程图文件',true,true,'xml',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
+	VALUES (21,0,'2001','activiti-bpmn2-zip','Activiti BPMN 2.0 流程图打包文件',true,true,'bar',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
 	  
 -- 插入模板：每日登录帐号数统计模板
@@ -2554,3 +2606,19 @@ values (NEXTVAL('CORE_SEQUENCE'),0,'002007','营运系统/劳动合同附件','B
 insert into BC_TEMPLATE (ID,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
 values (NEXTVAL('CORE_SEQUENCE'),0,'002008','营运系统/劳动合同附件','BC-R08','BC-R08-A00-20120302',false,false,'/bs/contract4Labour.R08A0020120302.docx',18432,'面试提问库（V1）','',
 				(select id from BC_TEMPLATE_TYPE where code='word-docx'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+
+-- 添加交车处理流程模板参数
+insert into bc_template_param(id,status_,order_,name,config,file_date,author_id)
+	select NEXTVAL('CORE_SEQUENCE'), 0,'000001','获取流程全局参数','[{type:"spel",sql:"@workflowService.getProcessHistoryParams(#pid)"}]'
+,now(),id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员';
+ 
+-- 添加交车处理流程模板
+insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED,INNER_,PATH,SIZE_,SUBJECT,DESC_,TYPE_ID,FILE_DATE,AUTHOR_ID) 
+values (NEXTVAL('CORE_SEQUENCE'),'Template.mt.'||NEXTVAL('CORE_SEQUENCE'),0,'004001','车辆交车处理流程','BC-WORKFLOW-CARRETIRED','BC-WORKFLOW-CARRETIRED-20120611',true,false
+,'bc-workflow/carretired20120611.xls',52152,'车辆退出营运验收审批表',''
+,(select id from BC_TEMPLATE_TYPE where code='xls'),now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
+
+-- 添加交车处理流程模板与获取流程全局参数关系
+insert into bc_template_template_param(tid,pid)
+	select t.id,p.id from bc_template t,bc_template_param p 
+	where t.code='BC-WORKFLOW-CARRETIRED' and p.name='获取流程全局参数';
