@@ -6,4 +6,4 @@
 
 --发票销售单增加流水号
 ALTER TABLE bs_invoice_sell ADD COLUMN code_no VARCHAR(255);
-comment on column bs_invoice_sell.code is '发票单流水号，以年计算';
+comment on column bs_invoice_sell.code_no is '发票单流水号,以年计算';
