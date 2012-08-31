@@ -116,7 +116,7 @@
 				<app.debug>false</app.debug>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
 				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
-				<app.remoting.url.word>rmi://192.168.0.6:1199/word</app.remoting.url.word>
+				<app.remoting.url.word>rmi://192.168.0.8:1199/word</app.remoting.url.word>
 				<jetty.path>${app.name}</jetty.path>
 
 				<db.type>postgresql</db.type>
