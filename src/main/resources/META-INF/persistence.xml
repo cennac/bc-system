@@ -95,6 +95,8 @@
 		<class>cn.bc.workflow.domain.ExcutionLog</class>
 		<class>cn.bc.workflow.flowattach.domain.FlowAttach</class>
 		<class>cn.bc.workflow.deploy.domain.Deploy</class>
+		<class>cn.bc.workflow.deploy.domain.DeployResource</class>
+		
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->
