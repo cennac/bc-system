@@ -181,6 +181,7 @@
 
 		<!-- 工作流程 -->
 		<class>cn.bc.workflow.deploy.domain.Deploy</class>
+		<class>cn.bc.workflow.deploy.domain.DeployResource</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
