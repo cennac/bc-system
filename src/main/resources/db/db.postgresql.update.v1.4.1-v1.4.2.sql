@@ -34,40 +34,40 @@ ALTER TABLE BC_WF_DEPLOY_RESOURCE ADD CONSTRAINT BSFK_WF_DEPLOY FOREIGN KEY (PID
 	  
 	  
 	  
--- 插入司机草稿信息查看角色
+-- 插入司机草稿信息查询角色
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0103-3', 'BS_DRIVER_CHECK','司机草稿信息查看');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0103-3', 'BS_DRIVER_CHECK','司机草稿信息查询');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_DRIVER_CHECK' 
 	and m.type_ > 1 and m.order_ ='030301'
 	order by m.order_;
--- 插入车辆草稿信息查看角色
+-- 插入车辆草稿信息查询角色
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102-3', 'BS_CAR_CHECK','车辆草稿信息查看');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102-3', 'BS_CAR_CHECK','车辆草稿信息查询');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR_CHECK' 
 	and m.type_ > 1 and m.order_ ='030201'
 	order by m.order_;
--- 让宝城总部和宝城大新拥有车辆草稿信息查看角色
+-- 让宝城总部和宝城大新拥有车辆草稿信息查询角色
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code in ('baochengzongbu','baochengdaxin') and r.code='BS_CAR_CHECK';
--- 插入迁移记录草稿信息查看角色
+-- 插入迁移记录草稿信息查询角色
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0135-1', 'BS_CAR_BY_DRIVER_HISTORY_CHECK','迁移记录草稿信息查看');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0135-1', 'BS_CAR_BY_DRIVER_HISTORY_CHECK','迁移记录草稿信息查询');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CAR_BY_DRIVER_HISTORY_CHECK' 
 	and m.type_ > 1 and m.order_ ='030600'
 	order by m.order_;
--- 插入经济合同草稿信息查看角色
+-- 插入经济合同草稿信息查询角色
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104-3', 'BS_CONTRACT4CHARGER_CHECK','经济合同草稿信息查看');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104-3', 'BS_CONTRACT4CHARGER_CHECK','经济合同草稿信息查询');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4CHARGER_CHECK' 
 	and m.type_ > 1 and m.order_ ='030402'
 	order by m.order_;
--- 插入劳动合同草稿信息查看角色
+-- 插入劳动合同草稿信息查询角色
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105-3', 'BS_CONTRACT4LABOUR_CHECK','劳动合同草稿信息查看');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0105-3', 'BS_CONTRACT4LABOUR_CHECK','劳动合同草稿信息查询');
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BS_CONTRACT4LABOUR_CHECK' 
 	and m.type_ > 1 and m.order_ ='030401'
