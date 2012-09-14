@@ -118,10 +118,11 @@ drop table if exists BS_CHARGER;
 drop table if exists BS_MOTORCADE;
 
 -- ##BC平台workflow的 postgresql 删表脚本##
+DROP TABLE IF EXISTS BC_WF_DEPLOY_RESOURCE;
 DROP TABLE IF EXISTS BC_WF_DEPLOY_ACTOR;
-DROP TABLE IF EXISTS bc_wf_deploy;
-DROP TABLE IF EXISTS bc_wf_excution_log;
-DROP TABLE IF EXISTS bc_wf_attach;
+DROP TABLE IF EXISTS BC_WF_DEPLOY;
+DROP TABLE IF EXISTS BC_WF_EXCUTION_LOG;
+DROP TABLE IF EXISTS BC_WF_ATTACH;
 -- history
 drop table if exists ACT_HI_PROCINST;
 drop table if exists ACT_HI_ACTINST;
