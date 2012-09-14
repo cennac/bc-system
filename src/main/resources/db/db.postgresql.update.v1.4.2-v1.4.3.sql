@@ -10,7 +10,12 @@ COMMENT ON COLUMN BS_INVOICE_SELL.REFUNDER_ID IS '退票人ID';
 
 ALTER TABLE BS_INVOICE_SELL ADD CONSTRAINT BSFK_INVOICESELL_REFUNDER FOREIGN KEY (REFUNDER_ID)
       REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID);
-	  
+
+-- 修改粤A.MG461发票退票单退票人为黄剑华
+update bs_invoice_sell SET refunder_id = (select a.id
+FROM bc_identity_actor_history a
+where a.actor_code='foy') 
+where status_=0 and type_=2 and car_plate='粤A.MG461';
 	  
 
 --车辆信息模块表添加管理号
