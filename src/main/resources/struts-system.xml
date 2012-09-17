@@ -10,10 +10,10 @@
 		</action>
 		<!-- 设置空的name，使web.xml中可以通过action来配置welcome-file -->
 		<action name="" class="loginAction">
-			<result>/bc/login/login.jsp</result>
+			<result>/login/login.jsp</result>
 		</action>
 		<action name="login" class="loginAction">
-			<result>/bc/login/login.jsp</result>
+			<result>/login/login.jsp</result>
 		</action>
 		<action name="mock" class="loginAction" method="mock">
 			<result>/bc/login/mock.jsp</result>
