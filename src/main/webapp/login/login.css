@@ -1,0 +1,153 @@
+/**
+ * 登录页面的样式设置
+ *
+ * @author rongjihuang@gmail.com
+ * @date 2011-04-11
+ */
+html,body {
+	height: 100%;
+	width: 100%
+}
+
+body {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "微软雅黑", "宋体", sans-serif;
+	/*font-size: 62.5%;使1em=12px,浏览器默认为1em=16px,ie:_font-size: 63%;*/
+	font-size: 1em; /*调整为默认14px | 0.87em*/
+	background-color: #f5f5f5;
+	text-align: center;
+	background: url(images/background.png) repeat left top black;
+}
+
+form {
+	position: absolute;
+	width: 300px;
+	margin-left: -150px;
+	margin-top: -150px;
+	left: 50%;
+	top: 50%;
+	font-size: 20px;
+	/*border: 1px solid #ccc;
+	box-shadow:1px 1px 10px #c6c;*/
+	text-align: center;
+	box-sizing: border-box;
+	padding: 20px 20px 0 20px;
+	
+	/*background-color: #f5f5f5;
+	background-image: -webkit-linear-gradient(#fff0ff, #f5c2d9);*/
+	
+	/*-moz-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-moz-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-moz-transition: 0.8s;
+	-webkit-transition: 0.8s;
+	transition: 0.8s;
+	-moz-animation: pulse 2s infinite;
+	-webkit-animation: pulse 2s infinite;*/
+}
+
+.appLogo {
+	width: 100px;
+	height: 100px;
+	cursor: default;
+	margin-bottom:10px;
+}
+
+.textContainer{
+	position: relative;
+	width: 250px;
+	margin: 5px 0 20px 0;
+}
+
+.submitContainer{
+	position: relative;
+	width: 250px;
+	margin: 20px 0 0 0;
+	display:none;
+}
+
+input {
+	padding: 4px;
+	width: 250px;
+	height: 40px;
+	font-size: 20px;
+	box-sizing: border-box;
+	border-style:none;
+	box-shadow: 0 0 2px 3px #4189C3;
+	border-radius: 3px;
+	border: 1px solid transparent;
+	padding: 4px 44px 4px 44px;
+	color: #000055;
+}
+input:focus {
+	outline: 0;
+	box-shadow: 0 0 2px 3px gold;
+}
+
+.accountIcon,.passwordIcon,.submitIcon {
+	position: absolute;
+	top: 50%;
+	margin-top: -20px;
+	width: 40px;
+	height: 40px;
+	box-sizing: border-box;
+	border-width: 0px;
+	border-color: #ccc;
+	border-style: solid;
+	background-color: #f5f5f5;
+	background-image: -webkit-linear-gradient(#fff0ff, #f5c2d9);
+}
+
+.accountIcon,.passwordIcon {
+	border-radius: 3px 0 0 3px;
+	left:0;
+}
+
+.submitIcon {
+	border-radius: 0 3px 3px 0;
+	right:0;
+	cursor: pointer;
+}
+
+#version {
+	position: absolute;
+	right: 4px;
+	bottom: 4px;
+	color: #006666;
+	font-size: 12px;
+	font-style: italic;
+	cursor: pointer;
+}
+
+#msg {
+	position: absolute;
+	text-align: center;
+	width: 400px;
+	top: 50%;
+	margin-top: 120px;
+	left: 50%;
+	margin-left: -200px;
+	color: red;
+}
+
+#test {
+	position: absolute;
+	color: #808000;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	width: 100px;
+	height: 100px;
+	bottom: 4px;
+	left: 4px;
+	border-radius: 50px;
+	padding:4px;
+	border: 4px solid #808000;
+	box-sizing: border-box;
+}
