@@ -73,16 +73,15 @@ form {
 }
 
 input {
-	padding: 4px;
 	width: 250px;
 	height: 40px;
-	font-size: 20px;
+	font-size: 28px;
 	box-sizing: border-box;
 	border-style:none;
 	box-shadow: 0 0 2px 3px #4189C3;
 	border-radius: 3px;
 	border: 1px solid transparent;
-	padding: 4px 44px 4px 44px;
+	padding: 1px 44px 1px 44px;
 	color: #000055;
 }
 input:focus {
