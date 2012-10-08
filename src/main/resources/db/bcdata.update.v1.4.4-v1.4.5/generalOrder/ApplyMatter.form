@@ -33,9 +33,10 @@
 				<td style="text-align:right">*部门经理：</td>
 				<td class="value" >
 					<div class="relative">
-						<input type="text" name="unitManagerName" class="ui-widget-content" data-validate="required"
+						<input type="text" 		name="unitManagerName" class="ui-widget-content" data-validate="required"
 							   data-scope="global" readonly="readonly" />
-						<input type="hidden" name="unitManager" data-scope="global"/>
+						<input type="hidden" 	name="unitManagerId" data-scope="global" data-type="Long"/>
+						<input type="hidden" 	name="unitManager"   data-scope="global"/>
 						<ul class="inputIcons" >
 							<li class="inputIcon ui-icon ui-icon-circle-plus"
 							 title='点击选择' id="selectUnitManager"></li>

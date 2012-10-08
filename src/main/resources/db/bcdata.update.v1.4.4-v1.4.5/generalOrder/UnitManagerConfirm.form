@@ -59,10 +59,9 @@
 				</tr>
 				<tr class="ui-widget-content row">
 					<td class="first" >
-						<input type="hidden" name="is_ITDC_flow" data-type="boolean" class="bswf-go-umc-global-boolean" value="false" data-scope="global"/>
-						<input type="hidden" name="is_ITDC_flow2local" data-type="boolean" 	class="ignore bswf-go-umc-ignore-boolean" value="false"/>
-						<input type="hidden" name="itdcOfficer"                      		class="ignore bswf-go-umc-ignore" data-scope="global"/>
-						<input type="hidden" name="itdcOfficer2local"                		class="ignore bswf-go-umc-ignore" />
+						<input type="hidden" name="is_ITDC_flow"  class="bswf-go-umc-global-boolean" value="false" data-scope="global" data-type="boolean"/>
+						<input type="hidden" name="itdcOfficer"   class="ignore bswf-go-umc-ignore" 			   data-scope="global"/>
+						<input type="hidden" name="itdcOfficerId" class="ignore bswf-go-umc-ignore" 			   data-scope="global" data-type="Long"/>
 					</td>
 					<td class="middle" >
 						<input type="text" class="ignore" style="width:100%;height:100%;border:none;padding:0 0 0 2px;"  value="信息技术部" readonly="readonly">
@@ -80,10 +79,9 @@
 				</tr>
 				<tr class="ui-widget-content row">
 					<td class="first" >
-						<input type="hidden" name="is_HRDC_flow" data-type="boolean" class="bswf-go-umc-global-boolean" value="false" data-scope="global"/>
-						<input type="hidden" name="is_HRDC_flow2local" data-type="boolean" 	class="ignore bswf-go-umc-ignore-boolean" value="false"/>
-						<input type="hidden" name="hrdcOfficer"                      		class="ignore bswf-go-umc-ignore" data-scope="global"/>
-						<input type="hidden" name="hrdcOfficer2local"                      	class="ignore bswf-go-umc-ignore" />
+						<input type="hidden" name="is_HRDC_flow"  class="bswf-go-umc-global-boolean" value="false" 	data-scope="global" data-type="boolean"/>
+						<input type="hidden" name="hrdcOfficer"   class="ignore bswf-go-umc-ignore" 				data-scope="global"/>
+						<input type="hidden" name="hrdcOfficerId" class="ignore bswf-go-umc-ignore" 				data-scope="global" data-type="Long"/>
 					</td>
 					<td class="middle" >
 						<input type="text" class="ignore" style="width:100%;height:100%;border:none;padding:0 0 0 2px;"  value="人力资源部" readonly="readonly">
@@ -102,10 +100,9 @@
 				
 				<tr class="ui-widget-content row">
 					<td class="first" >
-						<input type="hidden" name="is_COC_flow" data-type="boolean" class="bswf-go-umc-global-boolean"  value="false" data-scope="global"/>
-						<input type="hidden" name="is_COC_flow2local" data-type="boolean" 	class="ignore bswf-go-umc-ignore-boolean" value="false"/>
-						<input type="hidden" name="cocOfficer"                      		class="ignore bswf-go-umc-ignore" data-scope="global"/>
-						<input type="hidden" name="cocOfficer2local"                      	class="ignore bswf-go-umc-ignore" />
+						<input type="hidden" name="is_COC_flow"  class="bswf-go-umc-global-boolean"  value="false" 	data-scope="global" data-type="boolean"/>
+						<input type="hidden" name="cocOfficer"   class="ignore bswf-go-umc-ignore" 					data-scope="global"/>
+						<input type="hidden" name="cocOfficerId" class="ignore bswf-go-umc-ignore" 					data-scope="global" data-type="Long"/>
 					</td>
 					<td class="middle" >
 						<input type="text" class="ignore" style="width:100%;height:100%;border:none;padding:0 0 0 2px;"  value="综合办公室" readonly="readonly">
@@ -124,10 +121,9 @@
 				
 				<tr class="ui-widget-content row">
 					<td class="first" >
-						<input type="hidden" name="is_FDC_flow"       data-type="boolean" class="bswf-go-umc-global-boolean" value="false" data-scope="global"/>
-						<input type="hidden" name="is_FDC_flow2local" data-type="boolean" class="ignore bswf-go-umc-ignore-boolean" value="false"/>
-						<input type="hidden" name="fdcOfficer"                      	  class="ignore bswf-go-umc-ignore" data-scope="global"/>
-						<input type="hidden" name="fdcOfficer2local"                      class="ignore bswf-go-umc-ignore" />
+						<input type="hidden" name="is_FDC_flow"   class="bswf-go-umc-global-boolean" value="false" 	data-scope="global"  data-type="boolean"/>
+						<input type="hidden" name="fdcOfficer"    class="ignore bswf-go-umc-ignore" 				data-scope="global"/>
+						<input type="hidden" name="fdcOfficerId"  class="ignore bswf-go-umc-ignore" 				data-scope="global" data-type="Long"/>
 					</td>
 					<td class="middle" >
 						<input type="text" class="ignore" style="width:100%;height:100%;border:none;padding:0 0 0 2px;"  value="财务部" readonly="readonly">
@@ -146,10 +142,9 @@
 				
 				<tr class="ui-widget-content row">
 					<td class="first" >
-						<input type="hidden" name="is_GC_flow"       data-type="boolean" class="bswf-go-umc-global-boolean" value="false" data-scope="global"/>
-						<input type="hidden" name="is_GC_flow2local" data-type="boolean" class="ignore bswf-go-umc-ignore-boolean" value="false"/>
-						<input type="hidden" name="gcOfficer"                            class="ignore bswf-go-umc-ignore" data-scope="global"/>
-						<input type="hidden" name="gcOfficer2local"                      class="ignore bswf-go-umc-ignore" />
+						<input type="hidden" name="is_GC_flow"  class="bswf-go-umc-global-boolean" value="false" 	data-scope="global" data-type="boolean"/>
+						<input type="hidden" name="gcOfficer"   class="ignore bswf-go-umc-ignore" 					data-scope="global"/>
+						<input type="hidden" name="gcOfficerId" class="ignore bswf-go-umc-ignore" 					data-scope="global" data-type="Long"/>
 					</td>
 					<td class="middle" >
 						<input type="text" class="ignore" style="width:100%;height:100%;border:none;padding:0 0 0 2px;"  value="修理厂" readonly="readonly">
@@ -171,6 +166,7 @@
 			营按部：<div class="label relative" style="display:inline-block;">
 					<input type="text"   name="operationSecurityOfficerName"  			data-scope="global" class="ignore bswf-go-umc-ignore ui-widget-content bswf-go-umc-v-required" readonly="readonly"/>
 					<input type="hidden" name="operationSecurityOfficerName2local"  						class="ignore bswf-go-umc-ignore" />
+					<input type="hidden" name="operationSecurityOfficerId"  			data-scope="global"	class="ignore bswf-go-umc-ignore" />
 		          	<input type="hidden" name="operationSecurityOfficer"      			data-scope="global" class="ignore bswf-go-umc-ignore"/>
 		          	<input type="hidden" name="is_OSC_flow"                   			data-scope="global" class="bswf-go-umc-flow" value="false" data-type="boolean"/>
 				    <ul class="inputIcons" >
@@ -183,6 +179,7 @@
 			分管副总经理：<div class="label relative" style="display:inline-block;">
 					<input type="text"   name="inChargeDeputyGeneralManagerName" 			data-scope="global" class="ignore bswf-go-umc-ignore ui-widget-content bswf-go-umc-v-required"  readonly="readonly"/>
 		          	<input type="hidden" name="inChargeDeputyGeneralManagerName2local"     						class="ignore bswf-go-umc-ignore"/>
+					<input type="hidden" name="inChargeDeputyGeneralManagerId"     			data-scope="global"	class="ignore bswf-go-umc-ignore"/>
 		          	<input type="hidden" name="inChargeDeputyGeneralManager"     			data-scope="global" class="ignore bswf-go-umc-ignore"/>
 		          	<input type="hidden" name="is_ICDGMC_flow"                   			data-scope="global" class="bswf-go-umc-flow" value="false" data-type="boolean"/>
 				    <ul class="inputIcons" >
@@ -245,7 +242,7 @@
 							${dp.department!}
 						</td>
 						<td class="middle" >
-							${dp.receiver!}
+							${dp.receiverName!}
 						</td>
 						<td class="last" style="border-width:1px 1px 0 1px;">
 						</td>

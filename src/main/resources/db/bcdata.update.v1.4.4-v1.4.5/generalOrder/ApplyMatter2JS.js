@@ -112,10 +112,11 @@ bswf.generalOrder.ApplyMatterForm = {
 		//选择经理
 		$form.find("#selectUnitManager").click(function(){
 			bc.identity.selectUser({
-				data:{status:0},
+				data:{status:0,history:true},
 				onOk : function(user) {
 					$form.find(":input[name='unitManagerName']").val(user.name);
 					$form.find(":input[name='unitManager']").val(user.account);
+					$form.find(":input[name='unitManagerId']").val(user.id);
 				}
 			});
 		});

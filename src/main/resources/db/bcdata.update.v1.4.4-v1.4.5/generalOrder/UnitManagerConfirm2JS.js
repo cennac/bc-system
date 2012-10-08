@@ -96,15 +96,6 @@ bswf.generalOrder.UnitManagerConfirmForm = {
 					$(this).val('');
 			});
 			
-			//css:bswf-go-umc-ignore-boolean
-			$boolean=$div.find(".bswf-go-umc-ignore-boolean");
-			$boolean.each(function(){
-				if(!$(this).hasClass("ignore")){
-					$(this).addClass("ignore");
-				}
-				$(this).val(false);
-			});
-			
 			//css:bswf-go-umc-global-boolean
 			$boolean=$div.find(".bswf-go-umc-global-boolean");
 			$boolean.each(function(){
@@ -116,17 +107,16 @@ bswf.generalOrder.UnitManagerConfirmForm = {
 		$form.find("#departments").delegate(".bswf-go-umc-add","click",function(){
 			$tr=$(this).closest("tr");
 			bc.identity.selectUser({
-				data:{status:0},
+				data:{status:0,history:true},
 				onOk : function(user) {
 					if(!$tr.hasClass("bswf-go-umc-dc-list"))
 						$tr.addClass("bswf-go-umc-dc-list");
 						
 					$inputs=$tr.find(":input");
 					$($inputs[0]).val(true);
-					$($inputs[1]).val(true);
-					$($inputs[2]).val(user.account);
-					$($inputs[3]).val(user.account);
-					$($inputs[5]).val(user.name);
+					$($inputs[1]).val(user.account);
+					$($inputs[2]).val(user.id);
+					$($inputs[4]).val(user.name);
 				}
 			});
 		});
@@ -139,19 +129,19 @@ bswf.generalOrder.UnitManagerConfirmForm = {
 				
 			$inputs=$tr.find(":input");
 			$($inputs[0]).val(false);
-			$($inputs[1]).val(false);
+			$($inputs[1]).val('');
 			$($inputs[2]).val('');
-			$($inputs[3]).val('');
-			$($inputs[5]).val('');
+			$($inputs[4]).val('');
 		});
 		
 		//绑定添加营安部办理人事件
 		$form.find("#selectOperationSecurityOfficer").click(function(){
 			bc.identity.selectUser({
-				data:{status:0},
+				data:{status:0,history:true},
 				onOk : function(user) {
 					$form.find(":input[name='operationSecurityOfficerName']").val(user.name);
 					$form.find(":input[name='operationSecurityOfficerName2local']").val(user.name);
+					$form.find(":input[name='operationSecurityOfficerId']").val(user.id);
 					$form.find(":input[name='operationSecurityOfficer']").val(user.account);
 				}
 			});
@@ -160,10 +150,11 @@ bswf.generalOrder.UnitManagerConfirmForm = {
 		//绑定添加分管副总事件	
 		$form.find("#selectInChargeDeputyGeneralManager").click(function(){
 			bc.identity.selectUser({
-				data:{status:0},
+				data:{status:0,history:true},
 				onOk : function(user) {
 					$form.find(":input[name='inChargeDeputyGeneralManagerName']").val(user.name);
 					$form.find(":input[name='inChargeDeputyGeneralManagerName2local']").val(user.name);
+					$form.find(":input[name='inChargeDeputyGeneralManagerId']").val(user.id);
 					$form.find(":input[name='inChargeDeputyGeneralManager']").val(user.account);
 				}
 			});
@@ -202,8 +193,10 @@ bswf.generalOrder.UnitManagerConfirmForm = {
 					var $inputs = $tr.find(":input");
 					var $tds=$tr.find("td");
 					var department = {
-						department: $inputs[4].value,
-						receiver: $inputs[5].value
+						department: $inputs[3].value,
+						receiver: $inputs[1].value,
+						receiverId: $inputs[2].value,
+						receiverName: $inputs[4].value
 					};
 					departments.push(department);
 				}

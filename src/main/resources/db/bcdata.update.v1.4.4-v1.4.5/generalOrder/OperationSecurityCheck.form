@@ -39,6 +39,7 @@
 			分管副总经理：<div class="label relative" style="display:inline-block;">
 					<input type="text"   name="inChargeDeputyGeneralManagerName" data-scope="global" class="ignore ui-widget-content bswf-go-osc-manager"  readonly="readonly"/>
 		          	<input type="hidden" name="inChargeDeputyGeneralManager"     data-scope="global" class="ignore"/>
+					<input type="hidden" name="inChargeDeputyGeneralManagerId"   data-scope="global" class="ignore" data-type="Long"/>
 				    <ul class="inputIcons" >
 						<li class="inputIcon ui-icon ui-icon-circle-plus"
 						 title='点击选择' id="selectInChargeDeputyGeneralManager"></li>

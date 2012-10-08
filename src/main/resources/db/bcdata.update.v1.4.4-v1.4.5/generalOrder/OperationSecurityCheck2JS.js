@@ -60,9 +60,11 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 		//绑定添加分管副总事件	
 		$form.find("#selectInChargeDeputyGeneralManager").click(function(){
 			bc.identity.selectUser({
+				data:{status:0,history:true},
 				onOk : function(user) {
 					$form.find(":input[name='inChargeDeputyGeneralManagerName']").val(user.name);
 					$form.find(":input[name='inChargeDeputyGeneralManager']").val(user.account);
+					$form.find(":input[name='inChargeDeputyGeneralManagerId']").val(user.id);
 				}
 			});
 		});
