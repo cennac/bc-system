@@ -1,0 +1,114 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.generalOrder.ApplyMatterForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:ApplyMatter2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="min-width: 400px;width:640px">
+			<tr class="widthMarker">
+				<td style="width: 5.1em;">&nbsp;</td>
+				<td style="width: 16em;">&nbsp;</td>
+				<td style="width: 5em;">&nbsp;</td>
+				<td style="width: 5em;">&nbsp;</td>
+				<td style="width: 5em;">&nbsp;</td>
+				<td style="width: 4em;">&nbsp;</td>
+				<td ></td>
+			</tr>
+			<tr>
+				<td style="text-align:right">*事项标题：</td>
+				<td class="value" >
+					<input type="text" name="subject" class="ui-widget-content" data-scope="global"
+						data-validate="required" />
+				</td>
+				<td style="text-align:right">*申请部门：</td>
+				<td class="value" >
+					<div class="relative">
+						<input type="text" name="verifyUnitOrDepartmentName" class="ui-widget-content" 
+							readonly="readonly" data-validate="required" data-scope="global" />
+						<input type="hidden" name="verifyUnitOrDepartmentId" data-scope="global" data-type="long"/>
+						<ul class="inputIcons">
+							<li id="selectUnitOrDepartment" class="inputIcon ui-icon ui-icon-circle-plus" title='选择分公司'></li>
+						</ul>
+					</div>
+				</td>
+				<td style="text-align:right">*部门经理：</td>
+				<td class="value" >
+					<div class="relative">
+						<input type="text" name="unitManagerName" class="ui-widget-content" data-validate="required"
+							   data-scope="global" readonly="readonly" />
+						<input type="hidden" name="unitManager" data-scope="global"/>
+						<ul class="inputIcons" >
+							<li class="inputIcon ui-icon ui-icon-circle-plus"
+							 title='点击选择' id="selectUnitManager"></li>
+						</ul>
+					</div>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		<input type="hidden" name="sponser" data-scope="global" value="${initiator}"/>
+		<div style="position:relative;border-width: 1px 1px 1px 1px;width:640px;padding-bottom: 0.25em;padding-top: 0.25em;padding-left: 0.5em;padding-right: 0.5em;">
+			<span class="text">*申请事由：</span>
+			<ul class="inputIcons">
+				<li id="upLine"     class="inputIcon ui-icon ui-icon-circle-arrow-n" title='上移选中项'></li>
+				<li id="downLine"   class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
+				<li id="addLine"    class="inputIcon ui-icon ui-icon-circle-plus"    title='添加事项'></li>
+				<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"   title='删除事项'></li>
+			</ul>
+		</div>
+		<input type="hidden" name="list_am_applyMatters" data-scope="global" data-type="list"/>
+		<table class="ui-widget-content bc-grid" id="applyMatters" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:1px 0 0 0;">
+			<tr class="header row">
+				<td class="first"  style="width: 2.5em;padding:0">&nbsp;</td>
+				<td class="middle" style="width: 30em;padding:0">申请事项</td>
+				<td class="middle" style="width: 15em;padding:0">备注</td>
+				<td class="last"   style="min-width: 0.001em;border-width:0px 0px 0 1px;padding:0"></td>
+			</tr>
+		</table>
+	<#else>	
+		<table cellspacing="2" cellpadding="0" style="min-width: 400px;width:640px">
+			<tr class="widthMarker">
+				<td style="width: 4.2em;">&nbsp;</td>
+				<td style="width: 16em;">&nbsp;</td>
+				<td style="width: 5em;">&nbsp;</td>
+				<td style="width: 5em;">&nbsp;</td>
+				<td style="width: 5em;">&nbsp;</td>
+				<td style="width: 4em;">&nbsp;</td>
+				<td ></td>
+			</tr>
+			<tr>
+				<td style="text-align:right">事项标题：</td>
+				<td class="value" >${subject!}</td>
+				<td style="text-align:right">申请部门：</td>
+				<td class="value" >${verifyUnitOrDepartmentName!}</td>
+				<td style="text-align:right">部门经理：</td>
+				<td class="value" >${unitManagerName!}</td>
+				<td></td>
+			</tr>
+		</table>
+		<div style="border-width: 1px 1px 1px 1px;width:640px;padding-bottom: 0.25em;padding-top: 0.25em;padding-left: 0.5em;padding-right: 0.5em;">
+			<span class="text">申请事由：</span>
+		</div>
+		<table class="ui-widget-content bc-grid" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:1px 0 0 0;">
+			<tr class="header row">
+				<td class="first"  style="width: 2.5em;padding:0;">序号</td>
+				<td class="middle" style="width: 30em;padding:0;">申请事项</td>
+				<td class="middle" style="width: 15em;padding:0;b">备注</td>
+				<td class="last"   style="min-width: 0.001em;border-width:1px 1px 0 1px;padding:0"></td>
+			</tr>
+			<#if list_am_applyMatters??>
+			<#list list_am_applyMatters as am>
+			<tr class="ui-widget-content row">
+				<td class="first" style="vertical-align:top;">${am.id!} </td>
+				<td class="middle" style="margin:0;vertical-align:top;padding:0 2 0 2px;">
+					<div  style="text-align:left;vertical-align:top;word-break:break-all;white-space:normal;">${am.matter!}</div>
+				</td>
+				<td class="middle" style="margin:0;vertical-align:top;padding:0 2 0 2px;">
+					<div style="text-align:left;vertical-align:top;word-break:break-all;white-space:normal;">${am.desc!}</div>
+				</td>
+				<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+			</tr>
+			</#list>
+			</#if>
+		</table>
+	</#if>
+</form>
