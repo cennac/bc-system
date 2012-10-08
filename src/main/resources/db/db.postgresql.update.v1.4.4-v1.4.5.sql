@@ -7,7 +7,7 @@
 -- ##通用工作单-其它流程数据初始化##’
 -- 插入部署数据
 insert into bc_wf_deploy (ID,UID_,ORDER_,STATUS_,TYPE_,CATEGORY,CODE,VERSION_,SUBJECT,PATH,SIZE_,SOURCE,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),'Deploy.5','4',-1,1,'营运系统/业务流程','GeneralOrder','1.0','通用工作但-其它','generalOrder/generalOrder.bar',70578,'通用工作但-其它.bar',
+values (NEXTVAL('CORE_SEQUENCE'),'Deploy.5','4',-1,1,'营运系统/业务流程','GeneralOrder','1.0','通用工作但-其它','resource/generalOrder/generalOrder.bar',70578,'通用工作但-其它.bar',
 			now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
 -- 插入流程资源
