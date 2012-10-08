@@ -30,7 +30,7 @@
 	<div id="version"><s:text name="app.version"/></div>
 	<div id="msg" data-auth='${bcauth}'></div>
 	
-	<s:if test='%{"true" == getText("app.debug")}'><div id="test"><s:text name="app.debugInfo"/></div></s:if>
+	<s:if test='%{"true" != getText("app.product")}'><div id="test"><s:text name="app.debugInfo"/></div></s:if>
 	
 	<script type="text/javascript">
 		var bc={};
