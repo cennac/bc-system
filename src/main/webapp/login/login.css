@@ -23,6 +23,9 @@ body {
 }
 
 form {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	position: absolute;
 	width: 300px;
 	margin-left: -150px;
@@ -33,7 +36,6 @@ form {
 	/*border: 1px solid #ccc;
 	box-shadow:1px 1px 10px #c6c;*/
 	text-align: center;
-	box-sizing: border-box;
 	padding: 20px 20px 0 20px;
 	
 	/*background-color: #f5f5f5;
@@ -61,24 +63,19 @@ form {
 
 .textContainer{
 	position: relative;
-	width: 250px;
+	width: 100%;
 	margin: 5px 0 20px 0;
 }
 
-.submitContainer{
-	position: relative;
-	width: 250px;
-	margin: 20px 0 0 0;
-	display:none;
-}
-
 input {
-	width: 250px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	box-shadow: 0 0 2px 3px #4189C3;
+	width: 100%;
 	height: 40px;
 	font-size: 28px;
-	box-sizing: border-box;
 	border-style:none;
-	box-shadow: 0 0 2px 3px #4189C3;
 	border-radius: 3px;
 	border: 1px solid transparent;
 	padding: 1px 44px 1px 44px;
@@ -90,16 +87,19 @@ input:focus {
 }
 
 .accountIcon,.passwordIcon,.submitIcon {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	position: absolute;
 	top: 50%;
 	margin-top: -20px;
 	width: 40px;
 	height: 40px;
-	box-sizing: border-box;
 	border-width: 0px;
 	border-color: #ccc;
 	border-style: solid;
 	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(#fff0ff, #f5c2d9);
 	background-image: -webkit-linear-gradient(#fff0ff, #f5c2d9);
 }
 
@@ -136,6 +136,9 @@ input:focus {
 }
 
 #test {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	position: absolute;
 	color: #808000;
 	font-size: 30px;
@@ -148,5 +151,4 @@ input:focus {
 	border-radius: 50px;
 	padding:4px;
 	border: 4px solid #808000;
-	box-sizing: border-box;
 }
