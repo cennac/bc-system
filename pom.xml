@@ -29,7 +29,7 @@
 		<app.data.subPath>uploads</app.data.subPath>
 		<app.ws.url>(location.protocol == "https" ? "wss://" : "ws://") + location.host + bc.root + "/ws"</app.ws.url>
 		<app.remoting.use.word>true</app.remoting.use.word>
-		<app.remoting.url.word>rmi://localhost:1200/word</app.remoting.url.word>
+		<app.remoting.url.word>rmi://localhost:1199/word</app.remoting.url.word>
 
 		<!-- 数据库连接配置 -->
 		<db.sequence.default>HIBERNATE_SEQUENCE</db.sequence.default>
