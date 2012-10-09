@@ -76,3 +76,6 @@ values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.109',(select id from BC_WF_DEPL
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
 values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.110',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
 		,'InChargeDeputyGeneralManagerCheck2JS','InChargeDeputyGeneralManagerCheck2JS','generalOrder/InChargeDeputyGeneralManagerCheck2JS.js',939,'InChargeDeputyGeneralManagerCheck2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
+
+-- 更新流程部署版本号规则 
+update bc_wf_deploy set version_ = version_ || '.0'
