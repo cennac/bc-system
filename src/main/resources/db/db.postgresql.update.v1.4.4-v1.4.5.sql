@@ -79,3 +79,13 @@ values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.110',(select id from BC_WF_DEPL
 
 -- 更新流程部署版本号规则 
 update bc_wf_deploy set version_ = version_ || '.0'
+
+
+
+--初始化定时任务[自动注销保单]数据
+INSERT INTO bc_sd_job(
+            id, status_, name, groupn, cron, bean, method, order_, 
+            memo_, ignore_error)
+    VALUES (NEXTVAL('CORE_SEQUENCE'), 1,'自动注销保单','bc','0 1 0 * * ? *','policyService','doLogoutPastDuePolicy','0001', 
+            '每日凌晨十二点零一分将前一天车辆保单中商业险和强制险都过期的保单注销', false);
+
