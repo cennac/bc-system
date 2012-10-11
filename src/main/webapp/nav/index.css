@@ -1,0 +1,100 @@
+/**
+ * 导航页面的样式设置
+ *
+ * @author rongjihuang@gmail.com
+ * @date 2012-10-11
+ */
+html,body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow: auto;
+	font-family: "微软雅黑", "宋体", sans-serif;
+	font-size: 1em;
+	text-align: center;
+	color: #551A8B;
+	background-color: #272822;
+}
+
+h1 {
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0.2em;
+	color: #eee;
+}
+
+ul {
+	border-radius: 0.5em;
+	min-width: 13.5em;
+	font-size: 1.5em;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	box-shadow: #4C52E1 0px 0px 20px;
+}
+
+li {
+	text-align: left;
+	padding: 0;
+	background-color: #ccc;
+	background-image: -ms-linear-gradient(#fff0ff, #f5c2d9);
+	background-image: -o-linear-gradient(#fff0ff, #f5c2d9);
+	background-image: -moz-linear-gradient(#fff0ff, #f5c2d9);
+	background-image: -webkit-linear-gradient(#fff0ff, #f5c2d9);
+	background-image: linear-gradient(#fff0ff, #f5c2d9);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+li.link:HOVER {
+	background-color: #A9DC28;
+	background-image: -ms-linear-gradient(#fff0ff, #8DF6C1);
+	background-image: -o-linear-gradient(#fff0ff, #8DF6C1);
+	background-image: -moz-linear-gradient(#fff0ff, #8DF6C1);
+	background-image: -webkit-linear-gradient(#fff0ff, #8DF6C1);
+	background-image: linear-gradient(#fff0ff, #8DF6C1);
+}
+
+li.first {
+	border-radius: 0.5em 0.5em 0 0;
+}
+
+li.last {
+	border-radius: 0 0 0.5em 0.5em;
+}
+
+li.seperator {
+	padding: 0.1em 0.4em 0em 0.4em;
+	text-align: left;
+	font-size: 0.55em;
+	min-height: 0.2em;
+	font-style: italic;
+	font-weight: bold;
+	background-color: #8DF6C1;
+	-ms-filter: none;
+	background-image: none;
+	cursor: default;
+}
+
+li>a {
+	padding: 0.3em 0.4em;
+	outline: none;
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+	-ms-transition: all 0.2s ease-in 0.1s;
+	-o-transition: all 0.2s ease-in 0.1s;
+	-moz-transition: all 0.2s ease-in 0.1s;
+	-webkit-transition: all 0.2s ease-in 0.1s;
+	transition: all 0.2s ease-in 0.1s;
+}
+
+li.link>a:HOVER {
+	font-weight:bold;
+	color: #6AC62E;
+	padding-left: 1em;
+}
