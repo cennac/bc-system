@@ -78,8 +78,7 @@ values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.110',(select id from BC_WF_DEPL
 		,'InChargeDeputyGeneralManagerCheck2JS','InChargeDeputyGeneralManagerCheck2JS','generalOrder/InChargeDeputyGeneralManagerCheck2JS.js',939,'InChargeDeputyGeneralManagerCheck2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
 
 -- 更新流程部署版本号规则 
-update bc_wf_deploy set version_ = version_ || '.0'
-
+update bc_wf_deploy set version_ = '1.0';
 
 
 --初始化定时任务[自动注销保单]数据
@@ -88,4 +87,3 @@ INSERT INTO bc_sd_job(
             memo_, ignore_error)
     VALUES (NEXTVAL('CORE_SEQUENCE'), 1,'自动注销保单','bc','0 1 0 * * ? *','policyService','doLogoutPastDuePolicy','0001', 
             '每日凌晨十二点零一分将前一天车辆保单中商业险和强制险都过期的保单注销', false);
-
