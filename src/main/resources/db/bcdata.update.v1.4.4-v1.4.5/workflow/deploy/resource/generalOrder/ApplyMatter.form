@@ -1,0 +1,186 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.generalOrder.ApplyMatterForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:ApplyMatter2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="min-width: 400px;width:640px">
+			<tr class="widthMarker">
+				<td style="width: 80px;">&nbsp;</td>
+				<td style="width: 380px">&nbsp;</td>
+				<td style="width: 80px;">&nbsp;</td>
+				<td style="width: 90px">&nbsp;</td>
+				<td ></td>
+			</tr>
+			<tr>
+				<td class="label">*事项标题：</td>
+				<td class="value" >
+					<input type="text" name="subject" class="ui-widget-content" data-scope="global"
+						data-validate="required" />
+				</td>
+				<td class="label">*申请部门：</td>
+				<td class="value" >
+					<div class="relative">
+						<input type="text" 	name="verifyUnitOrDepartmentName" class="ui-widget-content" readonly="readonly" data-validate="required" 		
+																				data-scope="global" value="${upperName!}"/>
+						<input type="hidden" name="verifyUnitOrDepartmentId" 	data-scope="global" value="${upperId?c}"  data-type="long"/>
+						
+					</div>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel">*申请事由：</td>
+				<td class="value" colspan="5">
+					<textarea name="applyMatterDesc" class="autoHeight ui-widget-content" data-validate="required" data-scope="global"/>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" 	name="sponser" 	 data-scope="global" value="${initiator}"/>
+		<#if isManager>
+			<input type="hidden" name="isManager" class="ignore" value="true"/>
+		<#else>
+			<input type="hidden" name="isManager" class="ignore" value="false"/>
+		</#if>
+		<#if isManager>
+			<input type="hidden" 	name="manager" 		data-scope="global" value="${initiator}"/>
+			<div style="padding-left:0.5em;">
+				<input type="hidden"  	name="handing" />
+				确认下一步的处理方式：
+				<input type="radio"  	name="rhanding" value="送相关部门协办" 	class="ignore" 	style="width:auto;" checked />
+				<label>送相关部门协办</label>
+				<input type="radio"  	name="rhanding" value="送营安部审批"  	class="ignore" 	style="width:auto;" />
+				<label>送营安部审批</label>
+				<input type="radio"  	name="rhanding" value="送分管副总审批" 	class="ignore" 	style="width:auto;" />
+				<label>送分管副总审批</label>
+				<#if isSend2Chairman>
+					<input type="radio" name="rhanding" value="送董事长审批" 		class="ignore" 	style="width:auto;" />
+					<label>送董事长审批</label>
+				</#if>
+			</div>
+			<div id="operationSecurityCheck" style="display:none;padding-left:0.5em;">
+				营安部：<div class="label relative" style="display:inline-block;">
+						<input type="text"   name="operationSecurityOfficerName"  			data-scope="global" class="ignore bswf-generalOrder-ignore bswf-generalOrder-v-required ui-widget-content" readonly="readonly"/>
+						<input type="hidden" name="operationSecurityOfficerId"  			data-scope="global"	class="ignore bswf-generalOrder-ignore" data-type="Long"/>
+						<input type="hidden" name="operationSecurityOfficer"      			data-scope="global" class="ignore bswf-generalOrder-ignore"/>
+						<input type="hidden" name="is_OSC_flow"                   			data-scope="global" class="bswf-generalOrder-flow" value="false" data-type="boolean"/>
+						<ul class="inputIcons" >
+							<li class="inputIcon ui-icon ui-icon-circle-plus"
+							 title='点击选择' id="selectOperationSecurityOfficer"></li>
+						</ul>
+					</div>
+			</div>
+			<div id="inCharDeputyGeneralManagerCheck" style="display:none;padding-left:0.5em;">
+				分管副总：<div class="label relative" style="display:inline-block;">
+						<input type="text"   name="inChargeDeputyGeneralManagerName" 			data-scope="global" class="ignore bswf-generalOrder-ignore bswf-generalOrder-v-required ui-widget-content"  readonly="readonly"/>
+						<input type="hidden" name="inChargeDeputyGeneralManagerId"     			data-scope="global"	class="ignore bswf-generalOrder-ignore" data-type="Long"/>
+						<input type="hidden" name="inChargeDeputyGeneralManager"     			data-scope="global" class="ignore bswf-generalOrder-ignore"/>
+						<input type="hidden" name="is_ICDGMC_flow"                   			data-scope="global" class="bswf-generalOrder-flow" value="false" data-type="boolean"/>
+						<ul class="inputIcons" >
+							<li class="inputIcon ui-icon ui-icon-circle-plus"
+							 title='点击选择' id="selectInChargeDeputyGeneralManager"></li>
+						</ul>
+					</div>
+			</div>
+			<#if isSend2Chairman>
+				<div id="chairmanCheck" style="display:none;padding-left:0.5em;">
+					董事长：<div class="label relative" style="display:inline-block;">
+							<input type="text"   name="chairmanName" 			data-scope="global" class="ignore bswf-generalOrder-ignore bswf-generalOrder-v-required ui-widget-content "  readonly="readonly"/>
+							<input type="hidden" name="chairmanId"     			data-scope="global"	class="ignore bswf-generalOrder-ignore" data-type="Long"/>
+							<input type="hidden" name="chairman"     			data-scope="global" class="ignore bswf-generalOrder-ignore"/>
+							<input type="hidden" name="is_CC_flow"          	data-scope="global" class="bswf-generalOrder-flow" value="false" data-type="boolean"/>
+							<ul class="inputIcons" >
+								<li class="inputIcon ui-icon ui-icon-circle-plus"
+								 title='点击选择' id="selectChairman"></li>
+							</ul>
+						</div>
+				</div>
+			<#else>
+				<input type="hidden" name="is_CC_flow"  data-scope="global" value="false" data-type="boolean"/>
+			</#if>
+			<div id="co4department" >
+				<input type="hidden" name="is_DC_flow"   						data-scope="global"	data-type="boolean" class="bswf-generalOrder-flow" value="true" />
+				<input type="hidden" name="list_am_co4department" 									data-type="list" 	class="bswf-generalOrder-ignore"/>
+				<input type="hidden" name="list_co4departmentAndAssignee" 		data-scope="global" data-type="list" 	class="bswf-generalOrder-ignore"/>
+				<div style="position:relative;border-width: 0;padding-left: 0.5em;">
+					<span class="text">指定协办部门和协办人:</span>
+					<ul class="inputIcons">
+						<li id="upLine"     class="inputIcon ui-icon ui-icon-circle-arrow-n" title='上移选中项'></li>
+						<li id="downLine"   class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
+						<li id="addLine"    class="inputIcon ui-icon ui-icon-circle-plus"    title='添加协办部门'></li>
+						<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"   title='删除协办部门'></li>
+					</ul>
+				</div>
+				<table class="ui-widget-content bc-grid" id="co4departmentTable" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">
+					<tr class="header row">
+						<td class="first" style="width: 1em;border-top:1px solid #CCC;">&nbsp;</td>
+						<td class="middle" style="width: 10em;border-top:1px solid #CCC;">协办部门</td>
+						<td class="middle" style="width: 35em;border-top:1px solid #CCC;">协办人</td>
+						<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+					</tr>
+				</table>
+			</div>
+		</#if>
+	<#else>	
+		<table cellspacing="2" cellpadding="0" style="min-width: 400px;width:640px">
+			<tr class="widthMarker">
+				<td style="width: 80px;">&nbsp;</td>
+				<td style="width: 380px">&nbsp;</td>
+				<td style="width: 80px;">&nbsp;</td>
+				<td style="width: 90px">&nbsp;</td>
+				<td ></td>
+			</tr>
+			<tr>
+				<td class="label">事项标题：</td>
+				<td class="value" >${subject!}</td>
+				<td class="label">申请部门：</td>
+				<td class="value" >${verifyUnitOrDepartmentName!}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel">申请事由：</td>
+				<td class="value" colspan="5"><div class="text">${applyMatterDesc!}</div></td>
+			</tr>
+		</table>
+		<#if isManager>
+			<div style="padding-left:0.5em;">
+				下一步的处理方式：${handing!}
+			</div>
+			<#if handing??>
+				<#if handing == "送相关部门协办">
+					<table class="ui-widget-content bc-grid" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">
+						<tr class="header row">
+							<td class="first" style="width: 1em;border-top:1px solid #CCC;">&nbsp;</td>
+							<td class="middle" style="width: 10em;border-top:1px solid #CCC;">协办部门</td>
+							<td class="middle" style="width: 35em;border-top:1px solid #CCC;">协办人</td>
+							<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+						</tr>
+						<#list list_am_co4department as d>
+							<tr class="ui-widget-content row">
+								<td class="first" ></td>
+								<td class="middle" style="margin:0;vertical-align:top;padding:0 2 0 2px;">
+									<div  class="text">${d.co4departmentName!}</div>
+								</td>
+								<td class="middle">
+									<div  class="text">${d.transactorNames!}</div>
+								</td>
+								<td class="last" style="border-width:1px 1px 0 1px;"></td>
+							</tr>
+						</#list>
+					</table>
+				<#elseif handing == "送营安部审批">
+					<div style="padding-left:0.5em;">
+						营安部审批人：${operationSecurityOfficerName!}
+					</div>
+				<#elseif handing == "送分管副总审批">
+					<div style="padding-left:0.5em;">
+						分管副总：${inChargeDeputyGeneralManagerName!}
+					</div>
+				<#elseif handing == "送董事长审批">
+					<div style="padding-left:0.5em;">
+						董事长：${chairmanName!}
+					</div>
+				</#if>
+			</#if>
+		</#if>
+	</#if>
+</form>

@@ -1,0 +1,62 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.generalOrder.ManagerImplForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:ManagerImpl2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			<input type="hidden"  	name="is_DI_flow" data-scope="global" data-type="boolean"/>
+			送相关部门落实：
+			<input type="radio"  	name="rhanding" value="true" 	class="ignore" 	style="width:auto;" checked />
+			<label>是</label>
+			<input type="radio"  	name="rhanding" value="false" 	class="ignore" 	style="width:auto;"/>
+			<label>否</label>
+		</div>
+		<div id="co4department"  >
+			<input type="hidden" name="list_mi_co4department" 		 							    data-type="list" 	class="bswf-generalOrder-ignore"/>
+			<input type="hidden" name="list_impl4departmentAndAssignee" 		data-scope="global" data-type="list" 	class="bswf-generalOrder-ignore"/>
+			<div style="position:relative;border-width: 0;padding-left: 0.5em;">
+				<span class="text">指定协办部门和协办人:</span>
+				<ul class="inputIcons">
+					<li id="upLine"     class="inputIcon ui-icon ui-icon-circle-arrow-n" title='上移选中项'></li>
+					<li id="downLine"   class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
+					<li id="addLine"    class="inputIcon ui-icon ui-icon-circle-plus"    title='添加协办部门'></li>
+					<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"   title='删除协办部门'></li>
+				</ul>
+			</div>
+			<table class="ui-widget-content bc-grid" id="co4departmentTable" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">
+				<tr class="header row">
+					<td class="first" style="width: 1em;border-top:1px solid #CCC;">&nbsp;</td>
+					<td class="middle" style="width: 10em;border-top:1px solid #CCC;">协办部门</td>
+					<td class="middle" style="width: 35em;border-top:1px solid #CCC;">协办人</td>
+					<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+				</tr>
+			</table>
+		</div>
+	<#else>	
+		<div style="padding-left:0.5em;">
+			送相关部门落实：<#if is_DI_flow??><#if is_DI_flow>是<#else>否</#if></#if>
+		</div>
+		<#if is_DI_flow??&&is_DI_flow>
+			<table class="ui-widget-content bc-grid" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">
+				<tr class="header row">
+					<td class="first" style="width: 1em;border-top:1px solid #CCC;">&nbsp;</td>
+					<td class="middle" style="width: 10em;border-top:1px solid #CCC;">协办部门</td>
+					<td class="middle" style="width: 35em;border-top:1px solid #CCC;">协办人</td>
+					<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+				</tr>
+				<#list list_mi_co4department as d>
+					<tr class="ui-widget-content row">
+						<td class="first" ></td>
+						<td class="middle" style="margin:0;vertical-align:top;padding:0 2 0 2px;">
+							<div  class="text">${d.co4departmentName!}</div>
+						</td>
+						<td class="middle">
+							<div  class="text">${d.transactorNames!}</div>
+						</td>
+						<td class="last" style="border-width:1px 1px 0 1px;"></td>
+					</tr>
+				</#list>
+			</table>
+		</#if>
+	</#if>
+</form>

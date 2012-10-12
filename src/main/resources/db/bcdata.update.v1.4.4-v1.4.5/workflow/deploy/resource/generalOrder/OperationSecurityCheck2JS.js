@@ -4,15 +4,15 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 		var $form = $(this);
 		
 		//绑定下一步的处理方式事件
-		$form.find(":input[name='osc_handing']").change(function(){
+		$form.find(":input[name='rhanding']").change(function(){
 			switch($(this).val()){
 				case "送部门经理落实执行" :
 					handing_hide($form.find("#inCharDeputyGeneralManagerCheck"));
-					$form.find(":input[name='is_umi_flow']").val(true);
+					$form.find(":input[name='is_mi_flow']").val(true);
 					 break;
 				case "送分管副总审批":
 					handing_show($form.find("#inCharDeputyGeneralManagerCheck"));
-						$form.find(":input[name='is_umi_flow']").val(false);
+					$form.find(":input[name='is_mi_flow']").val(false);
 					 break;
 				default: alert("other");
 			}
@@ -28,18 +28,14 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 				}
 			});
 			
-			//bswf-go-osc-manager
-			$re=$div.find(".bswf-go-osc-manager");
-			$re.each(function(){
-				if(!$(this).attr("data-validate")){
-					$(this).attr("data-validate","required");
-				}
-			});
+			if(!$($inputs[0]).attr("data-validate")){
+				$($inputs[0]).attr("data-validate","required");
+			}
 		}
 		//下一步处理方式自定义隐藏函数
 		function handing_hide($div){
 			$div.hide();
-			
+
 			$inputs=$div.find(":input");
 			$inputs.each(function(){
 				if(!$(this).hasClass("ignore")){
@@ -48,13 +44,9 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 				$(this).val('');
 			});
 			
-			//bswf-go-osc-manager
-			$re=$div.find(".bswf-go-osc-manager");
-			$re.each(function(){
-				if($(this).attr("data-validate")){
-					$(this).removeAttr("data-validate");
-				}
-			});
+			if($($inputs[0]).attr("data-validate")){
+				$($inputs[0]).removeAttr("data-validate");
+			}
 		}
 		
 		//绑定添加分管副总事件	
@@ -71,24 +63,9 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 	},
 	buildFormData : function(){
 		$form = $(this);
-		var $applyMattersTRs = $form.find("#applyMatters tr:gt(0)");
-		var applyMatters = [];
-		$applyMattersTRs.each(function(){
-			$tr = $(this);
-			var $divs = $tr.find("div");
-			var $tds=$tr.find("td");
-			var applyMatter = {
-				id: $($tds[0]).text(),
-				matter: $($divs[0]).html(),
-				check: $($divs[1]).html()
-			};
-			applyMatters.push(applyMatter);
-		});
 		
-		$form.find(":input[name='list_osc_applyMatters']").val($.toJSON(applyMatters));
-		
-		var osc_handing=$form.find(":input[name='osc_handing']:checked").val();
-		$form.find(":input[name='oscHanding']").val(osc_handing);
+		var rhanding=$form.find(":input[name='rhanding']:checked").val();
+		$form.find(":input[name='handing']").val(rhanding);
 	},
 	
 	/** 表单验证方法 */
