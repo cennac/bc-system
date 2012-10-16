@@ -52,20 +52,20 @@ values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.106',(select id from BC_WF_DEPL
 		,'DepartmentCooperation2JS','相关部门协办js文件','generalOrder/DepartmentCooperation2JS.js',1028,'DepartmentCooperation2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
 
 
--- 营安部审批
+-- 营运总监审批
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
 values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.107',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
-		,'OperationSecurityCheck','营安部审批from文件','generalOrder/OperationSecurityCheck.form',4361,'OperationSecurityCheck.form',(select id from BC_TEMPLATE_TYPE where code='form'),false);
+		,'OperationSecurityCheck','营运总监审批from文件','generalOrder/OperationSecurityCheck.form',4361,'OperationSecurityCheck.form',(select id from BC_TEMPLATE_TYPE where code='form'),false);
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
 values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.118',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
-		,'OperationSecurityCheck2JS','营安部审批js文件','generalOrder/OperationSecurityCheck2JS.js',2435,'OperationSecurityCheck2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
--- 分管副总审批
+		,'OperationSecurityCheck2JS','营运总监审批js文件','generalOrder/OperationSecurityCheck2JS.js',2435,'OperationSecurityCheck2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
+-- 总经理组审批
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
 values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.109',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
-		,'InChargeDeputyGeneralManagerCheck','分管副总审批form文件','generalOrder/InChargeDeputyGeneralManagerCheck.form',2939,'InChargeDeputyGeneralManagerCheck.form',(select id from BC_TEMPLATE_TYPE where code='form'),false);
+		,'InChargeDeputyGeneralManagerCheck','总经理组审批form文件','generalOrder/InChargeDeputyGeneralManagerCheck.form',2939,'InChargeDeputyGeneralManagerCheck.form',(select id from BC_TEMPLATE_TYPE where code='form'),false);
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
 values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.110',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
-		,'InChargeDeputyGeneralManagerCheck2JS','分管副总审批js文件','generalOrder/InChargeDeputyGeneralManagerCheck2JS.js',939,'InChargeDeputyGeneralManagerCheck2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
+		,'InChargeDeputyGeneralManagerCheck2JS','总经理组审批js文件','generalOrder/InChargeDeputyGeneralManagerCheck2JS.js',939,'InChargeDeputyGeneralManagerCheck2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
 
 -- 董事长审批
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
