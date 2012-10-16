@@ -12,7 +12,7 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 					   $form.find(":input[name='is_OSC_to_ICDGMC_flow']").removeClass("ignore");
 					}
 					 break;
-				case "送分管副总审批":
+				case "送总经理组审批":
 					handing_show($form.find("#inCharDeputyGeneralManagerCheck"));
 					if(!$form.find(":input[name='is_OSC_to_ICDGMC_flow']").hasClass("ignore")){
 						$form.find(":input[name='is_OSC_to_ICDGMC_flow']").addClass("ignore");
@@ -98,7 +98,7 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 		var rhanding=$form.find(":input[name='rhanding']:checked").val();
 		$form.find(":input[name='handing']").val(rhanding);
 		
-		if(rhanding=="送分管副总审批"){
+		if(rhanding=="送总经理组审批"){
 			$div=$form.find("#inCharDeputyGeneralManagerCheck");	
 			$lis=$div.find("ul>li");
 			$inputs=$div.find(":input");
@@ -139,11 +139,11 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 			return false;
 		}	
 
-		if($form.find(":input[name='rhanding']:checked").val()=="送分管副总审批"){
+		if($form.find(":input[name='rhanding']:checked").val()=="送总经理组审批"){
 			$div=$form.find("#inCharDeputyGeneralManagerCheck");	
 			$lis=$div.find("ul>li");
 			if($lis.size()<1){
-				bc.msg.alert("请添加分管副总！");
+				bc.msg.alert("请添加总经理！");
 				return false;
 			}
 		}	

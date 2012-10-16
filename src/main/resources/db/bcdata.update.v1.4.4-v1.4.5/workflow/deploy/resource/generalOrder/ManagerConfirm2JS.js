@@ -18,13 +18,13 @@ bswf.generalOrder.ManagerConfirmForm = {
 					handing_hide($form.find("#inCharDeputyGeneralManagerCheck"));
 					handing_hide($form.find("#chairmanCheck"));
 					 break;
-				case "送营安部审批":
+				case "送营运总监审批":
 					handing_hide($form.find("#co4department"));
 					handing_show($form.find("#operationSecurityCheck"));
 					handing_hide($form.find("#inCharDeputyGeneralManagerCheck"));
 					handing_hide($form.find("#chairmanCheck"));
 					 break;
-				case "送分管副总审批":
+				case "送总经理组审批":
 					handing_hide($form.find("#co4department"));
 					handing_hide($form.find("#operationSecurityCheck"));
 					handing_show($form.find("#inCharDeputyGeneralManagerCheck"));
@@ -79,7 +79,7 @@ bswf.generalOrder.ManagerConfirmForm = {
 			var $departmentsTRs = $div.find("#co4departmentTable tr:gt(0)");
 			$departmentsTRs.remove();
 			
-			$lis=$div.find("li :not(.inputIcon)");
+			$lis=$div.find("li:not(.inputIcon)");
 			$lis.remove();
 		}
 		
@@ -324,7 +324,7 @@ bswf.generalOrder.ManagerConfirmForm = {
 			$form.find(":input[name='list_mc_co4department']").val($.toJSON(co4departments));
 			$form.find(":input[name='list_co4departmentAndAssignee']").val($.toJSON(list_departmentAndAssignee));
 		
-		}else if(rhanding=="送营安部审批"){
+		}else if(rhanding=="送营运总监审批"){
 			$div=$form.find("#operationSecurityCheck");	
 			$lis=$div.find("ul>li");
 			$inputs=$div.find(":input");
@@ -344,7 +344,7 @@ bswf.generalOrder.ManagerConfirmForm = {
 			});
 			$form.find(":input[name='list_osc4assignee']").val($.toJSON(list_departmentAndAssignee));
 			
-		}else if(rhanding=="送分管副总审批"){
+		}else if(rhanding=="送总经理组审批"){
 			$div=$form.find("#inCharDeputyGeneralManagerCheck");	
 			$lis=$div.find("ul>li");
 			$inputs=$div.find(":input");
@@ -412,19 +412,19 @@ bswf.generalOrder.ManagerConfirmForm = {
 				bc.msg.alert("请为协办部门"+deprt+"添加协办人！");
 				return false;
 			}
-		}else if($form.find(":input[name='rhanding']:checked").val()=="送营安部审批"){
+		}else if($form.find(":input[name='rhanding']:checked").val()=="送营运总监审批"){
 			$div=$form.find("#operationSecurityCheck");	
 			$lis=$div.find("ul>li");
 			if($lis.size()<1){
-				bc.msg.alert("请添加营安部审批员！");
+				bc.msg.alert("请添加营运总监！");
 				return false;
 			}
 
-		}else if($form.find(":input[name='rhanding']:checked").val()=="送分管副总审批"){
+		}else if($form.find(":input[name='rhanding']:checked").val()=="送总经理组审批"){
 			$div=$form.find("#inCharDeputyGeneralManagerCheck");	
 			$lis=$div.find("ul>li");
 			if($lis.size()<1){
-				bc.msg.alert("请添加分管副总！");
+				bc.msg.alert("请添加总经理！");
 				return false;
 			}
 		}

@@ -14,10 +14,10 @@
 			<label>部门内部处理</label>
 			<input type="radio"  	name="rhanding" value="送相关部门协办" class="ignore" 	style="width:auto;"/>
 			<label>送相关部门协办</label>
-			<input type="radio"  	name="rhanding" value="送营安部审批"  	class="ignore" 	style="width:auto;" />
-			<label>送营安部审批</label>
-			<input type="radio"  	name="rhanding" value="送分管副总审批" class="ignore" 	style="width:auto;" />
-			<label>送分管副总审批</label>
+			<input type="radio"  	name="rhanding" value="送营运总监审批"  	class="ignore" 	style="width:auto;" />
+			<label>送营运总监审批</label>
+			<input type="radio"  	name="rhanding" value="送总经理组审批" class="ignore" 	style="width:auto;" />
+			<label>送总经理组审批</label>
 			<#if isSend2Chairman>
 				<div style="padding-left:11.6em;">
 				<input type="radio" name="rhanding" value="送董事长审批" 	class="ignore" 	style="width:auto;" />
@@ -26,10 +26,10 @@
 			</#if>
 		</div>
 		<div id="operationSecurityCheck" style="display:none;padding-left:0.5em;vertical-align:top;">
-			*营安部：
+			*营运总监：
 			<div class="row ui-widget-content" style="width:400px;display:inline-block;">
-				<input type="hidden" class="ignore" value="营安部">
-				<input type="hidden" class="ignore" value="yinganbu" >
+				<input type="hidden" class="ignore" value="营运总监">
+				<input type="hidden" class="ignore" value="yingyunzongjian" >
 				<input type="hidden" name="list_osc4assignee" 		data-scope="global" data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
 				<input type="hidden" name="is_OSC_flow"		  		data-scope="global" data-type="boolean"	class="bswf-generalOrder-flow"          value="false" />
 				<input type="hidden" name="is_OSC_to_ICDGMC_flow"   data-scope="global" data-type="boolean" class="ignore bswf-generalOrder-ignore" value="false">
@@ -40,10 +40,10 @@
 			</div>
 		</div>
 		<div id="inCharDeputyGeneralManagerCheck" style="display:none;padding-left:0.5em;vertical-align:top;">
-			*分管副总：
+			*总经理：
 			<div class="row ui-widget-content" style="width:400px;display:inline-block;">
-				<input type="hidden" class="ignore" value="分管副总">
-				<input type="hidden" class="ignore" value="yinganbu" >
+				<input type="hidden" class="ignore" value="总经理">
+				<input type="hidden" class="ignore" value="zongjingli" >
 				<input type="hidden" name="list_icdgmc4assignee" data-scope="global" data-type="list" 	 class="ignore bswf-generalOrder-ignore"/>
 				<input type="hidden" name="is_ICDGMC_flow"		 data-scope="global" data-type="boolean" class="bswf-generalOrder-flow"          value="false" />
 				<input type="hidden" name="is_ICDGMC_to_CC_flow" data-scope="global" data-type="boolean" class="ignore bswf-generalOrder-ignore" value="false">
@@ -112,16 +112,16 @@
 						</tr>
 					</#list>
 				</table>
-			<#elseif handing == "送营安部审批">
+			<#elseif handing == "送营运总监审批">
 				<div style="padding-left:0.5em;" style="word-break: break-all;">
-					营安部审批人：
+					营运总监：
 					<#list list_osc4assignee as d>
 						${d.assigneeName!}&nbsp;	
 					</#list>
 				</div>
-			<#elseif handing == "送分管副总审批">
+			<#elseif handing == "送总经理组审批">
 				<div style="padding-left:0.5em;" style="word-break: break-all;">
-					分管副总：
+					总经理：
 					<#list list_icdgmc4assignee as d>
 						${d.assigneeName!}&nbsp;	
 					</#list>

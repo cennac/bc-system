@@ -12,14 +12,14 @@
 			确认下一步的处理方式：
 			<input type="radio"  name="rhanding" class="ignore" value="送部门经理落实执行" style="width:auto;" />
 			<label>送部门经理落实执行</label>
-			<input type="radio"  name="rhanding" class="ignore" value="送分管副总审批"  style="width:auto;" />
-			<label>送分管副总审批</label>
+			<input type="radio"  name="rhanding" class="ignore" value="送总经理组审批"  style="width:auto;" />
+			<label>送总经理组审批</label>
 		</div>
 		<div id="inCharDeputyGeneralManagerCheck" style="display:none;padding-left:0.5em;vertical-align:top;">
-			*分管副总：
+			*总经理：
 			<div class="row ui-widget-content" style="width:400px;display:inline-block;">
-				<input type="hidden" class="ignore" value="分管副总">
-				<input type="hidden" class="ignore" value="yinganbu" >
+				<input type="hidden" class="ignore" value="总经理">
+				<input type="hidden" class="ignore" value="zongjingli" >
 				<input type="hidden" name="list_icdgmc4assignee" data-scope="global" data-type="list" 	 class="ignore bswf-generalOrder-ignore"/>
 				<input type="hidden" name="is_ICDGMC_to_CC_flow" data-scope="global" data-type="boolean" class="ignore bswf-generalOrder-ignore" value="false">
 				<div style="position:relative;margin: 0;padding: 1px 0;min-height:19px;margin: 0;font-weight: normal;width: 98%;" >
@@ -35,7 +35,7 @@
 		<div style="padding-left:0.5em;">
 			下一步的处理方式：${handing!}
 		</div>
-		<#if handing??&&handing == "送分管副总审批">
+		<#if handing??&&handing == "送总经理组审批">
 			<div style="padding-left:0.5em;" style="word-break: break-all;">
 				分管副总：
 				<#list list_icdgmc4assignee as d>
