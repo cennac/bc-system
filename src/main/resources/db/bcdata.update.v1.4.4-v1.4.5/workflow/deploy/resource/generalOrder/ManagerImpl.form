@@ -6,14 +6,14 @@
 		<div style="padding-left:0.5em;">
 			<input type="hidden"  	name="is_DI_flow" data-scope="global" data-type="boolean"/>
 			送相关部门落实：
-			<input type="radio"  	name="rhanding" value="true" 	class="ignore" 	style="width:auto;" checked />
-			<label>是</label>
+			<input type="radio"  	name="rhanding" value="true" 	class="ignore" 	style="width:auto;"/>
+			<label>需要</label>
 			<input type="radio"  	name="rhanding" value="false" 	class="ignore" 	style="width:auto;"/>
-			<label>否</label>
+			<label>不需要</label>
 		</div>
-		<div id="co4department"  >
-			<input type="hidden" name="list_mi_co4department" 		 							    data-type="list" 	class="bswf-generalOrder-ignore"/>
-			<input type="hidden" name="list_impl4departmentAndAssignee" 		data-scope="global" data-type="list" 	class="bswf-generalOrder-ignore"/>
+		<div id="co4department" style="display:none;" >
+			<input type="hidden" name="list_mi_co4department" 		 							    data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
+			<input type="hidden" name="list_impl4departmentAndAssignee" 		data-scope="global" data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
 			<div style="position:relative;border-width: 0;padding-left: 0.5em;">
 				<span class="text">指定协办部门和协办人:</span>
 				<ul class="inputIcons">
@@ -34,7 +34,7 @@
 		</div>
 	<#else>	
 		<div style="padding-left:0.5em;">
-			送相关部门落实：<#if is_DI_flow??><#if is_DI_flow>是<#else>否</#if></#if>
+			送相关部门落实：<#if is_DI_flow??><#if is_DI_flow>需要<#else>不需要</#if></#if>
 		</div>
 		<#if is_DI_flow??&&is_DI_flow>
 			<table class="ui-widget-content bc-grid" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">

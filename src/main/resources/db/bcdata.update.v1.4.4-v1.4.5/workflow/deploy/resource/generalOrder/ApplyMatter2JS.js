@@ -55,15 +55,7 @@ bswf.generalOrder.ApplyMatterForm = {
 					$(this).removeClass("ignore");
 				}
 			});
-			
-			//css:bswf-generalOrder-v-required
-			$required=$div.find(".bswf-generalOrder-v-required");
-			$required.each(function(){
-				if(!$(this).attr("data-validate")){
-					$(this).attr("data-validate","required");
-				}
-			});
-			
+
 			//css:bswf-generalOrder-flow
 			$flow=$div.find(".bswf-generalOrder-flow");
 			$flow.each(function(){
@@ -81,15 +73,6 @@ bswf.generalOrder.ApplyMatterForm = {
 				if(!$(this).hasClass("ignore")){
 					$(this).addClass("ignore");
 				}
-				$(this).val('');
-			});
-			
-			//css:bswf-generalOrder-v-required
-			$required=$div.find(".bswf-generalOrder-v-required");
-			$required.each(function(){
-				if($(this).attr("data-validate")){
-					$(this).removeAttr("data-validate");
-				}
 			});
 			
 			//css:bswf-generalOrder-flow
@@ -100,43 +83,11 @@ bswf.generalOrder.ApplyMatterForm = {
 			
 			var $departmentsTRs = $div.find("#co4departmentTable tr:gt(0)");
 			$departmentsTRs.remove();
+			
+			$lis=$div.find("li :not(.inputIcon)");
+			$lis.remove();
 		}
 		
-		//绑定添加营安部办理人事件
-		$form.find("#selectOperationSecurityOfficer").click(function(){
-			bc.identity.selectUser({
-				data:{status:0,history:true},
-				onOk : function(user) {
-					$form.find(":input[name='operationSecurityOfficerName']").val(user.name);
-					$form.find(":input[name='operationSecurityOfficerId']").val(user.id);
-					$form.find(":input[name='operationSecurityOfficer']").val(user.account);
-				}
-			});
-		});
-		
-		//绑定添加分管副总事件	
-		$form.find("#selectInChargeDeputyGeneralManager").click(function(){
-			bc.identity.selectUser({
-				data:{status:0,history:true},
-				onOk : function(user) {
-					$form.find(":input[name='inChargeDeputyGeneralManagerName']").val(user.name);
-					$form.find(":input[name='inChargeDeputyGeneralManagerId']").val(user.id);
-					$form.find(":input[name='inChargeDeputyGeneralManager']").val(user.account);
-				}
-			});
-		});
-		
-		//绑定添加董事长事件	
-		$form.find("#selectChairman").click(function(){
-			bc.identity.selectUser({
-				data:{status:0,history:true},
-				onOk : function(user) {
-					$form.find(":input[name='chairmanName']").val(user.name);
-					$form.find(":input[name='chairmanId']").val(user.id);
-					$form.find(":input[name='chairman']").val(user.account);
-				}
-			});
-		});
 		
 		//------------添加行-------------------
 		var tableEl=$form.find("#co4departmentTable")[0];
@@ -289,6 +240,7 @@ bswf.generalOrder.ApplyMatterForm = {
 		//绑定添加办理人事件
 		$form.delegate(".selectTransactor","click",function(){
 				$row = $(this).closest(".row");
+				$inputs = $row.find(":input");
 				$ul = $row.find("ul");
 				$lis = $ul.find("li");
 				var selecteds="";
@@ -300,6 +252,7 @@ bswf.generalOrder.ApplyMatterForm = {
 					history: true,
 					status:0,
 					selecteds: selecteds,
+					group:$inputs[1].value,
 					onOk: function(users){
 						$.each(users,function(i,user){
 							if($lis.filter("[data-id='" + user.id + "']").size() > 0){//已存在
@@ -324,50 +277,98 @@ bswf.generalOrder.ApplyMatterForm = {
 	},
 	buildFormData : function(){
 		$form = $(this);
-		var rhanding=$form.find(":input[name='rhanding']:checked").val();
-		$form.find(":input[name='handing']").val(rhanding);
-		
-		if($form.find(":input[name='isManager']").val()=='true'&&rhanding=="送相关部门协办"){
-			var $departmentsTRs = $form.find("#co4departmentTable tr:gt(0)");
-			//用户显示的部门信息
-			var co4departments = [];
+		if($form.find(":input[name='isManager']").val()=='true'){
+			var rhanding=$form.find(":input[name='rhanding']:checked").val();
+			$form.find(":input[name='handing']").val(rhanding);
 			
-			//多实例集合变量
-			var list_departmentAndAssignee=[];
-			
-			$departmentsTRs.each(function(){
-					$inputs=$(this).find(":input");
-					$lis=$(this).find("ul>li");
-					var transactorNames='';
-					var transactorIds='';
-					$lis.each(function(){
-						var temp=$(this).attr("data-hidden");
-						obj_transactor=eval("("+temp+")");
-						if(transactorNames==''){
-							transactorNames=obj_transactor.name;
-							transactorIds=obj_transactor.id;
-						}else{
-							transactorNames+= ","+obj_transactor.name;
-							transactorIds+= ","+obj_transactor.id;
+			if(rhanding=="送相关部门协办"){
+				var $departmentsTRs = $form.find("#co4departmentTable tr:gt(0)");
+				//用户显示的部门信息
+				var co4departments = [];
+				
+				//多实例集合变量
+				var list_departmentAndAssignee=[];
+				
+				$departmentsTRs.each(function(){
+						$inputs=$(this).find(":input");
+						$lis=$(this).find("ul>li");
+						var transactorNames='';
+						var transactorIds='';
+						$lis.each(function(){
+							var temp=$(this).attr("data-hidden");
+							obj_transactor=eval("("+temp+")");
+							if(transactorNames==''){
+								transactorNames=obj_transactor.name;
+								transactorIds=obj_transactor.id;
+							}else{
+								transactorNames+= ","+obj_transactor.name;
+								transactorIds+= ","+obj_transactor.id;
+							}
+							
+							//实例变量
+							var instance={
+								mcode:$inputs[1].value,
+								mname:$inputs[2].value,
+								assignee:obj_transactor.code,
+								assigneeId:obj_transactor.id,
+								subject:'相关部门协办（'+$inputs[2].value+'）'
+							}
+							
+							list_departmentAndAssignee.push(instance);
+						});
+						
+						var co4department={
+							co4departmentId:$inputs[0].value,
+							co4departmentCode:$inputs[1].value,
+							co4departmentName:$inputs[2].value,
+							transactorNames:transactorNames,
+							transactorIds:transactorIds
 						}
-						
-						var variable=$inputs[1].value+'/'+obj_transactor.code+'/'+'相关部门协办（'+$inputs[2].value+'）';
-						
-						list_departmentAndAssignee.push(variable);
-					});
-					
-					var co4department={
-						co4departmentId:$inputs[0].value,
-						co4departmentCode:$inputs[1].value,
-						co4departmentName:$inputs[2].value,
-						transactorNames:transactorNames,
-						transactorIds:transactorIds
+						co4departments.push(co4department);
+				});
+				
+				$form.find(":input[name='list_am_co4department']").val($.toJSON(co4departments));
+				$form.find(":input[name='list_co4departmentAndAssignee']").val($.toJSON(list_departmentAndAssignee));
+			}else if(rhanding=="送营安部审批"){
+				$div=$form.find("#operationSecurityCheck");	
+				$lis=$div.find("ul>li");
+				$inputs=$div.find(":input");
+				//多实例集合变量
+				var list_departmentAndAssignee = [];
+				$lis.each(function(){
+					var temp=$(this).attr("data-hidden");
+					obj_transactor=eval("("+temp+")");
+					//实例变量
+					var instance={
+						assignee:obj_transactor.code,
+						assigneeName:obj_transactor.name,
+						assigneeId:obj_transactor.id
 					}
-					co4departments.push(co4department);
-			});
-			
-			$form.find(":input[name='list_am_co4department']").val($.toJSON(co4departments));
-			$form.find(":input[name='list_co4departmentAndAssignee']").val($.toJSON(list_departmentAndAssignee));
+					
+					list_departmentAndAssignee.push(instance);
+				});
+				$form.find(":input[name='list_osc4assignee']").val($.toJSON(list_departmentAndAssignee));
+				
+			}else if(rhanding=="送分管副总审批"){
+				$div=$form.find("#inCharDeputyGeneralManagerCheck");	
+				$lis=$div.find("ul>li");
+				$inputs=$div.find(":input");
+				//多实例集合变量
+				var list_departmentAndAssignee = [];
+				$lis.each(function(){
+					var temp=$(this).attr("data-hidden");
+					obj_transactor=eval("("+temp+")");
+					//实例变量
+					var instance={
+						assignee:obj_transactor.code,
+						assigneeName:obj_transactor.name,
+						assigneeId:obj_transactor.id
+					}
+					
+					list_departmentAndAssignee.push(instance);
+				});
+				$form.find(":input[name='list_icdgmc4assignee']").val($.toJSON(list_departmentAndAssignee));
+			}
 		}
 	},
 	
@@ -378,34 +379,63 @@ bswf.generalOrder.ApplyMatterForm = {
 		if(!bc.validator.validate(this))
 			return false;
 			
-		if($form.find(":input[name='isManager']").val()=='true'&&$form.find(":input[name='rhanding']:checked").val()=="送相关部门协办"){
-			//先检测部门
-			var $departmentsTRs = $form.find("#co4departmentTable tr");
-			if($departmentsTRs.size()<2){
-				bc.msg.alert("请添加协办部门！");
-				return false;
-			}
-			
-			//检测部门中的协办人
-			var check=false;
-			var deprt='';
-			$departmentsTRs.each(function(index){
-				if(index>0){
-					$inputs=$(this).find(":input");
-					$lis=$(this).find("ul>li");
-					if($lis.size()<1){
-						check=true;
-						deprt=$inputs[2].value;
-						return;
-					}
+		if($form.find(":input[name='isManager']").val()=='true'){
+			$rhandings=$form.find(":input[name='rhanding']");
+			var checked=false;
+			$rhandings.each(function(){
+				if($(this)[0].checked){
+					checked=true;
 				}
 			});
-			if(check){
-				bc.msg.alert("请为协办部门"+deprt+"添加协办人！");
+
+			if(!checked){
+				bc.msg.alert("请选择下一步处理方式！");
 				return false;
 			}
-			
-		}	
+		
+			if($form.find(":input[name='rhanding']:checked").val()=="送相关部门协办"){
+				//先检测部门
+				var $departmentsTRs = $form.find("#co4departmentTable tr");
+				if($departmentsTRs.size()<2){
+					bc.msg.alert("请添加协办部门！");
+					return false;
+				}
+				
+				//检测部门中的协办人
+				var check=false;
+				var deprt='';
+				$departmentsTRs.each(function(index){
+					if(index>0){
+						$inputs=$(this).find(":input");
+						$lis=$(this).find("ul>li");
+						if($lis.size()<1){
+							check=true;
+							deprt=$inputs[2].value;
+							return;
+						}
+					}
+				});
+				if(check){
+					bc.msg.alert("请为协办部门"+deprt+"添加协办人！");
+					return false;
+				}
+			}else if($form.find(":input[name='rhanding']:checked").val()=="送营安部审批"){
+				$div=$form.find("#operationSecurityCheck");	
+				$lis=$div.find("ul>li");
+				if($lis.size()<1){
+					bc.msg.alert("请添加营安部审批员！");
+					return false;
+				}
+
+			}else if($form.find(":input[name='rhanding']:checked").val()=="送分管副总审批"){
+				$div=$form.find("#inCharDeputyGeneralManagerCheck");	
+				$lis=$div.find("ul>li");
+				if($lis.size()<1){
+					bc.msg.alert("请添加分管副总！");
+					return false;
+				}
+			}
+		}
 			
 		bswf.generalOrder.ApplyMatterForm.buildFormData.call(this);
 

@@ -225,6 +225,7 @@ bswf.generalOrder.ManagerImplForm = {
 		//绑定添加办理人事件
 		$form.delegate(".selectTransactor","click",function(){
 				$row = $(this).closest(".row");
+				$inputs = $row.find(":input");
 				$ul = $row.find("ul");
 				$lis = $ul.find("li");
 				var selecteds="";
@@ -236,6 +237,7 @@ bswf.generalOrder.ManagerImplForm = {
 					history: true,
 					status:0,
 					selecteds: selecteds,
+					group:$inputs[1].value,
 					onOk: function(users){
 						$.each(users,function(i,user){
 							if($lis.filter("[data-id='" + user.id + "']").size() > 0){//已存在
@@ -286,9 +288,16 @@ bswf.generalOrder.ManagerImplForm = {
 							transactorIds+= ","+obj_transactor.id;
 						}
 						
-						var variable=$inputs[1].value+'/'+obj_transactor.code+'/'+'协办部门落实（'+$inputs[2].value+'）';
+						//实例变量
+						var instance={
+							mcode:$inputs[1].value,
+							mname:$inputs[2].value,
+							assignee:obj_transactor.code,
+							assigneeId:obj_transactor.id,
+							subject:'协办部门落实（'+$inputs[2].value+'）'
+						}
 						
-						list_departmentAndAssignee.push(variable);
+						list_departmentAndAssignee.push(instance);
 					});
 					
 					var co4department={
@@ -312,6 +321,20 @@ bswf.generalOrder.ManagerImplForm = {
 	
 		if(!bc.validator.validate(this))
 			return false;
+			
+		$rhandings=$form.find(":input[name='rhanding']");
+		var checked=false;
+		
+		$rhandings.each(function(){
+			if($(this)[0].checked){
+				checked=true;
+			}
+		});
+
+		if(!checked){
+			bc.msg.alert("请选择送相关部门的处理方式！");
+			return false;
+		}
 		
 		if($form.find(":input[name='rhanding']:checked").val()=="true"){
 			//先检测部门

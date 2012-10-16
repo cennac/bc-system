@@ -7,36 +7,21 @@
 			<textarea name="view" class="autoHeight ui-widget-content" style="width:100%;" data-validate="required" placeholder="(审批意见)"/>
 		</div>
 		<div style="padding-left:0.5em;">
-			<input type="hidden" name="is_mi_flow" data-scope="global" value="true" data-type="boolean"/>
+			<input type="hidden" name="chairman"    data-scope="global" class="ignore" value="zhou"/>
+			<input type="hidden" name="is_ICDGMC_to_CC_flow" class="ignore" data-scope="global" value="true" data-type="boolean"/>
 			<input type="hidden" name="handing"/>
 			确认下一步的处理方式：
-			<input type="radio"  name="rhanding" class="ignore" value="送部门经理落实执行" checked style="width:auto;" />
+			<input type="radio"  name="rhanding" class="ignore" value="送部门经理落实执行" style="width:auto;" />
 			<label>送部门经理落实执行</label>
 			<input type="radio"  name="rhanding" class="ignore" value="送董事长审批"  style="width:auto;" />
 			<label>送董事长审批</label>
 		</div>
-		<div id="chairmanCheck" style="display:none;padding-left:0.5em;">
-			董事长：<div class="label relative" style="display:inline-block;">
-					<input type="text"   name="chairmanName" 			data-scope="global" class="ignore ui-widget-content"  readonly="readonly"/>
-					<input type="hidden" name="chairmanId"     			data-scope="global"	class="ignore" data-type="Long"/>
-					<input type="hidden" name="chairman"     			data-scope="global" class="ignore" />
-				    <ul class="inputIcons" >
-						<li class="inputIcon ui-icon ui-icon-circle-plus"
-						 title='点击选择' id="selectChairman"></li>
-					</ul>
-				</div>
-		</div>
 	<#else>	
 		<div style="padding-left:0.5em;">
-			<div class="text">${view!}</div>
+			<div class="text ui-widget-content" style="width:635px;word-break: break-all;">${view!}</div>
 		</div>
 		<div style="padding-left:0.5em;">
 			下一步的处理方式：${handing!}
 		</div>
-		<#if handing??&&handing == "送分董事长审批">
-			<div style="padding-left:0.5em;">
-				董事长：${chairmanName!}
-			</div>
-		</#if>
 	</#if>
 </form>
