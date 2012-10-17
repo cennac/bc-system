@@ -1,5 +1,5 @@
 bc.namespace("bswf.generalOrder");
-bswf.generalOrder.OperationSecurityCheckForm = {
+bswf.generalOrder.ChairmanCheckForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		
@@ -14,7 +14,7 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 		if(!bc.validator.validate(this))
 			return false;
 		
-		bswf.generalOrder.OperationSecurityCheckForm.buildFormData.call(this);
+		bswf.generalOrder.ChairmanCheckForm.buildFormData.call(this);
 		
 		return true;
 	}

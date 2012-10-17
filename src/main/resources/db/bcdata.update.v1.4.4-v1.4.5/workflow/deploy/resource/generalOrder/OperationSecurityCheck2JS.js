@@ -8,14 +8,14 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 			switch($(this).val()){
 				case "送部门经理落实执行" :
 					handing_hide($form.find("#inCharDeputyGeneralManagerCheck"));
-					if($form.find(":input[name='is_OSC_to_ICDGMC_flow']").hasClass("ignore")){
-					   $form.find(":input[name='is_OSC_to_ICDGMC_flow']").removeClass("ignore");
+					if(!$form.find(":input[name='is_OSC_to_ICDGMC_flow']").hasClass("ignore")){
+						$form.find(":input[name='is_OSC_to_ICDGMC_flow']").addClass("ignore");
 					}
 					 break;
 				case "送总经理组审批":
 					handing_show($form.find("#inCharDeputyGeneralManagerCheck"));
-					if(!$form.find(":input[name='is_OSC_to_ICDGMC_flow']").hasClass("ignore")){
-						$form.find(":input[name='is_OSC_to_ICDGMC_flow']").addClass("ignore");
+					if($form.find(":input[name='is_OSC_to_ICDGMC_flow']").hasClass("ignore")){
+					   $form.find(":input[name='is_OSC_to_ICDGMC_flow']").removeClass("ignore");
 					}
 					 break;
 				default: alert("other");
@@ -70,7 +70,7 @@ bswf.generalOrder.OperationSecurityCheckForm = {
 					history: true,
 					status:0,
 					selecteds: selecteds,
-					group:'yinganbu',
+					group:'zongjingli',
 					onOk: function(users){
 						$.each(users,function(i,user){
 							if($lis.filter("[data-id='" + user.id + "']").size() > 0){//已存在

@@ -83,6 +83,13 @@ insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TY
 values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.114',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
 		,'ManagerImpl2JS','部门经理落实js文件','generalOrder/ManagerImpl2JS.js',6536,'ManagerImpl2JS.js',(select id from BC_TEMPLATE_TYPE where code='js'),false);
 
+-- 插入流程模板
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+values (NEXTVAL('CORE_SEQUENCE'),'DeployResource.115',(select id from BC_WF_DEPLOY where code='GeneralOrder' and version_='1.0' ) 
+		,'GeneralOrder_template4docx','公文处理流程表格模板','generalOrder/generalOrder.docx',36152,'generalOrder.docx',(select id from BC_TEMPLATE_TYPE where code='word-docx'),true);
+insert into bc_wf_deploy_resource_param (RID,PID) SELECT r.id,p.id FROM bc_wf_deploy_resource r,bc_template_param p
+where r.code='GeneralOrder_template4docx' and p.name='获取流程全局参数';
+
 -- 更新流程部署版本号规则 
 update bc_wf_deploy set version_ = '1.0';
 
