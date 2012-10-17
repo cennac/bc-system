@@ -1,10 +1,10 @@
-﻿-- ###########################################################################
+-- ###########################################################################
 -- 宝城综合应用系统的升级脚本
 -- 数据库类型: postgresql
 -- 升级版本: 从 1.4.4升级到 1.4.5
 -- ###########################################################################
 
--- 补充插入单位、部门、岗位缺漏的ActorHistory信息，解决切换上级报错的问题
+-- 补充插入单位、部门、岗位缺漏的ActorHistory信息，解决切换上级报错的问题（已于2012-10-15在正式环境执行 dragon）
 insert into BC_IDENTITY_ACTOR_HISTORY (ID,CREATE_DATE,ACTOR_TYPE,ACTOR_CODE,ACTOR_ID,ACTOR_NAME,PCODE,PNAME,CURRENT,RANK,UPPER_ID,UPPER_NAME,UNIT_ID,UNIT_NAME) 
     select NEXTVAL('CORE_SEQUENCE'),to_timestamp('2012-03-04 22:25:53','YYYY-MM-DD HH24:MI:SS'),a.type_,a.code,a.id,a.name,a.pcode,a.pname,true,0
     ,(select b.id from BC_IDENTITY_ACTOR b inner join BC_IDENTITY_ACTOR_RELATION r on r.MASTER_ID=b.id where r.TYPE_=0 and r.FOLLOWER_ID=a.id)
