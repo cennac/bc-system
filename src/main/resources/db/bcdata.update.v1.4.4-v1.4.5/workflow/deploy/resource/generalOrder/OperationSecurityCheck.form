@@ -7,35 +7,40 @@
 			<textarea name="view" class="autoHeight ui-widget-content" style="width:100%;" data-validate="required" placeholder="(审批意见)" />
 		</div>
 		<div style="padding-left:0.5em;">
-			<input type="hidden" name="is_mi_flow" data-scope="global" value="true" data-type="boolean"/>
+			<input type="hidden" name="is_OSC_to_ICDGMC_flow" class="ignore"  data-scope="global" value="true"  data-type="boolean"/>
 			<input type="hidden" name="handing"/>
 			确认下一步的处理方式：
-			<input type="radio"  name="rhanding" class="ignore" value="送部门经理落实执行" checked style="width:auto;" />
+			<input type="radio"  name="rhanding" class="ignore" value="送部门经理落实执行" style="width:auto;" />
 			<label>送部门经理落实执行</label>
-			<input type="radio"  name="rhanding" class="ignore" value="送分管副总审批"  style="width:auto;" />
-			<label>送分管副总审批</label>
+			<input type="radio"  name="rhanding" class="ignore" value="送总经理组审批"  style="width:auto;" />
+			<label>送总经理组审批</label>
 		</div>
-		<div id="inCharDeputyGeneralManagerCheck" style="display:none;padding-left:0.5em;">
-			分管副总：<div class="label relative" style="display:inline-block;">
-					<input type="text"   name="inChargeDeputyGeneralManagerName" data-scope="global" class="ignore ui-widget-content"  readonly="readonly"/>
-		          	<input type="hidden" name="inChargeDeputyGeneralManager"     data-scope="global" class="ignore"/>
-					<input type="hidden" name="inChargeDeputyGeneralManagerId"   data-scope="global" class="ignore" data-type="Long"/>
-				    <ul class="inputIcons" >
-						<li class="inputIcon ui-icon ui-icon-circle-plus"
-						 title='点击选择' id="selectInChargeDeputyGeneralManager"></li>
-					</ul>
+		<div id="inCharDeputyGeneralManagerCheck" style="display:none;padding-left:0.5em;vertical-align:top;">
+			*总经理：
+			<div class="row ui-widget-content" style="width:400px;display:inline-block;">
+				<input type="hidden" class="ignore" value="总经理">
+				<input type="hidden" class="ignore" value="zongjingli" >
+				<input type="hidden" name="list_icdgmc4assignee" data-scope="global" data-type="list" 	 class="ignore bswf-generalOrder-ignore"/>
+				<input type="hidden" name="is_ICDGMC_to_CC_flow" data-scope="global" data-type="boolean" class="ignore bswf-generalOrder-ignore" value="false">
+				<div style="position:relative;margin: 0;padding: 1px 0;min-height:19px;margin: 0;font-weight: normal;width: 98%;" >
+					<span class="selectTransactor selectButton verticalMiddle ui-icon ui-icon-circle-plus"  title="点击添加"></span>
+					<ul class="horizontal" style="padding: 0;overflow:hidden;"></ul>
 				</div>
+			</div>
 		</div>
 	<#else>	
 		<div style="padding-left:0.5em;">
-			<div class="text">${view!}</div>
+			<div class="text ui-widget-content" style="width:635px;word-break: break-all;">${view!}</div>
 		</div>
 		<div style="padding-left:0.5em;">
 			下一步的处理方式：${handing!}
 		</div>
-		<#if handing??&&handing == "送分管副总审批">
-			<div style="padding-left:0.5em;">
-				分管副总经理：${inChargeDeputyGeneralManagerName!}
+		<#if handing??&&handing == "送总经理组审批">
+			<div style="padding-left:0.5em;" style="word-break: break-all;">
+				分管副总：
+				<#list list_icdgmc4assignee as d>
+					${d.assigneeName!}&nbsp;	
+				</#list>
 			</div>
 		</#if>
 	</#if>
