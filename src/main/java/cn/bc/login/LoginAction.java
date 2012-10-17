@@ -27,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
+import cn.bc.BCConstants;
 import cn.bc.Context;
 import cn.bc.ContextHolder;
 import cn.bc.core.exception.CoreException;
@@ -100,7 +101,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		Map<String, Object> map = this.loginService.loadActorByCode(name);
 		Actor user = (Actor) map.get("actor");
 		// logger.info("doLoginUser：" + DateUtils.getWasteTime(startTime));
-		if (user == null) {
+		if (user == null || user.getStatus() != BCConstants.STATUS_ENABLED) {
 			msg = "该用户未注册，如有问题请联系系统管理员！";
 			success = false;
 		} else {
