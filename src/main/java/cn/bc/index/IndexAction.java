@@ -240,7 +240,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 						String.valueOf(m.getType() == Resource.TYPE_OUTER_LINK))
 				.setAttr("data-order", m.getOrderNo())
 				.setAttr("data-iconClass", m.getIconClass())
-				.setAttr("data-name", m.getName());
+				.setAttr("data-name", m.getName())
+				.setAttr("data-cfg", m.getOption());
 		if (m.getOption() != null)
 			menuItem.setAttr("data-option",
 					m.getOption() == null ? "" : m.getOption());
