@@ -31,6 +31,7 @@ import cn.bc.identity.domain.Actor;
 import cn.bc.identity.domain.Resource;
 import cn.bc.identity.domain.ResourceComparator;
 import cn.bc.identity.web.SystemContext;
+import cn.bc.web.ui.html.Text;
 import cn.bc.web.ui.html.menu.Menu;
 import cn.bc.web.ui.html.menu.MenuItem;
 
@@ -217,7 +218,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	private Menu buildMenu4Resources(List<Resource> resources,
 			Map<Resource, Set<Resource>> parentChildren, boolean isTop) {
 		Menu menu = new Menu();
-		if(!isTop) menu.addClazz("ui-state-default");
+		if (!isTop)
+			menu.addClazz("ui-state-default");
 		MenuItem menuItem;
 		for (Resource m : resources) {
 			menuItem = buildMenuItem4Resource(m, parentChildren);
@@ -240,15 +242,18 @@ public class IndexAction extends ActionSupport implements SessionAware {
 						String.valueOf(m.getType() == Resource.TYPE_OUTER_LINK))
 				.setAttr("data-order", m.getOrderNo())
 				.setAttr("data-iconClass", m.getIconClass())
-				.setAttr("data-name", m.getName())
-				.setAttr("data-cfg", m.getOption());
-		if (m.getOption() != null)
-			menuItem.setAttr("data-option",
-					m.getOption() == null ? "" : m.getOption());
-		if (m.getUrl() != null)
+				.setAttr("data-name", m.getName());
+		if (m.getOption() != null) {
+			menuItem.addChild(new Text("<pre style=\"display:none\">"
+					+ m.getOption() + "</pre>"));
+			// menuItem.setAttr("data-cfg", m.getOption() == null ? "" :
+			// m.getOption());
+		}
+		if (m.getUrl() != null) {
 			menuItem.setAttr("data-url",
 					m.getUrl().startsWith("/") ? getContextPath() + m.getUrl()
 							: m.getUrl());
+		}
 		if (m.getType() == Resource.TYPE_FOLDER) {// 文件夹
 			Set<Resource> childResources = parentChildren.get(m);// 模块下的子模块
 			if (childResources != null && !childResources.isEmpty()) {
