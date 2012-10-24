@@ -178,6 +178,11 @@
 		<!-- 社保收费规则 -->
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
+		
+
+		<!-- ##OA子系统## -->
+		<!-- 信息 -->
+		<class>cn.bc.business.info.domain.Info</class>
 
 		<!-- 排除没有在这里声明的注解类 -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

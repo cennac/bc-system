@@ -100,6 +100,9 @@
 	<import resource="classpath:cn/bc/business/fee/spring.xml"/>
 	<import resource="classpath:cn/bc/business/socialSecurityRule/spring.xml"/>
 
+	<!-- bc办公管理子系统 -->
+	<import resource="classpath:cn/bc/business/info/spring.xml"/>
+
 	<!-- bc营运管理子系统 流程 -->
 	<import resource="classpath:cn/bc/business/workflow/spring.xml"/>
 	<import resource="classpath:cn/bc/business/workflow/confirmretiredcars/spring.xml"/>

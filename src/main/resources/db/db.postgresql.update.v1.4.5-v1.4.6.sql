@@ -45,3 +45,24 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and m.type_ > 1 and m.name = '公文处理'
 	and not exists (select 1 from BC_IDENTITY_ROLE_RESOURCE t where t.rid=r.id and t.sid=m.id)
 	order by m.order_;
+
+-- 公司文件
+-- 插入 公司文件管理 角色数据
+delete from BC_IDENTITY_ROLE_RESOURCE 
+	where rid in (select id from BC_IDENTITY_ROLE where code in ('BC_COMMON'))
+	and sid in (select id from BC_IDENTITY_RESOURCE where name='公司文件');
+delete from BC_IDENTITY_RESOURCE where name='公司文件';
+delete from BC_IDENTITY_ROLE where code='BS_COMPANYFILE_MANAGE';
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+    select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0201','BS_COMPANYFILE_MANAGE','公司文件管理' from BC_DUAL 
+	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_COMPANYFILE_MANAGE');
+-- 插入 公司文件 资源链接
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040100','公司文件', '/bc/companyFiles/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='公司文件');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.name = '公司文件'
+	and not exists (select 1 from BC_IDENTITY_ROLE_RESOURCE t where t.rid=r.id and t.sid=m.id)
+	order by m.order_;

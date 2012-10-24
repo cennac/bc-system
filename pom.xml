@@ -360,6 +360,12 @@
 			<artifactId>bc-business-socialSecurityRule</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 信息管理 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-info</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 
 		<!-- 综合查询 -->
 		<dependency>

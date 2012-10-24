@@ -72,6 +72,9 @@
 	<include file="cn/bc/business/fee/web/struts2/struts.xml" />
 	<include file="cn/bc/business/socialSecurityRule/web/struts2/struts.xml" />
 
+	<!-- 办公管理子系统的配置文件 -->
+	<include file="cn/bc/business/info/web/struts2/struts.xml" />
+
     <!-- bc工作流程配置文件 -->
 	<include file="cn/bc/workflow/web/struts2/struts.xml" />
 	<include file="cn/bc/workflow/todo/web/struts2/struts.xml" />
