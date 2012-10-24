@@ -243,7 +243,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 				.setAttr("data-order", m.getOrderNo())
 				.setAttr("data-iconClass", m.getIconClass())
 				.setAttr("data-name", m.getName());
-		if (m.getOption() != null) {
+		if (m.getOption() != null && m.getOption().trim().length() > 0) {
 			menuItem.addChild(new Text("<pre style=\"display:none\">"
 					+ m.getOption() + "</pre>"));
 			// menuItem.setAttr("data-cfg", m.getOption() == null ? "" :
