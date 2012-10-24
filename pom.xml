@@ -480,7 +480,12 @@
 			<artifactId>bc-template</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
-
+		<!-- 网络硬盘 -->
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-netdisk</artifactId>
+			<version>${framework.version}</version>
+		</dependency>
 		<!-- WebSocket -->
 		<dependency>
 			<groupId>cn.bc</groupId>
@@ -493,14 +498,14 @@
 			<artifactId>bc-chat</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
-		
+
 		<!-- 远程服务 -->
 		<dependency>
 			<groupId>cn.bc</groupId>
 			<artifactId>bc-remoting-common</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
-		
+
 		<!-- 工作流程 -->
 		<dependency>
 			<groupId>cn.bc.workflow</groupId>
