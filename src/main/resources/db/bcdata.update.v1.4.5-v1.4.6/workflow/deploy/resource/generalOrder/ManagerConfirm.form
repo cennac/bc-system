@@ -1,0 +1,135 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.generalOrder.ManagerConfirmForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:ManagerConfirm2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;width:635px;">
+			<input type="hidden" name="manager" value="${ti_assignee!}" data-scope="global">
+			<textarea name="view" class="autoHeight ui-widget-content" style="width:100%;" data-validate="required" placeholder="(这里填写部门经理意见)"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			<input type="hidden"  	name="handing"/>
+			*确认下一步的处理方式：
+			<input type="radio"  	name="rhanding" value="送归档" 	class="ignore" 	style="width:auto;" />
+			<label>送归档</label>
+			<input type="radio"  	name="rhanding" value="送相关部门协办" class="ignore" 	style="width:auto;"/>
+			<label>送相关部门协办</label>
+			<input type="radio"  	name="rhanding" value="送营运总监审批"  	class="ignore" 	style="width:auto;" />
+			<label>送营运总监审批</label>
+			<input type="radio"  	name="rhanding" value="送总经理组审批" class="ignore" 	style="width:auto;" />
+			<label>送总经理组审批</label>
+			<#if isSend2Chairman>
+				<div style="padding-left:11.6em;">
+				<input type="radio" name="rhanding" value="送董事长审批" 	class="ignore" 	style="width:auto;" />
+				<label>送董事长审批</label>
+				</div>
+			</#if>
+		</div>
+		<div id="OperationDirectorCheck" style="display:none;padding-left:0.5em;vertical-align:top;">
+			*营运总监：
+			<div class="row ui-widget-content" style="width:400px;display:inline-block;">
+				<input type="hidden" class="ignore" value="营运总监">
+				<input type="hidden" class="ignore" value="yingyunzongjian" >
+				<input type="hidden" name="list_odc4assignee" 		 data-scope="global" data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
+				<input type="hidden" name="list_odc4assignee4local"  data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
+				<input type="hidden" name="is_ODC_flow"		  		 data-scope="global" data-type="boolean"	class="bswf-generalOrder-flow"       value="false" />
+				<input type="hidden" name="is_ODC_to_GMGC_flow"      data-scope="global" data-type="boolean" class="ignore bswf-generalOrder-ignore" value="false">
+				<div style="position:relative;margin: 0;padding: 1px 0;min-height:19px;margin: 0;font-weight: normal;width: 98%;" >
+					<span class="selectTransactor selectButton verticalMiddle ui-icon ui-icon-circle-plus"  title="点击添加"></span>
+					<ul class="horizontal" style="padding: 0;overflow:hidden;"></ul>
+				</div>
+			</div>
+		</div>
+		<div id="GeneralManagerGroupCheck" style="display:none;padding-left:0.5em;vertical-align:top;">
+			*总经理：
+			<div class="row ui-widget-content" style="width:400px;display:inline-block;">
+				<input type="hidden" class="ignore" value="总经理">
+				<input type="hidden" class="ignore" value="zongjingli" >
+				<input type="hidden" name="list_gmgc4assignee" data-scope="global" data-type="list" 	 class="ignore bswf-generalOrder-ignore"/>
+				<input type="hidden" name="list_gmgc4assignee4local"  data-type="list" 	 class="ignore bswf-generalOrder-ignore"/>
+				<input type="hidden" name="is_GMGC_flow"		 data-scope="global" data-type="boolean" class="bswf-generalOrder-flow"          value="false" />
+				<input type="hidden" name="is_GMGC_to_CC_flow" data-scope="global" data-type="boolean" class="ignore bswf-generalOrder-ignore" value="false">
+				<div style="position:relative;margin: 0;padding: 1px 0;min-height:19px;margin: 0;font-weight: normal;width: 98%;" >
+					<span class="selectTransactor selectButton verticalMiddle ui-icon ui-icon-circle-plus"  title="点击添加"></span>
+					<ul class="horizontal" style="padding: 0;overflow:hidden;"></ul>
+				</div>
+			</div>
+		</div>
+		<#if isSend2Chairman>
+			<div id="chairmanCheck" style="display:none;padding-left:0.5em;">
+				<input type="hidden" name="is_CC_flow"  data-scope="global" class="bswf-generalOrder-flow" value="false" data-type="boolean"/>
+			</div>
+		<#else>
+			<input type="hidden" name="is_CC_flow"  data-scope="global" value="false" data-type="boolean"/>
+		</#if>
+		<div id="co4department" style="display:none;" >
+			<input type="hidden" name="is_DC_flow"   						data-scope="global"	data-type="boolean" class="bswf-generalOrder-flow" value="false" />
+			<input type="hidden" name="list_mc_co4department" 		 							data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
+			<input type="hidden" name="list_co4departmentAndAssignee" 		data-scope="global" data-type="list" 	class="ignore bswf-generalOrder-ignore"/>
+			<div style="position:relative;border-width: 0;padding-left: 0.5em;width:635px;">
+				<span class="text">*指定协办部门和协办人:</span>
+				<ul class="inputIcons">
+					<li id="upLine"     class="inputIcon ui-icon ui-icon-circle-arrow-n" title='上移选中项'></li>
+					<li id="downLine"   class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
+					<li id="addLine"    class="inputIcon ui-icon ui-icon-circle-plus"    title='添加协办部门'></li>
+					<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"   title='删除协办部门'></li>
+				</ul>
+			</div>
+			<table class="ui-widget-content bc-grid" id="co4departmentTable" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">
+				<tr class="header row">
+					<td class="first" style="width: 1em;border-top:1px solid #CCC;">&nbsp;</td>
+					<td class="middle" style="width: 10em;border-top:1px solid #CCC;">协办部门</td>
+					<td class="middle" style="width: 35em;border-top:1px solid #CCC;">协办人</td>
+					<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+				</tr>
+			</table>
+		</div>
+	<#else>	
+		<div style="padding-left:0.5em;">
+			<div class="text" style="width:635px;word-break: break-all;">${view!}</div>
+		</div>
+		<#if handing??>
+			<#if handing == "送相关部门协办">
+				<div style="padding-left:0.5em;">
+					>送相关部门协办：${handing!}
+				</div>
+				<table class="ui-widget-content bc-grid" cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border-width:0 0 0 0;">
+					<tr class="header row">
+						<td class="first" style="width: 1em;border-top:1px solid #CCC;">&nbsp;</td>
+						<td class="middle" style="width: 10em;border-top:1px solid #CCC;">协办部门</td>
+						<td class="middle" style="width: 35em;border-top:1px solid #CCC;">协办人</td>
+						<td class="last" style="min-width: 0.01em;border-width:1px 1px 0 1px;"></td>
+					</tr>
+					<#list list_mc_co4department as d>
+						<tr class="ui-widget-content row">
+							<td class="first" ></td>
+							<td class="middle" style="margin:0;vertical-align:top;padding:0 2 0 2px;">
+								<div  class="text">${d.co4departmentName!}</div>
+							</td>
+							<td class="middle">
+								<div  class="text">${d.transactorNames!}</div>
+							</td>
+							<td class="last" style="border-width:1px 1px 0 1px;"></td>
+						</tr>
+					</#list>
+				</table>
+			<#elseif handing == "送营运总监审批">
+				<div style="padding-left:0.5em;" style="word-break: break-all;">
+					>送营运总监
+					<#list list_odc4assignee4local as d>
+						${d.assigneeName!}<#if d_has_next>、</#if>
+					</#list>
+					审批
+				</div>
+			<#elseif handing == "送总经理组审批">
+				<div style="padding-left:0.5em;" style="word-break: break-all;">
+					>送总经理
+					<#list list_gmgc4assignee4local as d>
+						${d.assigneeName!}<#if d_has_next>、</#if>
+					</#list>
+					审批
+				</div>
+			</#if>
+		</#if>
+	</#if>
+</form>
