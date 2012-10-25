@@ -20,7 +20,7 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	'function(){'||chr(13)||
 	'bc.msg.confirm("确定要发起公文处理流程吗？",function(){'||chr(13)||
 	'	bc.ajax({'||chr(13)||
-	'		url: bc.root+"/bc-workflow/workflow/startFlow?id=GeneralOrder:1:4003", dataType: "json",'||chr(13)||
+	'		url: bc.root+"/bc-workflow/workflow/startFlow?key=GeneralOrder", dataType: "json",'||chr(13)||
 	'		success: function(json) {'||chr(13)||
 	'			if(json.success === false){'||chr(13)||
 	'				bc.msg.alert(json.msg);'||chr(13)||
