@@ -103,6 +103,7 @@
 	<!-- bc营运管理子系统 流程 -->
 	<import resource="classpath:cn/bc/business/workflow/spring.xml"/>
 	<import resource="classpath:cn/bc/business/workflow/confirmretiredcars/spring.xml"/>
+	<import resource="classpath:cn/bc/business/workflow/generalorder/spring.xml"/>
 	
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-system.xml" />
