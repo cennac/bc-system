@@ -46,15 +46,15 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and not exists (select 1 from BC_IDENTITY_ROLE_RESOURCE t where t.rid=r.id and t.sid=m.id)
 	order by m.order_;
 
--- ##宝城公司文件处理流程数据初始化##’
--- 插入宝城公司文件处理流全局参数
+-- ##公文处理流程数据初始化##’
+-- 插入公文处理流全局参数
 insert into bc_template_param (ID,STATUS_,ORDER_,NAME,CONFIG,FILE_DATE,AUTHOR_ID)
 values (NEXTVAL('CORE_SEQUENCE'),0,'000005','公文处理流程获取流程全局参数','[{type:"spel",sql:"@generalorderWorkflowService.getProcessHistoryParams(#pid,''zongjingli,yingyunzongjian'',''zongjingli'',''(无权查看)'')"}]',
 			now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
 -- 插入部署数据
 insert into bc_wf_deploy (ID,UID_,ORDER_,STATUS_,TYPE_,CATEGORY,CODE,VERSION_,SUBJECT,PATH,SIZE_,SOURCE,FILE_DATE,AUTHOR_ID) 
-values (NEXTVAL('CORE_SEQUENCE'),'Deploy.5','4',-1,1,'营运系统/业务流程','GeneralOrder','1.0','宝城公司文件处理流程','resource/generalOrder/generalOrder.bar',70578,'宝城公司文件处理流程.bar',
+values (NEXTVAL('CORE_SEQUENCE'),'Deploy.5','4',-1,1,'营运系统/业务流程','GeneralOrder','1.0','公文处理流程','resource/generalOrder/generalOrder.bar',70578,'公文处理流程.bar',
 			now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
 
 -- 插入流程资源
