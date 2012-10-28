@@ -27,7 +27,7 @@
 			<input type="password" id="password" class="input" placeholder="密码"/>
 			<div class="submitIcon" id="loginBtn" title="登录"><img src="<s:url value='/login/images/go.png'/>"/></div>
 		</div>
-		<div class="textContainer"><label><input type="checkbox" id="remember"/>两周内自动登陆</label></div>
+		<div class="textContainer"><label><input type="checkbox" id="remember" value="true"/>两周内自动登录</label></div>
 	</form>
 	<div id="version"><s:text name="app.version"/></div>
 	<div id="msg" data-auth='${bcauth}'></div>
@@ -36,11 +36,13 @@
 	
 	<script type="text/javascript">
 		var bc={};
+		bc.syskey = '<s:text name="app.name" />';
 		bc.debug = <s:text name="app.debug" />;
 		bc.ts = bc.debug ? new Date().getTime() : "<s:text name="app.ts" />";
 		bc.root = "<%=request.getContextPath()%>";
 	</script>
 	<script type="text/javascript" src="<s:url value='/ui-libs/jquery/1.7.2/jquery.min.js'/>"></script>
+	<script type="text/javascript" src="<s:url value='/ui-libs/jquery/plugins/cookie/1.2.0/jquery.cookie.js'/>"></script>
 	<script type="text/javascript" src="<s:url value='/ui-libs/jshash/2.2/md5-min.js'/>"></script>
 	<script type="text/javascript" src="<s:url value='/login/login.js' ><s:param name='ts' value='%{getText("app.ts")}'/></s:url>"></script>
 </body>

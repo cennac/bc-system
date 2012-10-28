@@ -367,6 +367,9 @@ public class LoginAction extends ActionSupport implements SessionAware,
 
 		// 清空线程变量
 		ContextHolder.remove();
+		
+		// 删除自动登录记录的cookie
+		
 
 		return SUCCESS;
 	}

@@ -1,5 +1,5 @@
 jQuery(function($){
-	
+var expiresOption = {expires: 14, path: '/'};// 14天自动过期
 $("#name").focus();
 function login() {
 	var name = $("#name").val();
@@ -21,11 +21,33 @@ function login() {
 
 	showMsg("正在登录...");
 	
+	var md5password = hex_md5(password);
+	if(!document.getElementById("remember").checked){// 删除cookie
+		//showMsg("删除cookie...");
+		$.removeCookie(bc.syskey + '_remember', {expires: 365*10, path: '/'});
+		$.removeCookie(bc.syskey + '_name', expiresOption);
+		$.removeCookie(bc.syskey + '_password', expiresOption);
+	}else{// 勾选了自动登录，设置cookie信息
+		$.cookie(bc.syskey + '_remember', "true", {expires: 365*10, path: '/'});// 这个cookie没有过期日期
+		if(!$.cookie(bc.syskey + '_name')){// cookie还没有才创建
+			//showMsg("创建cookie...");
+			$.cookie(bc.syskey + '_name', name, expiresOption);
+			$.cookie(bc.syskey + '_password', md5password, expiresOption);
+		}
+	}
+	
+	// 执行登录
+	doAjaxLogin(name, md5password);
+	return false;
+}
+
+// 使用帐号和加密的密码登录系统
+function doAjaxLogin(name,md5password){
 	$.ajax({
 		url : bc.root + "/doLogin",
 		data : {
 			name : name,
-			password : hex_md5(password)//使用md5加密避免密码明文传输
+			password : md5password//使用md5加密避免密码明文传输
 		},
 		type : "POST",
 		dataType: "json",
@@ -36,16 +58,31 @@ function login() {
 				window.open(bc.root + "/index" ,"_self");
 			}else{
 				showMsg(json.msg);
+				$.removeCookie(bc.syskey + '_name', expiresOption);
+				$.removeCookie(bc.syskey + '_password', expiresOption);
 			}
 		},
 		error : function(json) {
-
+			showMsg("登录异常！");
 		}
 	});
-	return false;
 }
 
+// 检测cookie信息确定是否自动登录
+if($.cookie(bc.syskey + '_remember')){
+	document.getElementById("remember").checked = true;
+	var cookieName = $.cookie(bc.syskey + '_name');
+	var cookiePassword = $.cookie(bc.syskey + '_password');
+	if(cookieName && cookiePassword){
+		$("#name").val(cookieName);
+		showMsg("正以 " + cookieName + " 自动登录...");
+		doAjaxLogin(cookieName, cookiePassword);
+	}
+}
+
+// 监听登录按钮的点击事件
 $("#loginBtn").click(login);
+// 监听帐号密码的回车时间
 $(":input").keyup(function(e){
 	if(e.which == 13){//按下回车键
 		if(this.id=="name" && $("#password").val() == 0){
@@ -56,6 +93,7 @@ $(":input").keyup(function(e){
 	}
 });
 
+// 显示提示信息
 function showMsg(msg) {
 	// alert(msg);
 	$("#msg").html(msg);
