@@ -27,9 +27,7 @@
 			<input type="password" id="password" class="input" placeholder="密码"/>
 			<div class="submitIcon" id="loginBtn" title="登录"><img src="<s:url value='/login/images/go.png'/>"/></div>
 		</div>
-		<div class="textContainer">
-			<label><input type="checkbox" id="remember"/>两周内自动登陆</label>
-		</div>
+		<div class="textContainer"><label><input type="checkbox" id="remember"/>两周内自动登陆</label></div>
 	</form>
 	<div id="version"><s:text name="app.version"/></div>
 	<div id="msg" data-auth='${bcauth}'></div>
