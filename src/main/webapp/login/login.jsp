@@ -19,13 +19,16 @@
 	<form method="post" action="./" name="loginForm">
 		<img class="appLogo" src="<s:url value='/login/images/logo-bc.png'/>" title="<s:text name='app.title'/> V<s:text name='app.version'/>"/>
 		<div class="textContainer">
-			<input type="text" id="name" placeholder="帐号"/>
-			<div class="accountIcon"><img src="<s:url value='/login/images/user.png'/>"/></div>
+			<div class="accountIcon" tabindex="100"><img src="<s:url value='/login/images/user.png'/>"/></div>
+			<input type="text" id="name" class="input" placeholder="帐号"/>
 		</div>
 		<div class="textContainer">
-			<input type="password" id="password" placeholder="密码"/>
 			<div class="passwordIcon"><img src="<s:url value='/login/images/key.png'/>"/></div>
+			<input type="password" id="password" class="input" placeholder="密码"/>
 			<div class="submitIcon" id="loginBtn" title="登录"><img src="<s:url value='/login/images/go.png'/>"/></div>
+		</div>
+		<div class="textContainer">
+			<label><input type="checkbox" id="remember"/>两周内自动登陆</label>
 		</div>
 	</form>
 	<div id="version"><s:text name="app.version"/></div>

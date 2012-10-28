@@ -27,7 +27,6 @@ form {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	position: absolute;
-	width: 300px;
 	margin-left: -150px;
 	margin-top: -150px;
 	left: 50%;
@@ -53,65 +52,76 @@ form {
 	-moz-animation: pulse 2s infinite;
 	-webkit-animation: pulse 2s infinite;*/
 }
-
 .appLogo {
 	width: 100px;
 	height: 100px;
 	cursor: default;
-	margin-bottom:10px;
+	margin-bottom:4px;
 }
 
 .textContainer{
 	position: relative;
-	width: 100%;
-	margin: 5px 0 20px 0;
+	width: 240px;
+	margin: 0px 0 0px 0;
+	text-align: left;
+	border: 0px solid #4189C3;
+	height: 40px;
+	overflow: hidden;
+	border-width: 0px;
+	border-style: solid;
+	border-color: gray;
+	margin-bottom: 10px;
 }
 
-input {
+.textContainer>label{
+	color: gray;
+	font-size: 14px;
+}
+
+input.input {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	box-shadow: 0 0 2px 3px #4189C3;
-	width: 100%;
+	/*box-shadow: 0 0 2px 3px #4189C3;*/
+	width: 200px;
 	height: 40px;
 	font-size: 28px;
-	border-style:none;
-	border-radius: 3px;
-	border: 1px solid transparent;
-	padding: 1px 44px 1px 44px;
+	border-width: 0;
+	border-radius: 0px;
+	padding: 1px 4px;
 	color: #000055;
+	outline: none;
+	display: inline-block;
+	position: absolute;
+	left:40px;
+	top:0;
 }
-input:focus {
-	outline: 0;
-	box-shadow: 0 0 2px 3px gold;
+input.input:focus {
+	box-shadow: inset 0 0 2px 2px gold;
+}
+
+input.input#password {
+	width: 160px;
 }
 
 .accountIcon,.passwordIcon,.submitIcon {
+	display: inline-block;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	position: absolute;
-	top: 50%;
-	margin-top: -20px;
 	width: 40px;
 	height: 40px;
 	border-width: 0px;
-	border-color: #ccc;
-	border-style: solid;
 	background-color: #f5f5f5;
 	background-image: -moz-linear-gradient(#fff0ff, #f5c2d9);
 	background-image: -webkit-linear-gradient(#fff0ff, #f5c2d9);
 }
 
-.accountIcon,.passwordIcon {
-	border-radius: 3px 0 0 3px;
-	left:0;
-}
-
 .submitIcon {
-	border-radius: 0 3px 3px 0;
-	right:0;
 	cursor: pointer;
+	position: absolute;
+	top:0;
+	right:0;
 }
 
 #version {
@@ -132,7 +142,7 @@ input:focus {
 	margin-top: 120px;
 	left: 50%;
 	margin-left: -200px;
-	color: red;
+	color: #eee;
 }
 
 #test {
@@ -151,4 +161,13 @@ input:focus {
 	border-radius: 50px;
 	padding:4px;
 	border: 4px solid #808000;
+}
+
+/* 手机访问时的样式控制 */
+@media only screen and (max-width: 999px) {
+	/* 手机访问时取消垂直居中，避免输入法框遮住 */
+	form {
+		margin-top: 0;
+		top: 0;
+	}
 }
