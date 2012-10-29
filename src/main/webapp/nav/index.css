@@ -16,7 +16,7 @@ body {
 	font-size: 1em;
 	text-align: center;
 	color: #551A8B;
-	background-color: #272822;
+	background-color: #000; /*#272822;*/
 }
 
 h1 {
@@ -27,14 +27,14 @@ h1 {
 }
 
 ul {
-	border-radius: 0.5em;
+	border-radius: 0;
 	min-width: 13.5em;
 	font-size: 1.5em;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	display: inline-block;
-	box-shadow: #4C52E1 0px 0px 20px;
+	/*box-shadow: #4C52E1 0px 0px 20px;*/
 }
 
 li {
@@ -60,11 +60,11 @@ li.link:HOVER {
 }
 
 li.first {
-	border-radius: 0.5em 0.5em 0 0;
+	border-radius: 0;
 }
 
 li.last {
-	border-radius: 0 0 0.5em 0.5em;
+	border-radius: 0;
 }
 
 li.seperator {
@@ -97,4 +97,11 @@ li.link>a:HOVER {
 	font-weight:bold;
 	color: #6AC62E;
 	padding-left: 1em;
+}
+
+/* 手机访问时的样式控制 */
+@media only screen and (max-width: 480px) {
+	ul {
+		min-width: auto;
+	}
 }
