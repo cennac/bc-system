@@ -28,7 +28,7 @@
 			<div class="submitIcon" id="loginBtn" title="登录"><img src="<s:url value='/login/images/go.png'/>"/></div>
 		</div>
 		<div class="textContainer" style="height:auto;margin:0"><label><input type="checkbox" id="remember" value="true"/>两周内自动登录</label><span 
-			class="device"><s:if test="outernet">外网</s:if> <s:if test="mobile">移动设备</s:if></span>
+			class="device"><s:if test="outerNet">外网</s:if> <s:if test="mobile">移动设备</s:if></span>
 		</div>
 	</form>
 	<div id="version"><s:text name="app.version"/></div>
