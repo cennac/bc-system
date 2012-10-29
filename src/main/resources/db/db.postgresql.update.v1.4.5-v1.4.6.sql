@@ -46,8 +46,63 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	and not exists (select 1 from BC_IDENTITY_ROLE_RESOURCE t where t.rid=r.id and t.sid=m.id)
 	order by m.order_;
 
--- ##公文处理流程数据初始化##’
--- 插入公文处理流全局参数
+-- 删除电子公告相关信息 TODO
+
+-- 公司文件
+-- 插入 公司文件管理 角色数据
+delete from BC_IDENTITY_ROLE_RESOURCE 
+	where rid in (select id from BC_IDENTITY_ROLE where code in ('BC_COMMON'))
+	and sid in (select id from BC_IDENTITY_RESOURCE where name='公司文件');
+delete from BC_IDENTITY_RESOURCE where name='公司文件';
+delete from BC_IDENTITY_ROLE where code='BS_COMPANYFILE_MANAGE';
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+    select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0201','BS_COMPANYFILE_MANAGE','公司文件管理' from BC_DUAL 
+	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_COMPANYFILE_MANAGE');
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+    select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0202','BS_REGULATION_MANAGE','法规文件管理' from BC_DUAL 
+	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_REGULATION_MANAGE');
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+    select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0202','BS_NOTICE_MANAGE','通知管理' from BC_DUAL 
+	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_NOTICE_MANAGE');
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='chaojiguanligang' 
+	and r.code in ('BS_COMPANYFILE_MANAGE','BS_REGULATION_MANAGE','BS_NOTICE_MANAGE')
+	and not exists (select 1 from BC_IDENTITY_ROLE_ACTOR t where t.aid=a.id and t.rid=r.id);
+-- 插入 公司文件 资源链接
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040100','公司文件', '/bc-business/info/companyFiles/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='公司文件');
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040200','公司文件管理', '/bc-business/info/companyFilesManage/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='公司文件管理');
+-- 插入 法规文件 资源链接
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040300','法规文件', '/bc-business/info/regulations/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='法规文件');
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040400','法规文件管理', '/bc-business/info/regulationsManage/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='法规文件管理');
+-- 插入 通知 资源链接
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040500','通知', '/bc-business/info/notices/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='通知');
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040600','通知管理', '/bc-business/info/noticesManage/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='通知管理');
+insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
+	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
+	and m.type_ > 1 and m.name in ('公司文件','法规文件','通知')
+	and not exists (select 1 from BC_IDENTITY_ROLE_RESOURCE t where t.rid=r.id and t.sid=m.id)
+	order by m.order_;
+
+-- ##宝城公司文件处理流程数据初始化##’
+-- 插入宝城公司文件处理流全局参数
 insert into bc_template_param (ID,STATUS_,ORDER_,NAME,CONFIG,FILE_DATE,AUTHOR_ID)
 values (NEXTVAL('CORE_SEQUENCE'),0,'000005','公文处理流程获取流程全局参数','[{type:"spel",sql:"@generalorderWorkflowService.getProcessHistoryParams(#pid,''zongjingli,yingyunzongjian'',''zongjingli'',''(无权查看)'')"}]',
 			now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员'));
