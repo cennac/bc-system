@@ -41,6 +41,7 @@ import cn.bc.identity.event.LogoutEvent;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextHolder;
 import cn.bc.identity.web.SystemContextImpl;
+import cn.bc.web.util.WebUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -67,6 +68,8 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	private Map<String, Object> session;
 	private ApplicationEventPublisher eventPublisher;
 	public boolean relogin;// 是否是重登陆
+	public boolean mobile;// 是否是手机访问
+	public boolean outerNet;// 是否是外网访问
 
 	public void setApplicationEventPublisher(
 			ApplicationEventPublisher applicationEventPublisher) {
@@ -83,6 +86,14 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	}
 
 	public String execute() throws Exception {
+		String[] c = WebUtils.getClient(ServletActionContext.getRequest());
+
+		// 判断是否是手机访问
+		mobile = WebUtils.isMobile(c[2]);
+
+		// 判断是否是外网访问
+		outerNet = WebUtils.isOuterNet(c[0]);
+
 		return SUCCESS;
 	}
 
@@ -367,9 +378,8 @@ public class LoginAction extends ActionSupport implements SessionAware,
 
 		// 清空线程变量
 		ContextHolder.remove();
-		
+
 		// 删除自动登录记录的cookie
-		
 
 		return SUCCESS;
 	}

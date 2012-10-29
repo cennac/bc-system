@@ -34,6 +34,7 @@ import cn.bc.identity.web.SystemContext;
 import cn.bc.web.ui.html.Text;
 import cn.bc.web.ui.html.menu.Menu;
 import cn.bc.web.ui.html.menu.MenuItem;
+import cn.bc.web.util.WebUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -54,6 +55,8 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	private LoginService loginService;
 	public String ts;// 附加到js、css文件后的时间戳
 	public String sid;// session的id
+	public boolean mobile;// 是否是手机访问
+	public boolean outerNet;// 是否是外网访问
 
 	public String contextPath;
 
@@ -111,6 +114,14 @@ public class IndexAction extends ActionSupport implements SessionAware {
 		if (context == null || context.getUser() == null) {
 			return "redirect";
 		}
+		String[] c = WebUtils.getClient(ServletActionContext.getRequest());
+
+		// 判断是否是手机访问
+		mobile = WebUtils.isMobile(c[2]);
+
+		// 判断是否是外网访问
+		outerNet = WebUtils.isOuterNet(c[0]);
+
 		Actor user = context.getUser();
 
 		// 个人配置
