@@ -106,6 +106,15 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	}
 
 	public String doLogin() throws Exception {
+		String[] clientInfo = WebUtils.getClient(ServletActionContext
+				.getRequest());
+
+		// 判断是否是手机访问
+		mobile = WebUtils.isMobile(clientInfo[2]);
+
+		// 判断是否是外网访问
+		outerNet = WebUtils.isOuterNet(clientInfo[0]);
+
 		Date startTime = new Date();
 		success = true;
 
@@ -213,6 +222,27 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					context.setAttr(SystemContext.KEY_GROUPS, gcs);
 					logger.info("doLogin.findUppers："
 							+ DateUtils.getWasteTime(startTime));
+
+					// 确定用户能否从外网访问
+					boolean canVisit = true;
+					if (outerNet) {
+						canVisit = false;
+						for (Actor group : groups) {
+							if (group.getName().equals("外网访问帐号")) {
+								canVisit = true;
+								break;
+							}
+						}
+					}
+					if (!canVisit) {
+						msg = "此帐号不允许从外网访问系统！";
+						success = false;
+						this.session.remove(SystemContext.KEY);// 清空上下文
+						if (logger.isInfoEnabled())
+							logger.info("doLogin耗时："
+									+ DateUtils.getWasteTime(startTime));
+						return SUCCESS;
+					}
 
 					// 用户的角色（包含继承自上级组织和隶属岗位的角色）
 					if (logger.isDebugEnabled()) {
