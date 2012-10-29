@@ -27,7 +27,9 @@
 			<input type="password" id="password" class="input" placeholder="密码"/>
 			<div class="submitIcon" id="loginBtn" title="登录"><img src="<s:url value='/login/images/go.png'/>"/></div>
 		</div>
-		<div class="textContainer"><label><input type="checkbox" id="remember" value="true"/>两周内自动登录</label></div>
+		<div class="textContainer" style="height:auto;margin:0"><label><input type="checkbox" id="remember" value="true"/>两周内自动登录</label><span 
+			class="device"><s:if test="outernet">外网</s:if> <s:if test="mobile">移动设备</s:if></span>
+		</div>
 	</form>
 	<div id="version"><s:text name="app.version"/></div>
 	<div id="msg" data-auth='${bcauth}'></div>
@@ -38,6 +40,8 @@
 		var bc={};
 		bc.syskey = '<s:text name="app.name" />';
 		bc.debug = <s:text name="app.debug" />;
+		bc.mobile = <s:property value="mobile" />;
+		bc.outerNet = <s:property value="outerNet" />;
 		bc.ts = bc.debug ? new Date().getTime() : "<s:text name="app.ts" />";
 		bc.root = "<%=request.getContextPath()%>";
 	</script>
