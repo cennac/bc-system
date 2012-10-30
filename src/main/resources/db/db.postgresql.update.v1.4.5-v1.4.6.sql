@@ -92,13 +92,8 @@ ALTER TABLE BS_INFO ADD CONSTRAINT BCFK_INFO_MODIFIER FOREIGN KEY (MODIFIER_ID)
 ALTER TABLE BS_INFO	ADD CONSTRAINT BCFK_INFO_AUTHOR FOREIGN KEY (AUTHOR_ID)
 	REFERENCES BC_IDENTITY_ACTOR_HISTORY (ID) ON UPDATE RESTRICT ON DELETE RESTRICT;
 
--- 公司文件
--- 插入 公司文件管理 角色数据
-delete from BC_IDENTITY_ROLE_RESOURCE 
-	where rid in (select id from BC_IDENTITY_ROLE where code in ('BC_COMMON'))
-	and sid in (select id from BC_IDENTITY_RESOURCE where name='公司文件');
-delete from BC_IDENTITY_RESOURCE where name='公司文件';
-delete from BC_IDENTITY_ROLE where code='BS_COMPANYFILE_MANAGE';
+-- #### 信息管理 ####
+-- 插入 信息管理 角色数据
 insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
     select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0201','BS_COMPANYFILE_MANAGE','公司文件管理' from BC_DUAL 
 	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_COMPANYFILE_MANAGE');
@@ -108,9 +103,12 @@ insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME)
 insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
     select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0202','BS_NOTICE_MANAGE','通知管理' from BC_DUAL 
 	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_NOTICE_MANAGE');
+insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
+    select NEXTVAL('CORE_SEQUENCE'),0,false,0,'0202','BS_INSPECTIONFILE_MANAGE','督查分数文件管理' from BC_DUAL 
+	where not exists (select 1 from BC_IDENTITY_ROLE where CODE='BS_INSPECTIONFILE_MANAGE');
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='chaojiguanligang' 
-	and r.code in ('BS_COMPANYFILE_MANAGE','BS_REGULATION_MANAGE','BS_NOTICE_MANAGE')
+	and r.code in ('BS_COMPANYFILE_MANAGE','BS_REGULATION_MANAGE','BS_NOTICE_MANAGE','BS_INSPECTIONFILE_MANAGE')
 	and not exists (select 1 from BC_IDENTITY_ROLE_ACTOR t where t.aid=a.id and t.rid=r.id);
 -- 插入 公司文件 资源链接
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
@@ -130,20 +128,31 @@ insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL
 	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040400','法规文件管理', '/bc-business/info/regulationsManage/paging', 'i0406' 
 	from BC_IDENTITY_RESOURCE m 
 	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='法规文件管理');
+-- 插入 督查分数文件 资源链接
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040500','督查分数文件', '/bc-business/info/inspectionFiles/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='督查分数文件');
+insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040600','督查分数文件管理', '/bc-business/info/inspectionFilesManage/paging', 'i0406' 
+	from BC_IDENTITY_RESOURCE m 
+	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='督查分数文件管理');
 -- 插入 通知 资源链接
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040500','通知', '/bc-business/info/notices/paging', 'i0406' 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040700','通知', '/bc-business/info/notices/paging', 'i0406' 
 	from BC_IDENTITY_RESOURCE m 
 	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='通知');
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040600','通知管理', '/bc-business/info/noticesManage/paging', 'i0406' 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '040800','通知管理', '/bc-business/info/noticesManage/paging', 'i0406' 
 	from BC_IDENTITY_RESOURCE m 
 	where m.order_='040000' and not exists (select 1 from BC_IDENTITY_RESOURCE where name='通知管理');
+-- 将资源赋给角色
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
-	and m.type_ > 1 and m.name in ('公司文件','法规文件','通知')
+	and m.type_ > 1 and m.name in ('公司文件','法规文件','通知','督查分数文件')
 	and not exists (select 1 from BC_IDENTITY_ROLE_RESOURCE t where t.rid=r.id and t.sid=m.id)
 	order by m.order_;
+update BC_IDENTITY_RESOURCE set ORDER_='041000' where name='考试管理';
 
 -- ##公文处理流程数据初始化##’
 -- 插入公文处理流全局参数
