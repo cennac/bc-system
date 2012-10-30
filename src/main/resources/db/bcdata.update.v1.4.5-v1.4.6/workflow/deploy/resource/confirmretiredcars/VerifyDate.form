@@ -1,0 +1,115 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.confirmretiredcars.VerifyDateForm"
+	data-js='wf:VerifyDate2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<input type="hidden" name="list_vd_cars" data-type="list"/>
+		<input type="hidden" name="list_vd_cars_gl" data-scope="global" data-type="list"/>
+		<input type="hidden" name="now2d" class="ignore ui-widget-content" value='${now2d}' />
+		<table class="ui-widget-content bc-grid" id="cars" cellspacing="0" cellpadding="0" style="margin-bottom:4px;border-width:0 1px 0 0;">
+			<tr class="header row">
+				<td class="first" style="width: 0.5em;">&nbsp;</td>
+				<td class="middle" style="width: 4.5em;">车号</td>
+				<td class="middle" style="width: 8em;">续保情况</td>
+				<td class="middle" style="width: 18em;">处理方式</td>
+				<td class="last" style="width: 8em;">确认交车日期</td>
+			</tr>
+			<#if list_gc_cars??>
+			<#list list_gc_cars as car>
+			<tr class="row" data-id='${car.id}'>
+				<td class="first" style="padding:0;text-align:left;"><input type="hidden" class="ignore" name="id" value="${car.id}"/>
+				</td>
+				<!-- 车号 -->
+				<td class="middle" style="margin:0;padding:0 0 0 0px;">
+					<input type="text" name="plate" readonly="readonly" value='${car.plateNo}' class="ignore" style="border:none;background: none;width:4.5em;"
+						data-validate="required"/>
+				</td>
+				<!-- 是否已续保险 -->
+				<td class="middle" style="margin:0;padding:0 0 0 0px;">
+					<select name="isClaim" class="ignore ui-widget-content" style="text-align:left;border:none;" data-validate="required"
+					     data-validate="required">
+					        <option></option>
+							<option value="true">已续保险</option>
+							<option value="false">未续保险</option>
+					</select>
+				</td>
+				<!-- 处理 -->
+				<td class="middle" style="margin:0;padding:0 0 0 0px;">
+					<select name="executionType" class="ignore ui-widget-content bswf-confirmretiredcars-executionType" style="text-align:left;border:none;" data-validate="required">
+							<option ></option>
+							<option value="fireCarRetiredProcess">分公司经理确认后自动发起-交车流程</option>
+							<option value="fireCarRenewProcess">分公司经理确认后自动发起-续保流程</option>
+							<option value="manual">手动处理</option>
+							<option value="noProcess">不处理</option>
+					</select>
+				</td>
+				<!-- 确认交车日期 -->
+				<td class="last" style="margin:0;padding:0 0 0 0px;">
+					<div class="relative">
+						<input type="text" name="sureReturnDate" style="border:none;background:none;"
+							 class="ignore bc-date ui-widget-content" data-validate='{"type":"date"}'/>
+						<ul class="inputIcons">
+							<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			</#list>
+			</#if>
+		</table>
+	<#else>
+		<table class="ui-widget-content bc-grid" id="cars" cellspacing="0" cellpadding="0" style="margin-bottom:4px;border-width:0 1px 0 0;">
+			<tr class="header row">
+				<td class="first" style="width: 0.5em;">&nbsp;</td>
+				<td class="middle" style="width: 4.5em;">车号</td>
+				<td class="middle" style="width: 8em;">续保情况</td>
+				<td class="middle" style="width: 17.5em;">处理方式</td>
+				<td class="last" style="width: 8em;">确认交车日期</td>
+			</tr>
+			
+			<#if list_vd_cars??>
+				<#assign cars=list_vd_cars>
+			<#else>
+				<#assign cars=list_gc_cars>
+			</#if>
+			
+			<#list cars as car>
+			<tr class="ui-widget-content row" data-id='${car.id}'>
+				<td class="first">
+				</td>
+				<!-- 车号 -->
+				<td class="middle" style="margin:0;padding:0 0 0 2px;">
+					<div class="text">${car.plateNo}</div>
+				</td>
+				<!-- 是否已续保险 -->
+				<td class="middle" style="margin:0;padding:0 0 0 2px;">
+					<#if car.isClaim??>
+						<#if car.isClaim == 'true'>
+							<div class="text">已续保险</div>
+						<#elseif car.isClaim == 'false'>
+							<div class="text">未续保险</div>
+						</#if>
+					</#if>
+				</td>
+				<td class="last" style="margin:0;padding:0 0 0 2px;">
+					<#if car.executionType??>
+						<#if car.executionType == 'fireCarRetiredProcess'>
+							<div class="text">分公司经理确认后自动发起-交车流程</div>
+						<#elseif car.executionType == 'fireCarRenewProcess'>
+							<div class="text">分公司经理确认后自动发起-续保流程</div>	
+						<#elseif car.executionType == 'manual'>
+							<div class="text">手动处理</div>	
+						<#elseif car.executionType == 'noProcess'>
+							<div class="text">不处理</div>	
+						</#if>
+					</#if>
+				</td>
+				<!-- 确认交车日期 -->
+				<td class="last" style="margin:0;padding:0 0 0 2px;">
+					<div class="text">${car.sureReturnDate!}</div>
+				</td>
+			</tr>
+			</#list>
+		</table>
+	</#if>
+</form>

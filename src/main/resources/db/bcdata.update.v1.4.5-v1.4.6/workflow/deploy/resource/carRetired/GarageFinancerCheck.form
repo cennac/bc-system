@@ -1,0 +1,30 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.GarageFinancerCheckForm"
+	data-js='wf:GarageFinancerCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			<input type="hidden" name="gfcIsDebt" data-scope="global" data-type="boolean"/>
+			有无欠费：
+			<input type="radio" class="ignore" name="isDebt" value="true" checked style="width:auto;"  />
+			<label>有</label>
+			<input type="radio" class="ignore" name="isDebt" value="false"  style="width:auto;"  />
+			<label>无</label>
+		</div>
+		<div id="idGfcDesc" style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;text-align:right;">欠费情况：</div>
+			<textarea name="gfcDesc"  data-scope="global" rows="3" style="width:70%;" class="ui-widget-content noresize"
+				data-validate="required"></textarea>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			有无欠费：<#if gfcIsDebt??><#if gfcIsDebt>有<#else>无</#if></#if>
+		</div>
+		<#if gfcDesc??&&gfcDesc!="">
+			<div style="padding-left:0.5em;">
+				<div style="display:inline-block;vertical-align:top;text-align:right;">欠费情况：</div>
+				${gfcDesc!}
+			</div>
+		</#if>
+	</#if>
+</form>
