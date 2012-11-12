@@ -12,7 +12,8 @@ ALTER TABLE BS_INFO ALTER COLUMN code SET NOT NULL;
 
 -- 模板类型增加html类型
 INSERT INTO BC_TEMPLATE_TYPE (ID,STATUS_,ORDER_,CODE,NAME,IS_PURE_TEXT,IS_PATH,EXT,FILE_DATE,AUTHOR_ID)
-VALUES (NEXTVAL('CORE_SEQUENCE'),0,'3005','html','html文件',false,true,'html',now(),(select id from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员' and current=true));
+	select NEXTVAL('CORE_SEQUENCE'),0,'3005','html','html文件',false,true,'html',now(),id 
+		from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员' and current=true and not EXISTS(select 1 from bc_template_type where code='html');
 
 -- 插入已使用的宝城公司公文处理流程流水号
 INSERT INTO act_hi_detail(id_,type_,proc_inst_id_,execution_id_,act_inst_id_,name_,var_type_,rev_,time_,text_)
