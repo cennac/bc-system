@@ -2,23 +2,22 @@
 <persistence version="1.0"
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
-	<!-- transaction type set to 
-		RESOURCE_LOCAL - no JTA support
-		JTA - transaction suspension and XA supported
-	 --> 
-	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+	<!-- transaction type set to RESOURCE_LOCAL - no JTA support JTA - transaction 
+		suspension and XA supported -->
+	<persistence-unit name="persistenceUnit"
+		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		
+
 		<class>cn.bc.test.Example</class>
 		<class>cn.bc.test.Dual</class>
-		
+
 		<!-- 标识生成器 -->
 		<class>cn.bc.identity.domain.IdGenerator</class>
-		
+
 		<!-- security -->
 		<class>cn.bc.identity.domain.Resource</class>
 		<class>cn.bc.identity.domain.Role</class>
-		
+
 		<!-- actor -->
 		<class>cn.bc.identity.domain.Actor</class>
 		<class>cn.bc.identity.domain.ActorHistory</class>
@@ -74,7 +73,7 @@
 		<class>cn.bc.business.sync.domain.JiaoWeiYYWZ</class>
 		<class>cn.bc.business.sync.domain.JiaoWeiADVICE</class>
 		<class>cn.bc.business.spider.domain.JinDunJTWF</class>
-		
+
 		<!-- investigate -->
 		<class>cn.bc.investigate.domain.Answer</class>
 		<class>cn.bc.investigate.domain.Question</class>
@@ -82,21 +81,25 @@
 		<class>cn.bc.investigate.domain.QuestionItem</class>
 		<class>cn.bc.investigate.domain.Respond</class>
 		<class>cn.bc.investigate.domain.Grade</class>
-		
+
 		<!-- 籍贯 -->
 		<class>cn.bc.placeorigin.domain.PlaceOrigin</class>
 
-		<!-- 模板管理-->
+		<!-- 模板管理 -->
 		<class>cn.bc.template.domain.Template</class>
 		<class>cn.bc.template.domain.TemplateType</class>
 		<class>cn.bc.template.domain.TemplateParam</class>
-		
-		<!-- 流转引擎-->
+
+		<!-- 网络硬盘 -->
+		<class>cn.bc.netdisk.domain.NetdiskFile</class>
+		<class>cn.bc.netdisk.domain.NetdiskShare</class>
+
+		<!-- 流转引擎 -->
 		<class>cn.bc.workflow.domain.ExcutionLog</class>
 		<class>cn.bc.workflow.flowattach.domain.FlowAttach</class>
 		<class>cn.bc.workflow.deploy.domain.Deploy</class>
 		<class>cn.bc.workflow.deploy.domain.DeployResource</class>
-		
+
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->
@@ -129,19 +132,19 @@
 		<class>cn.bc.business.policy.domain.BuyPlant</class>
 		<!-- 车辆保单险种 -->
 		<class>cn.bc.business.insuranceType.domain.InsuranceType</class>
-		
+
 		<!-- 黑名单 -->
 		<class>cn.bc.business.blacklist.domain.Blacklist</class>
-		
+
 		<!-- 车辆经营权 -->
 		<class>cn.bc.business.ownership.domain.Ownership</class>
-		
+
 		<!-- 证照遗失管理 -->
 		<class>cn.bc.business.certLost.domain.CertLost</class>
 		<!-- 遗失的证照 -->
 		<class>cn.bc.business.certLost.domain.CertLostItem</class>
-		
-		<!-- 合同  -->
+
+		<!-- 合同 -->
 		<class>cn.bc.business.contract.domain.Contract</class>
 		<class>cn.bc.business.contract.domain.ContractFeeDetail</class>
 		<class>cn.bc.business.contract.domain.Contract4Charger</class>
@@ -168,13 +171,13 @@
 		<class>cn.bc.business.invoice.domain.Invoice4Buy</class>
 		<class>cn.bc.business.invoice.domain.Invoice4Sell</class>
 		<class>cn.bc.business.invoice.domain.Invoice4SellDetail</class>
-		
+
 		<!-- 费用模板 -->
 		<class>cn.bc.business.fee.template.domain.FeeTemplate</class>
 		<!-- 承包费 -->
 		<class>cn.bc.business.fee.domain.Fee</class>
 		<class>cn.bc.business.fee.domain.FeeDetail</class>
-		
+
 		<!-- 社保收费规则 -->
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
