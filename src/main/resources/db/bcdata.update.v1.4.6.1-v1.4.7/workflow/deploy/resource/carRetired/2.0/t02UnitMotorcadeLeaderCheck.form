@@ -1,0 +1,93 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.UnitMotorcadeLeaderCheckForm"
+	data-js='wf:UnitMotorcadeLeaderCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:640px">
+			<tr class="widthMarker">
+				<td style="width: 4em;">&nbsp;</td>
+				<td style="width: 20em;">&nbsp;</td>
+				<td style="width: 8.5em;">&nbsp;</td>
+				<td style="width: 8.5em;">&nbsp;</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="value" colspan="2" style="padding-left:8px;">
+					*服务投诉、营运违章、交通违法处理完毕：
+					<input type="radio" class="ignore" name="isDeal" value="true" style="width:auto;"  />
+					<label>是</label>
+					<input type="radio" class="ignore" name="isDeal" value="false" style="width:auto;"  />
+					<label>否</label>
+					<input type="hidden" name="umlc_isDeal" data-scope="global" data-type="boolean"/>
+				</td>
+				<td class="label">*当年已年审次数：</td>
+				<td class="value">
+					<input type="text"  data-scope="global" name="umlc_count" class="ui-widget-content" 
+						data-validate="{'required':true,'type':'number'}" style="width:8em;" data-type="long"/>次
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="value" colspan="2" style="padding-left:8px;">
+					*是否租价审：
+					<input type="radio" class="ignore" name="isZjs" value="true"  style="width:auto;" />
+					<label>是</label>
+					<input type="radio" class="ignore" name="isZjs" value="false" style="width:auto;" />
+					<label>否</label>
+					<input type="hidden" name="umlc_isZjs" data-scope="global" data-type="boolean"/>
+				</td>
+				<td class="label">*车辆发票回收：</td>
+				<td class="value">
+					<input type="text"  data-scope="global" name="umlc_invoiceAmount" class="ui-widget-content"
+						data-validate="{'required':true,'type':'number'}" style="width:8em;"/>卷
+					<input type="hidden" name="umlc_invoiceHave" data-scope="global" data-type="boolean"/>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td style="text-align: right;vertical-align: top;font-weight: normal;padding-left:8px;">
+					备注：
+				</td >
+				<td class="value" colspan="3">
+					<textarea name="umlc_desc"  data-scope="global" rows="3" class="ui-widget-content noresize" ></textarea>
+				</td>
+				<td>
+				</td>
+			</tr>
+		</table>
+	<#else>
+		<table cellspacing="2" cellpadding="0" style="width:640px">
+			<tr class="widthMarker">
+				<td style="width: 4em;">&nbsp;</td>
+				<td style="width: 30em;">&nbsp;</td>
+				<td style="width: 10em;">&nbsp;</td>
+				<td style="width: 8.5em;">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="value" colspan="2" style="padding-left:8px;">
+					服务投诉、营运违章、交通违法处理完毕：<#if umlc_isDeal??><#if umlc_isDeal>是<#else>否</#if></#if>
+				</td>
+				<td class="label">当年已年审次数：</td>
+				<td class="value">${umlc_count!}次</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="value" colspan="2" style="padding-left:8px;">
+					是否租价审：<#if umlc_isZjs??><#if umlc_isZjs>是<#else>否</#if></#if>
+				</td>
+				<td class="label">车辆发票回收：</td>
+				<td class="value">${umlc_invoiceAmount!}卷
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td style="text-align: left;padding-left:8px;" colspan="4">
+					备注：${umlc_desc!}
+				</td >
+				<td>
+				</td>
+			</tr>
+		</table>
+	</#if>
+</form>
