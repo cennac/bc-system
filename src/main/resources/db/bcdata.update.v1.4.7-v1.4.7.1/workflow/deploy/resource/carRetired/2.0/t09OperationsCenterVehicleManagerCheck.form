@@ -1,0 +1,47 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.OperationsCenterVehicleManagerCheckForm"
+	data-js='wf:OperationsCenterVehicleManagerCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:645px;">
+	<#if readonly == 'false'>
+		<input type="hidden" name="ocvmc_isTouchMedia" data-scope="global" data-type="boolean"/>
+		<input type="hidden" name="ocvmc_isCityTV" data-scope="global" data-type="boolean"/>
+		<input type="hidden" name="ocvmc_isYCT213" data-scope="global" data-type="boolean"/>
+		<input type="hidden" name="ocvmc_isYCT216" data-scope="global" data-type="boolean"/>
+		<div style="padding-left:0.5em;">
+			该车辆设备：触动传媒<input type="checkbox" class="ignore" name="isTouchMedia">
+					、城市电视<input type="checkbox" class="ignore" name="isCityTV">
+					，羊城通终端213<input type="checkbox" class="ignore"  name="isYCT213">
+					、216<input type="checkbox" class="ignore"  name="isYCT216">
+				，已查收完毕，无异常或缺失情况。
+		</div>
+		<div style="padding-left:0.5em;">
+			分公司已上交人车对应关系变更的相关信息：
+			<input type="radio" class="ignore" name="isComplete" value="true"  style="width:auto;" />
+			<label>是</label>
+			<input type="radio" class="ignore" name="isComplete" value="false"  style="width:auto;" />
+			<label>否</label>
+			<input type="hidden" name="ocvmc_isComplete" data-scope="global" data-type="boolean"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="ocvmc_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			该车辆设备：触动传媒<input type="checkbox" class="ignore" enable="false" <#if ocvmc_isTouchMedia??&&ocvmc_isTouchMedia>checked="checked"</#if> onfocus="return false;" onclick="return false;">
+					、城市电视<input type="checkbox" class="ignore" <#if ocvmc_isCityTV??&&ocvmc_isCityTV>checked="checked"</#if> onclick="return false;">
+					、羊城通终端213<input type="checkbox" class="ignore"  <#if ocvmc_isYCT213??&&ocvmc_isYCT213>checked="checked"</#if> onclick="return false;">
+					216<input type="checkbox" class="ignore"  <#if ocvmc_isYCT216??&&ocvmc_isYCT216>checked="checked"</#if> onclick="return false;">
+				已查收完毕，无异常或缺失情况。
+		</div>
+		<div style="padding-left:0.5em;">
+			分公司已上交人车对应关系变更的相关信息：<#if ocvmc_isComplete??><#if ocvmc_isComplete>是<#else>否</#if></#if>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			${ocvmc_desc!}
+		</div>
+	</#if>
+	</div>
+</form>

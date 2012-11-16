@@ -1,0 +1,27 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.HRContractGroupTakeBackContractForm"
+	data-js='wf:HRContractGroupTakeBackContract2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			*车辆合同：
+			<input type="radio" class="ignore" name="isTakeBack" value="true"  style="width:auto;" />
+			<label>已回收</label>
+			<input type="radio" class="ignore" name="isTakeBack" value="false"  style="width:auto;" />
+			<label>遗失</label>
+			<input type="hidden" name="hrcgtbc_isTakeBack" data-scope="global" data-type="boolean"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			*该车驾驶员<input type="text" name="hrcgtbc_driver" data-scope="global" class="ui-widget-content"  style="width:16em;" >已签订《终止出租车经营协议书》。（${driverName!}）
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			该车合同：&nbsp;<#if hrcgtbc_isTakeBack??><#if hrcgtbc_isTakeBack>已回收<#else>遗失</#if></#if>
+		</div>
+		<div style="padding-left:0.5em;">
+			该车驾驶员&nbsp;${hrcgtbc_driver!}&nbsp;已签订《终止出租车经营协议书》。
+		</div>
+	</#if>
+	</div>
+</form>

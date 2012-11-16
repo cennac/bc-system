@@ -1,0 +1,18 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.FinanceGatherCountForm"
+	data-js='wf:FinanceGatherCount2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px;">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="fgc_desc"  data-scope="global" rows="3" style="width:80%;" 
+				class="ui-widget-content noresize" data-validate="required"/>
+		</div>
+	<#else>
+		<div  style="padding-left:0.5em;">
+			备注：${fgc_desc!}	
+		</div>
+	</#if>
+	</div>
+</form>

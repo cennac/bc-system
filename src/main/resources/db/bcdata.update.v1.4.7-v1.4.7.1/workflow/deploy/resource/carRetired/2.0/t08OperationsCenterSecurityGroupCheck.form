@@ -1,0 +1,40 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.OperationsCenterSecurityGroupCheckForm"
+	data-js='wf:OperationsCenterSecurityGroupCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:635px;">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			该车辆是否存在事故或交通违法未处理完毕： 
+			<input type="radio" class="ignore" name="isDeal" value="true"  style="width:auto;"  />
+			<label>是</label>
+			<input type="radio" class="ignore" name="isDeal" value="false"  style="width:auto;"  />
+			<label>否</label>
+			<input type="hidden" name="ocsgc_isDeal" data-scope="global" data-type="boolean"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			有关安全类别的BC黑名单录入情况：
+			<input type="radio" class="ignore" name="isDone" value="true"  style="width:auto;" />
+			<label>已录入</label>
+			<input type="radio" class="ignore" name="isDone" value="false"  style="width:auto;" />
+			<label>无</label>
+			<input type="hidden" name="ocsgc_isDone" data-scope="global" data-type="boolean"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="ocsgc_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			该车辆是否存在事故或交通违法未处理完毕：<#if ocsgc_isDeal??><#if ocsgc_isDeal>是<#else>否</#if></#if>
+		</div>
+		<div style="padding-left:0.5em;">
+			有关安全类别的BC黑名单录入情况：<#if ocsgc_isDone??><#if ocsgc_isDone>已录入<#else>无</#if></#if>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			${ocsgc_desc!}
+		</div>
+	</#if>
+	</div>
+</form>
