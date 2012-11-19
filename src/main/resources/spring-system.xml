@@ -47,7 +47,16 @@
 		name="cacheName"> <value>org.taha.cache.METHOD_CACHE</value> </property> 
 		</bean> -->
 		
-	<bean id="chatWebSocket" class="cn.bc.websocket.jetty.ChatWebSocket" scope="prototype"/>
+	<bean id="chatWebSocket" class="cn.bc.websocket.jetty.ChatWebSocket" scope="prototype">
+	<property name="ignoreOnlineRemindUserIds">
+		<list>
+			<!-- zhou -->
+			<value>100372</value>
+			<!-- admin -->
+			<value>9</value>
+		</list>
+	</property>
+	</bean>
 		
 	<!-- 项目的相关事件监听器配置 -->
 	<bean class="cn.bc.chat.event.LoginNotifier4OnlineUser"/>
