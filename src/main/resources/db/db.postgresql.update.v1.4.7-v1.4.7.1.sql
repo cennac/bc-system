@@ -352,6 +352,8 @@ CREATE TABLE BS_CAR_OWNERSHIP(
    SITUATION       	VARCHAR(255),
    SOURCE       VARCHAR(255),
    OWNER_		VARCHAR(255),
+   OWNERSHIP	VARCHAR(255),
+   WHITHER		VARCHAR(255),
    DESC_                VARCHAR(4000),
    FILE_DATE            TIMESTAMP     		NOT NULL,
    AUTHOR_ID            INTEGER           	NOT NULL,
@@ -366,6 +368,8 @@ COMMENT ON COLUMN BS_CAR_OWNERSHIP.NATURE IS '经营权性质';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.SITUATION IS '经营权情况';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.SOURCE IS '经营权来源';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.OWNER_ IS '车辆产权';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.OWNERSHIP IS '车辆权属';
+COMMENT ON COLUMN BS_CAR_OWNERSHIP.WHITHER IS '车辆去向';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.DESC_ IS '备注';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.FILE_DATE IS '创建时间';
 COMMENT ON COLUMN BS_CAR_OWNERSHIP.AUTHOR_ID IS '创建人ID';
@@ -408,26 +412,26 @@ delete from BC_OPTION_ITEM where pid = (select id from BC_OPTION_GROUP where KEY
 
 --添加新的选项
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'zhaoshang2012', '招商2012', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '01', 'baocheng2012', '宝城2012', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'nongshangxin2', '农商新2', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation';	
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '02', 'baochenggaofeng', '宝城高峰', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'siren', '私人', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '03', 'guangfa-gongsi', '广发-公司', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'gongsi', '公司', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '04', 'guangfagaofeng', '广发高峰', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'guangfa-gongsi', '广发-公司', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '05', 'nongshangxin2', '农商新2', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation';	
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'guangfagaofeng', '广发高峰', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '06', 'nongshangxin1', '农商新1', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'baocheng2012', '宝城2012', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '07', 'gongsi', '公司', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'xianfu', '蚬富', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '08', 'siren', '私人', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'xinyunli', '新运力', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '09', 'zhaoshang2012', '招商2012', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'baochenggaofeng', '宝城高峰', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '10', 'xianfu', '蚬富', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 insert into BC_OPTION_ITEM (ID,STATUS_, PID, ORDER_, KEY_, VALUE_, ICON) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'nongshangxin1', '农商新1', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
+	select NEXTVAL('CORE_SEQUENCE'), 0, g.id, '11', 'xinyunli', '新运力', null from BC_OPTION_GROUP g where g.KEY_='ownership.situation'; 
 	
 	
