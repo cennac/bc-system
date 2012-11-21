@@ -75,6 +75,7 @@
 	
 	<!-- 临时：回场检台帐 -->
 	<include file="cn/bc/business/hcjtz/web/struts2/struts.xml" />
+	<include file="cn/bc/business/callrecord/web/struts2/struts.xml" />
 
 	<!-- 办公管理子系统的配置文件 -->
 	<include file="cn/bc/business/info/web/struts2/struts.xml" />
