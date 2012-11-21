@@ -182,8 +182,9 @@
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
 		
-		<!-- 临时：回场检台帐 -->
+		<!-- 临时：回场检、安全学习台帐 -->
 		<class>cn.bc.business.hcjtz.domain.Hcjtz</class>
+		<class>cn.bc.business.hcjtz.domain.Aqxxtz</class>
 		
 
 		<!-- ##OA子系统## -->
