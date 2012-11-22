@@ -182,12 +182,6 @@
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
 		
-		<!-- 临时：回场检、安全学习台帐，通话记录 -->
-		<class>cn.bc.business.hcjtz.domain.Hcjtz</class>
-		<class>cn.bc.business.hcjtz.domain.Aqxxtz</class>
-		<class>cn.bc.business.callrecord.domain.CallRecord</class>
-		
-
 		<!-- ##OA子系统## -->
 		<!-- 信息 -->
 		<class>cn.bc.business.info.domain.Info</class>

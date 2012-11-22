@@ -101,10 +101,6 @@
 	<import resource="classpath:cn/bc/business/fee/spring.xml"/>
 	<import resource="classpath:cn/bc/business/socialSecurityRule/spring.xml"/>
 	
-	<!-- 临时：回场检台帐 -->
-	<import resource="classpath:cn/bc/business/hcjtz/spring.xml"/>
-	<import resource="classpath:cn/bc/business/callrecord/spring.xml"/>
-
 	<!-- bc办公管理子系统 -->
 	<import resource="classpath:cn/bc/business/info/spring.xml"/>
 

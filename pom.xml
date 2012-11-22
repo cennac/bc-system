@@ -366,12 +366,6 @@
 			<artifactId>bc-business-info</artifactId>
 			<version>${business.version}</version>
 		</dependency>
-		<!-- 临时：回场检台帐 -->
-		<dependency>
-			<groupId>cn.bc.business</groupId>
-			<artifactId>bc-business-hcjtz</artifactId>
-			<version>${business.version}</version>
-		</dependency>
 
 		<!-- 综合查询 -->
 		<dependency>
