@@ -72,6 +72,7 @@
 	<include file="cn/bc/business/fee/template/web/struts2/struts.xml" />
 	<include file="cn/bc/business/fee/web/struts2/struts.xml" />
 	<include file="cn/bc/business/socialSecurityRule/web/struts2/struts.xml" />
+	<include file="cn/bc/business/tempdriver/web/struts2/struts.xml" />
 	
 	<!-- 临时：回场检台帐 -->
 	<include file="cn/bc/business/hcjtz/web/struts2/struts.xml" />
