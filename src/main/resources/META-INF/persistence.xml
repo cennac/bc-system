@@ -188,8 +188,6 @@
 		
 		<!-- 临时：回场检台帐 -->
 		<class>cn.bc.business.hcjtz.domain.Hcjtz</class>
-		
-
 		<!-- ##OA子系统## -->
 		<!-- 信息 -->
 		<class>cn.bc.business.info.domain.Info</class>
