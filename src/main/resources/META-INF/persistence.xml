@@ -182,7 +182,6 @@
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
 		
-
 		<!-- ##OA子系统## -->
 		<!-- 信息 -->
 		<class>cn.bc.business.info.domain.Info</class>
