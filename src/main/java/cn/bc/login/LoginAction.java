@@ -263,6 +263,17 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
 					context.setAttr(SystemContext.KEY_ROLEIDS,
 							roleIds.toArray(new Long[0]));
+					
+					//添加上下文路径
+					context.setAttr(SystemContext.KEY_HTMLPAGENAMESPACE,ServletActionContext.getRequest().getContextPath());
+					//添加时间戳
+					if ("true".equalsIgnoreCase(getText("app.debug"))) {
+						 //调试状态每次登陆都自动生成
+						context.setAttr(SystemContext.KEY_APPTS,getText(String.valueOf(new Date().getTime())));
+					} else {
+						// 产品环境使用资源文件配置的值
+						context.setAttr(SystemContext.KEY_APPTS,getText("app.ts"));
+					}
 
 					// 记录session的标识参数
 					this.recordSession(context, request);
