@@ -16,6 +16,10 @@
 	<bean id="wordService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
 		<property name="serviceUrl" value="${app.remoting.url.word}" />
 		<property name="serviceInterface" value="cn.bc.remoting.service.WordService" />
+		<!-- 连接出错时自动重连 -->
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<!-- 不在容器启动的时候创建与Server端的连接 -->
+		<property name="lookupStubOnStartup" value="false" />
 	</bean>
 	<bean id="officeUtils" class="cn.bc.docs.util.OfficeUtils">
 		<!-- 是否启用远程Word文档转换服务 -->
