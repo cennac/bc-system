@@ -369,7 +369,7 @@
 		<!-- 司机招聘 -->
 		<dependency>
 			<groupId>cn.bc.business</groupId>
-			<artifactId>bc-business-tempDriver</artifactId>
+			<artifactId>bc-business-tempdriver</artifactId>
 			<version>${business.version}</version>
 		</dependency>
 
