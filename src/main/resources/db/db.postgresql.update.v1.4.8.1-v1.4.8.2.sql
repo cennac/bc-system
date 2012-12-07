@@ -5,4 +5,4 @@
 -- ###########################################################################
 -- 插入车辆经营权号的查看角色数据
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102-5', 'BS_CAR_OWNERNUMBER_CHECK','车辆经营权号查看');
+	values(NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0102-5', 'BS_CAR_OWNERSHIPNUMBER_CHECK','车辆经营权号查看');
