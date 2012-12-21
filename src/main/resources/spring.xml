@@ -111,5 +111,6 @@
 	<import resource="classpath:cn/bc/business/workflow/generalorder/spring.xml"/>
 	
 	<!-- 项目自身的配置 -->
+	<import resource="classpath:spring-mail.xml" />
 	<import resource="classpath:spring-system.xml" />
 </beans>
