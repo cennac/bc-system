@@ -12,7 +12,8 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	<!-- 附件存储路径的配置 -->
-	<bean id="Attach" class="cn.bc.docs.domain.Attach" p:dataRealPath="${data_realPath}" p:dataSubPath="${data_subPath}" />
+	<bean id="Attach" class="cn.bc.docs.domain.Attach" p:dataRealPath="${data_realPath}"
+		p:dataSubPath="${data_subPath}" />
 
 	<!-- 配置crudDao、crudService的实现：这里使用的是模拟的内存实现，没有数据库 -->
 	<bean id="crudDao" class="cn.bc.test.mock.CrudDaoMock" />
@@ -46,28 +47,37 @@
 		<property name="cacheManager"> <ref local="cacheManager" /> </property> <property 
 		name="cacheName"> <value>org.taha.cache.METHOD_CACHE</value> </property> 
 		</bean> -->
-		
-	<bean id="chatWebSocket" class="cn.bc.websocket.jetty.ChatWebSocket" scope="prototype">
-	<property name="ignoreOnlineRemindUserIds">
-		<list>
-			<!-- zhou -->
-			<value>100372</value>
-			<!-- admin -->
-			<value>9</value>
-		</list>
-	</property>
+
+	<bean id="chatWebSocket" class="cn.bc.websocket.jetty.ChatWebSocket"
+		scope="prototype">
+		<property name="ignoreOnlineRemindUserIds">
+			<list>
+				<!-- zhou -->
+				<value>100372</value>
+				<!-- admin -->
+				<value>9</value>
+			</list>
+		</property>
 	</bean>
-		
+
 	<!-- 项目的相关事件监听器配置 -->
-	<bean class="cn.bc.chat.event.LoginNotifier4OnlineUser"/>
-	<bean class="cn.bc.chat.event.LogoutNotifier4OnlineUser"/>
-	<bean class="cn.bc.chat.event.SessionDestroyedNotifier4OnlineUser"/>
-	<bean class="cn.bc.log.event.LoginNotifier4Syslog"/>
-	<bean class="cn.bc.log.event.LogoutNotifier4Syslog"/>
-	<bean class="cn.bc.log.event.SessionDestroyedNotifier4Syslog"/>
-	<bean class="cn.bc.log.event.ExportViewDataNotifier4OperateLog"/>
-	<bean class="cn.bc.websocket.event.SessionDestroyedNotifier4WebSocket"/>
-	<bean class="cn.bc.websocket.event.LoginNotifier4WebSocket"/>
-	<bean class="cn.bc.business.carman.event.SetCarByDriverHistoryInfo4Car"/>
-	<bean class="cn.bc.business.carman.event.WarehouingCarByDriverNotifier4ContractCharger"/>
+	<bean class="cn.bc.chat.event.LoginNotifier4OnlineUser" />
+	<bean class="cn.bc.chat.event.LogoutNotifier4OnlineUser" />
+	<bean class="cn.bc.chat.event.SessionDestroyedNotifier4OnlineUser" />
+	<bean class="cn.bc.log.event.LoginNotifier4Syslog" />
+	<bean class="cn.bc.log.event.LogoutNotifier4Syslog" />
+	<bean class="cn.bc.log.event.SessionDestroyedNotifier4Syslog" />
+	<bean class="cn.bc.log.event.ExportViewDataNotifier4OperateLog" />
+	<bean class="cn.bc.websocket.event.SessionDestroyedNotifier4WebSocket" />
+	<bean class="cn.bc.websocket.event.LoginNotifier4WebSocket" />
+	<bean class="cn.bc.business.carman.event.SetCarByDriverHistoryInfo4Car" />
+	<bean
+		class="cn.bc.business.carman.event.WarehouingCarByDriverNotifier4ContractCharger" />
+
+	<!-- Spring异步线程执行器 -->
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="30" />
+	</bean>
 </beans>

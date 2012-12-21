@@ -40,6 +40,8 @@
 	<bean id="mailService" class="cn.bc.mail.MailServiceImpl">
 		<property name="mailSender" ref="mailSender" />
 		<property name="templateMessage" ref="templateMessage" />
+		<!-- Spring的异步任务执行器 -->
+		<property name="taskExecutor" ref="taskExecutor" />
 		<!-- 是否使用异步方式发送邮件 -->
 		<property name="async" value="true" />
 	</bean>

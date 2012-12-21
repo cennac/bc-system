@@ -41,6 +41,8 @@ import cn.bc.identity.event.LogoutEvent;
 import cn.bc.identity.web.SystemContext;
 import cn.bc.identity.web.SystemContextHolder;
 import cn.bc.identity.web.SystemContextImpl;
+import cn.bc.mail.Mail;
+import cn.bc.mail.MailService;
 import cn.bc.web.util.WebUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -70,10 +72,16 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	public boolean relogin;// 是否是重登陆
 	public boolean mobile;// 是否是手机访问
 	public boolean outerNet;// 是否是外网访问
+	private MailService mailService;
 
 	public void setApplicationEventPublisher(
 			ApplicationEventPublisher applicationEventPublisher) {
 		this.eventPublisher = applicationEventPublisher;
+	}
+
+	@Autowired
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
 	}
 
 	@Autowired
@@ -94,7 +102,18 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		// 判断是否是外网访问
 		outerNet = WebUtils.isOuterNet(c[0]);
 
+		// test();
+
 		return SUCCESS;
+	}
+
+	protected void test() {
+		// 测试发送邮件
+		Mail mail = new Mail();
+		mail.setSubject("[BCMail:测试标题]");
+		mail.setContent("[BCMail:测试内容]\r\nreturn 换行测试！");
+		mail.setTo(new String[] { "rongjih@163.com", "rongjihuang@gmail.com" });
+		this.mailService.send(mail);
 	}
 
 	public String mock() throws Exception {
@@ -263,16 +282,19 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					context.setAttr(SystemContext.KEY_ROLES, roleCodes);
 					context.setAttr(SystemContext.KEY_ROLEIDS,
 							roleIds.toArray(new Long[0]));
-					
-					//添加上下文路径
-					context.setAttr(SystemContext.KEY_HTMLPAGENAMESPACE,ServletActionContext.getRequest().getContextPath());
-					//添加时间戳
+
+					// 添加上下文路径
+					context.setAttr(SystemContext.KEY_HTMLPAGENAMESPACE,
+							ServletActionContext.getRequest().getContextPath());
+					// 添加时间戳
 					if ("true".equalsIgnoreCase(getText("app.debug"))) {
-						 //调试状态每次登陆都自动生成
-						context.setAttr(SystemContext.KEY_APPTS,getText(String.valueOf(new Date().getTime())));
+						// 调试状态每次登陆都自动生成
+						context.setAttr(SystemContext.KEY_APPTS,
+								getText(String.valueOf(new Date().getTime())));
 					} else {
 						// 产品环境使用资源文件配置的值
-						context.setAttr(SystemContext.KEY_APPTS,getText("app.ts"));
+						context.setAttr(SystemContext.KEY_APPTS,
+								getText("app.ts"));
 					}
 
 					// 记录session的标识参数
