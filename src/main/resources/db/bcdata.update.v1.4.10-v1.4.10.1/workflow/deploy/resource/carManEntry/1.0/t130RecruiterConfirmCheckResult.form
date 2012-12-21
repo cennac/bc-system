@@ -1,0 +1,77 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.recruiterConfirmCheckResultForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:t130RecruiterConfirmCheckResult2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:635px;">
+			<tr class="widthMarker">
+				<td style="width: 10em;"></td>
+				<td style="width: 8em;"></td>
+				<td style="width: 6em;"></td>
+				<td style="width: 10em;"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label" >*送分管副总审批：</td>
+				<td class="value" >
+					<input type="hidden" name="isCheck" data-scope="global" data-type="boolean" />
+					<input type="hidden" name="isCheck_lc" data-type="boolean" />
+					<input type="radio"  name="risCheck" value="true" class="ignore" 	style="width:auto;" />
+					<label>是</label>
+					<input type="radio"  name="risCheck" value="false"  class="ignore" 	style="width:auto;" />
+					<label>否</label>
+				</td>
+				<td class="label bswf-carManEntry-recruiterConfirmCheckResult-pass" style="display:none;">*司机入职：</td>
+				<td class="value bswf-carManEntry-recruiterConfirmCheckResult-pass" style="display:none;">
+					<input type="hidden" name="isPass" 	 class="ignore" data-scope="global" data-type="boolean" />
+					<input type="hidden" name="isPass_lc" class="ignore" data-type="boolean" />
+					<input type="radio"  name="risPass" value="true" class="ignore" 	style="width:auto;" />
+					<label>通过</label>
+					<input type="radio"  name="risPass" value="false"  class="ignore" 	style="width:auto;" />
+					<label>不通过</label>
+				</td>
+			</tr>
+			 <#-- 自动发起流程页面代码 
+				<tr class="bswf-carManEntry-recruiterConfirmCheckResult-fire" style="display:none;" >
+					<td class="label" >*发起流程：</td>
+					<td class="value" colspan="3">
+						<select name="executionType" class="ignore ui-widget-content" data-scope="global" >
+							<option ></option>
+							<option value="fireCarManDealWithCertProcess">确认后自动发起-司机办证流程</option>
+							<option value="manual">手动处理</option>
+							<option value="noProcess">不处理</option>
+						</select>
+					</td>
+				</tr>
+			-->
+			<tr>
+				<td class="topLabel" ><div id="viewLabel" >意见：</div><div id="viewLabelRequired" style="display:none;">*意见：</div></td>
+				<td class="value" colspan="4" >
+					<textarea name="view" class="autoHeight ui-widget-content" />
+				</td>
+			</tr>
+		</table>
+	<#else>
+		<#if isCheck_lc??&&isCheck_lc>
+			<div style="padding-left:0.5em">
+				<div class="text">>送分管副总审批</div>
+			</div>
+		</#if>
+		<#if isCheck_lc??&&!isCheck_lc>
+			<div style="padding-left:0.5em">
+				<div class="text">司机入职：<#if isPass_lc??><#if isPass_lc>通过<#else>不通过</#if></#if></div>
+			</div>
+		</#if>
+		<#-- 自动发起流程页面代码
+			<#if isCheck_lc??&&isPass_lc??&&!isCheck_lc&&isPass_lc>
+				<div style="padding-left:0.5em">
+					<div class="text">发起流程：<#if executionType=="fireCarManDealWithCertProcess">确认后自动发起-司机办证流程<#elseif executionType=="manual">手动处理<#elseif executionType=="noProcess">不处理</#if>
+					</div>
+				</div>
+			</#if>
+		 -->
+		<div style="padding-left:0.5em;">
+			<div class="text" style="width:635px;word-break: break-all;">意见：${view!}</div>
+		</div>
+	</#if>
+</form>

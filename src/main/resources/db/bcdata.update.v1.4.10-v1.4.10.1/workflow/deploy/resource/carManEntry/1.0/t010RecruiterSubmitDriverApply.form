@@ -1,0 +1,333 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.recruiterSubmitDriverApplyForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:t010RecruiterSubmitDriverApply2JS_${pd_id}.js,${SystemContext.getAttr("htmlPageNamespace")}/bc-business/spider/gztaxixh/driverInfo.css'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px;">
+		<#assign flag="1"><#-- 定义查看的变量 -->
+		<#if ti_assignee??&&SystemContext.user.code==ti_assignee>
+			<#-- 任务完成人 -->
+			<#assign flag="0">
+		<#elseif SystemContext.hasAnyOneGroup("dongshizhang,InChargeOfOperationDeputyGeneralManager,CarManEntryInitialChecker,DriverRecruiter,CarManEntryRetestHead")>
+			<#-- 董事长,分管营运副总,司机入职初审员,司机招聘专员,司机入职复试组长 -->
+			<#assign flag="0">
+		<#elseif SystemContext.hasAnyOneRole("BC_WORKFLOW,BC_ADMIN,BS_TEMP_DRIVER,BS_TEMP_DRIVER_READ_ADVANCED")>
+			<#-- 流程管理员,超级管理员,司机招聘管理员,司机招聘查询高级角色 -->
+			<#assign flag="0">
+		</#if>
+		
+		<#if readonly == 'false'>
+			<#-- 先设置司机放弃为否 -->
+			<input type="hidden" name="isGiveUp" data-scope="global" data-type="boolean" value="false" />
+			<div class="ui-widget-content bcwf-carManEntry-containers" style="border-width:0px 1px 1px 0;margin-bottom:0px;">
+				<div  style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+					<span class="text">初审资料：</span>
+					<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+					<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+				</div>
+				<table class="bcwf-carManEntry-Groups" cellspacing="2" cellpadding="0" style="width:100%;">
+					<tr class="widthMarker">
+						<td style="width: 9em;"></td>
+						<td style="width: 14em;">&nbsp;</td>
+						<td style="width: 8em;">&nbsp;</td>
+						<td style="width: 10em;">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="label">*指定车辆：</td>
+						<td class="value">
+							<input type="hidden" name="isNeed2Car" data-scope="global" data-type="boolean" />
+							<input type="radio"  name="risNeed2Car" value="true" 	class="ignore" 	style="width:auto;" />
+							<label>是</label>
+							<input type="radio"  name="risNeed2Car" value="false"  	class="ignore" 	style="width:auto;" />
+							<label>否</label>
+						</td>
+						<td class="label need2Car" style="display:none;">*车号：</td>
+						<td class="value need2Car relative" style="display:none;">
+							<input type="text" name="need2CarPlate" class="ui-widget-content"  data-scope="global" readonly="readonly">
+							<input type="hidden" name="need2CarId"  data-scope="global" data-type="Long">
+							<input type="hidden" name="need2CarUnitCompanyId"  data-scope="global" data-type="Long">
+							<ul class="inputIcons">
+								<li class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择系统车辆' id="selectCar"></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">*成对报名：</td>
+						<td class="value">
+							<input type="hidden" name="isPairDriver" data-scope="global" data-type="boolean" />
+							<input type="radio"  name="risPairDriver" value="true" 	class="ignore" 	style="width:auto;" />
+							<label>是</label>
+							<input type="radio"  name="risPairDriver" value="false"  	class="ignore" 	style="width:auto;" />
+							<label>否</label>
+						</td>
+						<td class="label pairDriver" style="display:none;" >*对班姓名：</td>
+						<td class="value pairDriver relative" style="display:none;">
+							<input type="text" name="pairDriverName" class="ui-widget-content"  data-scope="global" readonly="readonly">
+							<input type="hidden" name="pairDriverNameId"  data-scope="global" data-type="Long">
+							<ul class="inputIcons">
+								<li class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择对班司机' id="selectTempDriver"></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">信誉档案简述：</td>
+						<td class="value" colspan="4">
+							<input type="text" name="creditDesc" class="ui-widget-content" data-scope="global"
+								value="${creditDesc}"> 
+						</td>
+					</tr>
+					<tr>
+						<td class="label">*待查情况：</td>
+						<td class="value" colspan="3" >
+							<input type="hidden" name="isAddStayCheck" data-scope="global" data-type="boolean" />
+							<input type="radio"  name="risAddStayCheck" value="true" 	class="ignore" 	style="width:auto;" />
+							<label>有</label>
+							<input type="radio"  name="risAddStayCheck" value="false"  	class="ignore" 	style="width:auto;" />
+							<label>无</label>
+							（背景调查或犯罪记录还需调查的请选择有！）
+						</td>
+					</tr>
+					<tr>
+						<td class="label">背景调查：</td>
+						<td class="value" colspan="4">
+							<input type="text" name="backGround" class="ui-widget-content" data-scope="global"
+								value="${backGround}"> 
+						</td>
+					</tr>
+					<tr>
+						<td class="label">犯罪记录：</td>
+						<td class="value" colspan="4">
+							<input type="text" name="crimeRecode" class="ui-widget-content" data-scope="global"
+								value="${crimeRecode}"> 
+						</td>
+					</tr>
+				</table>
+			</div>
+		</#if>
+		
+		<div class="ui-widget-content bcwf-carManEntry-containers" style="border-width:1px 1px 0 0;margin-bottom:5px;margin-top:5px;">
+			<div  style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+				<span class="text">基本信息：</span>
+				<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+				<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+			</div>
+			<table class="table bc-grid bcwf-carManEntry-Groups" cellspacing="0" cellpadding="0" style="width:100%;">
+				<tr>
+					<td class="first"  style="width: 7em;text-align:right;" >姓名</td>
+					<td class="middle" style="width: 10em;" >${name}&nbsp;&nbsp;(性别：<#if sex==1>男<#else>女</#if>)</td>
+					<td class="middle" style="width: 6em;text-align:right;" >出生日期</td>
+					<td class="middle" >${birthdate}</td>
+					<td class="last" rowspan="7" style="text-align:center;vertical-align: top;width:10em;">
+						<div style="position:relative;width:110px;height:140px;" >
+							<img id="portrait" style="width:110px;height:140px;cursor: pointer;" 
+							src='${SystemContext.getAttr("htmlPageNamespace")}/bc/image/download?ptype=portrait&puid=${tempDriver_uid}&ts=${SystemContext.getAttr("appTs")}'/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >区域</td>
+					<td class="middle" ><#if region==1>本市<#elseif region==2>本省<#elseif region==3>外省</#if></td>
+					<td class="middle" style="text-align:right;" >民族</td>
+					<td class="middle" >${nation}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >电话号码</td>
+					<td class="middle" >
+						<#if flag=="0">${phone}<#else>******</#if>
+					</td>
+					<td class="middle" style="text-align:right;" >身份证号码</td>
+					<td class="middle" >${certIdentity}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >学历</td>
+					<td class="middle" >${education}</td>
+					<td class="middle" style="text-align:right;" >婚姻状况</td>
+					<td class="middle" >${marry}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >籍贯</td>
+					<td class="middle" colspan="3">${origin}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >身份证有效期</td>
+					<td class="middle" colspan="3" >从${validStartDate}&nbsp;到${validEndDate}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >签发机关</td>
+					<td class="middle" colspan="3" >${issue}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >身份证地址</td>
+					<td class="last" colspan="4">${address}</td>
+				</tr>
+				<tr>
+					<td class="first" style="text-align:right;" >现住地址</td>
+					<td class="last" colspan="4">${newAddress}</td>
+				</tr>
+				<tr  rowspan="3">
+					<td class="first" style="text-align:right;" >备注</td>
+					<td class="last" colspan="4">${tempDriver_desc}</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="ui-widget-content bcwf-carManEntry-containers" style="border-width:1px 1px 0 0;margin-bottom:5px;">
+			<div  style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+				<span class="text">从业信息：</span>
+				<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+				<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+			</div>
+			<table class="table bc-grid bcwf-carManEntry-Groups" cellspacing="0" cellpadding="0" style="width:100%;">
+				<tbody>
+					<tr>
+						<td class="first" style="width: 7em;text-align:right;">服务资格证</td>
+						<td class="middle" style="width: 10em;">${certFWZG}</td>
+						<td class="middle" style="width: 13em;text-align:right;">从业资格证</td>
+						<td class="last" >${certCYZG}</td>
+					</tr>
+					<tr>
+						<td class="first" style="text-align:right;">本市驾证初领日</td>
+						<td class="middle" >${certDrivingFirstDate}</td>
+						<td class="middle" style="text-align:right;">本市出租车从业初始年份</td>
+						<td class="last" >${cyStartYear}</td>
+					</tr>
+					<tr>
+						<td class="first" style="text-align:right;">原单位</td>
+						<td class="middle" >${formerUnit}</td>
+						<td class="middle" style="text-align:right;"></td>
+						<td class="last" ></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="ui-widget-content bcwf-carManEntry-containers" style="border-width:1px  1px 0 0;margin-bottom:5px;">
+			<div  style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+				<span class="text">工作经历：</span>
+				<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+				<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+			</div>
+			<table  class="table bc-grid bcwf-carManEntry-Groups" cellspacing="0" cellpadding="0" style="width:100%;" >
+				<tr class="header row">
+					<td class="first" style="width: 15em;">起止日期</td>
+					<td class="middle" style="width: 15em;">工作单位</td>
+					<td class="middle" style="width: 5em;">证明人</td>
+					<td class="last" style="min-width: 0.001em;">电话</td>
+				</tr>
+				<#if list_workExperience??>
+					<#list list_workExperience as we>
+						<tr class="ui-widget-content row" >
+							<td class="first"  style="padding:0 0 0 2px;text-align:left;">
+								${we.startDate!}~${we.endDate!}
+							</td>
+							<td class="middle" style="padding:0 0 0 2px;text-align:left;">
+								${we.unit!}
+							</td>
+							<td class="middle" style="padding:0 0 0 2px;text-align:left;">	
+								${we.certifier!}
+							</td>
+							<td class="last" style="padding:0 0 0 2px;text-align:left;">
+								<#if flag=="0">${we.phone!}<#else>******</#if>
+							</td>
+						</tr>
+					</#list>
+				</#if>
+			</table>
+		</div>
+		<div class="ui-widget-content bcwf-carManEntry-containers" style="border-width:1px 1px 0 0;margin-bottom:5px;">
+			<div style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+				<span class="text">家庭成员：</span>
+				<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+			<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+			</div>
+			<table class="table bc-grid bcwf-carManEntry-Groups" cellspacing="0" cellpadding="0" style="width:100%;">
+				<tr class="header row">
+					<td class="first" style="width: 7.5em;">姓名</td>
+					<td class="middle" style="width: 7em;">关系</td>
+					<td class="middle" style="width: 10em;">电话</td>
+					<td class="last" style="min-width: 0.001em;">备注</td>
+				</tr>
+			<#if list_family??>
+			<#list list_family as fm>
+				<tr class="ui-widget-content">
+					<td class="first" style="padding:0 0 0 2px;text-align:left;">
+						${fm.name!}
+					</td>
+					<td class="middle" style="padding:0 0 0 2px;text-align:left;">
+						${fm.relation!}
+					</td>
+					<td class="middle" style="padding:0 0 0 2px;text-align:left;">	
+						<#if flag=="0">${fm.phone!}<#else>******</#if>
+					</td>
+					<td class="last" style="padding:0 0 0 2px;text-align:left;">
+						${fm.desc!}
+					</td>
+				</tr>
+			</#list>
+			</#if>
+			</table>
+		</div>
+		
+		<div class="ui-widget-content bcwf-carManEntry-containers bs-czxh" style="border-width:1px 1px 1px 0;margin-bottom:5px;">
+				<div style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+					<span class="text">信誉档案：</span>
+					<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+					<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+				</div>
+				<div id="info" class="bcwf-carManEntry-Groups " style="margin-bottom:2px;">
+					${credit!}
+				</div>
+		</div>
+		
+		<#if readonly != 'false'>
+			<div class="ui-widget-content bcwf-carManEntry-containers" style="border-width:1px 1px 1px 0;margin-bottom:5px;">
+				<div  style="position:relative;border-bottom:1px solid #CCC;padding: 0.25em;">
+					<span class="text">初审资料：</span>
+					<span class="bcwf-carManEntry-showGroups verticalMiddle ui-icon ui-icon-carat-1-sw" style="display:none;" title='展开'></span>
+					<span class="bcwf-carManEntry-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-ne" title='隐藏'></span>
+				</div>
+				<table class="bcwf-carManEntry-Groups" cellspacing="2" cellpadding="0" style="width:100%;">
+					<tr class="widthMarker">
+						<td style="width: 9em;"></td>
+						<td style="width: 14em;">&nbsp;</td>
+						<td style="width: 8em;">&nbsp;</td>
+						<td style="width: 10em;">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="label">指定车辆：</td>
+						<td class="value"><#if isNeed2Car??><#if isNeed2Car>是<#else>否</#if></#if></td>
+						<td class="label"><#if isNeed2Car??&&isNeed2Car>车号：</#if></td>
+						<td class="value">${need2CarPlate!}</td>
+					</tr>
+					<tr>
+						<td class="label">成对报名：</td>
+						<td class="value"><#if isPairDriver??><#if isPairDriver>是<#else>否</#if></#if></td>
+						<td class="label"><#if isPairDriver??&&isPairDriver>对班姓名：</#if></td>
+						<td class="value">${pairDriverName!}</td>
+					</tr>
+					<tr>
+						<td class="label">信誉档案简述：</td>
+						<td class="value" colspan="4">${creditDesc}</td>
+					</tr>
+					<tr>
+						<td class="label">待查情况：</td>
+						<td class="value"><#if isAddStayCheck??><#if isAddStayCheck>有<#else>无</#if></#if></td>
+					</tr>
+					<#if isAddStayCheck??&&!isAddStayCheck>
+						<tr>
+							<td class="label">背景调查：</td>
+							<td class="value" colspan="4">${backGround}</td>
+						</tr>
+						<#if flag=="0">
+							<tr>
+								<td class="label">犯罪记录：</td>
+								<td class="value" colspan="4">${crimeRecode}</td>
+							</tr>
+						</#if>
+					</#if>
+				</table>
+			</div>
+		</#if>
+	</div>
+</form>

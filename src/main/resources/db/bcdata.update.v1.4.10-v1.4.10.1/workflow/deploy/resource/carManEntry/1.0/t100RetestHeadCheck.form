@@ -1,0 +1,37 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.retestHeadCheckForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:t100RetestHeadCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:640px;">
+			<tr class="widthMarker">
+				<td style="width: 6em;"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="label" >*复试结果：</td>
+				<td class="value" >
+					<input type="hidden" name="isPass_lc" data-type="boolean"/>
+					<select name="isPass" class="ui-widget-content" style="width:8em;"  data-validate="required" data-type="boolean" data-scope="global">
+						<option value=""></option>
+						<option value="true">通过</option>
+						<option value="false">不通过</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="topLabel">审核意见：</td>
+				<td class="value" >
+					<textarea name="view" class="autoHeight ui-widget-content"/>
+				</td>
+			</tr>
+		</table>
+	<#else>
+		<div style="padding-left:0.5em">
+			<div class="text">复试结果：<#if isPass_lc??><#if isPass_lc>通过<#else>不通过</#if></#if></div>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div class="text" style="width:635px;word-break: break-all;">审核意见：${view!}</div>
+		</div>
+	</#if>
+</form>

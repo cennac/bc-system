@@ -1,0 +1,14 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.t080InterviewDriverForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:t080InterviewDriver2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;width:635px;">
+			<textarea name="view" class="autoHeight ui-widget-content" style="width:100%;border:none;" data-validate="required" placeholder="(这里填写意见)"/>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			<div class="text" style="width:635px;word-break: break-all;">意见：${view!}</div>
+		</div>
+	</#if>
+</form>

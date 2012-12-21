@@ -1,0 +1,40 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.initialCheckForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:t050InitialCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:630px;">
+			<tr class="widthMarker">
+				<td style="width: 6em;"></td>
+				<td style="width: 8em;"></td>
+				<td style="width: 6em;"></td>
+				<td style="width: 8em;"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label" >*初审结果：</td>
+				<td class="value" >
+					<input type="hidden" name="isPass_lc" data-type="boolean"/>
+					<select name="isPass" class="ui-widget-content" data-validate="required" data-type="boolean" data-scope="global">
+						<option value=""></option>
+						<option value="true">通过</option>
+						<option value="false">不通过</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="topLabel" >审批意见：</td>
+				<td class="value" colspan="4" >
+					<textarea name="view" class="autoHeight ui-widget-content" style="width:100%;" placeholder="(这里填写意见)"/>
+				</td>
+			</tr>
+		</table>
+	<#else>
+		<div style="padding-left:0.5em">
+			<div class="text">初审结果：<#if isPass_lc??><#if isPass_lc>通过<#else>不通过</#if></#if></div>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div class="text" style="width:635px;word-break: break-all;">意见：${view!}</div>
+		</div>
+	</#if>
+</form>

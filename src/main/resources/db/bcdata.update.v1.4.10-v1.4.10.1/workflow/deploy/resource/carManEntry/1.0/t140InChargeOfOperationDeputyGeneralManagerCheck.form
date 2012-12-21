@@ -1,0 +1,45 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.inChargeOfOperationDeputyGeneralManagerCheckForm"
+	data-js='js:bc_identity,bc-business/bs.js,wf:t140InChargeOfOperationDeputyGeneralManagerCheck2JS_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:635px;">
+			<tr class="widthMarker">
+				<td style="width: 10em;"></td>
+				<td style="width: 8em;"></td>
+				<td style="width: 6em;"></td>
+				<td style="width: 8em;"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label" >*送董事长审批：</td>
+				<td class="value" >
+					<input type="hidden" name="isChairmanCheck" data-scope="global" data-type="boolean" />
+					<input type="hidden" name="isChairmanCheck_lc" data-type="boolean" />
+					<input type="radio"  name="risChairmanCheck" value="true" class="ignore" 	style="width:auto;" />
+					<label>是</label>
+					<input type="radio"  name="risChairmanCheck" value="false"  class="ignore" 	style="width:auto;" />
+					<label>否</label>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel" >意见：</td>
+				<td class="value" colspan="4" >
+					<textarea name="view" class="autoHeight ui-widget-content" />
+				</td>
+			</tr>
+		</table>
+	<#else>
+		<#if isChairmanCheck_lc??&&isChairmanCheck_lc>
+			<div style="padding-left:0.5em">
+				<div class="text">>送董事长审批</div>
+			</div>
+		</#if>
+		<div style="padding-left:0.5em;">
+			<div class="text" style="width:635px;word-break: break-all;">意见：${view!}</div>
+		</div>
+	</#if>
+</form>
