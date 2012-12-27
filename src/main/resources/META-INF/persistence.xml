@@ -96,6 +96,7 @@
 
 		<!-- 流转引擎 -->
 		<class>cn.bc.workflow.domain.ExcutionLog</class>
+		<class>cn.bc.workflow.domain.WorkflowModuleRelation</class>
 		<class>cn.bc.workflow.flowattach.domain.FlowAttach</class>
 		<class>cn.bc.workflow.deploy.domain.Deploy</class>
 		<class>cn.bc.workflow.deploy.domain.DeployResource</class>
