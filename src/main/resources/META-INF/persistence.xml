@@ -185,7 +185,6 @@
 		
 		<!-- 司机招聘 -->
 		<class>cn.bc.business.tempdriver.domain.TempDriver</class>
-		<class>cn.bc.business.tempdriver.domain.TempDriverWorkFlow</class>
 		
 		<!-- ##OA子系统## -->
 		<!-- 信息 -->
