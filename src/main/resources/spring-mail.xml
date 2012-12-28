@@ -21,7 +21,7 @@
 				<!-- 是否需要auth认证 -->
 				<prop key="mail.smtp.auth">true</prop>
 				<!-- 超时设置 -->
-				<prop key="mail.smtp.timeout">10000</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
 
 				<prop key="mail.transport.protocol">smtp</prop>
 
@@ -38,6 +38,9 @@
 		<property name="subject" value="[BC系统邮件]" />
 	</bean>
 	<bean id="mailService" class="cn.bc.mail.MailServiceImpl">
+		<property name="operateLogService" ref="operateLogService" />
+		<property name="idGeneratorService" ref="idGeneratorService" />
+		<property name="optionService" ref="optionService" />
 		<property name="mailSender" ref="mailSender" />
 		<property name="templateMessage" ref="templateMessage" />
 		<!-- Spring的异步任务执行器 -->

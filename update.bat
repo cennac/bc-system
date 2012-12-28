@@ -5,19 +5,20 @@ git status
 git pull origin master --tags
 mvn install -DskipTests=true
 cd ..
+cd bc-workflow
+echo "--------bc-workflow"
+git status
+git pull origin master --tags
+mvn install -DskipTests=true
+cd ..
 cd bc-business
 echo "--------bc-business"
 git status
 git pull origin master --tags
 mvn install -DskipTests=true
 cd ..
-cd bc-business-dataconvert
-echo "--------bc-business-dataconvert"
-git status
-git pull origin master --tags
-cd ..
-cd bc-business-test
-echo "--------bc-business-test"
+cd bc-business-workflow
+echo "--------bc-business-workflow"
 git status
 git pull origin master --tags
 cd ..
@@ -31,8 +32,18 @@ echo "--------bc-system/src/main/webapp/bc"
 git status
 git pull origin master --tags
 cd ..
+cd bc-workflow
+echo "--------bc-system/src/main/webapp/bc-workflow"
+git status
+git pull origin master --tags
+cd ..
 cd bc-business
 echo "--------bc-system/src/main/webapp/bc-business"
+git status
+git pull origin master --tags
+cd ..
+cd bc-business-workflow
+echo "--------bc-system/src/main/webapp/bc-business-workflow"
 git status
 git pull origin master --tags
 cd ..

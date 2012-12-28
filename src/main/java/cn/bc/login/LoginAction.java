@@ -102,7 +102,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		// 判断是否是外网访问
 		outerNet = WebUtils.isOuterNet(c[0]);
 
-		// test();
+		//test();
 
 		return SUCCESS;
 	}
@@ -110,9 +110,11 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	protected void test() {
 		// 测试发送邮件
 		Mail mail = new Mail();
-		mail.setSubject("[BCMail:测试标题]");
+		mail.setSubject("[BCMail:测试标题2401]");
 		mail.setContent("[BCMail:测试内容]\r\nreturn 换行测试！");
-		mail.setTo(new String[] { "rongjih@163.com", "rongjihuang@gmail.com" });
+		mail.setTo(new String[] { "rongjih@163.com" });
+		mail.setCc(new String[] { "rongjihuang@gmail.com" });
+		mail.setBcc(new String[] { "276700531@qq.com" });
 		this.mailService.send(mail);
 	}
 
