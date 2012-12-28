@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.1</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
 	<packaging>war</packaging>
@@ -12,13 +12,13 @@
 
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>1.0-SNAPSHOT</framework.version>
+		<framework.version>1.1</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>1.0-SNAPSHOT</business.version>
+		<business.version>1.5</business.version>
 		<!-- 平台工作流程的版本号 -->
-		<workflow.version>1.0-SNAPSHOT</workflow.version>
+		<workflow.version>1.1</workflow.version>
 		<!-- 营运子系统工作流程的版本号 -->
-		<business.workflow.version>1.0-SNAPSHOT</business.workflow.version>
+		<business.workflow.version>1.5</business.workflow.version>
 
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
@@ -110,8 +110,8 @@
 			<id>bcsystem</id>
 			<properties>
 				<app.name>bcsystem</app.name>
-				<app.ver>1.4.2</app.ver>
-				<app.ts>20120907</app.ts>
+				<app.ver>1.5</app.ver>
+				<app.ts>20121228</app.ts>
 				<app.debug>false</app.debug>
 				<app.product>true</app.product>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
