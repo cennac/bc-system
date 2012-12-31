@@ -20,7 +20,7 @@
 		<img class="appLogo" src="<s:url value='/login/images/logo-bc.png'/>" title="<s:text name='app.title'/> V<s:text name='app.version'/>"/>
 		<div class="textContainer">
 			<div class="accountIcon" tabindex="100"><img src="<s:url value='/login/images/user.png'/>"/></div>
-			<input type="text" id="name" class="input" placeholder="帐号"/>
+			<input type="text" id="name" class="input" placeholder="帐号" style="ime-mode: inactive;"/>
 		</div>
 		<div class="textContainer">
 			<div class="passwordIcon"><img src="<s:url value='/login/images/key.png'/>"/></div>
