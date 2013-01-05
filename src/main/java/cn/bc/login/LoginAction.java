@@ -298,6 +298,9 @@ public class LoginAction extends ActionSupport implements SessionAware,
 						context.setAttr(SystemContext.KEY_APPTS,
 								getText("app.ts"));
 					}
+					
+					context.setAttr("mobile", this.mobile);
+					context.setAttr("outerNet", this.outerNet);
 
 					// 记录session的标识参数
 					this.recordSession(context, request);
@@ -315,6 +318,8 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					Calendar now = Calendar.getInstance();
 					this.session.put("loginTime",
 							DateUtils.formatCalendar2Second(now));
+					
+					// 额外信息
 					this.session.put("sid", sid);
 					this.session.put("md5", md5);
 

@@ -1,6 +1,10 @@
 jQuery(function($){
 var expiresOption = {expires: 14, path: '/'};// 14天自动过期
-$("#name").focus();
+if(!bc.mobile){// 移动设备不默认聚焦，避免输入法框的弹出
+	$("#name").focus();	
+}else{
+	//$("#name").focus();	
+}
 function login() {
 	var name = $("#name").val();
 	var password = $("#password").val();
@@ -101,8 +105,8 @@ function showMsg(msg) {
 
 //for debug: 自动以管理员登录
 if(bc.debug){
-	$("#name").val("admin");
-	$("#password").val("888888");
+	//$("#name").val("admin");
+	//$("#password").val("888888");
 	//$("#loginBtn").trigger("click");
 }
 
