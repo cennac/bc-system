@@ -89,7 +89,7 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	order by m.order_;
 	
 	
-	-- 插入驾驶员交通违法处理部署数据
+-- 插入驾驶员交通违法处理部署数据
 insert into bc_wf_deploy (ID,UID_,ORDER_,STATUS_,TYPE_,CATEGORY,CODE,VERSION_,SUBJECT,PATH,SIZE_,SOURCE,FILE_DATE,AUTHOR_ID) 
 	select NEXTVAL('CORE_SEQUENCE'),'Deploy.14','6',-1,1,'营运系统/业务流程','CarTrafficHandle','1.0','驾驶员交通违法处理流程'
 	,'resource/carTrafficHandle/1.0/CarTrafficHandle.bar',70063,'CarTrafficHandle.bar',now(),id 
@@ -160,6 +160,26 @@ insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TY
 	,'carTrafficHandle/1.0/examinationAndapproval.form',4745,'examinationAndapproval.form',t.id,false
 	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='1.0' and t.code='form'
 	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.338');
+	
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.343',d.id,'examinationAndapproval2Js','营运总监审批js文件'
+	,'carTrafficHandle/1.0/examinationAndapproval.js',4745,'examinationAndapproval.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='1.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.343');
+	
+--相关部门协办
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.344',d.id,'departmentCooperation','相关部门协办form文件'
+	,'carTrafficHandle/1.0/departmentCooperation.form',4745,'departmentCooperation.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='1.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.344');
+
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.345',d.id,'departmentCooperation2Js','相关部门协办js文件'
+	,'carTrafficHandle/1.0/departmentCooperation.js',4745,'departmentCooperation.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='1.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.345');
+	
 --安全管理组确认
 insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
 	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.339',d.id,'confirmTrafficInfo','安全管理组确认form文件'
