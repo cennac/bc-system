@@ -212,7 +212,7 @@ bswf.carManEntry.recruiterInformDriverRetestForm = {
 			if(applyAttr=="KeepOn"){
 				subject+="司机留用审批（"+name+interviewDate+")";
 			}else{
-				subject+="司机新入职审批（"+name+interviewDate+")";
+				subject+="司机新入职审批（"+name+"，复试日期"+interviewDate+")";
 			}
 			$form.find(":input[name='subject']").val(subject);
 		}
