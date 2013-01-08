@@ -1,0 +1,32 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.recruiterInformDriverHealthCheckForm"
+	data-js='<#if readonly == "false">wf:t110RecruiterInformDriverHealthCheck2JS_${pd_id}.js</#if>'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:635px;">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			*参加体检：<input type="hidden" name="isGiveUp_lc" data-type="boolean"/>
+			<input type="hidden" name="isGiveUp" data-scope="global" data-type="boolean" />
+			<input type="radio"  name="risGiveUp" value="false" class="ignore" 	style="width:auto;" />
+			<label>同意</label>
+			<input type="radio"  name="risGiveUp" value="true"  class="ignore" 	style="width:auto;" />
+			<label>放弃</label>
+		</div>
+		<div id="giveUp4cause" style="padding-left:0.5em;display:none;" >
+			<div style="display:inline-block;vertical-align:top;">*放弃原因：</div>
+			<textarea name="giveUp4cause"  data-scope="global" rows="3" style="width:80%;" class="ignore ui-widget-content noresize" ></textarea>
+			<input type="hidden" name="giveUp4cause_lc"  class="ignore" />
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			>司机参加体检：<#if isGiveUp_lc??><#if isGiveUp_lc>放弃<#else>同意</#if></#if>
+		</div>
+		<#if giveUp4cause_lc??&&giveUp4cause_lc!="">
+			<div style="padding-left:0.5em;">
+				<div style="display:inline-block;vertical-align:top;">放弃原因：</div>
+				<div class="text" style="word-break: break-all;display:inline-block;width:80%;">${giveUp4cause_lc!}</div>
+			</div>
+		</#if>
+	</#if>
+	</div>
+</form>

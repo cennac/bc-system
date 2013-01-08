@@ -1,0 +1,32 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.retestHeadCheckForm"
+	data-js='<#if readonly == "false">wf:t100RetestHeadCheck2JS_${pd_id}.js</#if>'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;width:635px;">
+			<textarea name="view" class="autoHeight ui-widget-content" style="width:100%;" placeholder="(这里填写复试审批意见)"/>
+		</div>
+		<div style="padding-left:0.5em">
+			<input type="hidden" name="isPass" 	  data-scope="global" data-type="boolean" />
+			<input type="hidden" name="isPass_lc" data-type="boolean" />
+			*复试审核结果：
+			<label>
+				<input type="radio"  name="risPass" value="true" 	class="ignore" 	style="width:auto;" />
+				通过
+			</label>
+			<label>
+				<input type="radio"  name="risPass" value="false" 	class="ignore" 	style="width:auto;" />
+				不通过
+			</label>
+		</div>
+	<#else>
+		<#if view??&&view!="">
+			<div style="padding-left:0.5em;">
+				<div class="text" style="width:635px;word-break: break-all;">审核意见：${view!}</div>
+			</div>
+		</#if>
+		<div style="padding-left:0.5em">
+			<div class="text">>复试审核结果：<b><#if isPass_lc??><#if isPass_lc>通过<#else>不通过</#if></#if></b></div>
+		</div>
+	</#if>
+</form>
