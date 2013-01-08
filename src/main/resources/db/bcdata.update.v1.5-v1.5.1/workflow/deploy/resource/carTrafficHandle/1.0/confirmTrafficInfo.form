@@ -18,7 +18,6 @@
 		</div>
 	<#else>
 		<div style="padding-left:0.5em;border-left: 0;border-right: 0;border-top: 0;" class="ui-widget-content">
-			<div style="display:inline-block;vertical-align:top;">安全管理组意见:</div>
 			<div class="text" style="width:635px;"><pre class="text" style="padding:0;margin:0;width:630px;word-break: break-all; word-wrap:break-word;font-family:inherit;">${safetyManagementGroupDesc!}</pre></div>
 		</div>
 		<#if isClosed??>
