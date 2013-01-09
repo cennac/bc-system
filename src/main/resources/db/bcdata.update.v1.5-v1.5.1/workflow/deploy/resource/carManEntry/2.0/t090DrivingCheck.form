@@ -1,0 +1,207 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.drivingCheckForm"
+	data-js='<#if readonly == "false">wf:t090DrivingCheck2JS_${pd_id}.js</#if>'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+	<div style="width:640px;">
+		<div style="border-width:1px 1px 0 0;margin-bottom:8px;">
+				<table  class="table bc-grid" cellspacing="0" cellpadding="0" style="width:640px;">
+					<tr class="header row">
+						<td class="first" style="width: 6em;">项目</td>
+						<td class="middle" style="width: 8em;">
+							<select class="ignore bswf-carManEntry-check"  style="width:100%;height:100%;border:none;padding:0 0 0 0;text-align:right;" >
+						        <option value="0">*考试情况</option>
+								<option value="1">全部通过</option>
+								<option value="2">全部不通过</option>
+								<option value="3">全部未参加</option>
+							</select>
+						</td>
+						<td class="middle" style="width: 6em;">项目</td>
+						<td class="middle" style="width: 8em;">
+							<select class="ignore bswf-carManEntry-check"  style="width:100%;height:100%;border:none;padding:0 0 0 0;text-align:right;" >
+						        <option value="0">*考试情况</option>
+								<option value="1">全部通过</option>
+								<option value="2">全部不通过</option>
+								<option value="3">全部未参加</option>
+							</select>
+						</td>
+						<td class="last" style="min-width: 0.001em;border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">驾驶操作</td>
+						<td class="middle">
+							<select name="roadSenseResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="middle" style="text-align: center">安全意识</td>
+						<td class="middle">
+							<select name="securityResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">车速</td>
+						<td class="middle">
+							<select name="speedResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="middle" style="text-align: center">交通法规</td>
+						<td class="middle">
+							<select name="trafficRuleResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">车距</td>
+						<td class="middle">
+							<select name="spaceResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="middle" style="text-align: center">道路熟识</td>
+						<td class="middle">
+							<select name="road2KnowWellResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">变道</td>
+						<td class="middle">
+							<select name="changeResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="middle" style="text-align: center">语言表达</td>
+						<td class="middle">
+							<select name="speakResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">定点停车</td>
+						<td class="middle">
+							<select name="stopResult" class="ui-widget-content"  style="width:100%;height:100%;border:none;padding:0 0 0 2px;" data-validate="required">
+						        <option value=""></option>
+								<option value="通过">通过</option>
+								<option value="不通过">不通过</option>
+								<option value="未参加">未参加</option>
+							</select>
+						</td>
+						<td class="middle">
+						</td>
+						<td class="middle">
+						</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+				</table>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div class="label" style="display: inline-block;width:75px;text-align:right;">*考核结果：</div>
+			<div class="value" style="display: inline-block;">
+				<select name="result" class="ui-widget-content"  style="width:8em;" data-validate="required" >
+			        <option value=""></option>
+					<option value="合格">合格</option>
+					<option value="还需评估">还需评估</option>
+					<option value="不合格">不合格</option>
+				</select>
+			</div>
+		</div>
+		<div style="padding-left:0.5em;" >
+			<div style="display:inline-block;vertical-align:top;width:75px;text-align:right;">考核意见：</div>
+			<textarea name="view"  rows="3" style="width:80%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	</div>
+	<#else>
+	<div style="width:640px;">
+		<div style="border-width:1px 1px 0 0;margin-bottom:8px;">
+				<table  class="table bc-grid" cellspacing="0" cellpadding="0" >
+					<tr class="header row">
+						<td class="first" style="width: 8em;">项目</td>
+						<td class="middle" style="width: 8em;">考试情况</td>
+						<td class="middle" style="width: 6em;">项目</td>
+						<td class="middle" style="width: 8em;">考试情况</td>
+						<td class="last" style="min-width: 0.001em;border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">驾驶操作</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${roadSenseResult!}</td>
+						<td class="middle" style="text-align: center">安全意识</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${securityResult!}</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">车速</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${speedResult!}</td>
+						<td class="middle" style="text-align: center">交通法规</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${trafficRuleResult!}</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">车距</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${spaceResult!}</td>
+						<td class="middle" style="text-align: center">道路熟识</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${road2KnowWellResult!}</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">变道</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${changeResult!}</td>
+						<td class="middle" style="text-align: center">语言表达</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${speakResult!}</td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+					<tr class="ui-widget-content row">
+						<td class="first" style="text-align: center">定点停车</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;">${stopResult!}</td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;"></td>
+						<td class="middle" style="padding:0 0 0 2px;text-align:left;"></td>
+						<td class="last" style="border-width:0 0 0 1px;"></td>
+					</tr>
+				</table>
+		</div>
+		<div style="padding-left:0.5em">
+			<div class="text">>考核结果：${result!}</div>
+		</div>
+		<#if view??&&view!="">
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">考核意见：</div>
+			<div class="text" style="word-break: break-all;width:80%;display:inline-block;">${view!}</div>
+		</div>
+		</#if>
+	</div>
+	</#if>
+</form>

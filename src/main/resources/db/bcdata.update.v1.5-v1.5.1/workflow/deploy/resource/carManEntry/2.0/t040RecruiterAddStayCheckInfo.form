@@ -1,0 +1,55 @@
+<form class="bc-page" data-type='form' style="overflow-y:auto;overflow-x:hidden;"
+	data-namespace="bswf.carManEntry.recruiterWriteInitialCheckInfoForm"
+	data-js='<#if readonly == "false">wf:t040RecruiterAddStayCheckInfo2JS_${pd_id}.js</#if>'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+		<#assign flag="1"><#-- 定义查看的变量 -->
+		<#if ti_assignee??&&SystemContext.user.code==ti_assignee>
+			<#-- 任务完成人 -->
+			<#assign flag="0">
+		<#elseif SystemContext.hasAnyOneGroup("dongshizhang,InChargeOfOperationDeputyGeneralManager,CarManEntryInitialChecker,DriverRecruiter,CarManEntryRetestHead")>
+			<#-- 董事长,分管营运副总,司机入职初审员,司机招聘专员,司机入职复试组长 -->
+			<#assign flag="0">
+		<#elseif SystemContext.hasAnyOneRole("BC_WORKFLOW,BC_ADMIN,BS_TEMP_DRIVER,BS_TEMP_DRIVER_READ_ADVANCED")>
+			<#-- 流程管理员,超级管理员,司机招聘管理员,司机招聘查询高级角色 -->
+			<#assign flag="0">
+		</#if>
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:640px;">
+			<tr class="widthMarker">
+				<td style="width: 6em;"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label">背景调查：</td>
+				<td class="value">
+					<input type="text" name="backGround" class="ui-widget-content" data-scope="global"
+						value="${backGround}"> 
+				</td>
+			</tr>
+			<tr>
+				<td class="label">犯罪记录：</td>
+				<td class="value">
+					<input type="text" name="crimeRecode" class="ui-widget-content" data-scope="global"
+						value="${crimeRecode}"> 
+				</td>
+			</tr>
+		</table>
+	<#else>
+		<table cellspacing="2" cellpadding="0" style="width:640px;">
+			<tr class="widthMarker">
+				<td style="width: 6em;"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label" >背景调查：</td>
+				<td class="value" >${backGround}</td>
+			</tr>
+			<#if flag=="0">
+				<tr>
+					<td class="label" >犯罪记录：</td>
+					<td class="value" >${crimeRecode}</td>
+				</tr>
+			</#if>
+		</table>
+	</#if>
+</form>
