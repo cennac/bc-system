@@ -30,6 +30,8 @@
 		<app.ws.url>(location.protocol == "https" ? "wss://" : "ws://") + location.host + bc.root + "/ws"</app.ws.url>
 		<app.remoting.use.word>true</app.remoting.use.word>
 		<app.remoting.url.word>rmi://localhost:1199/word</app.remoting.url.word>
+		<app.url>http://localhost:8082${jetty.path}</app.url>
+		<app.url.outerNet>http://localhost:8082${jetty.path}</app.url.outerNet>
 
 		<!-- 数据库连接配置 -->
 		<db.sequence.default>HIBERNATE_SEQUENCE</db.sequence.default>
@@ -118,6 +120,8 @@
 				<app.ws.url>"ws://192.168.0.7:8081/${app.name}/ws"</app.ws.url>
 				<app.remoting.url.word>rmi://192.168.0.8:1199/word</app.remoting.url.word>
 				<jetty.path>${app.name}</jetty.path>
+				<app.url>http://192.168.0.7/bcsystem</app.url>
+				<app.url.outerNet>http://bctaxi.xicp.cn:8081/bcsystem</app.url.outerNet>
 
 				<db.type>postgresql</db.type>
 				<db.ip>localhost</db.ip>

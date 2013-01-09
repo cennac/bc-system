@@ -65,6 +65,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 	public String msg;// 登录信息
 	public String sid;// 会话id
 	public String md5;// 会话md5
+	public String token;// 令牌
 	public boolean success;// 登录是否成功
 	private LoginService loginService;
 	private Map<String, Object> session;
@@ -102,7 +103,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 		// 判断是否是外网访问
 		outerNet = WebUtils.isOuterNet(c[0]);
 
-		//test();
+		// test();
 
 		return SUCCESS;
 	}
@@ -288,6 +289,11 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					// 添加上下文路径
 					context.setAttr(SystemContext.KEY_HTMLPAGENAMESPACE,
 							ServletActionContext.getRequest().getContextPath());
+					context.setAttr(SystemContext.KEY_SYSURL,
+							this.getText("app.url"));
+					context.setAttr(SystemContext.KEY_SYSURL_OUTERNET,
+							this.getText("app.url.outerNet"));
+
 					// 添加时间戳
 					if ("true".equalsIgnoreCase(getText("app.debug"))) {
 						// 调试状态每次登陆都自动生成
@@ -298,7 +304,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 						context.setAttr(SystemContext.KEY_APPTS,
 								getText("app.ts"));
 					}
-					
+
 					context.setAttr("mobile", this.mobile);
 					context.setAttr("outerNet", this.outerNet);
 
@@ -318,7 +324,7 @@ public class LoginAction extends ActionSupport implements SessionAware,
 					Calendar now = Calendar.getInstance();
 					this.session.put("loginTime",
 							DateUtils.formatCalendar2Second(now));
-					
+
 					// 额外信息
 					this.session.put("sid", sid);
 					this.session.put("md5", md5);

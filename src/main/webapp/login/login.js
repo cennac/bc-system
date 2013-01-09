@@ -59,7 +59,11 @@ function doAjaxLogin(name,md5password){
 			if(json.success){
 				showMsg("登录验证成功，正在进入系统&hellip;");
 				//登录成功跳转到主页
-				window.open(bc.root + "/index" ,"_self");
+				var token = $("#token").val();
+				var indexUrl = bc.root + "/index";
+				if(token && token.length > 0)
+					indexUrl+= "?token=" + token;
+				window.open(indexUrl ,"_self");
 			}else{
 				showMsg(json.msg);
 				$.removeCookie(bc.syskey + '_name', expiresOption);

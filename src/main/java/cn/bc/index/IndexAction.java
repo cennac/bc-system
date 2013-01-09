@@ -57,6 +57,7 @@ public class IndexAction extends ActionSupport implements SessionAware {
 	public String sid;// session的id
 	public boolean mobile;// 是否是手机访问
 	public boolean outerNet;// 是否是外网访问
+	public String token;// 令牌
 
 	public String contextPath;
 

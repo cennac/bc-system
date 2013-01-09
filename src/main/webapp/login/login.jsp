@@ -30,6 +30,7 @@
 		<div class="textContainer" style="height:auto;margin:0"><label><input type="checkbox" id="remember" value="true"/>两周内自动登录</label><span 
 			class="device"><s:if test="outerNet">外网</s:if> <s:if test="mobile">移动设备</s:if></span>
 		</div>
+		<s:hidden name="token" id="token"/>
 	</form>
 	<div id="version"><s:text name="app.version"/></div>
 	<div id="msg" data-auth='${bcauth}'></div>
