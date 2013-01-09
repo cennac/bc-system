@@ -79,10 +79,10 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	order by m.order_;
 
 
--- 让超级管理员拥有网上考试管理角色
+-- 让超级管理员拥有违法代码管理角色
 insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r where a.code='admin' and r.code='BS_INFRACT_CODE';
---通用角色可访问网上考试资源
+--通用角色可访问违法代码资源
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
 	select r.id,m.id from BC_IDENTITY_ROLE r,BC_IDENTITY_RESOURCE m where r.code='BC_COMMON' 
 	and m.type_ > 1 and m.order_ in ('031301')
