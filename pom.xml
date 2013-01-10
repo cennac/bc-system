@@ -112,8 +112,8 @@
 			<id>bcsystem</id>
 			<properties>
 				<app.name>bcsystem</app.name>
-				<app.ver>1.4.2</app.ver>
-				<app.ts>20120907</app.ts>
+				<app.ver>1.6</app.ver>
+				<app.ts>20130109</app.ts>
 				<app.debug>false</app.debug>
 				<app.product>true</app.product>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
