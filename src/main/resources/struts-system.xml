@@ -3,8 +3,25 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+	<!-- 定义抽象包 -->
+	<package name="spec-default" extends="struts-default" abstract="true">
+		<interceptors>
+			<!-- 禁用缓存控制的过滤器 -->
+			<interceptor name="noCacheInterceptor"
+				class="cn.bc.web.struts2.interceptor.CacheInterceptor">
+				<!-- 缓存时间配置，正数单位为分钟，负数单位为月，为0代表禁用缓存 -->
+				<param name="expires">0</param>
+			</interceptor>
+			<interceptor-stack name="noCacheStack">
+				<interceptor-ref name="noCacheInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="noCacheStack" />
+	</package>
+
 	<!-- 登录 -->
-	<package name="login" extends="struts-default" namespace="/">
+	<package name="login" extends="spec-default" namespace="/">
 		<action name="doLogin" class="loginAction" method="doLogin">
 			<result>/bc/login/loginResult.jsp</result>
 		</action>
@@ -20,14 +37,14 @@
 			<result>/bc/login/mock.jsp</result>
 		</action>
 		<action name="logout" class="loginAction" method="doLogout">
-			<result type="redirect">/login</result>
+			<result type="redirect" name="success">/login</result>
 		</action>
 		<action name="relogin" class="loginAction" method="doRelogin">
 			<result>/bc/login/relogin.jsp</result>
 		</action>
 	</package>
 	<!-- 主页配置 -->
-	<package name="index" extends="struts-default" namespace="/">
+	<package name="index" extends="spec-default" namespace="/">
 		<action name="index" class="indexAction">
 			<result>/bc/index/desktop.jsp</result>
 			<result name="redirect" type="redirect">/login</result>
