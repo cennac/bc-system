@@ -177,7 +177,7 @@
 		<init-param>
 			<param-name>expires</param-name>
 			<!--缓存时间配置 ,单位为分钟,配为-1代表永久的缓存 -->
-			<param-value>2880</param-value>
+			<param-value>10080</param-value>
 		</init-param>
 		<init-param>
 			<param-name>excludePaths</param-name>
