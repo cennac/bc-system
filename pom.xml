@@ -1,24 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>cn.bc</groupId>
 		<artifactId>bc-parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.2</version>
 	</parent>
 	<artifactId>bc-system</artifactId>
+  <version>1.7</version>
 	<packaging>war</packaging>
 	<name>BC综合系统</name>
 
 	<properties>
 		<!-- 平台的版本号 -->
-		<framework.version>1.0-SNAPSHOT</framework.version>
+		<framework.version>1.2</framework.version>
 		<!-- 营运子系统的版本号 -->
-		<business.version>1.0-SNAPSHOT</business.version>
+		<business.version>1.7</business.version>
 		<!-- 平台工作流程的版本号 -->
-		<workflow.version>1.0-SNAPSHOT</workflow.version>
+		<workflow.version>1.2</workflow.version>
 		<!-- 营运子系统工作流程的版本号 -->
-		<business.workflow.version>1.0-SNAPSHOT</business.workflow.version>
+		<business.workflow.version>1.7</business.workflow.version>
 
 		<app.name>bcsystem</app.name>
 		<app.ver>${project.version}</app.ver>
@@ -112,8 +112,8 @@
 			<id>bcsystem</id>
 			<properties>
 				<app.name>bcsystem</app.name>
-				<app.ver>1.4.2</app.ver>
-				<app.ts>20120907</app.ts>
+				<app.ver>1.7</app.ver>
+				<app.ts>20130117</app.ts>
 				<app.debug>false</app.debug>
 				<app.product>true</app.product>
 				<app.data.realPath>/bcfile/bcdata</app.data.realPath>
