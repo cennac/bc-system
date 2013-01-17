@@ -131,3 +131,59 @@ END;
 $BODY$
 LANGUAGE plpgsql;
 
+
+
+--修改营运班次记录、司机责任人信息、迁移记录模块中营运班次的注释
+COMMENT ON COLUMN bs_car_driver.classes IS '营运班次:如1-正班、2-副班、3-替班(主挂)、4-替班 、5-公共替班(主挂)、6-公共替班';
+
+COMMENT ON COLUMN bs_carman.classes IS '沉余字段：营运班次:如0-""、1-正班、2-副班、3-替班(主挂)、4-替班 、5-公共替班(主挂)、6-公共替班';
+COMMENT ON COLUMN bs_carman.move_type IS '沉余字段：迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-替班安排;8-交回后转车';
+
+COMMENT ON COLUMN bs_car_driver_history.from_classes IS '营运班次:如1-正班、2-副班、3-替班(主挂)、4-替班 、5-公共替班(主挂)、6-公共替班';
+COMMENT ON COLUMN bs_car_driver_history.to_classes IS '营运班次:如1-正班、2-副班、3-替班(主挂)、4-替班 、5-公共替班(主挂)、6-公共替班';
+COMMENT ON COLUMN bs_car_driver_history.move_type IS '迁移类型:1-公司到公司(已注销);2-注销未有去向;3-由外公司迁回;4-交回未注销;5-新入职;6-转车队;7-替班安排;8-交回后转车;9-未交证注销';
+
+
+
+--需要修改的函数
+-- ##营运子系统的 postgresql 自定义函数和存储过程##
+
+-- 获取指定车辆实时的营运司机信息,只适用于对当前在案车辆的处理
+-- 返回值的格式为：张三,正班,id1;李四,副班,id2;小明,顶班,id3;小军,主挂,id4
+-- 返回值是先按营运班次正序排序再按司机的入职时间正序排序进行合并的
+-- 参数：cid - 车辆的id
+CREATE OR REPLACE FUNCTION getDriverInfoByCarId(cid IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	driverInfo varchar(4000);
+BEGIN
+	select string_agg(concat(name,',',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '替班(主挂)' when classes=4 then '替班' when classes=5 then '公共替班(主挂)' when classes=6 then '公共替班' else '无' end),',',id),';')
+		into driverInfo
+		from (select m.id as id,m.name as name,cm.classes as classes 
+			from BS_CAR_DRIVER cm
+			inner join BS_CARMAN m on m.id=cm.driver_id
+			where cm.status_=0 and cm.car_id=cid
+			order by cm.classes asc,m.work_date asc) as t;
+	return driverInfo;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+--##查找司机营运车辆的自定义函数和存储过程##
+CREATE OR REPLACE FUNCTION getCarInfoByDriverId(did IN integer) RETURNS varchar AS $$
+DECLARE
+	--定义变量
+	caridInfo varchar(4000);
+BEGIN
+	select string_agg(concat(name,',',(case when classes=1 then '正班' when classes=2 then '副班' when classes=3 then '替班(主挂)' when classes=4 then '替班' when classes=5 then '公共替班(主挂)' when classes=6 then '公共替班' else '无' end),',',id),';')
+		into caridInfo
+		from (select c.id as id,concat(c.plate_type,'.',c.plate_no) as name,cm.classes as classes 
+			from BS_CAR_DRIVER cm
+			inner join bs_car c on c.id=cm.car_id
+			where cm.status_=0 and cm.driver_id=did
+			order by cm.classes asc,c.file_date asc) as t;
+	return caridInfo;
+END;
+$$ LANGUAGE plpgsql;
