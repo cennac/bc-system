@@ -121,6 +121,8 @@
 
 		<!-- 司机负责人 -->
 		<class>cn.bc.business.carman.domain.CarMan</class>
+		<class>cn.bc.business.carman.domain.CarManRisk</class>
+		<class>cn.bc.business.carman.domain.CarManRiskItem</class>
 		<!-- 司机营运车辆 -->
 		<class>cn.bc.business.carman.domain.CarByDriver</class>
 		<!-- 迁移记录 -->
