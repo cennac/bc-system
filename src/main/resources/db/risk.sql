@@ -6,7 +6,7 @@
 
 -- 司机人意险资源、角色
 insert into BC_IDENTITY_RESOURCE (ID,STATUS_,INNER_,TYPE_,BELONG,ORDER_,NAME,URL,ICONCLASS)
-	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030700','人意险信息', '/bc-business/carManRisks/paging', 'i0401' 
+	select NEXTVAL('CORE_SEQUENCE'), 0, false, 2, m.id, '030700','司机人意险', '/bc-business/carManRisks/paging?vt=man', 'i0401' 
 	from BC_IDENTITY_RESOURCE m where m.order_='030300'
 	and not exists (select 0 from BC_IDENTITY_RESOURCE where order_='030700');
 insert into BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
@@ -41,3 +41,11 @@ insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED
 	,(select id from BC_TEMPLATE_TYPE where code='xls'),now()
 	,(select id from BC_IDENTITY_ACTOR_HISTORY where current=true and actor_name='系统管理员')
 	from bc_dual where not exists (select 0 from BC_TEMPLATE where code='IMPORT_CARMAN_RISK');
+
+delete from BS_CARMAN_RISK_INSURANT;
+delete from BS_CARMAN_RISK_ITEM;
+delete from BS_CARMAN_RISK;
+select id,name,cert_identity from bs_carman where cert_identity='440923197710154897';
+select * from BS_CARMAN_RISK;
+select * from BS_CARMAN_RISK_INSURANT;
+select company from bs_carman_risk group by company order by company;
