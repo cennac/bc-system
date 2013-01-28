@@ -32,7 +32,7 @@ COMMENT ON COLUMN BS_CARMAN_RISK.ID IS 'ID';
 COMMENT ON COLUMN BS_CARMAN_RISK.UID_ IS 'UID';
 COMMENT ON COLUMN BS_CARMAN_RISK.CODE IS '保单号';
 COMMENT ON COLUMN BS_CARMAN_RISK.BUY_TYPE IS '购买类型 : 0-未知,1-公司,2-自买';
-COMMENT ON COLUMN BS_CARMAN_RISK.STATUS_ IS '状态 : -1-草稿,0-正常,1-已禁用';
+COMMENT ON COLUMN BS_CARMAN_RISK.STATUS_ IS '状态:未使用的保留字段';
 COMMENT ON COLUMN BS_CARMAN_RISK.COMPANY IS '保险公司';
 COMMENT ON COLUMN BS_CARMAN_RISK.HOLDER IS '投保人';
 COMMENT ON COLUMN BS_CARMAN_RISK.START_DATE IS '开始日期';
@@ -103,6 +103,11 @@ insert into BC_IDENTITY_ROLE_ACTOR (AID,RID)
 	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r
 	where a.code='chaojiguanligang' and r.code='BS_DRIVER_RISK_MANAGE'
 	and not exists (select 0 from BC_IDENTITY_ROLE_ACTOR ra where ra.aid=a.id and ra.rid=r.id);
+-- 让指定用户拥有司机人意险管理角色
+insert into BC_IDENTITY_ROLE_ACTOR (AID,RID) 
+	select a.id, r.id from BC_IDENTITY_ACTOR a,BC_IDENTITY_ROLE r
+	where a.code in ('wing') and r.code='BS_DRIVER_RISK_MANAGE'
+	and not exists (select 0 from BC_IDENTITY_ROLE_ACTOR ra where ra.aid=a.id and ra.rid=r.id);
 
 -- 通用角色可访问司机人意险资源
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
@@ -119,3 +124,29 @@ insert into BC_TEMPLATE (ID,UID_,STATUS_,ORDER_,CATEGORY,CODE,VERSION_,FORMATTED
 	,(select id from BC_TEMPLATE_TYPE where code='xls'),now()
 	,(select id from BC_IDENTITY_ACTOR_HISTORY where current=true and actor_name='系统管理员')
 	from bc_dual where not exists (select 0 from BC_TEMPLATE where code='IMPORT_CARMAN_RISK');
+
+-- 根据司机ID查找人意险的状态描述信息：长期|有效|已过期|未购买
+DROP FUNCTION getCarManRiskStatus(integer);
+CREATE OR REPLACE FUNCTION getCarManRiskStatus(carMan_id integer)
+	RETURNS CHARACTER VARYING AS
+$BODY$
+DECLARE
+	-- 定义变量
+	status_ varchar(10);
+BEGIN
+	select case when r.end_date is null then '长期' 
+		when r.end_date >= current_date then '有效' 
+		else '已过期' end
+		from bs_carman_risk_insurant ri
+		inner join bs_carman_risk r on r.id=ri.risk_id
+		where ri.man_id = carMan_id
+		order by r.end_date desc limit 1
+		into status_;
+	IF status_ is null THEN
+		status_:= '未购买';
+	END IF;
+
+	RETURN status_;
+END;
+$BODY$
+LANGUAGE plpgsql;
