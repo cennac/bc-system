@@ -4,9 +4,9 @@
 -- 升级版本: 从 1.9升级到 1.10
 -- ###########################################################################
 
--- 2013-01-31插入经济合同收费明细查询
+-- 2013-01-31插入经济合同收费明细查看
 insert into  BC_IDENTITY_ROLE (ID, STATUS_,INNER_,TYPE_,ORDER_,CODE,NAME) 
-	select NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104-5', 'BS_CONTRACT4CHARGER_FEE_DETAIL','经济合同收费明细查询' from BC_DUAL
+	select NEXTVAL('CORE_SEQUENCE'), 0, false,  0,'0104-5', 'BS_CONTRACT4CHARGER_FEE_DETAIL','经济合同收费明细查看' from BC_DUAL
 	where not EXISTS (select 1 from BC_IDENTITY_ROLE where code='BS_CONTRACT4CHARGER_FEE_DETAIL');
 -- 2013-01-31角色资源权限配置
 insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID) 
