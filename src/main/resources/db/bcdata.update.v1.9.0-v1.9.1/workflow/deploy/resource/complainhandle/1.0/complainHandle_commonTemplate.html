@@ -36,7 +36,7 @@
 	</table>
 <#if tasks??>
 	<#list tasks?sort_by("endTime") as t>
-		<#if t.code=="t020HandleCaseAdviceInfo"><#-- 车队长确认违法驾驶员 -->
+		<#if t.code=="t020HandleCaseAdviceInfo"><#-- 车队长确认违章驾驶员 -->
 			<table class="row" cellspacing="0" cellpadding="0">
 				<tr>
 					<td class="signItems">
@@ -59,7 +59,7 @@
 							<#if t.attachs_str != "">
 								<div class="attach">附件：${t.attachs_str}</div>
 							</#if>
-							<div class="assignee"><span class="group">车队长确认违法驾驶员</span>&nbsp;&nbsp;&nbsp;&nbsp;签名：<span class="name">${t.assignee}</span>日期：<span class="date">${t.endTime2m}</span></div>
+							<div class="assignee"><span class="group">车队长确认违章驾驶员</span>&nbsp;&nbsp;&nbsp;&nbsp;签名：<span class="name">${t.assignee}</span>日期：<span class="date">${t.endTime2m}</span></div>
 						</div>
 					</td>
 				</tr>
