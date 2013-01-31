@@ -18,7 +18,9 @@ insert into BC_IDENTITY_ROLE_RESOURCE (RID,SID)
 	order by m.order_;
 
 
-
+-- 车队历史车辆数表增加日份列
+ALTER TABLE bs_motorcade_carquantity add column DAY_ NUMERIC(2) NOT NULL;
+COMMENT ON COLUMN bs_motorcade_carquantity.DAY_ IS '日份';
 
 
 
