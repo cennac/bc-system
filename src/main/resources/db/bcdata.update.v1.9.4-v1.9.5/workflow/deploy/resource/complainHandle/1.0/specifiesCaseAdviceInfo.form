@@ -93,13 +93,11 @@
 				<td class="middle" style="text-align: right;">投诉人电话：</td>
 				<td class="middle">${case4Advice_advisorPhone!}</td>
 				<td class="middle" style="text-align: right;">投诉人性别：</td>
-				<!--  
 				<#if case4Advice_advisorSex?number=1>
 				<td class="last">男</td>
 				<#elseif case4Advice_advisorSex?number=2>
 				<td class="last">女</td>
 				</#if>
-				-->
 				<td class="last">&nbsp;</td>
 			</tr>
 			<tr>
@@ -134,13 +132,11 @@
 				<td class="first" Style="text-align: right;">司机特征：</td>
 				<td class="middle" colspan="3">${case4Advice_driverFeature!}</td>
 				<td class="middle" style="text-align: right;">司机性别：</td>
-				<!--  
 				<#if case4Advice_driverSex?number=1>
 				<td class="last">男</td>
 				<#elseif case4Advice_driverSex?number=2>
 				<td class="last">女</td>
 				</#if>
-				-->
 				<td class="last">&nbsp;</td>
 			</tr>
 			<tr>
