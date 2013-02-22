@@ -117,6 +117,13 @@
 						<input type="hidden" name="procinstTaskId_lc" class="ignore" />
 					</td>
 				</tr>
+				<tr>
+					<td class="label">任务编码：</td>
+					<td class="value">
+						<input type="text" name="procinstTaskKey" class="ignore ui-widget-content" data-scope="global" value="${procinstTaskKey!}"  />
+						<input type="hidden" name="procinstTaskKey_lc" class="ignore" />
+					</td>
+				</tr>
 			</table>
 		</div>
 	<#else>

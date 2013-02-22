@@ -33,6 +33,7 @@
 			<input type="hidden" name="procinstKey_lc" value="${procinstKey!}" />
 			<input type="hidden" name="procinstSubject_lc" value="${procinstSubject!}" />
 			<input type="hidden" name="procinstTaskName_lc" value="${procinstTaskName!}" />
+			<input type="hidden" name="procinstTaskKey_lc" value="${procinstTaskKey!}" />
 			<input type="hidden" name="procinstTaskId_lc" value="${procinstTaskId!}" />
 		</#if>
 		
@@ -48,10 +49,12 @@
 						<a id="process" href="#">${procinstName!}</a>
 					</td>
 				</tr>
-				<tr>
-					<td class="label">流程主题：</td>
-					<td class="value">${procinstSubject!}</td>
-				</tr>
+				<#if procinstSubject??&&procinstSubject!="">
+					<tr>
+						<td class="label">流程主题：</td>
+						<td class="value">${procinstSubject!}</td>
+					</tr>
+				</#if>
 				<tr>
 					<td class="label">流程任务：</td>
 					<td class="value">${procinstTaskName!}</td>
@@ -197,9 +200,11 @@
 			<div style="padding-left:0.5em;margin:4px 0 2px 0;">
 				关联流程：<a id="process" href="#">${procinstName_lc!}</a>
 			</div>
-			<div style="padding-left:0.5em;margin:4px 0 2px 0;">
-				流程主题：${procinstSubject_lc!}
-			</div>
+			<#if procinstSubject_lc??&&procinstSubject_lc!="">
+				<div style="padding-left:0.5em;margin:4px 0 2px 0;">
+					流程主题：${procinstSubject_lc!}
+				</div>
+			</#if>
 			<div style="padding-left:0.5em;margin:4px 0 2px 0;">
 				流程任务：${procinstTaskName_lc!}
 			</div>

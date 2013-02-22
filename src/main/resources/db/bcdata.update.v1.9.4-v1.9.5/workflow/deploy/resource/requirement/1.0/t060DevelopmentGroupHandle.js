@@ -3,9 +3,7 @@ bswf.requirement.developmentGroupHandleForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		
-		
 		var $isWorkflowed=$form.find(":input[name='isWorkflowed']");
-		
 		if($isWorkflowed != null&&$isWorkflowed.val()=="true"){
 			var procinstId=$form.find(".procinstId_lc").val();
 			$form.find("#process").click(function(){
@@ -118,6 +116,7 @@ bswf.requirement.developmentGroupHandleForm = {
 			$form.find(":input[name='procinstKey_lc']").val($form.find(":input[name='procinstKey']").val());
 			$form.find(":input[name='procinstSubject_lc']").val($form.find(":input[name='procinstSubject']").val());
 			$form.find(":input[name='procinstTaskName_lc']").val($form.find(":input[name='procinstTaskName']").val());
+			$form.find(":input[name='procinstTaskKey_lc']").val($form.find(":input[name='procinstTaskKey']").val());
 			$form.find(":input[name='procinstTaskID_lc']").val($form.find(":input[name='procinstId']").val());
 		}else{
 			$form.find(":input[name='isWorkflow']").val(false);
