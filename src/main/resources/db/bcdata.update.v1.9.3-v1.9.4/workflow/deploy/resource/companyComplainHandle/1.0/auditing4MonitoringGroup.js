@@ -2,10 +2,10 @@ bc.namespace("bswf.companyComplainHandle");
 bswf.companyComplainHandle.auditing4MonitoringGroupForm = {
 		init : function(option,readonly){
 			var $form = $(this);
-			//是否归档
+			
 			$form.find("input[type='radio'][name='isReturn']").change(function(){
 				
-				$var rhandings=$form.find("input[type='radio'][name='isReturn']");
+				var $rhandings=$form.find("input[type='radio'][name='isReturn']");
 				var checked=false;
 				var value;
 				$rhandings.each(function(){
