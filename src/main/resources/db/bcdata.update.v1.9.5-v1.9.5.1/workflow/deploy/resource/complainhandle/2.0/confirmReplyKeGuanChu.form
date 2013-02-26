@@ -1,0 +1,67 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.complainHandle.confirmReplyKeGuanChuForm"
+	data-js='js:bc_identity,wf:confirmReplyKeGuanChu2Js_${pd_id}.js'
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width: 100%;">
+		<#if readonly == 'false'>
+		<table cellspacing="0" cellpadding="0" class="bc-grid"
+			style="width: 100%; min-width: 600px;">
+			<tr>
+				<td class="first">
+					<div style="padding-left:0.5em;width:98%;">
+						<div style="display:inline-block;vertical-align:top;">投诉调查情况：</div><br>
+						<textarea name="complaintInvestigationSituation_lc" class="autoHeight ui-widget-content" style="width:98%;border:none;" data-validate="required" placeholder="(填写调查情况)"/>
+						<input type="hidden" name="complaintInvestigationSituation" class="ui-widget-content" value='${complaintInvestigationSituation!}' data-scope="global" /> 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="first">
+					<div style="padding-left:0.5em;width:98%;">
+						<div style="display:inline-block;vertical-align:top;">投诉处理情况：</div><br>
+						<textarea name="complaintHandling_lc" class="autoHeight ui-widget-content" style="width:98%;border:none;" data-validate="required" placeholder="(填写处理情况)"/>
+						<input type="hidden" name="complaintHandling" class="ui-widget-content" value='${complaintHandling!}' data-scope="global" /> 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="first">
+					<div style="padding-left:0.5em;width:98%;">
+						<div style="display:inline-block;vertical-align:top;">回复投诉人情况：</div><br>
+						<textarea name="replyComplainantSituation_lc" class="autoHeight ui-widget-content" style="width:98%;border:none;" data-validate="required" placeholder="(填写回复情况)"/>
+						<input type="hidden" name="replyComplainantSituation" class="ui-widget-content" value='${replyComplainantSituation!}' data-scope="global" /> 
+					</div>
+				</td>
+			</tr>
+		</table>
+		<#else>
+		<table cellspacing="0" cellpadding="0" class="bc-grid"
+			style="margin: 0;padding: 0;width: 100%">
+			<tr>
+			 	<td class="first">
+					<div style="padding-left:0.5em;width:98%;">
+						<div style="display:inline-block;vertical-align:top;">投诉调查情况：</div><br>
+						<div class="text" style="width:635px;"><pre class="text" style="padding:0;margin:0;width:630px;word-break: break-all; word-wrap:break-word;font-family:inherit;">${complaintInvestigationSituation_lc!}</pre></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+			 	<td class="first">
+					<div style="padding-left:0.5em;width:98%;">
+						<div style="display:inline-block;vertical-align:top;">投诉处理情况：</div><br>
+						<div class="text" style="width:635px;"><pre class="text" style="padding:0;margin:0;width:630px;word-break: break-all; word-wrap:break-word;font-family:inherit;">${complaintHandling_lc!}</pre></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+			 	<td class="first" style="border-bottom: none;">
+					<div style="padding-left:0.5em;width:98%;">
+						<div style="display:inline-block;vertical-align:top;">回复投诉人情况：</div><br>
+						<div class="text" style="width:635px;"><pre class="text" style="padding:0;margin:0;width:630px;word-break: break-all; word-wrap:break-word;font-family:inherit;">${replyComplainantSituation_lc!}</pre></div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		</#if>
+	</div>
+</form>
