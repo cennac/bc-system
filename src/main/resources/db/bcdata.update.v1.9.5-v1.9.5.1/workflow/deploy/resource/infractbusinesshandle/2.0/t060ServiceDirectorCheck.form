@@ -1,5 +1,5 @@
 <form class="bc-page" data-type='form' style="overflow: auto;"
-	data-namespace="bswf.infractBusinessInfo.serviceDirectorCheckForm"
+	data-namespace="bswf.infractBusinessInfo.version2.serviceDirectorCheckForm"
 	data-js='js:bc_identity,bc-business/bs.js,wf:t060ServiceDirectorCheck2JS_${pd_id}.js'
 	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
 	<#if readonly == 'false'>

@@ -1,5 +1,5 @@
-bc.namespace("bswf.infractBusinessInfo");
-bswf.infractBusinessInfo.serviceSupervisionTeamCheckForm = {
+bc.namespace("bswf.infractBusinessInfo.version2");
+bswf.infractBusinessInfo.version2.serviceSupervisionTeamCheckForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 
@@ -42,7 +42,7 @@ bswf.infractBusinessInfo.serviceSupervisionTeamCheckForm = {
 			return false;
 		}
 		
-		bswf.infractBusinessInfo.serviceSupervisionTeamCheckForm.buildFormData.call(this);
+		bswf.infractBusinessInfo.version2.serviceSupervisionTeamCheckForm.buildFormData.call(this);
 
 		return true;
 	}

@@ -1,5 +1,5 @@
 <form class="bc-page" data-type='form' style="overflow: auto;"
-	data-namespace="bswf.infractBusinessInfo.motorcadeLeaderCheckForm"
+	data-namespace="bswf.infractBusinessInfo.version2.motorcadeLeaderCheckForm"
 	data-js='<#if readonly == "false">js:bc_identity,bc-business/bs.js,wf:t020MotorcadeLeaderCheck2JS_${pd_id}.js</#if>'
 	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
 	<div style="width: 650px;">
@@ -19,7 +19,7 @@
 					<#if isReturn??>
 						<input name="driver" class="bc-select ui-widget-content" type="text" style="width:98%;height:100%;border:none;margin:0;padding:0 0 2px 2px;background:none;"
 							data-validate="required" data-scope="global" 
-							data-cfg='{"strict":true,"delay":100,"minLength":1, "labelMapping":"{{name}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CARMAN_SELECT_ITEM","callback":"bswf.infractBusinessInfo.motorcadeLeaderCheckForm.afterSelectCarMan"}'
+							data-cfg='{"strict":true,"delay":100,"minLength":1, "labelMapping":"{{name}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CARMAN_SELECT_ITEM","callback":"bswf.infractBusinessInfo.version2.motorcadeLeaderCheckForm.afterSelectCarMan"}'
 							data-maxHeight="150px" 
 							data-source='bc-business/carMan/find?status=-1,0,1'/>
 						<input type="hidden" name="driver_lc"/>
@@ -28,7 +28,7 @@
 					<#else>
 						<input name="driver" class="bc-select ui-widget-content" type="text" style="width:98%;height:100%;border:none;margin:0;padding:0 0 2px 2px;background:none;"
 							data-validate="required" data-scope="global" value="${driver!}"
-							data-cfg='{"strict":true,"delay":100,"minLength":1, "labelMapping":"{{name}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CARMAN_SELECT_ITEM","callback":"bswf.infractBusinessInfo.motorcadeLeaderCheckForm.afterSelectCarMan"}'
+							data-cfg='{"strict":true,"delay":100,"minLength":1, "labelMapping":"{{name}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CARMAN_SELECT_ITEM","callback":"bswf.infractBusinessInfo.version2.motorcadeLeaderCheckForm.afterSelectCarMan"}'
 							data-maxHeight="150px" 
 							data-source='bc-business/carMan/find?status=-1,0,1'/>
 						<input type="hidden" name="driver_lc"   value="${driver!}"/> 

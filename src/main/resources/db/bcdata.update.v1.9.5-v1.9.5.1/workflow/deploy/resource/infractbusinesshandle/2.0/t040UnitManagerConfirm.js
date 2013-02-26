@@ -1,5 +1,5 @@
-bc.namespace("bswf.infractBusinessInfo");
-bswf.infractBusinessInfo.unitManagerConfirmForm = {
+bc.namespace("bswf.infractBusinessInfo.version2");
+bswf.infractBusinessInfo.version2.unitManagerConfirmForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 			
@@ -25,7 +25,7 @@ bswf.infractBusinessInfo.unitManagerConfirmForm = {
 						var completeTaskCodition_temp=$form.find(":input[name='completeTaskCodition_temp']").val();
 						//具备完成此任务的条件
 						if(task_code==completeTaskCodition_temp&&json.completeTaskCodition==task_code){
-							bswf.infractBusinessInfo.unitManagerConfirmForm.buildFormData.call($form);
+							bswf.infractBusinessInfo.version2.unitManagerConfirmForm.buildFormData.call($form);
 							callback.call($form,true);
 						}else if(task_code!=completeTaskCodition_temp&&json.completeTaskCodition==task_code){	
 							bc.msg.confirm("服务督办员已完成审核任务，但当前流程窗口未显示最新信息，是否需要重新打开当前流程窗口？"
