@@ -1,6 +1,6 @@
 <form class="bc-page" data-type='form'
 	style="overflow: auto;"
-	data-namespace="bswf.companyComplainHandle.auditing4MonitoringGroupForm"
+	data-namespace="bswf.companyComplainHandle.version2.auditing4MonitoringGroupForm"
 	data-js='js:bc_identity,bc-business/bs.js,wf:auditing4MonitoringGroup2Js_${pd_id}.js'
 	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
 	<#if readonly == 'false'>

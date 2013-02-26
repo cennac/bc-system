@@ -1,5 +1,5 @@
 bc.namespace("bswf.complainHandle");
-bswf.complainHandle.accraditationCaseAdviceInfoForm = {
+bswf.complainHandle.version2.accraditationCaseAdviceInfoForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		

@@ -1,5 +1,5 @@
 bc.namespace("bswf.companyComplainHandle");
-bswf.companyComplainHandle.auditing4MonitoringGroupForm = {
+bswf.companyComplainHandle.version2.auditing4MonitoringGroupForm = {
 		init : function(option,readonly){
 			var $form = $(this);
 			//是否归档
