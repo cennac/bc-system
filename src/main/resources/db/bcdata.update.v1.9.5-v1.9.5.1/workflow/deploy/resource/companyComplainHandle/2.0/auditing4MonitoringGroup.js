@@ -1,4 +1,4 @@
-bc.namespace("bswf.companyComplainHandle");
+bc.namespace("bswf.companyComplainHandle.version2");
 bswf.companyComplainHandle.version2.auditing4MonitoringGroupForm = {
 		init : function(option,readonly){
 			var $form = $(this);
