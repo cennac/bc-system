@@ -1,5 +1,5 @@
 <form class="bc-page" data-type='form' style="overflow: auto;"
-	data-namespace="bswf.infractBusinessInfo.serviceSupervisionTeamCloseFileForm"
+	data-namespace="bswf.infractBusinessInfo.version2.serviceSupervisionTeamCloseFileForm"
 	data-js='<#if readonly == "false">wf:t080ServiceSupervisionTeamCloseFile2JS_${pd_id}.js</#if>'
 	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
 	<#if readonly == 'false'>

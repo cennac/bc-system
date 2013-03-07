@@ -1,5 +1,5 @@
-bc.namespace("bswf.infractBusinessInfo");
-bswf.infractBusinessInfo.motorcadeLeaderCheckForm = {
+bc.namespace("bswf.infractBusinessInfo.version2");
+bswf.infractBusinessInfo.version2.motorcadeLeaderCheckForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		
@@ -96,7 +96,7 @@ bswf.infractBusinessInfo.motorcadeLeaderCheckForm = {
 	
 		}
 		
-		bswf.infractBusinessInfo.motorcadeLeaderCheckForm.buildFormData.call(this);
+		bswf.infractBusinessInfo.version2.motorcadeLeaderCheckForm.buildFormData.call(this);
 
 		return true;
 	},

@@ -1,5 +1,5 @@
-bc.namespace("bswf.infractBusinessInfo");
-bswf.infractBusinessInfo.serviceExpediterCheckForm = {
+bc.namespace("bswf.infractBusinessInfo.version2");
+bswf.infractBusinessInfo.version2.serviceExpediterCheckForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 			
@@ -30,7 +30,7 @@ bswf.infractBusinessInfo.serviceExpediterCheckForm = {
 						var completeTaskCodition_temp=$form.find(":input[name='completeTaskCodition_temp']").val();
 						//具备完成此任务的条件
 						if(task_code==completeTaskCodition_temp&&json.completeTaskCodition==task_code){
-							bswf.infractBusinessInfo.serviceExpediterCheckForm.buildFormData.call($form);
+							bswf.infractBusinessInfo.version2.serviceExpediterCheckForm.buildFormData.call($form);
 							callback.call($form,true);
 						}else if(task_code!=completeTaskCodition_temp&&json.completeTaskCodition==task_code){	
 							bc.msg.confirm("车队长已完成核查处理任务，但当前流程窗口未显示最新信息，是否需要重新打开当前流程窗口？"
