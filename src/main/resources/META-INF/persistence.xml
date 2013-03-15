@@ -185,10 +185,14 @@
 		<!-- 社保收费规则 -->
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRule</class>
 		<class>cn.bc.business.socialSecurityRule.domain.SocialSecurityRuleDetail</class>
-		
+
 		<!-- 司机招聘 -->
 		<class>cn.bc.business.tempdriver.domain.TempDriver</class>
-		
+
+		<!-- 出车准备 -->
+		<class>cn.bc.business.carPrepare.domain.CarPrepare</class>
+		<class>cn.bc.business.carPrepare.domain.CarPrepareItem</class>
+
 		<!-- ##OA子系统## -->
 		<!-- 信息 -->
 		<class>cn.bc.business.info.domain.Info</class>

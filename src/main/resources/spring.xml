@@ -11,38 +11,30 @@
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-    <!-- 
-    	如何使用 Spring 2.5 注释驱动的 IoC 功能: http://www.ibm.com/developerworks/cn/java/j-lo-spring25-ioc/
-     --> 
-        
-	<!-- 启用spring的注释驱动设置：对标注有 @Autowired 的 Bean 进行自动注入
-		如果声明了@Autowired又没有定义相应的可注入bean，将抛异常，除非设置@Autowired(required = false)；
-		如果匹配的类型bean超过一个，也会抛异常，这时可以用@Qualifier("beanName") 代替@Autowired来避免此类问题；
-		也可以配置用BeanPostProcessor的方式：
-		<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
-		
-		<context:annotationconfig/> 将隐式地向 Spring容器注册 AutowiredAnnotationBeanPostProcessor、
-		CommonAnnotationBeanPostProcessor、PersistenceAnnotationBeanPostProcessor 以及
-		RequiredAnnotationBeanPostProcessor 这 4 个 BeanPostProcessor。
-	 -->
-	<context:annotation-config/>
-	
-	<!-- 如果直接在类上使用了@Component配置，该bean需要下面的语句才能告知spring对其进行自动管理，
-		这种方式bean的作用范围通过@Scope来配置。下面的语法通过base-package指定扫描的包，也可以指定正则表达式进行过滤。
-		最好在持久层、业务层和控制层分别采用 @Repository、@Service 和 @Controller 对分层中的类进行注释，
-		而用 @Component 对那些比较中立的类进行注释。
-	 -->
-	<context:component-scan base-package="cn.bc"/>
-	
+	<!-- 如何使用 Spring 2.5 注释驱动的 IoC 功能: http://www.ibm.com/developerworks/cn/java/j-lo-spring25-ioc/ -->
+
+	<!-- 启用spring的注释驱动设置：对标注有 @Autowired 的 Bean 进行自动注入 如果声明了@Autowired又没有定义相应的可注入bean，将抛异常，除非设置@Autowired(required 
+		= false)； 如果匹配的类型bean超过一个，也会抛异常，这时可以用@Qualifier("beanName") 代替@Autowired来避免此类问题； 
+		也可以配置用BeanPostProcessor的方式： <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" 
+		/> <context:annotationconfig/> 将隐式地向 Spring容器注册 AutowiredAnnotationBeanPostProcessor、 
+		CommonAnnotationBeanPostProcessor、PersistenceAnnotationBeanPostProcessor 
+		以及 RequiredAnnotationBeanPostProcessor 这 4 个 BeanPostProcessor。 -->
+	<context:annotation-config />
+
+	<!-- 如果直接在类上使用了@Component配置，该bean需要下面的语句才能告知spring对其进行自动管理， 这种方式bean的作用范围通过@Scope来配置。下面的语法通过base-package指定扫描的包，也可以指定正则表达式进行过滤。 
+		最好在持久层、业务层和控制层分别采用 @Repository、@Service 和 @Controller 对分层中的类进行注释， 而用 @Component 
+		对那些比较中立的类进行注释。 -->
+	<context:component-scan base-package="cn.bc" />
+
 	<!-- 项目的数据库连接及事务管理配置 -->
 	<import resource="classpath:spring-db.xml" />
-	
-	<!-- activiti配置  -->
+
+	<!-- activiti配置 -->
 	<import resource="classpath:spring-activiti.xml" />
-	
+
 	<!-- 远程服务配置 -->
 	<import resource="classpath:spring-remoting.xml" />
-	
+
 	<!-- web通用 -->
 	<import resource="classpath:cn/bc/web/spring.xml" />
 
@@ -51,66 +43,68 @@
 
 	<!-- bc平台 -->
 	<import resource="classpath:cn/bc/identity/spring.xml" />
-	<import resource="classpath:cn/bc/desktop/spring.xml"/>
-	<import resource="classpath:cn/bc/report/spring.xml"/>
-	<import resource="classpath:cn/bc/message/spring.xml"/>
-	<import resource="classpath:cn/bc/work/spring.xml"/>
-	<import resource="classpath:cn/bc/log/spring.xml"/>
-	<import resource="classpath:cn/bc/bulletin/spring.xml"/>
-	<import resource="classpath:cn/bc/docs/spring.xml"/>
-	<import resource="classpath:cn/bc/feedback/spring.xml"/>
-	<import resource="classpath:cn/bc/option/spring.xml"/>
-	<import resource="classpath:cn/bc/scheduler/spring.xml"/>
-	<import resource="classpath:cn/bc/chat/spring.xml"/>
-	<import resource="classpath:cn/bc/sync/spring.xml"/>
-	<import resource="classpath:cn/bc/websocket/spring.xml"/>
-	<import resource="classpath:cn/bc/placeorigin/spring.xml"/>
-	<import resource="classpath:cn/bc/template/spring.xml"/>
-	<import resource="classpath:cn/bc/investigate/spring.xml"/>
-	<import resource="classpath:cn/bc/netdisk/spring.xml"/>
-	
+	<import resource="classpath:cn/bc/desktop/spring.xml" />
+	<import resource="classpath:cn/bc/report/spring.xml" />
+	<import resource="classpath:cn/bc/message/spring.xml" />
+	<import resource="classpath:cn/bc/work/spring.xml" />
+	<import resource="classpath:cn/bc/log/spring.xml" />
+	<import resource="classpath:cn/bc/bulletin/spring.xml" />
+	<import resource="classpath:cn/bc/docs/spring.xml" />
+	<import resource="classpath:cn/bc/feedback/spring.xml" />
+	<import resource="classpath:cn/bc/option/spring.xml" />
+	<import resource="classpath:cn/bc/scheduler/spring.xml" />
+	<import resource="classpath:cn/bc/chat/spring.xml" />
+	<import resource="classpath:cn/bc/sync/spring.xml" />
+	<import resource="classpath:cn/bc/websocket/spring.xml" />
+	<import resource="classpath:cn/bc/placeorigin/spring.xml" />
+	<import resource="classpath:cn/bc/template/spring.xml" />
+	<import resource="classpath:cn/bc/investigate/spring.xml" />
+	<import resource="classpath:cn/bc/netdisk/spring.xml" />
+
 	<!-- bc平台:Workflow -->
 	<import resource="classpath:cn/bc/workflow/spring.xml" />
-	<import resource="classpath:cn/bc/workflow/todo/spring.xml"/>
-	<import resource="classpath:cn/bc/workflow/deploy/spring.xml"/>
-	<import resource="classpath:cn/bc/workflow/flowattach/spring.xml"/>
-	<import resource="classpath:cn/bc/workflow/historictaskinstance/spring.xml"/>
+	<import resource="classpath:cn/bc/workflow/todo/spring.xml" />
+	<import resource="classpath:cn/bc/workflow/deploy/spring.xml" />
+	<import resource="classpath:cn/bc/workflow/flowattach/spring.xml" />
+	<import resource="classpath:cn/bc/workflow/historictaskinstance/spring.xml" />
 
 	<!-- bc营运管理子系统 -->
-	<import resource="classpath:cn/bc/business/cert/spring.xml"/>
-	<import resource="classpath:cn/bc/business/contract/spring.xml"/>
-	<import resource="classpath:cn/bc/business/carman/spring.xml"/>
-	<import resource="classpath:cn/bc/business/car/spring.xml"/>
+	<import resource="classpath:cn/bc/business/cert/spring.xml" />
+	<import resource="classpath:cn/bc/business/contract/spring.xml" />
+	<import resource="classpath:cn/bc/business/carman/spring.xml" />
+	<import resource="classpath:cn/bc/business/car/spring.xml" />
 	<import resource="classpath:cn/bc/business/motorcade/spring.xml" />
 	<import resource="classpath:cn/bc/business/charger/spring.xml" />
-	<import resource="classpath:cn/bc/business/blacklist/spring.xml"/>
-	<import resource="classpath:cn/bc/business/runcase/spring.xml"/>
-	<import resource="classpath:cn/bc/business/ws/spring.xml"/>
-	<import resource="classpath:cn/bc/business/spider/spring.xml"/>
-	<import resource="classpath:cn/bc/business/sync/spring.xml"/>
-	<import resource="classpath:cn/bc/business/injury/spring.xml"/>
-	<import resource="classpath:cn/bc/business/insuranceType/spring.xml"/>
-	<import resource="classpath:cn/bc/business/arrange/spring.xml"/>
-	<import resource="classpath:cn/bc/business/policy/spring.xml"/>
-	<import resource="classpath:cn/bc/business/certLost/spring.xml"/>
-	<import resource="classpath:cn/bc/business/carmodel/spring.xml"/>
-	<import resource="classpath:cn/bc/business/mix/spring.xml"/>
-	<import resource="classpath:cn/bc/business/carlpg/spring.xml"/>
-	<import resource="classpath:cn/bc/business/invoice/spring.xml"/>
-	<import resource="classpath:cn/bc/business/ownership/spring.xml"/>
-	<import resource="classpath:cn/bc/business/fee/template/spring.xml"/>
-	<import resource="classpath:cn/bc/business/fee/spring.xml"/>
-	<import resource="classpath:cn/bc/business/socialSecurityRule/spring.xml"/>
-	<import resource="classpath:cn/bc/business/tempdriver/spring.xml"/>
-	
+	<import resource="classpath:cn/bc/business/blacklist/spring.xml" />
+	<import resource="classpath:cn/bc/business/runcase/spring.xml" />
+	<import resource="classpath:cn/bc/business/ws/spring.xml" />
+	<import resource="classpath:cn/bc/business/spider/spring.xml" />
+	<import resource="classpath:cn/bc/business/sync/spring.xml" />
+	<import resource="classpath:cn/bc/business/injury/spring.xml" />
+	<import resource="classpath:cn/bc/business/insuranceType/spring.xml" />
+	<import resource="classpath:cn/bc/business/arrange/spring.xml" />
+	<import resource="classpath:cn/bc/business/policy/spring.xml" />
+	<import resource="classpath:cn/bc/business/certLost/spring.xml" />
+	<import resource="classpath:cn/bc/business/carmodel/spring.xml" />
+	<import resource="classpath:cn/bc/business/mix/spring.xml" />
+	<import resource="classpath:cn/bc/business/carlpg/spring.xml" />
+	<import resource="classpath:cn/bc/business/invoice/spring.xml" />
+	<import resource="classpath:cn/bc/business/ownership/spring.xml" />
+	<import resource="classpath:cn/bc/business/fee/template/spring.xml" />
+	<import resource="classpath:cn/bc/business/fee/spring.xml" />
+	<import resource="classpath:cn/bc/business/socialSecurityRule/spring.xml" />
+	<import resource="classpath:cn/bc/business/tempdriver/spring.xml" />
+	<import resource="classpath:cn/bc/business/carPrepare/spring.xml" />
+
 	<!-- bc办公管理子系统 -->
-	<import resource="classpath:cn/bc/business/info/spring.xml"/>
+	<import resource="classpath:cn/bc/business/info/spring.xml" />
 
 	<!-- bc营运管理子系统 流程 -->
-	<import resource="classpath:cn/bc/business/workflow/spring.xml"/>
-	<import resource="classpath:cn/bc/business/workflow/confirmretiredcars/spring.xml"/>
-	<import resource="classpath:cn/bc/business/workflow/generalorder/spring.xml"/>
-	
+	<import resource="classpath:cn/bc/business/workflow/spring.xml" />
+	<import
+		resource="classpath:cn/bc/business/workflow/confirmretiredcars/spring.xml" />
+	<import resource="classpath:cn/bc/business/workflow/generalorder/spring.xml" />
+
 	<!-- 项目自身的配置 -->
 	<import resource="classpath:spring-mail.xml" />
 	<import resource="classpath:spring-system.xml" />

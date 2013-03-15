@@ -376,6 +376,12 @@
 			<artifactId>bc-business-tempdriver</artifactId>
 			<version>${business.version}</version>
 		</dependency>
+		<!-- 出车准备 -->
+		<dependency>
+			<groupId>cn.bc.business</groupId>
+			<artifactId>bc-business-carPrepare</artifactId>
+			<version>${business.version}</version>
+		</dependency>
 
 		<!-- 综合查询 -->
 		<dependency>
