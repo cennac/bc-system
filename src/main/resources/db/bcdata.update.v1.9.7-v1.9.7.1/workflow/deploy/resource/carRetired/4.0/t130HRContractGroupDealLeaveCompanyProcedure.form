@@ -1,0 +1,27 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.HRContractGroupDealLeaveCompanyProcedureForm"
+	data-js=''
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			该车辆驾驶员
+			<input type="text" name="hrcgdlcp_driver" data-scope="global"  class="ui-widget-content" style="width:12em;" 
+				data-validate="required" />
+			已经签署离职相关文件，停保月份： 
+			<input type="text" name="hrcgdlcp_stopMonth" data-scope="global" class="ui-widget-content" style="width:4em;" data-validate="{'required':'true','type':'number'}" />月。(${driverName!})
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="hrcgdlcp_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			该车辆驾驶员&nbsp;${hrcgdlcp_driver!}&nbsp;已经签署离职相关文件，停保月份：${hrcgdlcp_stopMonth!}月。
+		</div>
+		<div style="padding-left:0.5em;">
+			备注：${hrcgdlcp_desc!}
+		</div>
+	</#if>
+	</div>
+</form>
