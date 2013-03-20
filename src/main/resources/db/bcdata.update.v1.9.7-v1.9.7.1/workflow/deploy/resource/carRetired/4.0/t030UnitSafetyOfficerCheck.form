@@ -1,0 +1,51 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.UnitSafetyOfficerCheckForm"
+	data-js="<#if readonly == 'false'>wf:t030UnitSafetyOfficerCheck2JS_${pd_id}.js</#if>"
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+		<table cellspacing="2" cellpadding="0" style="width:640px">
+			<tr class="widthMarker">
+				<td style="width: 11em;">&nbsp;</td>
+				<td style="width: 40em;">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label">*交通事故处理完毕：</td>
+				<td class="value">
+					<input type="radio" class="ignore" name="isDeal" value="true"  style="width:auto;" />
+					<label>是</label>
+					<input type="radio" class="ignore" name="isDeal" value="false"  style="width:auto;" />
+					<label>否</label>
+					<input type="hidden" name="usoc_isDeal" data-scope="global" data-type="boolean"/>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel">*遗留问题说明：</td>
+				<td class="value">
+					<textarea name="usoc_desc"  data-scope="global" rows="3" data-validate="required" class="ui-widget-content noresize" placeholder="如果没有，请填写“无”。"></textarea>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	<#else>
+		<table cellspacing="2" cellpadding="0" style="width:640px">
+			<tr class="widthMarker">
+				<td style="width: 10.5em;">&nbsp;</td>
+				<td style="width: 41em;">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label">交通事故处理完毕：</td>
+				<td class="value">
+					<#if usoc_isDeal??><#if usoc_isDeal>是<#else>否</#if></#if>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td style="text-align: left;padding-left:8px;" colspan="2">遗留问题说明：${usoc_desc!}</td>
+				<td></td>
+			</tr>
+		</table>
+	</#if>
+</form>

@@ -1,0 +1,180 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.CarTechnologyGroupCheckCertAndClosingDateForm"
+	data-js=''
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px;">
+		<div class="ui-webget-header title" style="padding-left: 0.5em;font-weight: bold;">
+			<span class="text">证件:</span>
+		</div>
+	<#if readonly == 'false'>
+		<table class="ui-widget-content bc-grid"cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border:none;">
+			<tr class="header row">
+				<td class="first" 	style="width: 10em;border-top:1px solid #CCC;">证件名称</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">证件情况</td>
+				<td class="middle" 	style="width: 25em;border-top:1px solid #CCC;">备注</td>
+				<td class="last" 	style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >行驶证</td>
+				<td class="middle" >
+					<select name="ctgccacd_SSZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="ctgccacd_SSZDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >购置税证</td>
+				<td class="middle" >
+					<select name="ctgccacd_GZSZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="ctgccacd_GZSZDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >道路运输证</td>
+				<td class="middle" >
+					<select name="ctgccacd_DLYSZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="ctgccacd_DLYSZDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >强检证</td>
+				<td class="middle" >
+					<select name="ctgccacd_QJZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="ctgccacd_QJZDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >保险卡</td>
+				<td class="middle" >
+					<select name="ctgccacd_BXC" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="ctgccacd_BXCDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >年票</td>
+				<td class="middle" >
+					<select name="ctgccacd_NP" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="ctgccacd_NPDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+		</table>
+		<div style="padding-left:0.5em;">
+			各项费用结算至：
+			<div class="relative" style="display:inline-block;">
+				<input type="text" name="ctgccacd_endDate" class="bc-date ui-widget-content" style="width:8em;" data-scope="global" data-validate='{"type":"date","required":true}'/>
+				<ul class="inputIcons">
+					<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+				</ul>
+			</div>，24时止。
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="ctgccacd_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<table class="ui-widget-content bc-grid"cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border:none;">
+			<tr class="header row">
+				<td class="first" 	style="width: 10em;border-top:1px solid #CCC;">证件名称</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">证件情况</td>
+				<td class="middle" 	style="width: 25em;border-top:1px solid #CCC;">备注</td>
+				<td class="last" 	style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >行驶证</td>
+				<td class="middle" >${ctgccacd_SSZ!}</td>
+				<td class="middle" >${ctgccacd_SSZDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >购置税证</td>
+				<td class="middle" >${ctgccacd_GZSZ!}</td>
+				<td class="middle" >${ctgccacd_GZSZDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >道路运输证</td>
+				<td class="middle" >${ctgccacd_DLYSZ!}</td>
+				<td class="middle" >${ctgccacd_DLYSZDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >强检证</td>
+				<td class="middle" >${ctgccacd_QJZ!}</td>
+				<td class="middle" >${ctgccacd_QJZDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >保险卡</td>
+				<td class="middle" >${ctgccacd_BXC!}</td>
+				<td class="middle" >${ctgccacd_BXCDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >年票</td>	
+				<td class="middle" >${ctgccacd_NP!}</td>
+				<td class="middle" >${ctgccacd_NPDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+		</table>
+		<div style="padding-left:0.5em;">
+			各项费用结算至：<#if ctgccacd_endDate??>${ctgccacd_endDate!}日24时止。</#if>
+		</div>
+		<div style="padding-left:0.5em;">
+			备注：${ctgccacd_desc!}
+		</div>
+	</#if>
+	</div>
+</form>

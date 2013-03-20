@@ -93,6 +93,11 @@
 		<!-- 网络硬盘 -->
 		<class>cn.bc.netdisk.domain.NetdiskFile</class>
 		<class>cn.bc.netdisk.domain.NetdiskShare</class>
+		
+		<!-- 访问控制 -->
+		<class>cn.bc.acl.domain.AccessActor</class>
+		<class>cn.bc.acl.domain.AccessHistory</class>
+		<class>cn.bc.acl.domain.AccessDoc</class>
 
 		<!-- 流转引擎 -->
 		<class>cn.bc.workflow.domain.ExcutionLog</class>
@@ -100,7 +105,6 @@
 		<class>cn.bc.workflow.flowattach.domain.FlowAttach</class>
 		<class>cn.bc.workflow.deploy.domain.Deploy</class>
 		<class>cn.bc.workflow.deploy.domain.DeployResource</class>
-
 
 		<!-- ##营运管理子系统## -->
 		<!-- 车辆、车队 -->

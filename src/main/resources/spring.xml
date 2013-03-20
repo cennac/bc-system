@@ -68,6 +68,7 @@
 	<import resource="classpath:cn/bc/template/spring.xml"/>
 	<import resource="classpath:cn/bc/investigate/spring.xml"/>
 	<import resource="classpath:cn/bc/netdisk/spring.xml"/>
+	<import resource="classpath:cn/bc/acl/spring.xml"/>
 	
 	<!-- bc平台:Workflow -->
 	<import resource="classpath:cn/bc/workflow/spring.xml" />

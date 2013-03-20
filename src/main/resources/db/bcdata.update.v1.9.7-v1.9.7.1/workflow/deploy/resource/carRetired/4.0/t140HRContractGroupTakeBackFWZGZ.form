@@ -1,0 +1,40 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.HRContractGroupTakeBackFWZGZForm"
+	data-js="<#if readonly == 'false'>wf:t140HRContractGroupTakeBackCert2JS_${pd_id}.js</#if>"
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;width:14em;">车辆驾驶员及服务资格证信息：</div>
+			<input type="text" class="ui-widget-content" name="hrcgtbf_driverAndFZGZ"  data-scope="global"   style="width:20em;"  />
+			<input type="hidden" class="ignore" name="driverName" value="${driverName!}"/>
+			<input type="hidden" class="ignore" name="driverFWZG" value="${driverFWZG!}"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;width:14em;">已回收服务资格证司机：</div>
+			<input type="text" class="ui-widget-content" name="hrcgtbf_driver_takeBack" data-scope="global" style="width:20em;"  />
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;width:14em;">遗失服务资格证司机：</div>
+			<input type="text" class="ui-widget-content" name="hrcgtbf_driver_lose"   data-scope="global"   style="width:20em;"  />
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="hrcgtbf_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			车辆驾驶员及服务资格证信息：${hrcgtbf_driverAndFZGZ!}
+		</div>
+		<div style="padding-left:0.5em;">
+			已回收服务资格证司机：${hrcgtbf_driver_takeBack!}
+		</div>
+		<#if hrcgtbf_driver_lose?? && hrcgtbf_driver_lose!=''><div style="padding-left:0.5em;">
+			遗失服务资格证司机：${hrcgtbf_driver_lose!}
+		</div></#if>
+		<div style="padding-left:0.5em;">
+			备注：${hrcgtbf_desc!}
+		</div>
+	</#if>
+	</div>
+</form>
