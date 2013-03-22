@@ -20,3 +20,4 @@ build
 bin
 temp
 update-*.bat
+.DS_Store
