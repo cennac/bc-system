@@ -20,6 +20,8 @@
 	<bean id="crudService" class="cn.bc.core.service.DefaultCrudService"
 		p:crudDao-ref="crudDao" />
 
+	<bean id="sidebarService" class="cn.bc.index.SidebarServiceImpl"/>
+
 	<!-- struts的配置 -->
 	<bean id="IndexAction" class="cn.bc.index.IndexAction" scope="prototype" />
 	<bean id="ExampleListAction" class="cn.bc.example.ExampleListAction"
