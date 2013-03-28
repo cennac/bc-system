@@ -3,8 +3,8 @@
  */
 package cn.bc.index;
 
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -12,7 +12,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -58,42 +57,13 @@ public class SidebarAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws Exception {
 		Date startTime = new Date();
-		JSONArray jsons = new JSONArray();
-		JSONObject json;
 		SystemContext context = (SystemContext) this.session.get(Context.KEY);
-
-		Calendar now;
-		// test: todo
-		for (int i = 1; i < 3; i++) {
-			json = new JSONObject();
-			json.put("id", "todo:" + i);
-			json.put("dbid", i);
-			json.put("type", "todo");
-			now = Calendar.getInstance();
-			now.add(Calendar.DATE, i-1);
-			json.put("time", DateUtils.formatCalendar2Second(now));
-			json.put("title", "待办标题" + i);
-			json.put("content", "待办内容" + i);
-			jsons.put(json);
-		}
-		// test: email
-		for (int i = 10; i < 13; i++) {
-			json = new JSONObject();
-			json.put("id", i);
-			json.put("dbid", i);
-			json.put("type", "email");
-			now = Calendar.getInstance();
-			now.add(Calendar.DATE, i-1);
-			json.put("time", DateUtils.formatCalendar2Second(now));
-			json.put("title", "邮件标题" + i);
-			json.put("content", "邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容邮件内容" + i);
-			jsons.put(json);
-		}
+		List<Map<String, Object>> all = this.sidebarService.find(context);
 
 		if (logger.isInfoEnabled())
 			logger.info("get sidebar data：" + DateUtils.getWasteTime(startTime));
 
-		this.json = jsons.toString();
+		this.json = new JSONArray(all).toString();
 		return "json";
 	}
 }
