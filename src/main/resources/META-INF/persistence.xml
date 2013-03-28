@@ -81,6 +81,13 @@
 		<class>cn.bc.investigate.domain.QuestionItem</class>
 		<class>cn.bc.investigate.domain.Respond</class>
 		<class>cn.bc.investigate.domain.Grade</class>
+		
+		<!-- email -->
+		<class>cn.bc.email.domain.Email</class>
+		<class>cn.bc.email.domain.EmailTo</class>
+		<class>cn.bc.email.domain.EmailHistory</class>
+		<class>cn.bc.email.domain.EmailTrash</class>
+
 
 		<!-- 籍贯 -->
 		<class>cn.bc.placeorigin.domain.PlaceOrigin</class>
