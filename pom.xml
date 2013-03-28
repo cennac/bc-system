@@ -527,6 +527,12 @@
 			<artifactId>bc-acl</artifactId>
 			<version>${framework.version}</version>
 		</dependency>
+		<!-- 邮件 -->
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-email</artifactId>
+			<version>${framework.version}</version>
+		</dependency>
 
 		<!-- 工作流程 -->
 		<dependency>
@@ -552,11 +558,6 @@
 		<dependency>
 			<groupId>cn.bc.business.workflow</groupId>
 			<artifactId>bc-business-workflow-complainhandle</artifactId>
-			<version>${business.workflow.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.bc.business.workflow</groupId>
-			<artifactId>bc-business-workflow-requestservicecertificate</artifactId>
 			<version>${business.workflow.version}</version>
 		</dependency>
 
