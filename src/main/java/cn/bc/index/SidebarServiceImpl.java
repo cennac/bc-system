@@ -47,33 +47,33 @@ public class SidebarServiceImpl implements SidebarService {
 
 		// -- sql:个人待办
 		StringBuffer sql4todo = new StringBuffer();
-		sql4todo.append("(select 'todo' as type,t.proc_inst_id_ id\r\n");
+		sql4todo.append("(select 'todo'::varchar as type,t.proc_inst_id_ id\r\n");
 		sql4todo.append("	,(select e.author_name from bc_wf_excution_log e where e.tid=t.id_ and type_='task_delegate') special\r\n");
 		sql4todo.append("	,t.create_time_ as time,t.name_ title,pd.name_ as content\r\n");
-		sql4todo.append("	,getprocessinstancesubject(t.proc_inst_id_) p_subject,t.id_ t_id,t.due_date_ t_duedate,pi.suspension_state_ p_status\r\n");
+		sql4todo.append("	,getprocessinstancesubject(t.proc_inst_id_) p_subject,t.id_ t_id,t.due_date_ t_duedate,ec.suspension_state_ p_status\r\n");
 		sql4todo.append("	from act_ru_task t\r\n");
-		sql4todo.append("	inner join act_ru_execution pi on pi.proc_inst_id_ = t.proc_inst_id_\r\n");
+		sql4todo.append("	inner join act_ru_execution ec on ec.id_ = t.execution_id_\r\n");
 		sql4todo.append("	inner join act_re_procdef pd on pd.id_ = t.proc_def_id_ \r\n");
-		sql4todo.append("	where pi.suspension_state_=1 \r\n");
+		sql4todo.append("	where ec.suspension_state_=1 and pd.suspension_state_=1 \r\n");
 		sql4todo.append("	and t.assignee_ = ?)");
 		args.add(userCode);
 
 		// -- sql:岗位待办
 		StringBuffer sql4g = new StringBuffer();
 		if (!emptyGroup) {
-			sql4g.append("(select 'groupTodo' as type,t.proc_inst_id_ id\r\n");
+			sql4g.append("(select 'groupTodo'::varchar as type,t.proc_inst_id_ id\r\n");
 			sql4g.append("	,g.name special\r\n");
 			sql4g.append("	,t.create_time_ as time,t.name_ title,pd.name_ as content\r\n");
-			sql4g.append("	,getprocessinstancesubject(t.proc_inst_id_) p_subject,t.id_ t_id,t.due_date_ t_duedate,pi.suspension_state_ p_status\r\n");
+			sql4g.append("	,getprocessinstancesubject(t.proc_inst_id_) p_subject,t.id_ t_id,t.due_date_ t_duedate,ec.suspension_state_ p_status\r\n");
 			sql4g.append("	from act_ru_task t\r\n");
-			sql4g.append("	inner join act_ru_execution pi on pi.proc_inst_id_ = t.proc_inst_id_\r\n");
+			sql4g.append("	inner join act_ru_execution ec on ec.id_ = t.execution_id_\r\n");
 			sql4g.append("	inner join act_re_procdef pd on pd.id_ = t.proc_def_id_ \r\n");
 			sql4g.append("	inner join act_ru_identitylink l on l.task_id_ = t.id_\r\n");
 			sql4g.append("	inner join bc_identity_actor g on g.code = l.group_id_\r\n");
-			sql4g.append("	where pi.suspension_state_=1 \r\n");
+			sql4g.append("	where ec.suspension_state_=1 and pd.suspension_state_=1 \r\n");
 			sql4g.append("	and t.assignee_ is null\r\n");
 			if (groupCodes.size() == 1) {
-				sql4g.append("	and l.group_id_ = ?)");
+				sql4g.append("	and l.group_id_ = ?");
 			} else {
 				sql4g.append("	and l.group_id_ in(?");
 				for (int i = 1; i < groupCodes.size(); i++) {
@@ -107,7 +107,7 @@ public class SidebarServiceImpl implements SidebarService {
 
 		// -- sql:未读邮件
 		StringBuffer sql4e = new StringBuffer();
-		sql4e.append("(select 'email' as type,'email'||':'||e.id id,''||e.id as dbid,e.send_date as time,e.subject title,null as content,null special\r\n");
+		sql4e.append("(select 'email'::varchar as type,'email'||':'||e.id id,''||e.id as dbid,e.send_date as time,e.subject title,null as content,null special\r\n");
 		sql4e.append("	from bc_email_to t\r\n");
 		sql4e.append("	inner join bc_email e on e.id=t.pid\r\n");
 		sql4e.append("	inner join bc_identity_actor a on a.id=e.sender_id\r\n");
