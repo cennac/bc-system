@@ -63,6 +63,10 @@ public class SidebarAction extends ActionSupport implements SessionAware {
 		if (logger.isInfoEnabled())
 			logger.info("get sidebar data：" + DateUtils.getWasteTime(startTime));
 
+		// 将日期转换为字符串
+		for (Map<String, Object> m : all) {
+			m.put("time", DateUtils.formatDateTime((Date) m.get("time")));
+		}
 		this.json = new JSONArray(all).toString();
 		return "json";
 	}

@@ -87,11 +87,14 @@ public class SidebarServiceImpl implements SidebarService {
 
 		// 合并个人待办和岗位待办的语句
 		StringBuffer sql = new StringBuffer();
-		sql.append("(select type,type||':'||id as id,id as dbid,time\r\n");
-		sql.append("	,(case when type='todo'\r\n");
-		sql.append("		then (case when special is null or special='' then title else '['||special||'委托您]'||title end)\r\n");
-		sql.append("		else special end) title\r\n");
-		sql.append("	,(case when p_subject is null or p_subject='' then content else p_subject end) as content\r\n");
+		sql.append("(select type,type||':'||id||':'||t_id as id,id as dbid,time\r\n");
+		sql.append("	,title\r\n");
+		sql.append("	,(case when type='todo' and special is null and p_subject is null then content\r\n");
+		sql.append("		when type='todo' and special is not null and p_subject is null then '['||special||'委托您]'||content\r\n");
+		sql.append("		when type='todo' and special is not null and p_subject is not null then '['||special||'委托您]'||p_subject\r\n");
+		sql.append("		when type='groupTodo' and special is not null and p_subject is null then '['||special||']'||content\r\n");
+		sql.append("		when type='groupTodo' and special is not null and p_subject is not null then '['||special||']'||p_subject\r\n");
+		sql.append("		else content end) as content\r\n");
 		sql.append("	,special\r\n");
 		if (emptyGroup) {// 无岗位待办
 			sql.append("from \r\n");
