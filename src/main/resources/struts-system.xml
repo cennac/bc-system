@@ -58,6 +58,12 @@
 			<result>/bc/index/desktop.jsp</result>
 		</action> -->
 	</package>
+	<!-- 主页边栏配置 -->
+	<package name="indexSidebar" extends="spec-default" namespace="/">
+		<action name="sidebar" class="sidebarAction">
+			<result name="json" type="freemarker">/cn/bc/web/struts2/json.ftl</result>
+		</action>
+	</package>
 	
 	<!-- for test: 图表 -->
 	<package name="chart" extends="bc-default" namespace="/bc/chart">
