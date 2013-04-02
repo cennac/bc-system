@@ -227,3 +227,122 @@ INSERT INTO bc_option_item(id,pid,key_,value_,order_,status_)
 select NEXTVAL('CORE_SEQUENCE'),id,'ProcessInstance','流程实例','0011',0
 from bc_option_group where key_='operateLog.ptype' 
 and not EXISTS(select 1 from bc_option_item where key_='ProcessInstance');
+
+
+
+
+---驾驶员交通违法处理v2.0(处理累计扣分大于12分的情况)
+-- 插入驾驶员交通违法处理部署数据
+insert into bc_wf_deploy (ID,UID_,ORDER_,STATUS_,TYPE_,CATEGORY,CODE,VERSION_,SUBJECT,PATH,SIZE_,SOURCE,FILE_DATE,AUTHOR_ID) 
+	select NEXTVAL('CORE_SEQUENCE'),'Deploy.CarTrafficHandle.2','6',-1,1,'营运系统/业务流程','CarTrafficHandle','2.0','驾驶员交通违法处理流程'
+	,'resource/carTrafficHandle/2.0/CarTrafficHandle.bar',70063,'CarTrafficHandle.bar',now(),id 
+	from BC_IDENTITY_ACTOR_HISTORY where actor_name='系统管理员' and current=true
+	and not exists(select 1 from bc_wf_deploy where code='CarTrafficHandle' and version_='2.0');
+
+
+-- 插入使用人(超级管理员)
+insert into bc_wf_deploy_actor (did,aid)
+	select d.id,a.id
+	from bc_wf_deploy d,bc_identity_actor a
+	where (d.code = 'CarTrafficHandle' and d.version_ = '2.0') and a.code in('chaojiguanliyuan')
+	and not exists(select 1 from bc_wf_deploy_actor where did =(select id from bc_wf_deploy where code='CarTrafficHandle' and version_='2.0') 
+					and aid in (select id from bc_identity_actor where code in('chaojiguanliyuan')));
+
+
+
+
+
+
+--车队长确认违法驾驶员
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.340',d.id,'confirmIllegal4Driver','车队长确认违法驾驶员form文件'
+	,'carTrafficHandle/2.0/confirmIllegal4Driver.form',4745,'confirmIllegal4Driver.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.340');
+
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.332',d.id,'confirmIllegal4Driver2Js','车队长确认违法驾驶员js文件'
+	,'carTrafficHandle/2.0/confirmIllegal4Driver.js',4745,'confirmIllegal4Driver.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.332');
+
+--车队长跟踪处理
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.333',d.id,'trackingProcessing','车队长跟踪处理form文件'
+	,'carTrafficHandle/2.0/trackingProcessing.form',4745,'trackingProcessing.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.333');
+
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.334',d.id,'trackingProcessing2Js','车队长跟踪处理js文件'
+	,'carTrafficHandle/2.0/trackingProcessing.js',4745,'trackingProcessing.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.334');
+
+--安全管理组指定交通违法信息
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.335',d.id,'specifiesTrafficInfo','安全管理组指定交通违法信息form文件'
+	,'carTrafficHandle/2.0/specifiesTrafficInfo.form',4745,'specifiesTrafficInfo.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.335');
+--人力资源部停运处理
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.336',d.id,'decommissioningProcessing','人力资源部停运处理form文件'
+	,'carTrafficHandle/2.0/decommissioningProcessing.form',4745,'decommissioningProcessing.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.336');
+--分公司经理确认
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.337',d.id,'branchManagerToConfirm','分公司经理确认form文件'
+	,'carTrafficHandle/2.0/branchManagerToConfirm.form',4745,'branchManagerToConfirm.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.337');
+--营运总监审批
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.338',d.id,'examinationAndapproval','营运总监审批form文件'
+	,'carTrafficHandle/2.0/examinationAndapproval.form',4745,'examinationAndapproval.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.338');
+	
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.343',d.id,'examinationAndapproval2Js','营运总监审批js文件'
+	,'carTrafficHandle/2.0/examinationAndapproval.js',4745,'examinationAndapproval.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.343');
+	
+--相关部门协办
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.344',d.id,'departmentCooperation','相关部门协办form文件'
+	,'carTrafficHandle/2.0/departmentCooperation.form',4745,'departmentCooperation.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.344');
+
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.345',d.id,'departmentCooperation2Js','相关部门协办js文件'
+	,'carTrafficHandle/2.0/departmentCooperation.js',4745,'departmentCooperation.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.345');
+	
+--安全管理组确认
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.339',d.id,'confirmTrafficInfo','安全管理组确认form文件'
+	,'carTrafficHandle/2.0/confirmTrafficInfo.form',4745,'confirmTrafficInfo.form',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='form'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.339');
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.341',d.id,'confirmTrafficInfo2Js','安全管理组确认js文件'
+	,'carTrafficHandle/2.0/confirmTrafficInfo.js',4745,'confirmTrafficInfo.js',t.id,false
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='js'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.341');
+-- 插入流程模板
+insert into bc_wf_deploy_resource (ID,UID_,PID,CODE,SUBJECT,PATH,SIZE_,SOURCE,TYPE_ID,FORMATTED) 
+	select NEXTVAL('CORE_SEQUENCE'),'DeployResource.CarTrafficHandle.342',d.id,'carTrafficHandle_commonTemplate','驾驶员交通违法处理审批表'
+	,'carTrafficHandle/2.0/carTrafficHandle_commonTemplate.html',36152,'carTrafficHandle_commonTemplate.html',t.id,true
+	from BC_WF_DEPLOY d,BC_TEMPLATE_TYPE t where d.code='CarTrafficHandle' and d.version_='2.0' and t.code='html'
+	and not exists(select 1 from bc_wf_deploy_resource  where uid_='DeployResource.CarTrafficHandle.342');
+insert into bc_wf_deploy_resource_param (RID,PID) 
+	select r.id,p.id FROM bc_wf_deploy_resource r,bc_template_param p
+	where r.code='carTrafficHandle_commonTemplate' and r.uid_ ='DeployResource.CarTrafficHandle.342' and p.name='获取流程全局参数'
+	and not exists(select 1 from bc_wf_deploy_resource_param 
+				where rid=(select id from bc_wf_deploy_resource where code='carTrafficHandle_commonTemplate' and uid_ ='DeployResource.CarTrafficHandle.342') 
+					and pid=(select id from bc_template_param where name='获取流程全局参数'));
