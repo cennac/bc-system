@@ -43,24 +43,26 @@
 
 	<!-- bc平台 -->
 	<import resource="classpath:cn/bc/identity/spring.xml" />
-	<import resource="classpath:cn/bc/desktop/spring.xml" />
-	<import resource="classpath:cn/bc/report/spring.xml" />
-	<import resource="classpath:cn/bc/message/spring.xml" />
-	<import resource="classpath:cn/bc/work/spring.xml" />
-	<import resource="classpath:cn/bc/log/spring.xml" />
-	<import resource="classpath:cn/bc/bulletin/spring.xml" />
-	<import resource="classpath:cn/bc/docs/spring.xml" />
-	<import resource="classpath:cn/bc/feedback/spring.xml" />
-	<import resource="classpath:cn/bc/option/spring.xml" />
-	<import resource="classpath:cn/bc/scheduler/spring.xml" />
-	<import resource="classpath:cn/bc/chat/spring.xml" />
-	<import resource="classpath:cn/bc/sync/spring.xml" />
-	<import resource="classpath:cn/bc/websocket/spring.xml" />
-	<import resource="classpath:cn/bc/placeorigin/spring.xml" />
-	<import resource="classpath:cn/bc/template/spring.xml" />
-	<import resource="classpath:cn/bc/investigate/spring.xml" />
-	<import resource="classpath:cn/bc/netdisk/spring.xml" />
-
+	<import resource="classpath:cn/bc/desktop/spring.xml"/>
+	<import resource="classpath:cn/bc/report/spring.xml"/>
+	<import resource="classpath:cn/bc/message/spring.xml"/>
+	<import resource="classpath:cn/bc/work/spring.xml"/>
+	<import resource="classpath:cn/bc/log/spring.xml"/>
+	<import resource="classpath:cn/bc/bulletin/spring.xml"/>
+	<import resource="classpath:cn/bc/docs/spring.xml"/>
+	<import resource="classpath:cn/bc/feedback/spring.xml"/>
+	<import resource="classpath:cn/bc/option/spring.xml"/>
+	<import resource="classpath:cn/bc/scheduler/spring.xml"/>
+	<import resource="classpath:cn/bc/chat/spring.xml"/>
+	<import resource="classpath:cn/bc/sync/spring.xml"/>
+	<import resource="classpath:cn/bc/websocket/spring.xml"/>
+	<import resource="classpath:cn/bc/placeorigin/spring.xml"/>
+	<import resource="classpath:cn/bc/template/spring.xml"/>
+	<import resource="classpath:cn/bc/investigate/spring.xml"/>
+	<import resource="classpath:cn/bc/netdisk/spring.xml"/>
+	<import resource="classpath:cn/bc/acl/spring.xml"/>
+	<import resource="classpath:cn/bc/email/spring.xml"/>
+	
 	<!-- bc平台:Workflow -->
 	<import resource="classpath:cn/bc/workflow/spring.xml" />
 	<import resource="classpath:cn/bc/workflow/todo/spring.xml" />

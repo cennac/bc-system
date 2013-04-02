@@ -1,0 +1,431 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.GarageTransactorCheckForm"
+	data-js="<#if readonly == 'false'>wf:t050GarageTransactorCheck2JS_${pd_id}.js</#if>"
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<#if readonly == 'false'>
+	<div style="width:640px;">
+		<div class="ui-webget-header title" style="padding-left: 0.5em;font-weight: bold;">
+			<span class="text">车辆设备:</span>
+		</div>
+		<table class="ui-widget-content bc-grid"cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border:none;">
+			<tr class="header row">
+				<td class="first" 	style="width: 10em;border-top:1px solid #CCC;">设备名</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">设备情况</td>
+				<td class="middle" 	style="width: 25em;border-top:1px solid #CCC;">备注</td>
+				<td class="last" 	style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >车牌号码（前、后）</td>
+				<td class="middle" >
+					<select name="gtc_device_plate" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_plateDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >车钥匙</td>
+				<td class="middle" style="padding-left:5px;" >
+					已回收<input type="text" data-scope="global" name="gtc_device_keyCount" class="ui-widget-content" style="padding-left:8px;width:4em;text-align:left;border:none;" placeholder="填写数量" data-validate="{'required':true,'type':'number'}"/>条
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_keyCountDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >顶灯装置</td>
+				<td class="middle" >
+					<select name="gtc_device_DDZZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_DDZZDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >计价器</td>
+				<td class="middle" >
+					<select name="gtc_device_JJQ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_JJQDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >远距离密标</td>
+				<td class="middle" >
+					<select name="gtc_device_YJLMB" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_YJLMBDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >近距离密标</td>
+				<td class="middle" >
+					<select name="gtc_device_JJLMB" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_JJLMBDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >城市电视</td>
+				<td class="middle" >
+					<select name="gtc_device_cityTv" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_cityTvDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >触动传媒</td>
+				<td class="middle" >
+					<select name="gtc_device_touchMedia" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_touchMediaDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >防盗网</td>
+				<td class="middle" >
+					<select name="gtc_device_FDW" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_FDWDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >LPG设备</td>
+				<td class="middle" >
+					<select name="gtc_device_LPG" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_LPGDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >备胎</td>
+				<td class="middle" >
+					<select name="gtc_device_BT" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_BTDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >车用气瓶IC卡</td>
+				<td class="middle" >
+					<select name="gtc_device_card" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+							<option value="无安装">无安装</option>
+					</select>
+				</td>
+				<td class="middle" >
+					<input type="text" name="gtc_device_cardDesc" data-scope="global" class="ui-widget-content" style="width:100%;text-align:left;border:none;"/>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+		</table>
+		
+		<table cellspacing="2" cellpadding="0" style="width:100%;min-width: 400px;">
+			<tr class="widthMarker">
+				<td style="width:10em;">&nbsp;</td>
+				<td style="width:15em;">&nbsp;</td>
+				<td style="width:13em;">&nbsp;</td>
+				<td style="width:15em;">&nbsp;</td>
+				<td >&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label">发动机拓印号码：</td>
+				<td class="value">
+					<input type="text" name="gtc_case_engineRubNo" data-scope="global" class="ui-widget-content" placeholder="交车性质为”其他“时填写"/>
+				</td>
+				<td class="label">车身拓印号码：</td>
+				<td class="value">
+					<input type="text" name="gtc_case_bodyRubNo" data-scope="global" class="ui-widget-content" placeholder="交车性质为”其他“时填写"/>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="label">车辆回收估价：</td>
+				<td class="value">
+					<input type="text" name="gtc_case_money" data-scope="global" data-validate="number" class="ui-widget-content" style="width:8em;"
+					 placeholder="需要估价时填写"/>(元)
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel">车质车况说明：</td>
+				<td class="value" colspan="3">
+					<textarea name="gtc_case_desc"  data-scope="global" rows="3"  class="ui-widget-content noresize" ></textarea>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="label">羊城通驻点员名称：</td>
+				<td class="value">
+					<input type="text"  data-scope="global" name="gtc_yct_worker" class="ui-widget-content" />
+				</td>
+				<td class="label">羊城通设备是否齐全：</td>
+				<td class="value">
+					<select name="gtc_yct_isComplete" data-scope="global" data-type="boolean" data-validate="required" class="ui-widget-content" style="text-align:left;width:8em;">
+						<option ></option>
+						<option value="true">是</option>
+						<option value="false">否</option>
+					</select>	
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="label">羊城通有无欠费：</td>
+				<td class="value">
+					<select name="gtc_yct_isDebt" data-scope="global" data-type="boolean" data-validate="required" class="ui-widget-content" style="text-align:left;width:8em;">
+						<option ></option>
+						<option value="true">有</option>
+						<option value="false">无</option>
+					</select>
+				</td>
+				<td class="label gtcDebt" style="display:none;">羊城通欠费金额：</td>
+				<td class="value gtcDebt" style="display:none;">
+						<input type="text"  data-scope="global" name="gtc_yct_debtMoney" class="ui-widget-content" 
+							 data-validate="number" style="width:5em;" />(元)
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel">羊城通备注：</td>
+				<td class="value" colspan="3">
+					<textarea name="gtc_yct_desc"  data-scope="global" rows="3"  class="ui-widget-content noresize" ></textarea>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<#else>
+	<div style="width:640px;">
+		<div class="ui-webget-header title" style="padding-left: 0.5em;font-weight: bold;">
+			<span class="text">车辆设备:</span>
+		</div>
+		<table class="ui-widget-content bc-grid"cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border:none;">
+			<tr class="header row">
+				<td class="first" 	style="width: 10em;border-top:1px solid #CCC;">设备名</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">设备情况</td>
+				<td class="middle" 	style="width: 25em;border-top:1px solid #CCC;">备注</td>
+				<td class="last" 	style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >车牌号码（前、后）</td>
+				<td class="middle" >${gtc_device_plate!}</td>
+				<td class="middle" >${gtc_device_plateDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >车钥匙</td>
+				<td class="middle" style="text-align:center;">已回收${gtc_device_keyCount!}条</td>
+				<td class="middle" >${gtc_device_keyCountDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >顶灯装置</td>
+				<td class="middle" >${gtc_device_DDZZ!}</td>
+				<td class="middle" >${gtc_device_DDZZDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >计价器</td>
+				<td class="middle" >${gtc_device_JJQ!}</td>
+				<td class="middle" >${gtc_device_JJQDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >远距离密标</td>
+				<td class="middle" >${gtc_device_YJLMB!}</td>
+				<td class="middle" >${gtc_device_YJLMBDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >近距离密标</td>
+				<td class="middle" >${gtc_device_JJLMB!}</td>
+				<td class="middle" >${gtc_device_JJLMBDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >城市电视</td>
+				<td class="middle" >${gtc_device_cityTv!}</td>
+				<td class="middle" >${gtc_device_cityTvDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >触动传媒</td>
+				<td class="middle" >${gtc_device_touchMedia!}</td>
+				<td class="middle" >${gtc_device_touchMediaDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >防盗网</td>
+				<td class="middle" >${gtc_device_FDW!}</td>
+				<td class="middle" >${gtc_device_FDWDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >LPG设备</td>
+				<td class="middle" >${gtc_device_LPG!}</td>
+				<td class="middle" >${gtc_device_LPGDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >备胎</td>
+				<td class="middle" >${gtc_device_BT!}</td>
+				<td class="middle" >${gtc_device_BTDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >车用气瓶IC卡</td>
+				<td class="middle" >${gtc_device_card!}</td>
+				<td class="middle" >${gtc_device_cardDesc!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+		</table>
+		<table cellspacing="2" cellpadding="0" style="width:100%;">
+			<tr class="widthMarker">
+				<td style="width:10em;">&nbsp;</td>
+				<td style="width:15em;">&nbsp;</td>
+				<td style="width:13em;">&nbsp;</td>
+				<td style="width:15em;">&nbsp;</td>
+				<td >&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="label">发动机拓印号码：</td>
+				<td class="value">${gtc_case_engineRubNo!}</td>
+				<td class="label">车身拓印号码：</td>
+				<td class="value">${gtc_case_bodyRubNo!}</td>
+				<td></td>
+			</tr>
+			<#if gtc_case_money?? && gtc_case_money != "">
+				<tr>
+					<td class="label">车辆回收估价：</td>
+					<td class="value">${gtc_case_money!}(元)</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</#if>
+			<tr>
+				<td class="topLabel">车质车况说明：</td>
+				<td class="value" colspan="3">${gtc_case_desc!}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="label">羊城通驻点员名称：</td>
+				<td class="value">${gtc_yct_worker!}</td>
+				<td class="label">羊城通设备是否齐全：</td>
+				<td class="value"><#if gtc_yct_isComplete??><#if gtc_yct_isComplete>是<#else>否</#if></#if></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="label">羊城通有无欠费：</td>
+				<td class="value"><#if gtc_yct_isDebt??><#if gtc_yct_isDebt>有<#else>无</#if></#if></td>
+				<#if gtc_yct_isDebt??>
+					<#if gtc_yct_isDebt>
+						<td class="label">羊城通欠费金额：</td>
+						<td class="value">${gtc_yct_debtMoney!}(元)</div>
+						</td>
+					</#if>
+				</#if>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="topLabel">羊城通备注：</td>
+				<td class="value" colspan="3">${gtc_yct_desc!}</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	</#if>
+</form>

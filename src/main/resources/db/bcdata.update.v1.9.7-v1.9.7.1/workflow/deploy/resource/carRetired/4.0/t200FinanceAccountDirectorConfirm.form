@@ -1,0 +1,18 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.FinanceAccountDirectorConfirmForm"
+	data-js=''
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px;">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">*会计主管意见：</div>
+			<textarea name="fadc_desc"  data-scope="global" rows="3" style="width:80%;" 
+				class="ui-widget-content noresize" data-validate="required"/>
+		</div>
+	<#else>
+		<div  style="padding-left:0.5em;">
+			会计主管意见：${fadc_desc!}	
+		</div>
+	</#if>
+	</div>
+</form>

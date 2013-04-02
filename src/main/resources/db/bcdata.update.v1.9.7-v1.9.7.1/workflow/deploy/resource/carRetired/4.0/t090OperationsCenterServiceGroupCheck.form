@@ -1,0 +1,29 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.OperationsCenterServiceGroupCheckForm"
+	data-js="<#if readonly == 'false'>wf:t090OperationsCenterServiceGroupCheck2JS_${pd_id}.js</#if>"
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:645px;">
+	<#if readonly == 'false'>
+		<div style="padding-left:0.5em;">
+			分公司已上交人车对应关系变更的相关信息：
+			<input type="radio" class="ignore" name="isComplete" value="true"  style="width:auto;" />
+			<label>是</label>
+			<input type="radio" class="ignore" name="isComplete" value="false"  style="width:auto;" />
+			<label>否</label>
+			<input type="hidden" name="ocsergc_isComplete" data-scope="global" data-type="boolean"/>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="ocsergc_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<div style="padding-left:0.5em;">
+			分公司已上交人车对应关系变更的相关信息：<#if ocsergc_isComplete??><#if ocsergc_isComplete>是<#else>否</#if></#if>
+		</div>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			${ocsergc_desc!}
+		</div>
+	</#if>
+	</div>
+</form>

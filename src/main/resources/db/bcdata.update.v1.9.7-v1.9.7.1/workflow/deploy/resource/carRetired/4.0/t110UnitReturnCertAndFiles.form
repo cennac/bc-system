@@ -1,0 +1,136 @@
+<form class="bc-page" data-type='form' style="overflow: auto;"
+	data-namespace="bswf.carRetired.version4.UnitReturnCertAndFilesForm"
+	data-js=''
+	data-readonly="<#if readonly??>${readonly}<#else>false</#if>">
+	<div style="width:640px;">
+		<div class="ui-webget-header title" style="padding-left: 0.5em;font-weight: bold;">
+			<span class="text">证件:</span>
+		</div>
+	<#if readonly == 'false'>
+		<table class="ui-widget-content bc-grid"cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border:none;">
+			<tr class="header row">
+				<td class="first" 	style="width: 10em;border-top:1px solid #CCC;">证件名称</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">证件情况</td>
+				<td class="last" 	style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >行驶证</td>
+				<td class="middle" >
+					<select name="urcaf_SSZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >购置税证</td>
+				<td class="middle" >
+					<select name="urcaf_GZSZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >道路运输证</td>
+				<td class="middle" >
+					<select name="urcaf_DLYSZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >强检证</td>
+				<td class="middle" >
+					<select name="urcaf_QJZ" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >保险卡</td>
+				<td class="middle" >
+					<select name="urcaf_BXC" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >年票</td>
+				<td class="middle" >
+					<select name="urcaf_NP" data-scope="global" class="ui-widget-content" style="text-align:left;border:none;"
+					           data-validate="required">
+							<option></option>
+							<option value="已回收">已回收</option>
+							<option value="未回收">未回收</option>
+							<option value="已遗失">已遗失</option>
+					</select>
+				</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+		</table>
+		<div style="padding-left:0.5em;">
+			<div style="display:inline-block;vertical-align:top;">备注：</div>
+			<textarea name="urcaf_desc"  data-scope="global" rows="3" style="width:90%;" class="ui-widget-content noresize" ></textarea>
+		</div>
+	<#else>
+		<table class="ui-widget-content bc-grid"cellspacing="0" cellpadding="0" style="margin-bottom:4px;width:100%;border:none;">
+			<tr class="header row">
+				<td class="first" 	style="width: 10em;border-top:1px solid #CCC;">名称</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">情况</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">名称</td>
+				<td class="middle" 	style="width: 10em;border-top:1px solid #CCC;">情况</td>
+				<td class="last" 	style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >行驶证</td>
+				<td class="middle" >${urcaf_SSZ!}</td>
+				<td class="middle" >强检证</td>
+				<td class="middle" >${urcaf_QJZ!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >购置税证</td>
+				<td class="middle" >${urcaf_GZSZ!}</td>
+				<td class="middle" >保险卡</td>
+				<td class="middle" >${urcaf_BXC!}</td>
+				
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+			<tr class="row">
+				<td class="first" >道路运输证</td>
+				<td class="middle" >${urcaf_DLYSZ!}</td>
+				<td class="middle" >年票</td>	
+				<td class="middle" >${urcaf_NP!}</td>
+				<td class="last" style="border-width:0 0 0 1px;"></td>
+			</tr>
+		</table>
+		<div style="padding-left:0.5em;">
+			备注：${urcaf_desc!}
+		</div>
+	</#if>
+	</div>
+</form>
