@@ -48,7 +48,7 @@ public class SidebarServiceImpl implements SidebarService {
 		// -- sql:个人待办
 		StringBuffer sql4todo = new StringBuffer();
 		sql4todo.append("(select 'todo'::varchar as type,t.proc_inst_id_ id\r\n");
-		sql4todo.append("	,(select e.author_name from bc_wf_excution_log e where e.tid=t.id_ and type_='task_delegate') special\r\n");
+		sql4todo.append("	,(select e.author_name from bc_wf_excution_log e where e.tid=t.id_ and type_='task_delegate' order by file_date desc limit 1) special\r\n");
 		sql4todo.append("	,t.create_time_ as time,t.name_ title,pd.name_ as content\r\n");
 		sql4todo.append("	,getprocessinstancesubject(t.proc_inst_id_) p_subject,t.id_ t_id,t.due_date_ t_duedate,ec.suspension_state_ p_status\r\n");
 		sql4todo.append("	from act_ru_task t\r\n");
