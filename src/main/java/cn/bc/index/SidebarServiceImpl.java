@@ -55,6 +55,7 @@ public class SidebarServiceImpl implements SidebarService {
 		sql4todo.append("	inner join act_ru_execution ec on ec.id_ = t.execution_id_\r\n");
 		sql4todo.append("	inner join act_re_procdef pd on pd.id_ = t.proc_def_id_ \r\n");
 		sql4todo.append("	where ec.suspension_state_=1 and pd.suspension_state_=1 \r\n");
+		sql4todo.append("	and exists (select 0 from act_ru_execution pe where pe.proc_inst_id_=t.proc_inst_id_ and pe.suspension_state_=1 and pe.parent_id_ is null) \r\n");
 		sql4todo.append("	and t.assignee_ = ?)");
 		args.add(userCode);
 
@@ -71,6 +72,7 @@ public class SidebarServiceImpl implements SidebarService {
 			sql4g.append("	inner join act_ru_identitylink l on l.task_id_ = t.id_\r\n");
 			sql4g.append("	inner join bc_identity_actor g on g.code = l.group_id_\r\n");
 			sql4g.append("	where ec.suspension_state_=1 and pd.suspension_state_=1 \r\n");
+			sql4g.append("	and exists (select 0 from act_ru_execution pe where pe.proc_inst_id_=t.proc_inst_id_ and pe.suspension_state_=1 and pe.parent_id_ is null) \r\n");
 			sql4g.append("	and t.assignee_ is null\r\n");
 			if (groupCodes.size() == 1) {
 				sql4g.append("	and l.group_id_ = ?");
@@ -90,10 +92,11 @@ public class SidebarServiceImpl implements SidebarService {
 		sql.append("(select type,type||':'||id||':'||t_id as id,id as dbid,time\r\n");
 		sql.append("	,title\r\n");
 		sql.append("	,(case when type='todo' and special is null and p_subject is null then content\r\n");
+		sql.append("		when type='todo' and special is null and p_subject is not null then p_subject\r\n");
 		sql.append("		when type='todo' and special is not null and p_subject is null then '['||special||'委托您]'||content\r\n");
 		sql.append("		when type='todo' and special is not null and p_subject is not null then '['||special||'委托您]'||p_subject\r\n");
-		sql.append("		when type='groupTodo' and special is not null and p_subject is null then '['||special||']'||content\r\n");
-		sql.append("		when type='groupTodo' and special is not null and p_subject is not null then '['||special||']'||p_subject\r\n");
+		sql.append("		when type='groupTodo' and p_subject is null then '['||special||']'||content\r\n");
+		sql.append("		when type='groupTodo' and p_subject is not null then '['||special||']'||p_subject\r\n");
 		sql.append("		else content end) as content\r\n");
 		sql.append("	,special\r\n");
 		if (emptyGroup) {// 无岗位待办
