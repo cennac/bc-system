@@ -73,6 +73,7 @@
 	<bean class="cn.bc.websocket.event.SessionDestroyedNotifier4WebSocket" />
 	<bean class="cn.bc.websocket.event.LoginNotifier4WebSocket" />
 	<bean class="cn.bc.business.carman.event.SetCarByDriverHistoryInfo4Car" />
+	<bean class="cn.bc.business.carPrepare.event.CreateOrUpdateCarPrepareInfoByLogoutCar" />
 	<bean
 		class="cn.bc.business.carman.event.WarehouingCarByDriverNotifier4ContractCharger" />
 
