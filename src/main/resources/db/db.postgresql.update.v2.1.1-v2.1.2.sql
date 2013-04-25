@@ -4,39 +4,33 @@
 -- 升级版本: 从 2.1.1升级到 2.1.2
 -- ###########################################################################
 
--- 获取指定组织的后代组织为单位或部门所拥有的用户数量
-CREATE OR REPLACE FUNCTION getfollowercountbyunitdepartment(masterid INTEGER)
-	RETURNS INT  AS
+-- 获取流程任务最新的本地变量值
+CREATE OR REPLACE FUNCTION getprocesstasklocalvalue(id character varying,taskkey character varying,name character varying)
+  RETURNS character varying AS
 $BODY$
 DECLARE
-		-- 定义变量
-		i INT;
+		--定义变量
+	localvalue varchar(8000);
+	var_type varchar(255);
+	longValue int8;
+
+	-- 变量一行结果的记录	
+	rowinfo RECORD;
 BEGIN
-	select count(*) into i
-	from bc_identity_actor f
-	inner join bc_identity_actor_relation r on r.follower_id=f.id
-	where r.type_=0		-- 上下级隶属关系
-	and f.type_ = 4 	-- 用户
-	and f.status_ = 0	-- 在案状态
-	and r.master_id in (
-		-- 递归获取指定组织的后代组织ID列表
-		WITH RECURSIVE ou (id) AS (
-			VALUES (masterid) -- 指定组织的ID
+	select d.text_,d.var_type_,d.long_
+		from act_hi_taskinst t 
+		inner join act_hi_detail d on d.task_id_=t.id_
+		where t.proc_inst_id_=id and t.task_def_key_=taskkey and d.name_=name
+		order by d.time_ desc limit 1
+        into localvalue,var_type,longValue;
+	IF var_type = 'boolean' THEN
+		localvalue := longValue;
+	END IF;
 
-			UNION ALL
-
-			select r.follower_id from bc_identity_actor_relation r
-				inner join bc_identity_actor f on f.id=r.follower_id
-				inner join ou on ou.id=r.master_id
-				where r.type_=0 		-- 上下级隶属关系
-				and f.status_ = 0 		-- 在案状态
-				and f.type_ in (1,2)	-- 后代组织的类型为单位或部门
-		) SELECT * FROM ou
-	);
-	return i;
+	return localvalue;
 END;
 $BODY$
- LANGUAGE plpgsql;
+  LANGUAGE plpgsql;
 
 -- 获取指定岗位所拥有的用户数量
 CREATE OR REPLACE FUNCTION getgroupusercount(groupid INTEGER)
