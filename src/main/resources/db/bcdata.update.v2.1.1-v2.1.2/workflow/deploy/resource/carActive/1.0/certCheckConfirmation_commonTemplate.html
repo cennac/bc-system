@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>证件审验确认书</title>
+<link rel="stylesheet" type="text/css" href='${SystemContext.getAttr("htmlPageNamespace")}/bc-workflow/page.css?ts=${SystemContext.getAttr("appTs")}' />
+<link rel="stylesheet" type="text/css" media="print" href='${SystemContext.getAttr("htmlPageNamespace")}/bc-workflow/print/page.css?ts=${SystemContext.getAttr("appTs")}' />
+<link rel="stylesheet" type="text/css" href='${SystemContext.getAttr("htmlPageNamespace")}/bc-business-workflow/complainHandle/page.css?ts=${SystemContext.getAttr("appTs")}' />
+</head>
+<body>
+<div class="paper">
+	<h1 class="title">证件审验确认书</h1>
+	<div style="text-align: right;" >出车日期：${vs.carActiveDate_gl!}</div>
+<div class="rows">
+	<table cellspacing="0" cellpadding="0" class="row" style="margin: 0;padding: 0;width: 100%;">
+		<tr class="widthMarker">
+			<td style="width: 70px;">&nbsp;</td>
+			<td style="width: 120px;">&nbsp;</td>
+			<td style="width: 120px;">&nbsp;</td>
+			<td style="width: 120px;">&nbsp;</td>
+			<td style="width: 120px;text-align: center;">&nbsp;</td>
+			<td >&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="first" style="text-align: right;">车牌号:</td>
+			<td class="middle">${vs.plate_gl!}</td>
+			<td class="middle" style="text-align: right;">分公司:</td>
+			<td class="middle" >${vs.filiale_gl!}</td>
+			<td class="middle" style="text-align: right;">车队:</td>
+			<td class="middle" >${vs.motorcadeName_gl!}</td>
+		</tr>
+		<tr>
+			<td class="first" style="text-align: right;">管理号:</td>
+			<td class="middle">${vs.manageNo_gl!}</td>
+			<td class="middle" style="text-align: right;">营运性质:</td>
+			<td class="middle" >${vs.bsType!}</td>
+			<td class="middle" style="text-align: right;">出车性质:</td>
+			<td class="last" >${vs.carActiveType!}</td>
+		</tr>
+		<tr>
+			<td class="first" style="height: 26px;text-align: center;border-bottom-width:0;" rowspan="3">驾驶员<br>资料</td>
+			<td class="middle" style="height: 26px;text-align: center;">迁出人员</td>
+			<td class="middle" style="height: 26px;text-align: center;">资格证号</td>
+			<td class="middle" style="height: 26px;text-align: center;">迁入人员</td>
+			<td class="middle" style="height: 26px;text-align: center;">资格证号</td>
+			<td class="last" style="height: 26px;text-align: center;">驾驶员性质</td>
+		</tr>
+		<tr>
+			<td class="middle" >1&nbsp;&nbsp;&nbsp;${vs.oldDriver1_gl!}</td>
+			<td class="middle" >${vs.certFwzg4oldDriver1_gl!}</td>
+			<td class="middle" >1&nbsp;&nbsp;&nbsp;${vs.driver1_gl!}</td>
+			<td class="middle" >${vs.certFwzg4Driver1_gl!}</td>
+			<td class="last" >${vs.charger4driver1!}</td>
+		</tr>
+		<tr>
+			<td class="middle" style="border-bottom-width:0;">2&nbsp;&nbsp;&nbsp;${vs.oldDriver2_gl!}</td>
+			<td class="middle" style="border-bottom-width:0;">${vs.certFwzg4oldDriver2_gl!}</td>
+			<td class="middle" style="border-bottom-width:0;">2&nbsp;&nbsp;&nbsp;${vs.driver2_gl!}</td>
+			<td class="middle" style="border-bottom-width:0;">${vs.certFwzg4Driver2_gl!}</td>
+			<td class="last" style="border-bottom-width:0;">${vs.charger4driver2!}</td>
+		</tr>
+	</table>
+	<table class="row" cellspacing="0" cellpadding="0">
+		<tr class="widthMarker">
+			<td style="width: 70px;">&nbsp;</td>
+			<td style="width: 120px;">&nbsp;</td>
+			<td style="width: 120px;">&nbsp;</td>
+			<td style="width: 120px;">&nbsp;</td>
+			<td style="width: 120px;text-align: center;">&nbsp;</td>
+			<td >&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="first" rowspan="11" style="text-align: center;border-bottom-width:0;">证<br>件<br>审<br>验</td>
+			<td class="middle" style="text-align: center;" colspan="2">证件及资料</td>
+			<td class="middle" style="text-align: center;">驾驶员1</td>
+			<td class="middle" style="text-align: center;">驾驶员2</td>
+			<td class="last" style="text-align: center;">备注</td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">*身份证</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">*户口簿</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">*居住证(非本市户籍)</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">*广州籍驾驶证</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">*从业资格证</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">*LPG煤气上岗证</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="2">计生证</td>
+			<td class="middle"></td>
+			<td class="middle"></td>
+			<td class="last"></td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="5" style="border-bottom-width:0;border-bottom: 0;">本人对以上证件资料真实性负责</td>
+		</tr>
+		<tr>
+			<td class="middle" colspan="5" style="border-bottom-width:0;text-align: right;border-top: 0;border-bottom: 0;">申请人:__________________________日期:____________</td>
+		</tr>
+	</table>	
+</div>
+</div>
+</body>
+</html>
